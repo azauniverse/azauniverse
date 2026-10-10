@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ky">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050812">
+  <meta name="description" content="AZA UNIVERSE — тесттер, мини-оюндар, күнүмдүк чакырыктар жана креативдүү куралдар бир жерде.">
+  <title>AZA UNIVERSE — Сенин интернет-ааламың</title>
+  <link rel="icon" href="assets/aza-emblem.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="space-bg" aria-hidden="true"><span class="starfield starfield-a"></span><span class="starfield starfield-b"></span><span class="nebula nebula-a"></span><span class="nebula nebula-b"></span></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="AZA UNIVERSE — башкы бет">
+      <span class="brand-emblem"><img src="assets/aza-emblem.svg" alt=""></span>
+      <span class="brand-type"><strong>AZA <i>UNIVERSE</i></strong><small data-i18n="tagline">ТЕСТТЕР · ОЮНДАР · AI · КООМЧУЛУК</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#home" data-i18n="navHome">Башкы бет</a>
+      <a class="nav-link" href="#games" data-i18n="navGames">Оюндар</a>
+      <a class="nav-link" href="#tests" data-i18n="navTests">Тесттер</a>
+      <a class="nav-link" href="#studio" data-i18n="navAI">AI куралдар</a>
+      <a class="nav-link" href="#ranking" data-i18n="navRanking">Рейтинг</a>
+      <a class="nav-link" href="#challenge" data-i18n="navChallenge">Чакырыктар</a>
+    </nav>
+    <div class="top-actions">
+      <div class="language-switch" aria-label="Тил тандоо"><button type="button" class="lang-choice selected" data-lang="ky">KG</button><button type="button" class="lang-choice" data-lang="ru">RU</button></div>
+      <button class="round-icon" id="searchOpen" type="button" aria-label="Издөө" title="Издөө"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg></button>
+      <button class="round-icon profile-icon" id="profileOpen" type="button" aria-label="Менин жыйынтыгым" title="Менин жыйынтыгым"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20c.6-3.6 2.9-5.3 6.5-5.3s5.9 1.7 6.5 5.3"></path><circle cx="12" cy="12" r="10"></circle></svg></button>
+    </div>
+  </header>
+
+  <main id="home" class="site-main">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-backdrop" aria-hidden="true"><div class="hero-planet"></div><div class="hero-moon"></div><div class="hero-floor"></div></div>
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span><span data-i18n="heroEyebrow">СЕНИН ЖАҢЫ ИНТЕРНЕТ-ААЛАМЫҢ</span></div>
+        <h1 id="heroTitle"><span>AZA</span><strong>UNIVERSE</strong></h1>
+        <div class="hero-promise" data-i18n="heroPromise">ТЕСТТЕР · ОЮНДАР · AI КУРАЛДАР · КООМЧУЛУК</div>
+        <p class="hero-description" data-i18n="heroText">Кызыктуу тесттерден өт, мини-оюндарды ойно, жаңы идеяларды тап жана досторуң менен жарыш.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" data-open="quiz"><span class="button-symbol">➤</span><span data-i18n="heroStart">Ааламга кирүү</span><span class="arrow">↗</span></button>
+          <a class="btn btn-outline" href="#explore"><span class="play-symbol">▶</span><span data-i18n="heroExplore">Изилдеп көрүү</span></a>
+        </div>
+        <div class="hero-caption"><span class="caption-flame">✦</span><span data-i18n="heroNote">Акысыз башта. Өз рекордуңду жаңыла.</span></div>
+      </div>
+      <div class="hero-emblem" aria-hidden="true">
+        <div class="emblem-orbit orbit-one"></div><div class="emblem-orbit orbit-two"></div><div class="emblem-orbit orbit-three"></div>
+        <div class="emblem-a">A</div>
+        <div class="emblem-core">AZA <b>UNIVERSE</b><small>EXPLORE · PLAY · CREATE</small></div>
+        <span class="orbit-spark spark-one">✦</span><span class="orbit-spark spark-two">✧</span>
+      </div>
+      <aside class="hero-shortcuts" aria-label="Quick access">
+        <a href="#tests"><span class="shortcut-icon cyan">✧</span><span data-i18n="shortcutTests">Кызыктуу тесттер</span></a>
+        <a href="#games"><span class="shortcut-icon orange">⌘</span><span data-i18n="shortcutGames">Мини-оюндар</span></a>
+        <a href="#studio"><span class="shortcut-icon violet">✦</span><span data-i18n="shortcutAI">AI куралдар</span></a>
+        <a href="#ranking"><span class="shortcut-icon gold">♜</span><span data-i18n="shortcutRanking">Менин рекордум</span></a>
+        <a href="#challenge"><span class="shortcut-icon orange">🎁</span><span data-i18n="shortcutDaily">Күнүмдүк миссия</span></a>
+      </aside>
+    </section>
+
+    <section id="explore" class="feature-grid" aria-label="AZA Universe бөлүмдөрү">
+      <article class="universe-card card-games" id="games" data-search="games оюндар реакция mini game">
+        <div class="card-art art-game"><span class="art-orbit"></span><span class="art-emoji">🎮</span><span class="art-glint">✦</span></div>
+        <div class="card-copy"><span class="card-overline" data-i18n="gamesOverline">РЕКОРДУҢДУ ЖАҢЫЛА</span><h2 data-i18n="gamesTitle">Мини-оюндар</h2><p data-i18n="gamesText">Реакцияңды сынап, өзүңдүн мыкты убактыңды кой.</p><button type="button" class="card-action" data-open="game"><span data-i18n="playNow">Азыр ойно</span><b>↗</b></button></div>
+      </article>
+      <article class="universe-card card-tests" id="tests" data-search="tests тесттер quiz iq anime personality">
+        <div class="card-art art-test"><span class="brain-ring"></span><span class="art-emoji">🧠</span><span class="question-mark">?</span></div>
+        <div class="card-copy"><span class="card-overline cyan-text" data-i18n="testsOverline">БИЛИМИҢДИ СЫНАГЫН</span><h2 data-i18n="testsTitle">Кызыктуу тесттер</h2><p data-i18n="testsText">Логика, мүнөз, кызыкчылык жана башка темалар.</p><button type="button" class="card-action cyan-action" data-open="quiz"><span data-i18n="takeQuiz">Тест өтүү</span><b>↗</b></button></div>
+      </article>
+      <article class="universe-card card-ai" id="studio" data-search="ai tools studio текст идея никнейм">
+        <div class="card-art art-ai"><span class="ai-orb"></span><span class="art-emoji">🤖</span><span class="ai-star">✧</span></div>
+        <div class="card-copy"><span class="card-overline violet-text" data-i18n="aiOverline">КРЕАТИВДҮҮ КУРАЛДАР</span><h2 data-i18n="aiTitle">AZA Studio</h2><p data-i18n="aiText">Посттун тексти, никнейм жана видео идеяларын түз.</p><button type="button" class="card-action violet-action" data-open="studio"><span data-i18n="openTools">Куралдарды ач</span><b>↗</b></button></div>
+      </article>
+      <article class="universe-card card-score" id="ranking" data-search="score ranking рекорд упай статистика рейтинг">
+        <div class="card-art art-score"><span class="cup-halo"></span><span class="art-emoji">🏆</span><span class="score-stars">✦ ✧ ✦</span></div>
+        <div class="card-copy"><span class="card-overline gold-text" data-i18n="scoreOverline">ӨЗҮҢ МЕНЕН ЖАРЫШ</span><h2 data-i18n="scoreTitle">Рекорддор</h2><p data-i18n="scoreText">Упайыңды, тест жыйынтыгын жана реакция рекордуңду кара.</p><button type="button" class="card-action gold-action" id="showStats"><span data-i18n="showStats">Статистиканы көрүү</span><b>↗</b></button></div>
+      </article>
+      <article class="universe-card card-challenge" id="challenge" data-search="daily challenge чакырык күнүмдүк миссия">
+        <div class="card-art art-challenge"><span class="gift-aura"></span><span class="art-emoji">🎁</span><span class="gift-spark">✦</span></div>
+        <div class="card-copy"><span class="card-overline" data-i18n="challengeOverline">КҮН САЙЫН ЖАҢЫЛАНАТ</span><h2 data-i18n="challengeTitle">Күнүмдүк чакырык</h2><p data-i18n="challengeText">Бүгүнкү тапшырманы аткарып, активдүүлүгүңдү сакта.</p><button type="button" class="card-action" data-open="quiz"><span data-i18n="startChallenge">Чакырыкты баштоо</span><b>↗</b></button></div>
+      </article>
+      <article class="universe-card card-community" id="community" data-search="community коомчулук достор share">
+        <div class="card-art art-community"><span class="community-aura"></span><span class="art-emoji">👥</span><span class="community-star">✧</span></div>
+        <div class="card-copy"><span class="card-overline cyan-text" data-i18n="communityOverline">ДОСТОР МЕНЕН БӨЛҮШ</span><h2 data-i18n="communityTitle">Коомчулук</h2><p data-i18n="communityText">Натыйжаңды бөлүшүп, досторуңду чакыр.</p><button type="button" class="card-action cyan-action" id="communityShare"><span data-i18n="inviteFriends">Досту чакыруу</span><b>↗</b></button></div>
+      </article>
+    </section>
+
+    <section class="mission-banner" aria-labelledby="missionTitle">
+      <div class="mission-art" aria-hidden="true"><div class="mission-planet"></div><span class="mission-figure">?</span><span class="mission-sparks">✦　✧　✦</span></div>
+      <div class="mission-content"><span class="mission-tag"><span>▣</span><span data-i18n="dailyLabel">БҮГҮНКҮ ЧАКЫРЫК</span></span><h2 id="missionTitle" data-i18n="dailyTitle">Логикалык тест</h2><p data-i18n="dailyTaskText">5 суроого жооп бер. Өзүңдү сына!</p><div class="mission-progress"><span class="progress-track"><i id="dailyProgress"></i></span><small id="dailyProgressText">0/5</small></div><button class="btn btn-primary" type="button" data-open="quiz"><span data-i18n="acceptChallenge">Чакырыкты кабыл алуу</span><span>→</span></button>
+      </div>
+      <div class="mission-reward"><small data-i18n="perfectScore">МЫКТЫ ЖЫЙЫНТЫК</small><strong>+50</strong><span data-i18n="bonusPoints">BONUS POINTS</span></div>
+      <span class="mission-edge edge-left" aria-hidden="true">‹</span><span class="mission-edge edge-right" aria-hidden="true">›</span>
+    </section>
+
+    <section class="popular-section">
+      <div class="section-heading"><div><span class="section-eyebrow" data-i18n="popularEyebrow">ӨЗҮҢДҮ ТАП</span><h2 data-i18n="popularTitle">Популярдуу тесттер</h2></div><button class="section-link" type="button" data-open="quiz"><span data-i18n="allTests">Бардык тесттер</span><b>↗</b></button></div>
+      <div class="popular-grid">
+        <button class="popular-card pop-anime" data-open="quiz" data-quiz-type="anime" type="button" data-search="anime аниме тест"><span class="popular-illustration">🌸</span><span class="popular-info"><strong data-i18n="popular1">Сен кайсы каармансың?</strong><small><b>🔥</b> <span data-i18n="popularTry">Популярдуу тест</span></small></span><span class="popular-arrow">↗</span></button>
+        <button class="popular-card pop-iq" data-open="quiz" data-quiz-type="iq" type="button" data-search="iq logic логика интеллект"><span class="popular-illustration">🧠</span><span class="popular-info"><strong data-i18n="popular2">Логикаң канчалык күчтүү?</strong><small><b>✦</b> <span data-i18n="quickTest">Ыкчам тест</span></small></span><span class="popular-arrow">↗</span></button>
+        <button class="popular-card pop-car" data-open="quiz" data-quiz-type="cars" type="button" data-search="car cars унаа авто"><span class="popular-illustration">🏎️</span><span class="popular-info"><strong data-i18n="popular3">Сага кайсы унаа туура келет?</strong><small><b>🔥</b> <span data-i18n="funTest">Көңүлдүү тест</span></small></span><span class="popular-arrow">↗</span></button>
+        <button class="popular-card pop-personality" data-open="quiz" data-quiz-type="personality" type="button" data-search="personality мүнөз характер"><span class="popular-illustration">💜</span><span class="popular-info"><strong data-i18n="popular4">Мүнөзүңдү ач</strong><small><b>✧</b> <span data-i18n="personalityTest">Мүнөз тест</span></small></span><span class="popular-arrow">↗</span></button>
+      </div>
+    </section>
+
+    <section class="lower-grid">
+      <article class="panel stats-panel">
+        <div class="section-heading compact"><div><span class="section-eyebrow" data-i18n="yourProgress">СЕНИН ПРОГРЕССИҢ</span><h2 data-i18n="statsTitle">Жеке статистика</h2></div><span class="status-chip"><i></i><span data-i18n="savedLocally">Сакталат</span></span></div>
+        <div class="stats-grid">
+          <div class="stat-tile"><span class="stat-glyph fire-glyph">🔥</span><div><small data-i18n="points">Упайлар</small><strong id="pointsTotal">0</strong></div></div>
+          <div class="stat-tile"><span class="stat-glyph cyan-glyph">⚡</span><div><small data-i18n="bestReaction">Эң мыкты реакция</small><strong><span id="bestReaction">—</span><em> ms</em></strong></div></div>
+          <div class="stat-tile"><span class="stat-glyph violet-glyph">🧠</span><div><small data-i18n="testsCompleted">Өткөн тесттер</small><strong id="testsCompleted">0</strong></div></div>
+          <div class="stat-tile"><span class="stat-glyph gold-glyph">🎯</span><div><small data-i18n="bestScore">Жогорку тест упайы</small><strong id="bestQuizScore">—</strong></div></div>
+        </div>
+        <p class="local-notice" data-i18n="localNotice">Бул статистика ушул браузерде сакталат. Жалпы онлайн рейтинг үчүн сервердик система кийин кошулат.</p>
+      </article>
+      <article class="panel studio-panel">
+        <div class="section-heading compact"><div><span class="section-eyebrow violet-text" data-i18n="creativeZone">КРЕАТИВДҮҮ ЗОНА</span><h2 data-i18n="studioTitle">AZA Studio</h2></div><span class="studio-badge">✦ STUDIO</span></div>
+        <p data-i18n="studioIntro">Идеяңды текстке айландыр. Ыкчам шаблондордон башта.</p>
+        <div class="studio-tools">
+          <button class="studio-tool" data-open="studio" data-studio-type="post" type="button"><span class="tool-icon tool-blue">▤</span><span><b data-i18n="toolPost">Пост тексти</b><small data-i18n="toolPostSub">Соцтармак үчүн</small></span><i>↗</i></button>
+          <button class="studio-tool" data-open="studio" data-studio-type="nick" type="button"><span class="tool-icon tool-violet">A</span><span><b data-i18n="toolNick">Никнейм</b><small data-i18n="toolNickSub">Өзгөчө ат ойлоп тап</small></span><i>↗</i></button>
+          <button class="studio-tool" data-open="studio" data-studio-type="idea" type="button"><span class="tool-icon tool-gold">✧</span><span><b data-i18n="toolIdea">Видео идеясы</b><small data-i18n="toolIdeaSub">Жаңы контент үчүн</small></span><i>↗</i></button>
+        </div>
+      </article>
+    </section>
+
+    <section class="share-banner">
+      <div class="share-icon">➤</div><div class="share-copy"><span class="section-eyebrow" data-i18n="shareEyebrow">КОМАНДА ЧОГУЛТ</span><h2 data-i18n="shareTitle">Ааламды досторуң менен бөлүш</h2><p data-i18n="shareText">Кимдин реакциясы ылдам? Досторуңду чакырып, сынаш.</p></div><button id="shareBtn" class="btn btn-primary" type="button"><span data-i18n="shareBtn">Бөлүшүү</span><span>↗</span></button>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-brand-row"><a class="brand" href="#home"><span class="brand-emblem small-emblem"><img src="assets/aza-emblem.svg" alt=""></span><span class="brand-type"><strong>AZA <i>UNIVERSE</i></strong><small>EXPLORE · PLAY · CREATE</small></span></a><p data-i18n="footerDescription">Кызыктуу контент, оюндар жана креативдүү куралдар — бир ааламда.</p></div>
+      <div class="footer-links"><strong data-i18n="footerNavigation">Навигация</strong><a href="#games" data-i18n="navGames">Оюндар</a><a href="#tests" data-i18n="navTests">Тесттер</a><a href="#studio" data-i18n="navAI">AI куралдар</a><a href="#challenge" data-i18n="navChallenge">Чакырыктар</a></div>
+      <div class="footer-links"><strong data-i18n="footerAbout">Долбоор жөнүндө</strong><a href="#explore" data-i18n="footerFeatures">Мүмкүнчүлүктөр</a><button type="button" id="footerShare" data-i18n="inviteFriends">Досту чакыруу</button><a href="#ranking" data-i18n="statsTitle">Жеке статистика</a></div>
+      <div class="footer-contact"><strong data-i18n="footerContact">Байланыш</strong><p data-i18n="footerContactText">Сунушуң барбы? Кийинки жаңыртуулар үчүн долбоорду сактап кой.</p><button type="button" class="btn btn-outline" id="footerContactBtn" data-i18n="shareBtn">Бөлүшүү ↗</button></div>
+      <div class="footer-bottom"><span>© <span id="year"></span> AZA UNIVERSE. <span data-i18n="rights">Бардык укуктар корголгон.</span></span><span>KYRGYZSTAN <i>✦</i> DIGITAL UNIVERSE</span><a href="#home" class="back-top" aria-label="Жогору кайтуу">↑</a></div>
+    </footer>
+  </main>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+    <a class="mobile-nav-item active" href="#home"><span>⌂</span><small data-i18n="navHome">Башкы</small></a>
+    <a class="mobile-nav-item" href="#games"><span>🎮</span><small data-i18n="navGames">Оюндар</small></a>
+    <a class="mobile-nav-item" href="#tests"><span>🧠</span><small data-i18n="navTests">Тесттер</small></a>
+    <a class="mobile-nav-item" href="#studio"><span>✧</span><small data-i18n="navAI">AI</small></a>
+    <a class="mobile-nav-item" href="#ranking"><span>🏆</span><small data-i18n="navRanking">Рейтинг</small></a>
+  </nav>
+
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" data-close aria-label="Close">×</button>
+      <div id="modalContent"></div>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
