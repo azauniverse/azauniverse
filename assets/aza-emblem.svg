@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="AZA Universe emblem">
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#ffffff"/><stop offset=".34" stop-color="#9eb8d0"/><stop offset=".57" stop-color="#f7fbff"/><stop offset=".82" stop-color="#7794af"/><stop offset="1" stop-color="#e8f7ff"/></linearGradient>
+    <linearGradient id="orbit" x1="0" y1="0" x2="1" y2=".3"><stop stop-color="#ff9e30"/><stop offset=".42" stop-color="#ff6818"/><stop offset=".63" stop-color="#09aaff"/><stop offset="1" stop-color="#64eaff"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <path d="M60 8 108 103H88L60 46 32 103H12Z" fill="url(#metal)" stroke="#d7ecff" stroke-width="1.4"/>
+  <path d="m60 49 17 34H43Z" fill="#06101d"/>
+  <ellipse cx="60" cy="60" rx="57" ry="18" transform="rotate(-27 60 60)" fill="none" stroke="url(#orbit)" stroke-width="5.5" filter="url(#glow)"/>
+  <path d="M13 76c23-7 64-21 95-38" fill="none" stroke="#8aeaff" stroke-opacity=".8" stroke-width="1.3"/>
+  <circle cx="12" cy="77" r="3.2" fill="#ffb04a" filter="url(#glow)"/>
+  <circle cx="107" cy="37" r="3.2" fill="#63e6ff" filter="url(#glow)"/>
+</svg>
