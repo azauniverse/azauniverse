@@ -123,7 +123,7 @@
 
     <section class="popular-layout">
       <div class="popular-block" id="popularTests">
-        <div class="section-title-row"><div><span class="eyebrow" data-i18n="popularEyebrow">ӨЗҮҢДҮ СЫНАП КӨР</span><h2 data-i18n="popularTitle">Популярдуу тесттер</h2></div><a class="text-link" href="#tests" data-i18n="seeAll">Баарын көрүү →</a></div>
+        <div class="section-title-row"><div><span class="eyebrow" data-i18n="popularEyebrow">ӨЗҮҢДҮ СЫНАП КӨР</span><h2 data-i18n="popularTitle">Популярдуу тесттер</h2></div><a class="text-link" href="#testCatalog" data-i18n="seeAll">Баарын көрүү →</a></div>
         <div class="popular-grid">
           <button class="popular-card" type="button" data-open="quiz" data-quiz="general"><span class="popular-art anime-girl"><span>✦</span>👩🏻‍🎤</span><strong data-i18n="popularPersonality">Кызыктуу тест</strong><small><span class="flame-mini">🔥</span> <span data-i18n="quickQuiz">5 суроо</span></small></button>
           <button class="popular-card" type="button" data-open="quiz" data-quiz="anime"><span class="popular-art anime-boy"><span>✦</span>🧑🏻‍🎤</span><strong data-i18n="popularAnime">Аниме тест</strong><small><span class="flame-mini">🔥</span> <span data-i18n="fiveQuestions">5 суроо</span></small></button>
@@ -145,7 +145,21 @@
       </aside>
     </section>
 
-    <section class="tools-strip" aria-label="Сайттын мүмкүнчүлүктөрү">
+    
+    <section class="test-catalog-section" id="testCatalog" aria-labelledby="catalogTitle">
+      <div class="catalog-head">
+        <div>
+          <span class="eyebrow" data-i18n="catalogEyebrow">13 БАГЫТ • ЧЕКСИЗ ТЕСТ</span>
+          <h2 id="catalogTitle" data-i18n="catalogTitle">Тесттердин толук каталогу</h2>
+          <p data-i18n="catalogText">Ар бир өтүүдө 8 суроонун ичинен 5 суроо туш келди тандалат. Жыйынтыктан кийин кийинки тестке чектөөсүз өт!</p>
+        </div>
+        <span class="catalog-count" data-i18n="catalogCount">13 тест багыты</span>
+      </div>
+      <div id="testCatalogGrid" class="quiz-catalog-grid" aria-live="polite"></div>
+      <p id="quizDrivingNote" class="quiz-driving-note"></p>
+    </section>
+
+<section class="tools-strip" aria-label="Сайттын мүмкүнчүлүктөрү">
       <div class="tool-stat"><span class="stat-blue">♧</span><strong data-i18n="metricTests">Тесттер</strong><small data-i18n="metricTestsSmall">Билимиңди сына</small></div>
       <div class="tool-stat"><span class="stat-purple">▣</span><strong data-i18n="metricGames">Мини-оюндар</strong><small data-i18n="metricGamesSmall">Рекорд кой</small></div>
       <div class="tool-stat"><span class="stat-cyan">⌘</span><strong data-i18n="metricAI">AI куралдары</strong><small data-i18n="metricAISmall">Идея түз</small></div>
