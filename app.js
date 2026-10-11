@@ -164,6 +164,10 @@
     ]
   };
 
+  // Ар бир суроого өзүнө тиешелүү иллюстрация бекитилет (13 категория × 8 суроо = 104 сүрөт).
+  Object.entries(quizSets).forEach(([category, questions]) => {
+    questions.forEach((question, index) => { question.imageKey = `${category}-${String(index + 1).padStart(2, "0")}`; });
+  });
   const quizCategoryOrder = Object.keys(quizSets);
   const quizCategoryMeta = {
     general:{icon:"🌟",art:"general-art",ky:{title:"Жалпы билим",description:"Күнүмдүк фактылар, кызыктуу маалыматтар"},ru:{title:"Общие знания",description:"Факты, эрудиция и интересные сведения"}},
@@ -189,7 +193,7 @@
     return shuffleList(quizSets[type]||quizSets.general).slice(0,5).map(item=>{
       const raw=item[lang];
       const options=shuffleList(raw.a.map((text,index)=>({text,correct:index===item.correct})));
-      return {q:raw.q,a:options.map(option=>option.text),correct:options.findIndex(option=>option.correct),why:raw.why};
+      return {q:raw.q,a:options.map(option=>option.text),correct:options.findIndex(option=>option.correct),why:raw.why,imageKey:item.imageKey};
     });
   }
   function renderQuizCatalog(){
@@ -263,7 +267,7 @@
       openModal(`<span class="eyebrow">${heading} • ${escapeHtml(category)}</span><h2 id="modalTitle">${quizScore===5?(lang==="ky"?"АЗАМАТТАЙ! 🔥":"ОТЛИЧНО! 🔥"):(lang==="ky"?"СЕН ЖАКШЫ АРАКЕТ КЫЛДЫҢ!":"ХОРОШАЯ ПОПЫТКА!")}</h2><p>${lang==="ky"?"Сенин жыйынтыгың":"Твой результат"}</p><div class="result-box"><strong>${quizScore}/5</strong><p>${lang==="ky"?"Топтогон упайың":"Набрано очков"}: ${quizAward}</p></div><p>${praise}</p><div class="quiz-result-actions"><button class="btn btn-primary full" id="nextQuiz">${lang==="ky"?"КИЙИНКИ ТЕСТ →":"СЛЕДУЮЩИЙ ТЕСТ →"}</button><button class="btn btn-outline full" id="quizAgain">${lang==="ky"?"УШУЛ ТЕСТТИ КАЙРА ӨТҮҮ":"ПОВТОРИТЬ ЭТОТ ТЕСТ"}</button><button class="btn btn-outline full" id="openQuizCatalog">${lang==="ky"?"БАШКА ТЕСТТИ ТАНДОО":"ВЫБРАТЬ ДРУГОЙ ТЕСТ"}</button></div>`);return;
     }
     const title=quizCategoryMeta[currentQuiz][lang].title.toUpperCase();
-    openModal(`<span class="eyebrow">${escapeHtml(title)} • ${quizIndex+1}/5</span><h2 id="modalTitle">${escapeHtml(q.q)}</h2><p>${lang==="ky"?"Туура жооп үчүн 10 упай.":"За каждый правильный ответ — 10 очков."}</p><div id="quizOptions">${q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${escapeHtml(a)}</button>`).join("")}</div><div id="quizFeedback"></div>`);
+    openModal(`<span class="eyebrow">${escapeHtml(title)} • ${quizIndex+1}/5</span><h2 id="modalTitle">${escapeHtml(q.q)}</h2><div class="quiz-question-visual"><svg viewBox="0 0 960 540" role="img" aria-label="${escapeHtml(q.q)}" focusable="false" xmlns:xlink="http://www.w3.org/1999/xlink"><use href="quiz-illustrations.svg#${q.imageKey}" xlink:href="quiz-illustrations.svg#${q.imageKey}" x="0" y="0" width="960" height="540"></use></svg></div><p>${lang==="ky"?"Туура жооп үчүн 10 упай.":"За каждый правильный ответ — 10 очков."}</p><div id="quizOptions">${q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${escapeHtml(a)}</button>`).join("")}</div><div id="quizFeedback"></div>`);
   }
   function answerQuestion(btn){
     if(quizAnswered)return;

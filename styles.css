@@ -58,3 +58,9 @@
 @media(max-width:980px){.quiz-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.test-catalog-section{width:min(calc(100% - 28px),1180px)}}
 @media(max-width:560px){.test-catalog-section{width:calc(100% - 22px);padding:16px;margin-bottom:42px;border-radius:20px}.catalog-head{align-items:flex-start;flex-direction:column;gap:12px}.catalog-head h2{font-size:23px}.catalog-head p{font-size:12px}.catalog-count{font-size:10px}.quiz-catalog-grid{grid-template-columns:1fr;gap:10px}.quiz-catalog-card{min-height:105px;grid-template-columns:64px minmax(0,1fr) 14px;gap:11px;padding:10px}.quiz-catalog-art{width:64px;height:70px}.quiz-catalog-art b{font-size:28px}.quiz-catalog-copy strong{font-size:13px}.quiz-catalog-copy small{font-size:10px}.quiz-driving-note{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.quiz-catalog-card,.quiz-catalog-arrow{transition:none}}
+
+/* Question-specific illustration: a responsive, cacheable SVG symbol for every question. */
+.quiz-question-visual{width:100%;margin:14px 0 15px;overflow:hidden;border:1px solid #294b69;border-radius:14px;background:#07111e;box-shadow:inset 0 0 24px #1b75bd12;isolation:isolate}
+.quiz-question-visual svg{display:block;width:100%;height:auto;aspect-ratio:16/9;max-height:250px;min-height:130px}
+.quiz-question-visual svg use{pointer-events:none}
+@media(max-width:520px){.quiz-question-visual{margin:12px 0}.quiz-question-visual svg{min-height:112px;max-height:205px}.modal-card h2{font-size:22px}}
