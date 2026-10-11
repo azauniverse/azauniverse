@@ -1,73 +1,41 @@
 (() => {
   "use strict";
-  const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-  const STORAGE_KEY = "aza-universe-v2";
-  const LEGACY_KEY = "aza-universe-v1";
-  const DATE_KEY = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; };
+  const $ = (s, root=document) => root.querySelector(s);
+  const $$ = (s, root=document) => [...root.querySelectorAll(s)];
+  const storageKey = "aza-universe-v2";
+  const state = loadState();
   let lang = localStorage.getItem("aza-lang") || "ky";
-  let toastTimer = 0;
-  let reactionTimer = 0;
-  let reactionStart = 0;
-  let reactionState = "idle";
-  let quizIndex = 0;
-  let quizScore = 0;
-  let quizAnswered = false;
-  let currentPack = "general";
-  let personalityAnswers = [];
-
-  const readStorage = () => {
-    try {
-      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_KEY) || "{}");
-      const today = DATE_KEY();
-      return {
-        points: Math.max(0, Number(parsed.points) || 0),
-        bestReaction: Math.max(0, Number(parsed.bestReaction) || 0),
-        dailyDate: parsed.dailyDate || "",
-        dailyDone: !!parsed.dailyDone && parsed.dailyDate === today,
-        testsCompleted: Math.max(0, Number(parsed.testsCompleted) || 0),
-        bestQuizScore: parsed.bestQuizScore == null ? null : Number(parsed.bestQuizScore)
-      };
-    } catch {
-      return { points: 0, bestReaction: 0, dailyDate: "", dailyDone: false, testsCompleted: 0, bestQuizScore: null };
-    }
-  };
-  const state = readStorage();
+  let toastTimer = null, reactionTimer = null, reactionStart = 0, reactionState = "idle";
+  let quizIndex = 0, quizScore = 0, quizAnswered = false, currentQuiz = "general";
+  let supabaseClient = null, cloudUser = null, cloudProfile = null, authMode = "signin", authBusy = false;
+  const supabaseConfig = window.AZA_SUPABASE_CONFIG || {};
 
   const copy = {
     ky: {
-      tagline:"ТЕСТТЕР · ОЮНДАР · AI · КООМЧУЛУК",navHome:"Башкы бет",navGames:"Оюндар",navTests:"Тесттер",navAI:"AI куралдар",navRanking:"Рейтинг",navChallenge:"Чакырыктар",
-      heroEyebrow:"СЕНИН ЖАҢЫ ИНТЕРНЕТ-ААЛАМЫҢ",heroPromise:"ТЕСТТЕР · ОЮНДАР · AI КУРАЛДАР · КООМЧУЛУК",heroText:"Кызыктуу тесттерден өт, мини-оюндарды ойно, жаңы идеяларды тап жана досторуң менен жарыш.",heroStart:"Ааламга кирүү",heroExplore:"Изилдеп көрүү",heroNote:"Акысыз башта. Өз рекордуңду жаңыла.",shortcutTests:"Кызыктуу тесттер",shortcutGames:"Мини-оюндар",shortcutAI:"AI куралдар",shortcutRanking:"Менин рекордум",shortcutDaily:"Күнүмдүк миссия",
-      gamesOverline:"РЕКОРДУҢДУ ЖАҢЫЛА",gamesTitle:"Мини-оюндар",gamesText:"Реакцияңды сынап, өзүңдүн мыкты убактыңды кой.",playNow:"Азыр ойно",testsOverline:"БИЛИМИҢДИ СЫНАГЫН",testsTitle:"Кызыктуу тесттер",testsText:"Логика, аниме, унаалар жана башка темалар.",takeQuiz:"Тест өтүү",aiOverline:"КРЕАТИВДҮҮ КУРАЛДАР",aiTitle:"AZA Studio",aiText:"Посттун тексти, никнейм жана видео идеяларын түз.",openTools:"Куралдарды ач",scoreOverline:"ӨЗҮҢ МЕНЕН ЖАРЫШ",scoreTitle:"Рекорддор",scoreText:"Упайыңды, тест жыйынтыгын жана реакция рекордуңду кара.",showStats:"Статистиканы көрүү",challengeOverline:"КҮН САЙЫН ЖАҢЫЛАНАТ",challengeTitle:"Күнүмдүк чакырык",challengeText:"Бүгүнкү тапшырманы аткарып, активдүүлүгүңдү сакта.",startChallenge:"Чакырыкты баштоо",communityOverline:"ДОСТОР МЕНЕН БӨЛҮШ",communityTitle:"Коомчулук",communityText:"Натыйжаңды бөлүшүп, досторуңду чакыр.",inviteFriends:"Досту чакыруу",
-      dailyLabel:"БҮГҮНКҮ ЧАКЫРЫК",dailyTitle:"Логикалык тест",dailyTaskText:"5 суроого жооп бер. Өзүңдү сына!",acceptChallenge:"Чакырыкты кабыл алуу",perfectScore:"МЫКТЫ ЖЫЙЫНТЫК",bonusPoints:"БОНУС УПАЙЛАР",popularEyebrow:"ӨЗҮҢДҮ ТАП",popularTitle:"Популярдуу тесттер",allTests:"Бардык тесттер",popular1:"Сен кайсы каармансың?",popular2:"Логикаң канчалык күчтүү?",popular3:"Сага кайсы унаа туура келет?",popular4:"Мүнөзүңдү ач",popularTry:"Популярдуу тест",quickTest:"Ыкчам тест",funTest:"Көңүлдүү тест",personalityTest:"Мүнөз тест",
-      yourProgress:"СЕНИН ПРОГРЕССИҢ",statsTitle:"Жеке статистика",savedLocally:"Сакталат",points:"Упайлар",bestReaction:"Эң мыкты реакция",testsCompleted:"Өткөн тесттер",bestScore:"Жогорку тест упайы",localNotice:"Бул статистика ушул браузерде сакталат. Жалпы онлайн рейтинг үчүн сервердик система кийин кошулат.",creativeZone:"КРЕАТИВДҮҮ ЗОНА",studioTitle:"AZA Studio",studioIntro:"Идеяңды текстке айландыр. Ыкчам шаблондордон башта.",toolPost:"Пост тексти",toolPostSub:"Соцтармак үчүн",toolNick:"Никнейм",toolNickSub:"Өзгөчө ат ойлоп тап",toolIdea:"Видео идеясы",toolIdeaSub:"Жаңы контент үчүн",shareEyebrow:"КОМАНДА ЧОГУЛТ",shareTitle:"Ааламды досторуң менен бөлүш",shareText:"Кимдин реакциясы ылдам? Досторуңду чакырып, сынаш.",shareBtn:"Бөлүшүү",footerDescription:"Кызыктуу контент, оюндар жана креативдүү куралдар — бир ааламда.",footerNavigation:"Навигация",footerAbout:"Долбоор жөнүндө",footerFeatures:"Мүмкүнчүлүктөр",footerContact:"Байланыш",footerContactText:"Сунушуң барбы? Долбоорду досторуңа бөлүш.",rights:"Бардык укуктар корголгон.",
-      quizLabel:"КЫЗЫКТУУ ТЕСТ",correct:"Туура!",wrong:"Бул жолу туура эмес.",next:"Кийинки суроо →",result:"Жыйынтык",retry:"Кайра өтүү",pointsEarned:"Топтогон упайың",quizFinished:"Тест бүттү! 🔥",perfect:"Мыкты! Бардык суроого туура жооп бердиң!",quizProgress:"Суроо",outOf:"ичинен",rightAnswer:"Туура жооп:",personalityResult:"Сенин профилиң",resultTypes:["План түзүүчү стратег","Креативдүү изилдөөчү","Тынч ойчул","Жигердүү лидер"],personalityDescriptions:["Сен алдын ала ойлонуп, иреттүү кадамдарды жактырасың.","Жаңы нерсени сынап көргөндү жана идея ойлоп тапканды жактырасың.","Сен кырдаалды байкап, чечимди ойлонуп кабыл аласың.","Сен демилге көтөрүп, аракет менен үйрөнгөндү жактырасың."],
-      gameTitle:"Реакцияңды текшер!",gameText:"Стартты бас. Талаа жашыл болгондо дароо бас. Эрте бассаң, кайра башта.",gameStart:"Старт",gameWait:"КҮТ...",gameReady:"АЗЫР БАС!",gameEarly:"Эрте басып койдуң! Кайра башта.",gameAgain:"Кайра ойно",gameHelp:"Реакция рекорду ушул браузерде сакталат.",yourReaction:"Сенин реакцияң: ",
-      studioTitleModal:"Креативдүү куралдар",studioDisclaimer:"Бул прототипте шаблондук генераторлор иштейт. Чыныгы AI-модель азырынча туташтырыла элек.",whatCreate:"Эмне түзөбүз?",createPost:"Соцтармак үчүн пост",createNick:"Никнейм",createIdea:"Видео идеясы",topicLabel:"Темаңды жаз",topicPlaceholder:"Мисалы: оюн, кино, дүкөн...",generate:"Түзүү ✨",copy:"Көчүрүү",copied:"Көчүрүлдү!",shareCopied:"Шилтемени көчүрдүк — досторуңа жибер!",searchTitle:"AZA UNIVERSE'тен издөө",searchPlaceholder:"Оюн, тест, AI курал...",noResults:"Тиешелүү бөлүм табылган жок.",myStats:"Менин статистикам",pointsShort:"Упай",quizzesShort:"Өткөн тесттер",reactionShort:"Мыкты реакция",searchHint:"Бөлүмдүн атын жаз же төмөнкүлөрдүн бирин танда.",
-      footerShareHint:"AZA UNIVERSE'ти досуң менен бөлүш.",onlineNotice:"Эскертүү: жалпы онлайн рейтинг жана чыныгы AI кийинки этапта сервер аркылуу кошулат.",dailyBonus:"Күнүмдүк чакырык аткарылды! +50 бонус упай!",quizBonus:"Тест аяктады! Упай кошулду.",languageChanged:"Кыргыз тили тандалды.",
-      packs:{general:"Жалпы билим тест",anime:"Аниме тест",iq:"Логика тест",cars:"Авто тест",personality:"Мүнөз тест"}
+      tagline:"ТЕСТТЕР • ОЮНДАР • AI • СООБЩЕСТВО",navHome:"Башкы бет",navGames:"Оюндар",navTests:"Тесттер",navAI:"AI куралдар",navRanking:"Рейтинг",navChallenges:"Чакырыктар",login:"Кирүү",
+      heroEyebrow:"ЖАҢЫ ДҮЙНӨГӨ КОШ КЕЛДИҢ",heroName1:"AZA",heroName2:"UNIVERSE",heroSubtitle:"ТЕСТТЕР • ОЮНДАР • AI КУРАЛДАР • СООБЩЕСТВО",heroText:"Кызыктуу контент, оюндар, AI куралдары жана достор менен бирге жаңы дүйнө!",startNow:"АЗЫР БАШТА",watchMore:"Көбүрөөк көрүү",freeAccess:"Акысыз кирүү",freshContent:"Жаңы контент",
+      railTests:"КЫЗЫК ТЕСТТЕР",railGames:"МИНИ-ОЮНДАР",railAI:"AI КУРАЛДАРЫ",railRating:"УПАЙ РЕЙТИНГИ",railDaily:"КҮНҮМДҮК ЧАКЫРЫК",featuresEyebrow:"АЗА ААЛАМЫНА КИР",featuresTitle:"Бир дүйнө. Көп мүмкүнчүлүк.",featuresText:"Өзүңө жаккан багытты танда — анан деңгээлиңди көтөр.",
+      testsKicker:"БИЛИМИҢДИ СЫНАГЫН",testsTitle:"Кызыктуу тесттер",testsText:"Мүнөзүңдү, логикаңды жана билимиңди сынап көр.",exploreTests:"Тесттерди көрүү",gamesKicker:"РЕКОРДУҢДУ ЖАҢЫЛА",gamesTitle:"Мини-оюндар",gamesText:"Ойно, рекорд кой, досторуң менен жарыш.",playNow:"Азыр ойно",aiKicker:"КРЕАТИВДҮҮ КУРАЛДАР",aiTitle:"AI куралдары",aiText:"Пост, никнейм жана видео идеяларын түз.",openTools:"Куралдарды ач",rankingKicker:"ӨЗҮҢДҮ КӨРСӨТ",rankingTitle:"Рейтинг",rankingText:"Упай топто, өз рекордуңду жакшырт.",viewRanking:"Рейтингди көрүү",challengeKicker:"КҮН САЙЫН ЖАҢЫ",challengeTitle:"Чакырыктар",challengeText:"Күн сайын жаңы тапшырмага аракет кыл.",startChallenge:"Чакырыкты баштоо",communityKicker:"ДОСТОР МЕНЕН",communityTitle:"Сообщество",communityText:"Сайтты бөлүшүп, досторуңду чакыр.",inviteFriends:"Досторду чакыр",
+      dailyEyebrow:"БҮГҮНКҮ ЧАКЫРЫК",dailyTitle:"ЛОГИКАЛЫК ТЕСТ",dailyText:"5 суроого жооп бер жана упай топто!",fiveQuestions:"5 суроо",fewMinutes:"2–3 мүнөт",beginChallenge:"Чакырыкты баштоо",pointsLabel:"УПАЙ",popularEyebrow:"ӨЗҮҢДҮ СЫНАП КӨР",popularTitle:"Популярдуу тесттер",seeAll:"Баарын көрүү →",popularPersonality:"Кызыктуу тест",quickQuiz:"5 суроо",popularAnime:"Аниме тест",popularCars:"Авто тест",popularIQ:"IQ тест",topPlayersEyebrow:"ДЕМО-РЕЙТИНГ",topPlayers:"Топ оюнчулар",rankingDemoNote:"Бул макеттеги мисал рейтинг. Чыныгы онлайн рейтинг сервер кошулганда иштейт.",yourPoints:"Сенин упайың",thisDevice:"Бул түзмөк",onlineAccount:"Онлайн аккаунт",onlineRankingLabel:"ОНЛАЙН РЕЙТИНГ",onlineRankingNote:"Рейтинг Supabase базасынан жаңыланат.",noOnlinePlayers:"Азырынча рейтингде оюнчулар жок. Биринчи болуп каттал!",rankingLoadError:"Рейтингти жүктөө мүмкүн болгон жок. SQL схемасын жана ачкычтарды текшер.",authNotConfiguredTitle:"Аккаунт системасын туташтыруу керек",authNotConfiguredText:"Supabase долбоорун түзүп, Project URL жана Publishable key коюлгандан кийин аккаунттар иштейт.",authUnavailable:"Supabase китепканасы жүктөлгөн жок. Интернетти текшерип, баракты кайра ач.",authSignIn:"Аккаунтка кирүү",authSignUp:"Катталуу",authEmail:"Электрондук почта",authPassword:"Сырсөз",authUsername:"Колдонуучу аты",authSubmitSignIn:"Кирүү",authSubmitSignUp:"Аккаунт түзүү",authSwitchToSignUp:"Аккаунтуң жокпу? Каттал",authSwitchToSignIn:"Аккаунтуң барбы? Кирүү",authSigningIn:"Кирип жатат…",authSigningUp:"Катталуу…",authCheckEmail:"Катталуу дээрлик бүттү! Электрондук почтаңа келген ырастоо шилтемесин бас.",authGenericError:"Кирүү ишке ашкан жок. Маалыматты текшерип кайра аракет кыл.",authBadUsername:"Колдонуучу аты 3–20 белгиден турушу керек.",authBadPassword:"Сырсөз кеминде 8 белгиден турушу керек.",authSignedIn:"Аккаунтка ийгиликтүү кирдиң!",authSignedOut:"Аккаунттан чыктың.",authLogout:"Чыгуу",authOnlinePoints:"Онлайн упайлар",authBestReaction:"Мыкты реакция",authHelp:"Сырсөзүңдү башка адамдар менен бөлүшпө.",
+      metricTests:"Тесттер",metricTestsSmall:"Билимиңди сына",metricGames:"Мини-оюндар",metricGamesSmall:"Рекорд кой",metricAI:"AI куралдары",metricAISmall:"Идея түз",metricDaily:"Күнүмдүк чакырык",metricDailySmall:"Күн сайын аракет",metricCommunity:"Сообщество",metricCommunitySmall:"Бөлүш жана чакыр",shareEyebrow:"ДОСТОРУҢДУ ЧАКЫР",shareTitle:"Кимдин деңгээли жогору?",shareText:"AZA UNIVERSE'ти бөлүшүп, досторуң менен сынаш.",shareBtn:"Бөлүшүү",footerDescription:"Кызыктуу дүйнө, жаңы мүмкүнчүлүктөр жана оюндар — бир жерде.",footerNav:"Навигация",footerCommunity:"Коомчулук",footerKeepGoing:"Деңгээлиңди көтөр!",footerText:"Кызык дүйнөңө кош келдиң."
     },
     ru: {
-      tagline:"ТЕСТЫ · ИГРЫ · AI · СООБЩЕСТВО",navHome:"Главная",navGames:"Игры",navTests:"Тесты",navAI:"AI-инструменты",navRanking:"Рейтинг",navChallenge:"Челленджи",
-      heroEyebrow:"ТВОЯ НОВАЯ ИНТЕРНЕТ-ВСЕЛЕННАЯ",heroPromise:"ТЕСТЫ · ИГРЫ · AI-ИНСТРУМЕНТЫ · СООБЩЕСТВО",heroText:"Проходи интересные тесты, играй в мини-игры, находи новые идеи и соревнуйся с друзьями.",heroStart:"Войти во вселенную",heroExplore:"Исследовать",heroNote:"Начни бесплатно. Обнови свой рекорд.",shortcutTests:"Интересные тесты",shortcutGames:"Мини-игры",shortcutAI:"AI-инструменты",shortcutRanking:"Мой рекорд",shortcutDaily:"Ежедневная миссия",
-      gamesOverline:"ОБНОВИ РЕКОРД",gamesTitle:"Мини-игры",gamesText:"Проверь реакцию и установи личный рекорд.",playNow:"Играть",testsOverline:"ПРОВЕРЬ СЕБЯ",testsTitle:"Интересные тесты",testsText:"Логика, аниме, автомобили и другие темы.",takeQuiz:"Пройти тест",aiOverline:"КРЕАТИВНЫЕ ИНСТРУМЕНТЫ",aiTitle:"AZA Studio",aiText:"Создавай тексты постов, никнеймы и идеи для видео.",openTools:"Открыть инструменты",scoreOverline:"СОРЕВНУЙСЯ С СОБОЙ",scoreTitle:"Рекорды",scoreText:"Смотри очки, результаты тестов и рекорд реакции.",showStats:"Посмотреть статистику",challengeOverline:"ОБНОВЛЯЕТСЯ КАЖДЫЙ ДЕНЬ",challengeTitle:"Ежедневный челлендж",challengeText:"Выполни сегодняшнее задание и поддерживай активность.",startChallenge:"Начать челлендж",communityOverline:"ДЕЛИСЬ С ДРУЗЬЯМИ",communityTitle:"Сообщество",communityText:"Делись результатами и приглашай друзей.",inviteFriends:"Пригласить друга",
-      dailyLabel:"ЧЕЛЛЕНДЖ НА СЕГОДНЯ",dailyTitle:"Тест на логику",dailyTaskText:"Ответь на 5 вопросов. Проверь себя!",acceptChallenge:"Принять вызов",perfectScore:"ИДЕАЛЬНЫЙ РЕЗУЛЬТАТ",bonusPoints:"БОНУСНЫЕ ОЧКИ",popularEyebrow:"НАЙДИ СЕБЯ",popularTitle:"Популярные тесты",allTests:"Все тесты",popular1:"На какого героя ты похож?",popular2:"Насколько сильна твоя логика?",popular3:"Какой автомобиль тебе подходит?",popular4:"Узнай свой характер",popularTry:"Популярный тест",quickTest:"Быстрый тест",funTest:"Развлекательный тест",personalityTest:"Тест личности",
-      yourProgress:"ТВОЙ ПРОГРЕСС",statsTitle:"Личная статистика",savedLocally:"Сохраняется",points:"Очки",bestReaction:"Лучшая реакция",testsCompleted:"Пройдено тестов",bestScore:"Лучший результат",localNotice:"Статистика хранится в этом браузере. Для общего онлайн-рейтинга позже потребуется серверная система.",creativeZone:"КРЕАТИВНАЯ ЗОНА",studioTitle:"AZA Studio",studioIntro:"Преврати идею в текст. Начни с быстрых шаблонов.",toolPost:"Текст поста",toolPostSub:"Для соцсетей",toolNick:"Никнейм",toolNickSub:"Придумай необычное имя",toolIdea:"Идея для видео",toolIdeaSub:"Для нового контента",shareEyebrow:"СОБЕРИ КОМАНДУ",shareTitle:"Поделись вселенной с друзьями",shareText:"Чья реакция быстрее? Пригласи друзей и соревнуйся.",shareBtn:"Поделиться",footerDescription:"Интересный контент, игры и креативные инструменты — в одной вселенной.",footerNavigation:"Навигация",footerAbout:"О проекте",footerFeatures:"Возможности",footerContact:"Связь",footerContactText:"Есть предложение? Поделись проектом с друзьями.",rights:"Все права защищены.",
-      quizLabel:"ИНТЕРЕСНЫЙ ТЕСТ",correct:"Верно!",wrong:"В этот раз неверно.",next:"Следующий вопрос →",result:"Результат",retry:"Пройти ещё раз",pointsEarned:"Набрано очков",quizFinished:"Тест завершён! 🔥",perfect:"Отлично! Ты ответил на все вопросы правильно!",quizProgress:"Вопрос",outOf:"из",rightAnswer:"Правильный ответ:",personalityResult:"Твой профиль",resultTypes:["Стратег-планировщик","Креативный исследователь","Спокойный мыслитель","Энергичный лидер"],personalityDescriptions:["Ты любишь планировать наперёд и действовать последовательно.","Тебе нравится пробовать новое и придумывать идеи.","Ты наблюдаешь за ситуацией и тщательно выбираешь решение.","Ты проявляешь инициативу и учишься в процессе действия."],
-      gameTitle:"Проверь реакцию!",gameText:"Нажми «Старт». Когда поле станет зелёным, нажми быстро. Если нажмёшь рано — начни заново.",gameStart:"Старт",gameWait:"ЖДИ...",gameReady:"ЖМИ СЕЙЧАС!",gameEarly:"Слишком рано! Попробуй ещё раз.",gameAgain:"Играть снова",gameHelp:"Рекорд реакции сохраняется в этом браузере.",yourReaction:"Твоя реакция: ",
-      studioTitleModal:"Креативные инструменты",studioDisclaimer:"В прототипе работают шаблонные генераторы. Настоящая AI-модель пока не подключена.",whatCreate:"Что создаём?",createPost:"Пост для соцсетей",createNick:"Никнейм",createIdea:"Идея для видео",topicLabel:"Укажи тему",topicPlaceholder:"Например: игры, кино, магазин...",generate:"Создать ✨",copy:"Скопировать",copied:"Скопировано!",shareCopied:"Ссылка скопирована — отправь друзьям!",searchTitle:"Поиск по AZA UNIVERSE",searchPlaceholder:"Игра, тест, AI-инструмент...",noResults:"Подходящий раздел не найден.",myStats:"Моя статистика",pointsShort:"Очки",quizzesShort:"Тестов пройдено",reactionShort:"Лучшая реакция",searchHint:"Напиши название раздела или выбери один из вариантов ниже.",
-      footerShareHint:"Поделись AZA UNIVERSE с другом.",onlineNotice:"Важно: общий онлайн-рейтинг и настоящий AI будут добавлены на следующем этапе через сервер.",dailyBonus:"Ежедневный челлендж выполнен! +50 бонусных очков!",quizBonus:"Тест пройден! Очки добавлены.",languageChanged:"Выбран русский язык.",
-      packs:{general:"Общий тест знаний",anime:"Аниме-тест",iq:"Логический тест",cars:"Авто-тест",personality:"Тест личности"}
+      tagline:"ТЕСТЫ • ИГРЫ • AI • СООБЩЕСТВО",navHome:"Главная",navGames:"Игры",navTests:"Тесты",navAI:"AI-инструменты",navRanking:"Рейтинг",navChallenges:"Челленджи",login:"Войти",
+      heroEyebrow:"ДОБРО ПОЖАЛОВАТЬ В НОВЫЙ МИР",heroName1:"AZA",heroName2:"UNIVERSE",heroSubtitle:"ТЕСТЫ • ИГРЫ • AI-ИНСТРУМЕНТЫ • СООБЩЕСТВО",heroText:"Интересный контент, игры, AI-инструменты и новый мир вместе с друзьями!",startNow:"НАЧАТЬ СЕЙЧАС",watchMore:"Узнать больше",freeAccess:"Бесплатный доступ",freshContent:"Новый контент",
+      railTests:"ИНТЕРЕСНЫЕ ТЕСТЫ",railGames:"МИНИ-ИГРЫ",railAI:"AI-ИНСТРУМЕНТЫ",railRating:"РЕЙТИНГ ОЧКОВ",railDaily:"ЕЖЕДНЕВНЫЙ ВЫЗОВ",featuresEyebrow:"ВОЙДИ В МИР AZA",featuresTitle:"Один мир. Много возможностей.",featuresText:"Выбери направление по душе и прокачай свой уровень.",
+      testsKicker:"ПРОВЕРЬ СЕБЯ",testsTitle:"Интересные тесты",testsText:"Проверь характер, логику и знания.",exploreTests:"Смотреть тесты",gamesKicker:"ОБНОВИ РЕКОРД",gamesTitle:"Мини-игры",gamesText:"Играй, ставь рекорды и соревнуйся с друзьями.",playNow:"Играть",aiKicker:"КРЕАТИВНЫЕ ИНСТРУМЕНТЫ",aiTitle:"AI-инструменты",aiText:"Создавай идеи постов, никнеймы и видео-сценарии.",openTools:"Открыть инструменты",rankingKicker:"ПОКАЖИ СЕБЯ",rankingTitle:"Рейтинг",rankingText:"Зарабатывай очки и улучшай личный рекорд.",viewRanking:"Смотреть рейтинг",challengeKicker:"КАЖДЫЙ ДЕНЬ НОВОЕ",challengeTitle:"Челленджи",challengeText:"Попробуй выполнить новое задание сегодня.",startChallenge:"Начать челлендж",communityKicker:"ВМЕСТЕ С ДРУЗЬЯМИ",communityTitle:"Сообщество",communityText:"Поделись сайтом и пригласи друзей.",inviteFriends:"Пригласить друзей",
+      dailyEyebrow:"ЧЕЛЛЕНДЖ ДНЯ",dailyTitle:"ЛОГИЧЕСКИЙ ТЕСТ",dailyText:"Ответь на 5 вопросов и набери очки!",fiveQuestions:"5 вопросов",fewMinutes:"2–3 минуты",beginChallenge:"Начать челлендж",pointsLabel:"ОЧКОВ",popularEyebrow:"ПРОВЕРЬ СЕБЯ",popularTitle:"Популярные тесты",seeAll:"Смотреть все →",popularPersonality:"Интересный тест",quickQuiz:"5 вопросов",popularAnime:"Аниме-тест",popularCars:"Авто-тест",popularIQ:"IQ-тест",topPlayersEyebrow:"ДЕМО-РЕЙТИНГ",topPlayers:"Топ игроков",rankingDemoNote:"Пример рейтинга для макета. Настоящий онлайн-рейтинг заработает после подключения сервера.",yourPoints:"Твои очки",thisDevice:"Это устройство",onlineAccount:"Онлайн-аккаунт",onlineRankingLabel:"ОНЛАЙН-РЕЙТИНГ",onlineRankingNote:"Рейтинг загружается из базы Supabase.",noOnlinePlayers:"В рейтинге пока нет игроков. Зарегистрируйся первым!",rankingLoadError:"Не удалось загрузить рейтинг. Проверь SQL-схему и ключи.",authNotConfiguredTitle:"Нужно подключить систему аккаунтов",authNotConfiguredText:"Создай проект Supabase и добавь Project URL и Publishable key, чтобы включить аккаунты.",authUnavailable:"Библиотека Supabase не загрузилась. Проверь интернет и обнови страницу.",authSignIn:"Вход в аккаунт",authSignUp:"Регистрация",authEmail:"Электронная почта",authPassword:"Пароль",authUsername:"Имя пользователя",authSubmitSignIn:"Войти",authSubmitSignUp:"Создать аккаунт",authSwitchToSignUp:"Нет аккаунта? Зарегистрироваться",authSwitchToSignIn:"Уже есть аккаунт? Войти",authSigningIn:"Входим…",authSigningUp:"Регистрируем…",authCheckEmail:"Почти готово! Нажми ссылку подтверждения в письме.",authGenericError:"Не удалось войти. Проверь данные и попробуй снова.",authBadUsername:"Имя пользователя должно содержать 3–20 символов.",authBadPassword:"Пароль должен содержать не менее 8 символов.",authSignedIn:"Ты успешно вошёл в аккаунт!",authSignedOut:"Ты вышел из аккаунта.",authLogout:"Выйти",authOnlinePoints:"Онлайн-очки",authBestReaction:"Лучшая реакция",authHelp:"Не передавай пароль другим людям.",
+      metricTests:"Тесты",metricTestsSmall:"Проверь знания",metricGames:"Мини-игры",metricGamesSmall:"Поставь рекорд",metricAI:"AI-инструменты",metricAISmall:"Создай идею",metricDaily:"Ежедневный вызов",metricDailySmall:"Пробуй каждый день",metricCommunity:"Сообщество",metricCommunitySmall:"Делись и приглашай",shareEyebrow:"ПРИГЛАСИ ДРУЗЕЙ",shareTitle:"У кого уровень выше?",shareText:"Поделись AZA UNIVERSE и соревнуйся с друзьями.",shareBtn:"Поделиться",footerDescription:"Интересный мир, новые возможности и игры — в одном месте.",footerNav:"Навигация",footerCommunity:"Сообщество",footerKeepGoing:"Прокачивай свой уровень!",footerText:"Добро пожаловать в свой мир."
     }
   };
 
-  const questionPacks = {
+  const quizSets = {
     general: {
       ky:[
         {q:"Кыргызстандын борбору кайсы шаар?",a:["Ош","Бишкек","Талас","Нарын"],correct:1,why:"Бишкек — Кыргызстандын борбору."},
         {q:"Бир саатта канча мүнөт бар?",a:["30","50","60","100"],correct:2,why:"Бир саат 60 мүнөттөн турат."},
         {q:"Күн системасындагы эң чоң планета кайсы?",a:["Марс","Жер","Сатурн","Юпитер"],correct:3,why:"Юпитер — Күн системасындагы эң чоң планета."},
-        {q:"HTML негизинен эмне үчүн колдонулат?",a:["Веб-барактын түзүлүшү","Сүрөт тартуу гана","Маалымат базасын сактоо","Интернетти тездетүү"],correct:0,why:"HTML веб-барактын түзүлүшүн жана мазмунун белгилейт."},
+        {q:"HTML негизинен эмне үчүн колдонулат?",a:["Веб-барактын түзүлүшү","Сүрөт тартуу гана","Маалымат базасын сактоо","Интернеттин ылдамдыгын көбөйтүү"],correct:0,why:"HTML веб-барактын мазмунун жана түзүлүшүн белгилейт."},
         {q:"9 × 7 канча болот?",a:["56","63","72","67"],correct:1,why:"9 × 7 = 63."}
       ],
       ru:[
@@ -78,343 +46,226 @@
         {q:"Сколько будет 9 × 7?",a:["56","63","72","67"],correct:1,why:"9 × 7 = 63."}
       ]
     },
-    anime: {
-      ky:[
-        {q:"Наруто кайсы айылдан чыккан?",a:["Коноха","Суна","Кири","Ива"],correct:0,why:"Наруто — Жашыруун Жалбырак айылынын шинобиси."},
-        {q:"One Piece'те башкы каарман ким?",a:["Зоро","Санджи","Монки Д. Луффи","Трафальгар Ло"],correct:2,why:"Окуянын башкы каарманы — Монки Д. Луффи."},
-        {q:"Demon Slayer'дин башкы каарманы ким?",a:["Иноске","Танджиро","Гию","Муичиро"],correct:1,why:"Танджиро Камадо — башкы каарман."},
-        {q:"Pokémon'догу Пикачу кандай жандык?",a:["Суу","От","Электр","Жер"],correct:2,why:"Пикачу — электр тибиндеги Покемон."},
-        {q:"Dragon Ball'дагы Гоку эмнени жакшы көрөт?",a:["Тамакты жана машыгууну","Сүрөт тартууну","Уктай берүүнү гана","Китеп чогултууну"],correct:0,why:"Гоку тамакты жана күчтүү атаандаштар менен машыгууну жакшы көрөт."}
-      ],
-      ru:[
-        {q:"Из какой деревни родом Наруто?",a:["Коноха","Суна","Кири","Ива"],correct:0,why:"Наруто — шиноби Деревни Скрытого Листа."},
-        {q:"Кто главный герой One Piece?",a:["Зоро","Санджи","Монки Д. Луффи","Трафальгар Ло"],correct:2,why:"Главный герой истории — Монки Д. Луффи."},
-        {q:"Кто главный герой Demon Slayer?",a:["Иноске","Танджиро","Гию","Муичиро"],correct:1,why:"Танджиро Камадо — главный герой."},
-        {q:"Какого типа Пикачу из Pokémon?",a:["Водный","Огненный","Электрический","Земляной"],correct:2,why:"Пикачу относится к электрическому типу."},
-        {q:"Что любит Гоку из Dragon Ball?",a:["Еду и тренировки","Рисование","Только сон","Коллекционирование книг"],correct:0,why:"Гоку любит поесть и тренироваться с сильными соперниками."}
-      ]
-    },
     iq: {
       ky:[
-        {q:"Катарды улант: 2, 4, 8, 16, ...?",a:["18","24","32","36"],correct:2,why:"Ар бир сан эки эселенет: кийинкиси 32."},
-        {q:"Үч мышык үч чычканды үч мүнөттө кармаса, бир мышык бир чычканды канча убакытта кармайт?",a:["1 мүнөт","3 мүнөт","9 мүнөт","Белгисиз"],correct:1,why:"Ар бир мышык бир чычканды 3 мүнөттө кармайт."},
-        {q:"Кайсы сан башкаларынан айырмаланат?",a:["9","16","25","27"],correct:3,why:"9, 16, 25 — квадрат сандар; 27 эмес."},
-        {q:"Бир километрде канча метр бар?",a:["100","500","1000","10000"],correct:2,why:"1 километр = 1000 метр."},
-        {q:"Кечээ жекшемби болсо, эртең кайсы күн?",a:["Дүйшөмбү","Шейшемби","Шаршемби","Ишемби"],correct:1,why:"Кечээ жекшемби, бүгүн дүйшөмбү, эртең шейшемби."}
+        {q:"Кийинки сан кайсы? 2, 4, 8, 16, …",a:["18","24","30","32"],correct:3,why:"Ар бир сан 2ге көбөйтүлөт."},
+        {q:"Үч мышык үч чычканды 3 мүнөттө кармаса, бир мышык бир чычканды канча мүнөттө кармайт?",a:["1","3","6","9"],correct:1,why:"Ар бир мышык бир чычканды 3 мүнөттө кармайт."},
+        {q:"Кайсысы башкаларынан айырмаланат?",a:["Үч бурчтук","Төрт бурчтук","Тегерек","Беш бурчтук"],correct:2,why:"Тегеректин түз капталдары жана бурчтары жок."},
+        {q:"Эгер бүгүн шаршемби болсо, 10 күндөн кийин кайсы күн?",a:["Жума","Ишемби","Жекшемби","Дүйшөмбү"],correct:1,why:"7 күндөн кийин шаршемби, дагы 3 күндөн кийин ишемби."},
+        {q:"5 жумушчу 5 буюмду 5 мүнөттө жасайт. 1 жумушчу 1 буюмду канча мүнөттө жасайт?",a:["1","5","10","25"],correct:1,why:"Ар бир жумушчу бир буюмду 5 мүнөттө жасайт."}
       ],
       ru:[
-        {q:"Продолжи ряд: 2, 4, 8, 16, ...?",a:["18","24","32","36"],correct:2,why:"Каждое число удваивается: следующее — 32."},
-        {q:"Три кошки ловят трёх мышей за три минуты. За сколько одна кошка поймает одну мышь?",a:["1 минуту","3 минуты","9 минут","Нельзя определить"],correct:1,why:"Каждая кошка ловит одну мышь за 3 минуты."},
-        {q:"Какое число отличается от остальных?",a:["9","16","25","27"],correct:3,why:"9, 16 и 25 — квадраты целых чисел; 27 — нет."},
-        {q:"Сколько метров в одном километре?",a:["100","500","1000","10000"],correct:2,why:"1 километр = 1000 метров."},
-        {q:"Если вчера было воскресенье, какой день будет завтра?",a:["Понедельник","Вторник","Среда","Суббота"],correct:1,why:"Вчера воскресенье, сегодня понедельник, завтра вторник."}
+        {q:"Какое число следующее? 2, 4, 8, 16, …",a:["18","24","30","32"],correct:3,why:"Каждое число умножается на 2."},
+        {q:"Три кошки ловят трёх мышей за 3 минуты. За сколько минут одна кошка поймает одну мышь?",a:["1","3","6","9"],correct:1,why:"Каждая кошка ловит одну мышь за 3 минуты."},
+        {q:"Что отличается от остальных?",a:["Треугольник","Четырёхугольник","Круг","Пятиугольник"],correct:2,why:"У круга нет прямых сторон и углов."},
+        {q:"Если сегодня среда, какой день будет через 10 дней?",a:["Пятница","Суббота","Воскресенье","Понедельник"],correct:1,why:"Через 7 дней снова среда, ещё через 3 дня — суббота."},
+        {q:"Пять рабочих делают пять предметов за пять минут. За сколько минут один рабочий сделает один предмет?",a:["1","5","10","25"],correct:1,why:"Каждому рабочему нужно 5 минут на один предмет."}
+      ]
+    },
+    anime: {
+      ky:[
+        {q:"«Наруто» анимесиндеги башкы каарман ким?",a:["Ичиго","Наруто","Луффи","Гоку"],correct:1,why:"Башкы каарман — Наруто Узумаки."},
+        {q:"«One Piece» анимесиндеги Луффинин кыялы эмне?",a:["Хокаге болуу","Падыша болуу","Пираттардын падышасы болуу","Чемпион болуу"],correct:2,why:"Луффи Пираттардын падышасы болууну кыялданат."},
+        {q:"Пикачу кайсы серияга таандык?",a:["Pokémon","Naruto","Bleach","Demon Slayer"],correct:0,why:"Пикачу — Pokémon дүйнөсүнүн белгилүү каарманы."},
+        {q:"«Demon Slayer» башкы каарманы ким?",a:["Танджиро","Саске","Зоро","Леви"],correct:0,why:"Танджиро Камадо — башкы каарман."},
+        {q:"Гоку кайсы анимеде бар?",a:["One Piece","Dragon Ball","Death Note","Jujutsu Kaisen"],correct:1,why:"Гоку — Dragon Ball сериясынын каарманы."}
+      ],
+      ru:[
+        {q:"Как зовут главного героя аниме «Наруто»?",a:["Ичиго","Наруто","Луффи","Гоку"],correct:1,why:"Главный герой — Наруто Узумаки."},
+        {q:"Какая мечта у Луффи из «One Piece»?",a:["Стать Хокаге","Стать королём","Стать Королём пиратов","Стать чемпионом"],correct:2,why:"Луффи хочет стать Королём пиратов."},
+        {q:"К какой серии относится Пикачу?",a:["Pokémon","Naruto","Bleach","Demon Slayer"],correct:0,why:"Пикачу — известный персонаж мира Pokémon."},
+        {q:"Как зовут главного героя «Клинка, рассекающего демонов»?",a:["Танджиро","Саске","Зоро","Леви"],correct:0,why:"Танджиро Камадо — главный герой серии."},
+        {q:"В каком аниме появляется Гоку?",a:["One Piece","Dragon Ball","Death Note","Jujutsu Kaisen"],correct:1,why:"Гоку — герой серии Dragon Ball."}
       ]
     },
     cars: {
       ky:[
-        {q:"Кайсы өлкө Toyota брендинин мекени?",a:["АКШ","Япония","Германия","Италия"],correct:1,why:"Toyota — Япониянын автомобиль өндүрүүчүсү."},
-        {q:"Электр унаасы негизинен эмнени колдонот?",a:["Электр моторун","Буу кыймылдаткычын","Дизелди гана","Желди"],correct:0,why:"Электр унаасында негизги кыймылдаткыч электр мотору болот."},
-        {q:"Коопсуздук куру эмне үчүн керек?",a:["Салонду кооздоо","Кырсыкта жаракат алуу коркунучун азайтуу","Күйүүчү май үнөмдөө","Моторду муздатуу"],correct:1,why:"Коопсуздук куру кагылышууда адамды кармап, жаракат коркунучун азайтат."},
-        {q:"Ferrari бренди кайсы өлкөдөн?",a:["Франция","Италия","Канада","Швеция"],correct:1,why:"Ferrari — Италиянын спорттук унаа бренди."},
-        {q:"Мотор майынын негизги милдеттеринин бири кайсы?",a:["Үйдү жылытуу","Тетиктердин сүрүлүүсүн азайтуу","Дөңгөлөктү үйлөө","Фараны күйгүзүү"],correct:1,why:"Майлоочу май кыймылдаткычтын тетиктеринин сүрүлүүсүн азайтат."}
+        {q:"Ferrari кайсы өлкөдөн чыккан бренд?",a:["Италия","Германия","Япония","АКШ"],correct:0,why:"Ferrari — Италиянын спорттук автоунаа бренди."},
+        {q:"Электр унааларын чыгарганы менен белгилүү бренд кайсы?",a:["Tesla","Lamborghini","Bentley","Suzuki"],correct:0,why:"Tesla электромобилдери менен белгилүү."},
+        {q:"BMW бренди кайсы өлкөдөн?",a:["Франция","Германия","Түштүк Корея","Канада"],correct:1,why:"BMW — Германиянын автоунаа өндүрүүчүсү."},
+        {q:"Унаадагы ABS системасынын негизги милдети эмне?",a:["Музыканы күчөтүү","Дөңгөлөктүн кулпуланышын азайтуу","Күйүүчү май куюу","Жарыкты күйгүзүү"],correct:1,why:"ABS катуу тормоздоодо дөңгөлөктүн кулпуланышын азайтууга жардам берет."},
+        {q:"«GT-R» модели кайсы брендге таандык?",a:["Nissan","Toyota","Audi","Volvo"],correct:0,why:"Nissan GT-R — Nissan брендинин модели."}
       ],
       ru:[
-        {q:"Какая страна является родиной бренда Toyota?",a:["США","Япония","Германия","Италия"],correct:1,why:"Toyota — японский автопроизводитель."},
-        {q:"Что в основном использует электромобиль?",a:["Электродвигатель","Паровой двигатель","Только дизель","Ветер"],correct:0,why:"Основной привод электромобиля — электрический мотор."},
-        {q:"Для чего нужен ремень безопасности?",a:["Для украшения салона","Чтобы снизить риск травм при аварии","Для экономии топлива","Для охлаждения двигателя"],correct:1,why:"Ремень удерживает человека и снижает риск травм при столкновении."},
-        {q:"Из какой страны бренд Ferrari?",a:["Франция","Италия","Канада","Швеция"],correct:1,why:"Ferrari — итальянский бренд спортивных автомобилей."},
-        {q:"Какова одна из главных задач моторного масла?",a:["Обогревать дом","Уменьшать трение деталей","Накачивать шины","Включать фары"],correct:1,why:"Масло снижает трение между деталями двигателя."}
-      ]
-    },
-    personality: {
-      ky:[
-        {q:"Эс алуу күнү кайсыны тандайсың?",a:["Баарын алдын ала пландайм","Жаңы жерге барам","Тынч эс алам","Досторду чогултам"],kind:"profile"},
-        {q:"Татаал маселе чыкса, сен...",a:["План түзөм","Башкача чечим ойлоном","Жакшылап байкайм","Дароо аракет кылам"],kind:"profile"},
-        {q:"Командада көбүнчө кайсы ролду аласың?",a:["Уюштуруучу","Идея берүүчү","Угуучу жана байкоочу","Лидер"],kind:"profile"},
-        {q:"Кайсы сөз сага жакыныраак?",a:["Тартип","Креатив","Тең салмак","Аракет"],kind:"profile"},
-        {q:"Жаңы нерсени кандай үйрөнөсүң?",a:["Кадам-кадам менен","Сынап көрүп","Ойлонуп, талдап","Дароо колдонуп"],kind:"profile"}
-      ],
-      ru:[
-        {q:"Как ты предпочитаешь провести выходной?",a:["Всё заранее спланирую","Исследую новое место","Спокойно отдохну","Соберу друзей"],kind:"profile"},
-        {q:"Когда появляется сложная задача, ты...",a:["Составляю план","Придумываю нестандартное решение","Сначала наблюдаю","Сразу действую"],kind:"profile"},
-        {q:"Какую роль чаще берёшь в команде?",a:["Организатор","Генератор идей","Наблюдатель и слушатель","Лидер"],kind:"profile"},
-        {q:"Какое слово тебе ближе?",a:["Порядок","Креативность","Баланс","Действие"],kind:"profile"},
-        {q:"Как ты осваиваешь новое?",a:["Пошагово","Через эксперименты","Через анализ","Сразу применяю"],kind:"profile"}
+        {q:"Из какой страны родом бренд Ferrari?",a:["Италия","Германия","Япония","США"],correct:0,why:"Ferrari — итальянский производитель спортивных автомобилей."},
+        {q:"Какой бренд известен своими электромобилями?",a:["Tesla","Lamborghini","Bentley","Suzuki"],correct:0,why:"Tesla известна электромобилями."},
+        {q:"Из какой страны бренд BMW?",a:["Франция","Германия","Южная Корея","Канада"],correct:1,why:"BMW — немецкий производитель автомобилей."},
+        {q:"Какова основная задача системы ABS?",a:["Усилить музыку","Снизить риск блокировки колёс","Заправить топливо","Включить свет"],correct:1,why:"ABS помогает уменьшить блокировку колёс при резком торможении."},
+        {q:"Какому бренду принадлежит модель GT-R?",a:["Nissan","Toyota","Audi","Volvo"],correct:0,why:"Nissan GT-R — модель марки Nissan."}
       ]
     }
   };
 
-  function saveState() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch { /* Private browsing can block persistent storage. */ }
+  function loadState(){
+    try{const p=JSON.parse(localStorage.getItem(storageKey)||"{}");return{points:Number(p.points)||0,bestReaction:Number(p.bestReaction)||0,dailyDate:p.dailyDate||"",dailyDone:!!p.dailyDone};}
+    catch{return{points:0,bestReaction:0,dailyDate:"",dailyDone:false};}
+  }
+  function saveState(){try{localStorage.setItem(storageKey,JSON.stringify(state));}catch{}renderStats();}
+  function t(key){return copy[lang][key]||copy.ky[key]||key;}
+  function applyLanguage(){
+    document.documentElement.lang=lang;
+    $$('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(copy[lang][key]!==undefined)el.textContent=copy[lang][key];});
+    const langButton=$("#langToggle");if(langButton)langButton.textContent=lang==="ky"?"РУС":"КЫР";
+    $$('[data-close]').forEach(el=>{if(el.getAttribute('aria-label'))el.setAttribute('aria-label',lang==="ky"?"Жабуу":"Закрыть");});
+    document.title=lang==="ky"?"AZA UNIVERSE — Тесттер • Оюндар • AI":"AZA UNIVERSE — Тесты • Игры • AI";
     renderStats();
   }
-  function tr(key) { return copy[lang][key] ?? copy.ky[key] ?? key; }
-  function escapeHtml(value) { return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch])); }
-  function applyLanguage() {
-    document.documentElement.lang = lang;
-    $$('[data-i18n]').forEach(element => {
-      const key = element.dataset.i18n;
-      if (copy[lang][key] !== undefined && typeof copy[lang][key] === "string") element.textContent = copy[lang][key];
-    });
-    $$('.lang-choice').forEach(button => button.classList.toggle('selected', button.dataset.lang === lang));
-    updateDailyProgress();
+  function renderStats(){
+    const points=$("#pointsTotal");if(points)points.textContent=Number(cloudProfile ? cloudProfile.total_points : state.points).toLocaleString(lang==="ky"?"ky-KG":"ru-RU");
+    const reaction=$("#bestReaction");if(reaction)reaction.textContent=(cloudProfile&&cloudProfile.best_reaction_ms)||state.bestReaction||"—";
+    const progress=$("#dailyProgress");if(progress)progress.style.width=state.dailyDone?"100%":"0%";
+    const progressText=$("#dailyProgressText");if(progressText)progressText.textContent=state.dailyDone?"5/5":"0/5";
+    const badge=$("#pointsModeBadge");if(badge)badge.textContent=cloudUser?t("onlineAccount"):t("thisDevice");
+    updateAccountHeader();
   }
-  function updateDailyProgress() {
-    const done = state.dailyDone && state.dailyDate === DATE_KEY();
-    const progress = $('#dailyProgress');
-    const label = $('#dailyProgressText');
-    if (progress) progress.style.width = done ? '100%' : '0%';
-    if (label) label.textContent = done ? '5/5' : '0/5';
-  }
-  function renderStats() {
-    if ($('#pointsTotal')) $('#pointsTotal').textContent = state.points.toLocaleString(lang === 'ky' ? 'ky-KG' : 'ru-RU');
-    if ($('#bestReaction')) $('#bestReaction').textContent = state.bestReaction ? String(state.bestReaction) : '—';
-    if ($('#testsCompleted')) $('#testsCompleted').textContent = state.testsCompleted;
-    if ($('#bestQuizScore')) $('#bestQuizScore').textContent = state.bestQuizScore == null ? '—' : `${state.bestQuizScore}/5`;
-    updateDailyProgress();
-  }
-  function showToast(message) {
-    const element = $('#toast');
-    element.textContent = message;
-    element.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => element.classList.remove('show'), 2400);
-  }
-  function openModal(content) {
-    $('#modalContent').innerHTML = content;
-    $('#modal').classList.add('show');
-    $('#modal').setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    const firstFocusable = $('#modalContent button, #modalContent input, #modalContent select');
-    if (firstFocusable) setTimeout(() => firstFocusable.focus({preventScroll:true}), 30);
-  }
-  function closeModal() {
-    $('#modal').classList.remove('show');
-    $('#modal').setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    clearTimeout(reactionTimer);
-    reactionState = 'idle';
-  }
-  function packTitle(pack) { return copy[lang].packs[pack] || copy[lang].packs.general; }
+  function showToast(message){const el=$("#toast");el.textContent=message;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2300);}
+  function openModal(content){$("#modalContent").innerHTML=content;$("#modal").classList.add("show");$("#modal").setAttribute("aria-hidden","false");document.body.style.overflow="hidden";const first=$("#modalContent input");if(first)setTimeout(()=>first.focus(),50);}
+  function closeModal(){const modal=$("#modal");modal.classList.remove("show");modal.setAttribute("aria-hidden","true");document.body.style.overflow="";clearTimeout(reactionTimer);reactionState="idle";}
+  function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+  function localDateKey(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");}
 
-  function startQuiz(pack = 'general') {
-    currentPack = questionPacks[pack] ? pack : 'general';
-    quizIndex = 0;
-    quizScore = 0;
-    quizAnswered = false;
-    personalityAnswers = [];
-    renderQuestion();
-  }
-  function renderQuestion() {
-    const questions = questionPacks[currentPack][lang];
-    const question = questions[quizIndex];
-    if (!question) return finishQuiz();
-    const isPersonality = currentPack === 'personality';
-    openModal(`<span class="eyebrow">${escapeHtml(packTitle(currentPack).toUpperCase())} · ${quizIndex + 1}/5</span><h2 id="modalTitle">${escapeHtml(question.q)}</h2><p>${isPersonality ? escapeHtml(lang === 'ky' ? 'Өзүңө жакын жоопту танда.' : 'Выбери ответ, который больше похож на тебя.') : escapeHtml(lang === 'ky' ? 'Туура жооп үчүн 10 упай.' : '10 очков за правильный ответ.')}</p><div id="quizOptions">${question.a.map((answer, index) => `<button class="quiz-option" type="button" data-answer="${index}">${escapeHtml(answer)}</button>`).join('')}</div><div id="quizFeedback"></div>`);
-    $$('[data-answer]').forEach(button => button.addEventListener('click', () => {
-      if (quizAnswered) return;
-      quizAnswered = true;
-      const answer = Number(button.dataset.answer);
-      const correct = question.correct === answer;
-      if (isPersonality) personalityAnswers.push(answer);
-      else if (correct) quizScore++;
-      $$('[data-answer]').forEach(option => {
-        option.disabled = true;
-        if (!isPersonality && Number(option.dataset.answer) === question.correct) option.classList.add('correct');
-      });
-      if (!isPersonality && !correct) button.classList.add('wrong');
-      const feedback = isPersonality
-        ? (lang === 'ky' ? 'Жооп сакталды.' : 'Ответ сохранён.')
-        : (correct ? `${tr('correct')} +10` : `${tr('wrong')} ${tr('rightAnswer')} ${question.a[question.correct]}`);
-      const explanation = !isPersonality && question.why ? `<p>${escapeHtml(question.why)}</p>` : '';
-      $('#quizFeedback').innerHTML = `<div class="result-box"><p>${escapeHtml(feedback)}</p>${explanation}<button id="nextQuestion" class="btn btn-primary full" type="button">${quizIndex === 4 ? escapeHtml(tr('result')) : escapeHtml(tr('next'))}</button></div>`;
-      $('#nextQuestion').addEventListener('click', () => { quizIndex++; quizAnswered = false; renderQuestion(); });
-    }));
-  }
-  function finishQuiz() {
-    const isPersonality = currentPack === 'personality';
-    let earned = 0;
-    let mainResult = '';
-    let extra = '';
-    state.testsCompleted++;
-    if (isPersonality) {
-      const counts = [0,0,0,0];
-      personalityAnswers.forEach(answer => { counts[answer]++; });
-      const profileIndex = counts.indexOf(Math.max(...counts));
-      mainResult = tr('personalityResult');
-      extra = `<p>${escapeHtml(tr('resultTypes')[profileIndex])}</p><p>${escapeHtml(tr('personalityDescriptions')[profileIndex])}</p>`;
-      earned = 25;
-    } else {
-      earned = quizScore * 10;
-      if (state.bestQuizScore == null || quizScore > state.bestQuizScore) state.bestQuizScore = quizScore;
+  function startQuiz(type="general") {currentQuiz=quizSets[type]?type:"general";quizIndex=0;quizScore=0;quizAnswered=false;renderQuestion();}
+  function renderQuestion(){
+    const qs=quizSets[currentQuiz][lang],q=qs[quizIndex];
+    if(!q){
+      const quizAward=quizScore*10;state.points+=quizAward;const today=localDateKey();if(quizScore===5&&state.dailyDate!==today){state.dailyDate=today;state.dailyDone=true;}saveState();if(quizAward>0)void awardCloudPoints("quiz",quizAward);
+      const heading=lang==="ky"?"ТЕСТ БҮТТҮ":"ТЕСТ ЗАВЕРШЁН";
+      openModal(`<span class="eyebrow">${heading}</span><h2 id="modalTitle">${lang==="ky"?"Сонун иш! 🔥":"Отличная работа! 🔥"}</h2><p>${lang==="ky"?"Сенин жыйынтыгың":"Твой результат"}</p><div class="result-box"><strong>${quizScore}/5</strong><p>${lang==="ky"?"Топтогон упайың":"Набрано очков"}: ${quizScore*10}</p></div><p>${quizScore===5?(lang==="ky"?"Мыкты! Күнүмдүк чакырык аткарылды.":"Отлично! Ежедневный челлендж выполнен."):(lang==="ky"?"Кайра аракет кылып, рекордуңду жакшырт.":"Попробуй ещё раз и улучши результат.")}</p><button class="btn btn-primary full" id="quizAgain">${lang==="ky"?"Кайра өтүү":"Пройти ещё раз"}</button>`);return;
     }
-    state.points += earned;
-    const dailyWasDone = state.dailyDone && state.dailyDate === DATE_KEY();
-    if (!dailyWasDone) {
-      state.dailyDate = DATE_KEY();
-      state.dailyDone = true;
-      if (!isPersonality && quizScore === 5) {
-        state.points += 50;
-        extra += `<p style="color:#ffcf73;font-weight:800">${escapeHtml(tr('dailyBonus'))}</p>`;
-      }
+    const titleMap={general:lang==="ky"?"ЖАЛПЫ БИЛИМ ТЕСТИ":"ТЕСТ ОБЩИХ ЗНАНИЙ",iq:"IQ / ЛОГИКА",anime:lang==="ky"?"АНИМЕ ТЕСТ":"АНИМЕ-ТЕСТ",cars:lang==="ky"?"АВТО ТЕСТ":"АВТО-ТЕСТ"};
+    openModal(`<span class="eyebrow">${titleMap[currentQuiz]} • ${quizIndex+1}/5</span><h2 id="modalTitle">${escapeHtml(q.q)}</h2><p>${lang==="ky"?"Туура жооп үчүн 10 упай.":"За каждый правильный ответ — 10 очков."}</p><div id="quizOptions">${q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${escapeHtml(a)}</button>`).join("")}</div><div id="quizFeedback"></div>`);
+  }
+  function answerQuestion(btn){
+    if(quizAnswered)return;quizAnswered=true;const qs=quizSets[currentQuiz][lang],q=qs[quizIndex],answer=Number(btn.dataset.answer),right=answer===q.correct;if(right)quizScore++;
+    $$('[data-answer]').forEach(b=>{b.disabled=true;if(Number(b.dataset.answer)===q.correct)b.classList.add("correct");});if(!right)btn.classList.add("wrong");
+    $("#quizFeedback").innerHTML=`<div class="result-box"><p>${right?(lang==="ky"?"Туура! +10 упай":"Верно! +10 очков"):(lang==="ky"?"Бул жолу туура эмес.":"В этот раз неверно.")}</p><p>${escapeHtml(q.why)}</p><button id="nextQuestion" class="btn btn-primary full">${quizIndex===4?(lang==="ky"?"Жыйынтык":"Результат"):(lang==="ky"?"Кийинки суроо →":"Следующий вопрос →")}</button></div>`;
+  }
+
+  function startGame(){
+    openModal(`<span class="eyebrow">${lang==="ky"?"МИНИ-ОЮН":"МИНИ-ИГРА"}</span><h2 id="modalTitle">${lang==="ky"?"Реакцияңды текшер!":"Проверь реакцию!"}</h2><p>${lang==="ky"?"Стартты бас. Поле жашыл болгондо дароо бас — эрте баспа!":"Нажми «Старт». Когда поле станет зелёным, нажми как можно быстрее — не нажимай раньше!"}</p><div class="game-zone"><button id="reactionPad" class="reaction-pad">${lang==="ky"?"Стартты бас":"Нажми «Старт»"}</button><button id="gameStart" class="btn btn-primary full">${lang==="ky"?"Старт":"Старт"}</button><p class="muted-small">${lang==="ky"?"Рекорд азырынча ушул түзмөктө гана сакталат.":"Рекорд пока сохраняется только на этом устройстве."}</p></div>`);
+    const pad=$("#reactionPad"),start=$("#gameStart");start.onclick=()=>{clearTimeout(reactionTimer);reactionState="wait";pad.className="reaction-pad wait";pad.textContent=lang==="ky"?"КҮТ...":"ЖДИ...";start.disabled=true;start.textContent=lang==="ky"?"Оюн жүрүп жатат…":"Игра идёт…";reactionTimer=setTimeout(()=>{reactionState="ready";reactionStart=performance.now();pad.className="reaction-pad ready";pad.textContent=lang==="ky"?"АЗЫР БАС!":"ЖМИ СЕЙЧАС!";},900+Math.random()*2900);};
+    pad.onclick=()=>{if(reactionState==="wait"){clearTimeout(reactionTimer);reactionState="idle";pad.className="reaction-pad";pad.textContent=lang==="ky"?"Эрте басып койдуң! Кайра башта.":"Слишком рано! Попробуй ещё раз.";start.disabled=false;start.textContent=lang==="ky"?"Кайра баштоо":"Начать заново";}else if(reactionState==="ready"){const ms=Math.round(performance.now()-reactionStart);reactionState="done";if(!state.bestReaction||ms<state.bestReaction)state.bestReaction=ms;const reactionAward=Math.max(1,Math.min(25,Math.round(1000/ms)));state.points+=reactionAward;saveState();void awardCloudPoints("reaction",reactionAward,ms);pad.className="reaction-pad";pad.textContent=ms+" ms";start.disabled=false;start.textContent=lang==="ky"?"Кайра ойно":"Играть снова";showToast((lang==="ky"?"Реакцияң: ":"Твоя реакция: ")+ms+" ms · +"+reactionAward);}};
+  }
+  function openStudio(){
+    openModal(`<span class="eyebrow">AZA STUDIO</span><h2 id="modalTitle">${lang==="ky"?"Креативдүү куралдар":"Креативные инструменты"}</h2><p>${lang==="ky"?"Бул версияда текст шаблондорунун генератору иштейт. Чыныгы AI-модель азырынча туташтырылган эмес.":"В этой версии работают генераторы на основе шаблонов. Настоящая AI-модель пока не подключена."}</p><label class="field-label" for="studioType">${lang==="ky"?"Эмне түзөбүз?":"Что создаём?"}</label><select id="studioType" class="text-field"><option value="post">${lang==="ky"?"Соцтармак үчүн пост":"Пост для соцсетей"}</option><option value="nick">${lang==="ky"?"Никнейм":"Никнейм"}</option><option value="idea">${lang==="ky"?"Видео идеясы":"Идея для видео"}</option></select><label class="field-label" for="studioTopic">${lang==="ky"?"Темаңды жаз":"Укажи тему"}</label><input id="studioTopic" class="text-field" placeholder="${lang==="ky"?"Мисалы: оюн, кино, дүкөн...":"Например: игры, кино, магазин..."}"><button id="generateStudio" class="btn btn-primary full" style="margin-top:14px">${lang==="ky"?"Түзүү ✨":"Создать ✨"}</button><div id="studioOutput"></div>`);
+    $("#generateStudio").onclick=()=>{const topic=$("#studioTopic").value.trim()||(lang==="ky"?"кызыктуу тема":"интересная тема"),type=$("#studioType").value;let output="";if(type==="post")output=lang==="ky"?`🔥 ${topic.toUpperCase()} — жаңы деңгээл!\n\nСен даярсыңбы? Өз оюңду комментарийге жаз 👇\n\n#AZAUniverse #${topic.replace(/\s+/g,"")}`:`🔥 ${topic.toUpperCase()} — новый уровень!\n\nГотов попробовать? Напиши своё мнение в комментариях 👇\n\n#AZAUniverse #${topic.replace(/\s+/g,"")}`;if(type==="nick")output=[`AZA_${topic.replace(/\s+/g,"")}`,`${topic}_FIRE`,`x${topic}x`,`『${topic}』`,`亗${topic}亗`].join("\n");if(type==="idea")output=lang==="ky"?`Видео идеясы: «${topic} боюнча 3 факт»\n1. Биринчи секундда күчтүү суроо бер.\n2. Үч кыска факт же кеңеш көрсөт.\n3. Аягында көрүүчүгө суроо берип, бөлүшүүгө чакыр.`:`Идея видео: «3 факта о теме ${topic}»\n1. Начни с цепляющего вопроса.\n2. Покажи три коротких факта или совета.\n3. В конце задай вопрос и предложи поделиться мнением.`;$("#studioOutput").innerHTML=`<div class="output-box" id="studioResult">${escapeHtml(output)}</div><button id="copyStudio" class="btn btn-outline full" style="margin-top:10px">${lang==="ky"?"Көчүрүү":"Скопировать"}</button>`;$("#copyStudio").onclick=()=>copyText(output);};
+  }
+  function isSupabaseConfigured(){
+    const url=String(supabaseConfig.projectUrl||"").trim();
+    const key=String(supabaseConfig.publishableKey||"").trim();
+    return /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(url) && key.startsWith("sb_publishable_") && !key.includes("REPLACE");
+  }
+  function updateAccountHeader(){
+    const signedLabel=cloudUser?(cloudProfile?.username|| (lang==="ky"?"Аккаунт":"Аккаунт")):t("login");
+    const label=$(".profile-btn [data-i18n='login']");if(label)label.textContent=signedLabel;
+    const mobileLabel=$(".mobile-account-link [data-i18n='login']");if(mobileLabel)mobileLabel.textContent=signedLabel;
+    const button=$(".profile-btn");if(button)button.title=cloudUser?(cloudProfile?.username||cloudUser.email||"AZA Account"):t("login");
+  }
+  async function initSupabase(){
+    if(!isSupabaseConfigured())return;
+    if(!window.supabase||typeof window.supabase.createClient!=="function")return;
+    supabaseClient=window.supabase.createClient(supabaseConfig.projectUrl,supabaseConfig.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+    const {data}=await supabaseClient.auth.getSession();
+    await handleCloudUser(data?.session?.user||null,false);
+    supabaseClient.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>{handleCloudUser(session?.user||null,true).catch(()=>{});},0);});
+  }
+  async function handleCloudUser(user,toastOnChange=false){
+    const hadUser=!!cloudUser;cloudUser=user||null;cloudProfile=null;
+    if(cloudUser)await refreshOwnProfile();
+    updateAccountHeader();renderStats();await refreshLeaderboard();
+    if(toastOnChange&&cloudUser&&!hadUser)showToast(t("authSignedIn"));
+    if(toastOnChange&&!cloudUser&&hadUser)showToast(t("authSignedOut"));
+  }
+  async function refreshOwnProfile(){
+    if(!supabaseClient||!cloudUser)return;
+    const {data,error}=await supabaseClient.from("profiles").select("id,username,total_points,best_reaction_ms,created_at").eq("id",cloudUser.id).maybeSingle();
+    if(error){console.warn("Could not load AZA profile",error.message);return;}
+    cloudProfile=data||null;renderStats();
+  }
+  async function refreshLeaderboard(){
+    if(!supabaseClient)return;
+    const list=$("#ranking .ranking-list"),note=$("#rankingNote"),kicker=$("#rankingKicker");
+    if(!list)return;
+    if(kicker)kicker.textContent=t("onlineRankingLabel");
+    const {data,error}=await supabaseClient.from("profiles").select("username,total_points,created_at").order("total_points",{ascending:false}).order("created_at",{ascending:true}).limit(5);
+    if(error){if(note)note.textContent=t("rankingLoadError");console.warn("Leaderboard error",error.message);return;}
+    if(!data||data.length===0){list.innerHTML="";if(note)note.textContent=t("noOnlinePlayers");return;}
+    const avatarClasses=["avatar-one","avatar-two","avatar-three","avatar-four","avatar-five"];
+    list.innerHTML=data.map((player,i)=>`<div class="ranking-item"><span class="rank-medal ${i===0?"gold-medal":i===1?"silver-medal":i===2?"bronze-medal":""}">${i+1}</span><span class="avatar ${avatarClasses[i]}">${escapeHtml((player.username||"A").slice(0,1).toUpperCase())}</span><strong>${escapeHtml(player.username||"AZA Player")}</strong><b>${Number(player.total_points||0).toLocaleString(lang==="ky"?"ky-KG":"ru-RU")}</b></div>`).join("");
+    if(note)note.textContent=t("onlineRankingNote");
+  }
+  function showAuthMessage(message,kind=""){
+    const el=$("#authMessage");if(!el)return;el.textContent=message;el.className="auth-message"+(kind?" "+kind:"");el.hidden=!message;
+  }
+  function openAuthForm(mode="signin",message="",messageKind=""){
+    authMode=mode;
+    if(!supabaseClient){
+      const heading=window.supabase? t("authNotConfiguredTitle"):t("authUnavailable");
+      openModal(`<span class="eyebrow">AZA ACCOUNT</span><h2 id="modalTitle">${escapeHtml(heading)}</h2><p>${escapeHtml(t("authNotConfiguredText"))}</p><p class="muted-small">Project URL жана Publishable key гана колдонулат. Secret key браузерге же чатка киргизилбейт.</p><button class="btn btn-primary full" data-close>${lang==="ky"?"Түшүнүктүү":"Понятно"}</button>`);return;
     }
-    saveState();
-    const scoreText = isPersonality ? (lang === 'ky' ? '25 упай' : '25 очков') : `${quizScore}/5`;
-    const standardExtra = isPersonality ? '' : `<p>${escapeHtml(tr('pointsEarned'))}: ${earned}${earned ? ' ✦' : ''}</p>${quizScore === 5 ? `<p style="color:#8ef4bf">${escapeHtml(tr('perfect'))}</p>` : ''}`;
-    openModal(`<span class="eyebrow">${escapeHtml(tr('quizFinished').toUpperCase())}</span><h2 id="modalTitle">${isPersonality ? escapeHtml(mainResult) : escapeHtml(tr('result'))}</h2><div class="result-box"><strong>${escapeHtml(scoreText)}</strong>${standardExtra}</div>${extra}<button class="btn btn-primary full" id="quizAgain" type="button">${escapeHtml(tr('retry'))}</button>`);
-    $('#quizAgain').addEventListener('click', () => startQuiz(currentPack));
-    if (!dailyWasDone) showToast(quizScore === 5 && !isPersonality ? tr('dailyBonus') : tr('quizBonus'));
+    const isSignup=mode==="signup";
+    openModal(`<span class="eyebrow">AZA ACCOUNT · ${isSignup?"SIGN UP":"SIGN IN"}</span><h2 id="modalTitle">${escapeHtml(t(isSignup?"authSignUp":"authSignIn"))}</h2><p>${escapeHtml(t("authHelp"))}</p><form id="authForm" class="auth-form" novalidate>${isSignup?`<label class="field-label" for="authUsername">${escapeHtml(t("authUsername"))}</label><input class="text-field" id="authUsername" name="username" type="text" minlength="3" maxlength="20" autocomplete="nickname" required>`:""}<label class="field-label" for="authEmail">${escapeHtml(t("authEmail"))}</label><input class="text-field" id="authEmail" name="email" type="email" autocomplete="email" required><label class="field-label" for="authPassword">${escapeHtml(t("authPassword"))}</label><input class="text-field" id="authPassword" name="password" type="password" minlength="8" autocomplete="${isSignup?"new-password":"current-password"}" required><p id="authMessage" class="auth-message" role="status" aria-live="polite" ${message?"":"hidden"}>${escapeHtml(message)}</p><button id="authSubmit" class="btn btn-primary full" type="submit">${escapeHtml(t(isSignup?"authSubmitSignUp":"authSubmitSignIn"))}</button></form><button id="authSwitch" class="btn btn-outline full auth-switch" type="button">${escapeHtml(t(isSignup?"authSwitchToSignIn":"authSwitchToSignUp"))}</button>`);
+    if(message)showAuthMessage(message,messageKind);
+    $("#authForm").addEventListener("submit",submitAuthForm);
+    $("#authSwitch").addEventListener("click",()=>openAuthForm(authMode==="signup"?"signin":"signup"));
   }
+  async function submitAuthForm(event){
+    event.preventDefault();if(authBusy||!supabaseClient)return;
+    const form=event.currentTarget,email=$("#authEmail").value.trim(),password=$("#authPassword").value,username=$("#authUsername")?.value.trim()||"";
+    if(authMode==="signup"&&(username.length<3||username.length>20)){showAuthMessage(t("authBadUsername"),"error");return;}
+    if(password.length<8){showAuthMessage(t("authBadPassword"),"error");return;}
+    authBusy=true;const submit=$("#authSubmit");if(submit){submit.disabled=true;submit.textContent=t(authMode==="signup"?"authSigningUp":"authSigningIn");}
+    let result;
+    try{
+      if(authMode==="signup"){
+        result=await supabaseClient.auth.signUp({email,password,options:{data:{username},emailRedirectTo:location.origin}});
+      }else result=await supabaseClient.auth.signInWithPassword({email,password});
+      if(result.error){showAuthMessage(t("authGenericError"),"error");}
+      else if(authMode==="signup"&&!result.data?.session){showAuthMessage(t("authCheckEmail"),"success");form.reset();}
+      else{await handleCloudUser(result.data?.user||result.data?.session?.user||null,false);showToast(t("authSignedIn"));openProfile();}
+    }catch(error){console.error("AZA auth error",error);showAuthMessage(t("authGenericError"),"error");}
+    finally{authBusy=false;const current=$("#authSubmit");if(current){current.disabled=false;current.textContent=t(authMode==="signup"?"authSubmitSignUp":"authSubmitSignIn");}}
+  }
+  async function awardCloudPoints(source,amount,reactionMs=null){
+    if(!supabaseClient||!cloudUser||!Number.isFinite(amount)||amount<1)return;
+    try{
+      const {data,error}=await supabaseClient.rpc("record_points",{p_source:source,p_amount:Math.min(source==="quiz"?50:25,Math.floor(amount)),p_reaction_ms:reactionMs});
+      if(error){console.warn("Could not save online points",error.message);showToast(lang==="ky"?"Онлайн упай сакталган жок":"Онлайн-очки не сохранены");return;}
+      if(data===0)showToast(lang==="ky"?"Бул аракет үчүн 24 сааттык упай чегине жеттиң.":"Достигнут лимит очков на 24 часа для этого действия.");
+      await refreshOwnProfile();await refreshLeaderboard();
+    }catch(error){console.warn("Online score unavailable",error);}
+  }
+  async function openProfile(){
+    if(!isSupabaseConfigured()||!supabaseClient){openAuthForm("signin");return;}
+    if(!cloudUser){openAuthForm("signin");return;}
+    await refreshOwnProfile();
+    const name=cloudProfile?.username||cloudUser.email||"AZA Player";
+    openModal(`<span class="eyebrow">AZA ACCOUNT · ONLINE</span><h2 id="modalTitle">${lang==="ky"?"Менин аккаунтым":"Мой аккаунт"}</h2><div class="auth-user-card"><span class="auth-avatar">${escapeHtml(name.slice(0,1).toUpperCase())}</span><span class="auth-user-info"><strong>${escapeHtml(name)}</strong><small>${escapeHtml(cloudUser.email||"")}</small></span></div><div class="result-box"><p>${escapeHtml(t("authOnlinePoints"))}</p><strong>${Number(cloudProfile?.total_points||0).toLocaleString(lang==="ky"?"ky-KG":"ru-RU")}</strong><p>${escapeHtml(t("authBestReaction"))}: ${cloudProfile?.best_reaction_ms?Number(cloudProfile.best_reaction_ms)+" ms":"—"}</p></div><button id="authSignOut" class="btn btn-outline full" type="button">${escapeHtml(t("authLogout"))}</button>`);
+    $("#authSignOut").addEventListener("click",async()=>{const {error}=await supabaseClient.auth.signOut();if(error){showToast(t("authGenericError"));return;}cloudUser=null;cloudProfile=null;updateAccountHeader();renderStats();await refreshLeaderboard();closeModal();showToast(t("authSignedOut"));});
+  }
+  function openSearch(){
+    openModal(`<span class="eyebrow">AZA SEARCH</span><h2 id="modalTitle">${lang==="ky"?"Эмне издейбиз?":"Что ищем?"}</h2><input class="text-field" id="searchInput" type="search" placeholder="${lang==="ky"?"Оюндар, тесттер, AI...":"Игры, тесты, AI..."}"><div id="searchResults" class="search-results"></div>`);
+    const items=[{key:"navHome",href:"#home"},{key:"navGames",href:"#games"},{key:"navTests",href:"#tests"},{key:"navAI",href:"#tools"},{key:"navRanking",href:"#ranking"},{key:"navChallenges",href:"#challenge"}];
+    const draw=(query="")=>{$("#searchResults").innerHTML=items.filter(x=>t(x.key).toLowerCase().includes(query.toLowerCase())).map(x=>`<a href="${x.href}" data-search-link>${escapeHtml(t(x.key))}<b>→</b></a>`).join("")||`<p>${lang==="ky"?"Эч нерсе табылган жок.":"Ничего не найдено."}</p>`;};draw();$("#searchInput").addEventListener("input",e=>draw(e.target.value));
+  }
+  async function copyText(text){try{await navigator.clipboard.writeText(text);showToast(lang==="ky"?"Көчүрүлдү!":"Скопировано!");}catch{const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();showToast(lang==="ky"?"Көчүрүлдү!":"Скопировано!");}}
+  async function shareSite(){const data={title:"AZA UNIVERSE",text:lang==="ky"?"Кызыктуу тесттерди жана мини-оюндарды сынап көр!":"Попробуй интересные тесты и мини-игры!",url:location.href};if(navigator.share){try{await navigator.share(data);}catch(e){if(e.name!=="AbortError")showToast(lang==="ky"?"Бөлүшүү мүмкүн болгон жок":"Не удалось поделиться");}}else await copyText(data.text+" "+data.url);}
 
-  function startGame() {
-    openModal(`<span class="eyebrow">${lang === 'ky' ? 'МИНИ-ОЮН' : 'МИНИ-ИГРА'}</span><h2 id="modalTitle">${escapeHtml(tr('gameTitle'))}</h2><p>${escapeHtml(tr('gameText'))}</p><div class="game-zone"><button id="reactionPad" class="reaction-pad" type="button">${escapeHtml(tr('gameStart'))}</button><button id="gameStart" class="btn btn-primary full" type="button">${escapeHtml(tr('gameStart'))}</button><p class="muted-small">${escapeHtml(tr('gameHelp'))}</p></div>`);
-    const pad = $('#reactionPad');
-    const start = $('#gameStart');
-    start.addEventListener('click', () => {
-      clearTimeout(reactionTimer);
-      reactionState = 'wait';
-      pad.className = 'reaction-pad wait';
-      pad.textContent = tr('gameWait');
-      start.disabled = true;
-      start.textContent = lang === 'ky' ? 'Оюн жүрүп жатат…' : 'Игра идёт…';
-      reactionTimer = setTimeout(() => {
-        reactionState = 'ready';
-        reactionStart = performance.now();
-        pad.className = 'reaction-pad ready';
-        pad.textContent = tr('gameReady');
-      }, 900 + Math.random() * 2600);
-    });
-    pad.addEventListener('click', () => {
-      if (reactionState === 'wait') {
-        clearTimeout(reactionTimer);
-        reactionState = 'idle';
-        pad.className = 'reaction-pad';
-        pad.textContent = tr('gameEarly');
-        start.disabled = false;
-        start.textContent = tr('gameAgain');
-      } else if (reactionState === 'ready') {
-        const ms = Math.max(1, Math.round(performance.now() - reactionStart));
-        reactionState = 'done';
-        if (!state.bestReaction || ms < state.bestReaction) state.bestReaction = ms;
-        const earned = Math.max(1, Math.round(700 / ms));
-        state.points += earned;
-        saveState();
-        pad.className = 'reaction-pad';
-        pad.textContent = `${ms} ms`;
-        start.disabled = false;
-        start.textContent = tr('gameAgain');
-        showToast(`${tr('yourReaction')}${ms} ms · +${earned}`);
-      }
-    });
-  }
-
-  function openStudio(initialType = 'post') {
-    openModal(`<span class="eyebrow">AZA STUDIO</span><h2 id="modalTitle">${escapeHtml(tr('studioTitleModal'))}</h2><p>${escapeHtml(tr('studioDisclaimer'))}</p><label class="field-label" for="studioType">${escapeHtml(tr('whatCreate'))}</label><select id="studioType" class="text-field"><option value="post">${escapeHtml(tr('createPost'))}</option><option value="nick">${escapeHtml(tr('createNick'))}</option><option value="idea">${escapeHtml(tr('createIdea'))}</option></select><label class="field-label" for="studioTopic">${escapeHtml(tr('topicLabel'))}</label><input id="studioTopic" class="text-field" placeholder="${escapeHtml(tr('topicPlaceholder'))}" maxlength="90"><button id="generateStudio" class="btn btn-primary full" style="margin-top:14px" type="button">${escapeHtml(tr('generate'))}</button><div id="studioOutput"></div>`);
-    $('#studioType').value = ['post','nick','idea'].includes(initialType) ? initialType : 'post';
-    $('#generateStudio').addEventListener('click', generateStudioOutput);
-    $('#studioTopic').addEventListener('keydown', event => { if (event.key === 'Enter') generateStudioOutput(); });
-  }
-  function generateStudioOutput() {
-    const topic = $('#studioTopic').value.trim() || (lang === 'ky' ? 'кызыктуу тема' : 'интересная тема');
-    const safeTag = topic.replace(/[^\p{L}\p{N}_]/gu, '').slice(0,40) || 'AZA';
-    const type = $('#studioType').value;
-    let output = '';
-    if (type === 'post') output = lang === 'ky'
-      ? `🔥 ${topic.toUpperCase()} — жаңы деңгээл!\n\nСен даярсыңбы? Өз оюңду комментарийге жаз 👇\n\n#AZAUniverse #${safeTag}`
-      : `🔥 ${topic.toUpperCase()} — новый уровень!\n\nГотов попробовать? Напиши своё мнение в комментариях 👇\n\n#AZAUniverse #${safeTag}`;
-    if (type === 'nick') output = [`AZA_${safeTag}`, `${safeTag}_FIRE`, `x${safeTag}x`, `『${safeTag}』`, `亗${safeTag}亗`].join('\n');
-    if (type === 'idea') output = lang === 'ky'
-      ? `Видео идеясы: «${topic} боюнча 3 факт»\n1. Биринчи секундда күчтүү суроо бер.\n2. Үч кыска факт же кеңеш көрсөт.\n3. Аягында көрүүчүгө суроо берип, бөлүшүүгө чакыр.`
-      : `Идея видео: «3 факта о теме ${topic}»\n1. Начни с цепляющего вопроса.\n2. Покажи три коротких факта или совета.\n3. В конце задай вопрос и предложи поделиться мнением.`;
-    $('#studioOutput').innerHTML = `<div class="output-box" id="studioResult">${escapeHtml(output)}</div><button id="copyStudio" class="btn btn-outline full" style="margin-top:10px" type="button">${escapeHtml(tr('copy'))}</button>`;
-    $('#copyStudio').addEventListener('click', () => copyText(output));
-  }
-  async function copyText(text) {
-    try {
-      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
-      else {
-        const area = document.createElement('textarea'); area.value = text; area.style.position = 'fixed'; area.style.opacity = '0';
-        document.body.appendChild(area); area.select(); const copied = document.execCommand('copy'); area.remove();
-        if (!copied) throw new Error('Copy was blocked');
-      }
-      showToast(tr('copied'));
-    } catch {
-      showToast(lang === 'ky' ? 'Көчүрүү мүмкүн болгон жок. Текстти белгилеп көчүр.' : 'Не удалось скопировать. Выдели и скопируй текст.');
-    }
-  }
-  async function shareSite() {
-    const shareData = {title:'AZA UNIVERSE',text:lang === 'ky' ? 'AZA UNIVERSE — кызыктуу тесттер жана мини-оюндар! Кошул!' : 'AZA UNIVERSE — интересные тесты и мини-игры! Присоединяйся!',url:location.href};
-    if (navigator.share) {
-      try { await navigator.share(shareData); }
-      catch (error) { if (error?.name !== 'AbortError') copyText(`${shareData.text} ${shareData.url}`); }
-    } else {
-      await copyText(`${shareData.text} ${shareData.url}`);
-    }
-  }
-
-  function openSearch() {
-    const sectionList = [
-      {id:'games',title:tr('gamesTitle'),desc:tr('gamesText')},{id:'tests',title:tr('testsTitle'),desc:tr('testsText')},
-      {id:'studio',title:tr('aiTitle'),desc:tr('aiText')},{id:'ranking',title:tr('statsTitle'),desc:tr('localNotice')},
-      {id:'challenge',title:tr('challengeTitle'),desc:tr('challengeText')},{id:'community',title:tr('communityTitle'),desc:tr('communityText')}
-    ];
-    openModal(`<span class="eyebrow">AZA UNIVERSE</span><h2 id="modalTitle">${escapeHtml(tr('searchTitle'))}</h2><p>${escapeHtml(tr('searchHint'))}</p><input id="siteSearch" class="text-field" type="search" placeholder="${escapeHtml(tr('searchPlaceholder'))}" autocomplete="off"><div class="search-results" id="searchResults">${sectionList.map(item=>`<a class="search-result" href="#${item.id}" data-result="${item.id}"><span><b>${escapeHtml(item.title)}</b><br><small>${escapeHtml(item.desc)}</small></span><span>↗</span></a>`).join('')}</div>`);
-    const input = $('#siteSearch');
-    input.addEventListener('input', () => {
-      const query = input.value.trim().toLocaleLowerCase();
-      let matches = 0;
-      $$('.search-result').forEach(result => {
-        const visible = !query || result.textContent.toLocaleLowerCase().includes(query) || result.dataset.result.includes(query);
-        result.hidden = !visible;
-        if (visible) matches++;
-      });
-      let empty = $('#searchEmpty');
-      if (!matches) {
-        if (!empty) { empty = document.createElement('p'); empty.id = 'searchEmpty'; empty.style.color = '#a8bad0'; empty.textContent = tr('noResults'); $('#searchResults').appendChild(empty); }
-      } else empty?.remove();
-    });
-    $$('[data-result]').forEach(result => result.addEventListener('click', () => { closeModal(); setTimeout(() => document.getElementById(result.dataset.result)?.scrollIntoView({behavior:'smooth',block:'start'}), 80); }));
-  }
-  function openProfile() {
-    openModal(`<span class="eyebrow">AZA UNIVERSE · ${escapeHtml(tr('myStats').toUpperCase())}</span><h2 id="modalTitle">${escapeHtml(tr('myStats'))}</h2><p>${escapeHtml(tr('localNotice'))}</p><div class="profile-summary"><div><small>${escapeHtml(tr('pointsShort'))}</small><strong>${state.points.toLocaleString(lang === 'ky' ? 'ky-KG' : 'ru-RU')}</strong></div><div><small>${escapeHtml(tr('quizzesShort'))}</small><strong>${state.testsCompleted}</strong></div><div><small>${escapeHtml(tr('reactionShort'))}</small><strong>${state.bestReaction ? `${state.bestReaction} ms` : '—'}</strong></div><div><small>${escapeHtml(tr('bestScore'))}</small><strong>${state.bestQuizScore == null ? '—' : `${state.bestQuizScore}/5`}</strong></div></div><button class="btn btn-primary full" style="margin-top:16px" type="button" id="profileStartQuiz">${escapeHtml(tr('takeQuiz'))} →</button>`);
-    $('#profileStartQuiz').addEventListener('click', () => startQuiz('general'));
-  }
-
-  $$('[data-open]').forEach(button => button.addEventListener('click', () => {
-    const action = button.dataset.open;
-    if (action === 'quiz') startQuiz(button.dataset.quizType || 'general');
-    if (action === 'game') startGame();
-    if (action === 'studio') openStudio(button.dataset.studioType || 'post');
-  }));
-  $$('[data-close]').forEach(button => button.addEventListener('click', closeModal));
-  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
-  $$('.lang-choice').forEach(button => button.addEventListener('click', () => {
-    if (!['ky','ru'].includes(button.dataset.lang)) return;
-    lang = button.dataset.lang;
-    try { localStorage.setItem('aza-lang', lang); } catch { /* Language still changes for this session. */ }
-    applyLanguage(); renderStats();
-    showToast(tr('languageChanged'));
-  }));
-  $('#shareBtn')?.addEventListener('click', shareSite);
-  $('#communityShare')?.addEventListener('click', shareSite);
-  $('#footerShare')?.addEventListener('click', shareSite);
-  $('#footerContactBtn')?.addEventListener('click', shareSite);
-  $('#searchOpen')?.addEventListener('click', openSearch);
-  $('#profileOpen')?.addEventListener('click', openProfile);
-  $('#showStats')?.addEventListener('click', openProfile);
-  $('#year').textContent = new Date().getFullYear();
-
-  const navTargets = ['home','games','tests','studio','ranking','challenge'];
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => {
-      const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
-      if (!visible) return;
-      const section = visible.target.id;
-      $$('.nav-link').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${section}` || (section === 'home' && link.getAttribute('href') === '#home')));
-      $$('.mobile-nav-item').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${section}` || (section === 'home' && link.getAttribute('href') === '#home')));
-    }, {rootMargin:'-20% 0px -60% 0px',threshold:[0,.15,.4]});
-    navTargets.forEach(id => { const target = document.getElementById(id); if (target) observer.observe(target); });
-  }
-  applyLanguage();
-  renderStats();
+  document.addEventListener("click",e=>{
+    const close=e.target.closest("[data-close]");if(close){closeModal();return;}
+    const open=e.target.closest("[data-open]");if(open){e.preventDefault();if(open.closest("#mobileMenu")){const menu=$("#mobileMenu");menu.classList.remove("open");menu.setAttribute("aria-hidden","true");$("#menuToggle").textContent="☰";}const action=open.dataset.open;if(action==="quiz")startQuiz(open.dataset.quiz||"general");else if(action==="game")startGame();else if(action==="studio")openStudio();else if(action==="profile")openProfile();else if(action==="search")openSearch();else if(action==="share")shareSite();return;}
+    const answer=e.target.closest("[data-answer]");if(answer){answerQuestion(answer);return;}
+    if(e.target.closest("#nextQuestion")){quizIndex++;quizAnswered=false;renderQuestion();return;}
+    if(e.target.closest("#quizAgain")){startQuiz(currentQuiz);return;}
+    const searchLink=e.target.closest("[data-search-link]");if(searchLink){closeModal();setTimeout(()=>{const target=$(searchLink.getAttribute("href"));if(target)target.scrollIntoView({behavior:"smooth",block:"start"});},80);return;}
+    const mobileLink=e.target.closest("#mobileMenu a");if(mobileLink){$("#mobileMenu").classList.remove("open");$("#mobileMenu").setAttribute("aria-hidden","true");}
+  });
+  $("#langToggle").addEventListener("click",()=>{lang=lang==="ky"?"ru":"ky";localStorage.setItem("aza-lang",lang);applyLanguage();showToast(lang==="ky"?"Кыргыз тили":"Русский язык");});
+  $("#shareBtn").addEventListener("click",shareSite);
+  $("#menuToggle").addEventListener("click",()=>{const menu=$("#mobileMenu"),open=menu.classList.toggle("open");menu.setAttribute("aria-hidden",String(!open));$("#menuToggle").textContent=open?"×":"☰";});
+  $$(".mobile-bottom-nav a").forEach(a=>a.addEventListener("click",()=>{$$(".mobile-bottom-nav a").forEach(el=>el.classList.toggle("active",el===a));}));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+  const year=$("#year");if(year)year.textContent=new Date().getFullYear();
+  applyLanguage();renderStats();
+  initSupabase().catch(error=>console.warn("Supabase initialization failed",error));
 })();
