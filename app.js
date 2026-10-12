@@ -214,11 +214,41 @@
       return questionBankCache[type];
     }
   }
+  function getQuestionKey(type,item){
+    const id=typeof item?.id==="string"?item.id.trim():"";
+    if(id)return `${type}:${id}`;
+    const prompt=String(item?.ky?.q||item?.ru?.q||item?.[lang]?.q||"").toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu," ").trim();
+    return `${type}:prompt:${prompt}`;
+  }
+  function getSolvedQuestionIds(){
+    const inMemory=Array.isArray(state.solvedQuestionIds)?state.solvedQuestionIds:[];
+    try{
+      const saved=JSON.parse(localStorage.getItem(storageKey)||"{}");
+      const persisted=Array.isArray(saved.solvedQuestionIds)?saved.solvedQuestionIds.filter(id=>typeof id==="string"):[];
+      state.solvedQuestionIds=[...new Set([...inMemory,...persisted])];
+    }catch{state.solvedQuestionIds=[...new Set(inMemory)];}
+    return new Set(state.solvedQuestionIds);
+  }
+  function getAvailableQuestions(type,pool){
+    const solved=getSolvedQuestionIds();
+    return pool.filter(item=>!solved.has(getQuestionKey(type,item)));
+  }
+  function recordQuestionSolved(questionId){
+    if(!questionId)return false;
+    const solved=getSolvedQuestionIds();
+    if(solved.has(questionId))return false;
+    state.solvedQuestionIds=[...solved,questionId];
+    const points=difficultyPoints();
+    state.points=(Number(state.points)||0)+points;
+    saveState();
+    void awardCloudPoints("quiz",points);
+    return true;
+  }
   function buildQuizRound(type,pool=quizSets[type]||quizSets.general){
-    return shuffleList(pool).slice(0,5).map(item=>{
-      const raw=item[lang];
+    return shuffleList(pool).slice(0,Math.min(5,pool.length)).map(item=>{
+      const raw=item[lang]||item.ky||item.ru;
       const options=shuffleList(raw.a.map((text,index)=>({text,correct:index===item.correct})));
-      return {id:item.id||"",q:raw.q,a:options.map(option=>option.text),correct:options.findIndex(option=>option.correct),why:raw.why};
+      return {id:getQuestionKey(type,item),q:raw.q,a:options.map(option=>option.text),correct:options.findIndex(option=>option.correct),why:raw.why};
     });
   }
   function renderQuizCatalog(){
@@ -244,22 +274,33 @@
   function getQuestionDifficulty(item){return quizDifficultyMeta[item?.difficulty]?item.difficulty:"easy";}
   function renderDifficultyPicker(type,pool){
     const title=quizCategoryMeta[type][lang].title;
+    const remainingPool=getAvailableQuestions(type,pool);
     const choices=Object.entries(quizDifficultyMeta).map(([id,meta])=>{
-      const content=meta[lang],count=pool.filter(item=>getQuestionDifficulty(item)===id).length;
-      const available=count>=5;
+      const content=meta[lang],count=remainingPool.filter(item=>getQuestionDifficulty(item)===id).length;
+      const available=count>0;
       return `<button type="button" class="difficulty-choice ${meta.className}" data-pick-difficulty="${id}" data-quiz-category="${type}" ${available?"":"disabled"}>
-        <span class="difficulty-choice-icon">${meta.icon}</span><span class="difficulty-choice-copy"><strong>${escapeHtml(content.title)}</strong><small>${escapeHtml(content.description)}</small><em>${count} ${lang==="ky"?"суроо":"вопросов"}</em></span><span class="difficulty-choice-arrow" aria-hidden="true">→</span>
+        <span class="difficulty-choice-icon">${meta.icon}</span><span class="difficulty-choice-copy"><strong>${escapeHtml(content.title)}</strong><small>${escapeHtml(content.description)}</small><em>${count} ${lang==="ky"?"суроо калды":"вопросов осталось"}</em></span><span class="difficulty-choice-arrow" aria-hidden="true">→</span>
       </button>`;
     }).join("");
-    return `<span class="eyebrow">${lang==="ky"?"ДЕҢГЭЭЛДИ ТАНДА":"ВЫБЕРИ УРОВЕНЬ"}</span><h2 id="modalTitle">${lang==="ky"?"Кайсы деңгээлде ойнойсуң?":"На каком уровне играем?"}</h2><p>${escapeHtml(title)} · ${lang==="ky"?"Өз деңгээлиңди танда. Ар бир туура жоопко 10, 15 же 20 упай аласың.":"Выбери сложность. За правильный ответ начисляется 10, 15 или 20 очков."}</p><div class="difficulty-choice-grid">${choices}</div><p class="muted-small difficulty-note">${lang==="ky"?"Деңгээлдер учурдагы суроолордун категория ичиндеги салыштырмалуу татаалдыгына жараша бөлүнгөн.":"Уровни пока распределены по относительной сложности вопросов внутри каждой категории."}</p>`;
+    return `<span class="eyebrow">${lang==="ky"?"ДЕҢГЭЭЛДИ ТАНДА":"ВЫБЕРИ УРОВЕНЬ"}</span><h2 id="modalTitle">${lang==="ky"?"Кайсы деңгээлде ойнойсуң?":"На каком уровне играем?"}</h2><p>${escapeHtml(title)} · ${lang==="ky"?"Өз деңгээлиңди танда. Ар бир жаңы туура жоопко 10, 15 же 20 упай аласың.":"Выбери сложность. За каждый новый правильный ответ начисляется 10, 15 или 20 очков."}</p><div class="difficulty-choice-grid">${choices}</div><p class="muted-small difficulty-note">${lang==="ky"?"Туура жооп берген суроо бул түзмөктө кайра берилбейт. Туура эмес жооп берген суроо кийин кайра чыгышы мүмкүн.":"Вопрос с правильным ответом больше не появится на этом устройстве. На вопрос с неправильным ответом можно ответить позже."}</p>`;
   }
   function difficultyPoints(){return quizDifficultyMeta[currentQuizDifficulty]?.points||10;}
 
   function loadState(){
-    try{const p=JSON.parse(localStorage.getItem(storageKey)||"{}");return{points:Number(p.points)||0,bestReaction:Number(p.bestReaction)||0,dailyDate:p.dailyDate||"",dailyDone:!!p.dailyDone};}
-    catch{return{points:0,bestReaction:0,dailyDate:"",dailyDone:false};}
+    try{
+      const p=JSON.parse(localStorage.getItem(storageKey)||"{}");
+      return{points:Number(p.points)||0,bestReaction:Number(p.bestReaction)||0,dailyDate:p.dailyDate||"",dailyDone:!!p.dailyDone,solvedQuestionIds:Array.isArray(p.solvedQuestionIds)?[...new Set(p.solvedQuestionIds.filter(id=>typeof id==="string"))]:[]};
+    }catch{return{points:0,bestReaction:0,dailyDate:"",dailyDone:false,solvedQuestionIds:[]};}
   }
-  function saveState(){try{localStorage.setItem(storageKey,JSON.stringify(state));}catch{}renderStats();}
+  function saveState(){
+    try{
+      const saved=JSON.parse(localStorage.getItem(storageKey)||"{}");
+      state.solvedQuestionIds=[...new Set([...(Array.isArray(state.solvedQuestionIds)?state.solvedQuestionIds:[]),...(Array.isArray(saved.solvedQuestionIds)?saved.solvedQuestionIds.filter(id=>typeof id==="string"):[])])];
+      state.points=Math.max(Number(state.points)||0,Number(saved.points)||0);
+      localStorage.setItem(storageKey,JSON.stringify(state));
+    }catch{}
+    renderStats();
+  }
   function t(key){return copy[lang][key]||copy.ky[key]||key;}
   function applyLanguage(){
     document.documentElement.lang=lang;
@@ -294,8 +335,10 @@
     if(currentQuiz!==selectedCategory) return;
     if(!selectedDifficulty){openModal(renderDifficultyPicker(selectedCategory,pool));return;}
     currentQuizDifficulty=selectedDifficulty;
-    const selectedPool=pool.filter(item=>getQuestionDifficulty(item)===selectedDifficulty);
-    if(selectedPool.length<5){openModal(`<span class="eyebrow">AZA UNIVERSE</span><h2 id="modalTitle">${lang==="ky"?"Бул деңгээлде суроо жетишсиз":"Недостаточно вопросов"}</h2><p>${lang==="ky"?"Башка деңгээлди тандап көр.":"Попробуй выбрать другой уровень."}</p><button class="btn btn-primary full" data-pick-back="true">${lang==="ky"?"ДЕҢГЭЭЛДИ ТАНДОО":"ВЫБРАТЬ УРОВЕНЬ"}</button>`);return;}
+    const selectedPool=getAvailableQuestions(selectedCategory,pool).filter(item=>getQuestionDifficulty(item)===selectedDifficulty);
+    if(selectedPool.length===0){
+      openModal(`<span class="eyebrow">AZA UNIVERSE</span><h2 id="modalTitle">${lang==="ky"?"Бул деңгээлдеги суроолорду бүтүрдүң!":"Вопросы этого уровня закончились!"}</h2><p>${lang==="ky"?"Туура жооп берилген суроолор кайра чыкпайт. Башка деңгээлди же категорияны танда.":"Вопросы, на которые ты уже ответил правильно, больше не появятся. Выбери другой уровень или категорию."}</p><button class="btn btn-primary full" data-pick-back="true">${lang==="ky"?"БАШКА ДЕҢГЭЭЛ":"ДРУГОЙ УРОВЕНЬ"}</button><button class="btn btn-outline full" id="openQuizCatalog">${lang==="ky"?"БАШКА КАТЕГОРИЯ":"ДРУГАЯ КАТЕГОРИЯ"}</button>`);return;
+    }
     currentQuizQuestions=buildQuizRound(selectedCategory,selectedPool);
     renderQuestion();
   }
@@ -308,30 +351,34 @@
     const q=currentQuizQuestions[quizIndex];
     if(!q){
       const quizAward=quizScore*difficultyPoints();
-      state.points+=quizAward;
       const today=localDateKey();
-      if(quizScore===5&&state.dailyDate!==today){state.dailyDate=today;state.dailyDone=true;}
+      if(currentQuizQuestions.length===5&&quizScore===5&&state.dailyDate!==today){state.dailyDate=today;state.dailyDone=true;}
       saveState();
-      if(quizAward>0)void awardCloudPoints("quiz",quizAward);
       const heading=lang==="ky"?"ТЕСТ БҮТТҮ":"ТЕСТ ЗАВЕРШЁН";
       const category=quizCategoryMeta[currentQuiz][lang].title;
-      const praise=quizScore===5
-        ? (lang==="ky"?"5/5! Мыкты жыйынтык! Кийинки тестке өтө бер! 🔥":"5/5! Отличный результат! Переходи к следующему тесту! 🔥")
+      const completedAll=currentQuizQuestions.length>0&&quizScore===currentQuizQuestions.length;
+      const praise=completedAll
+        ? (lang==="ky"?`${quizScore}/${currentQuizQuestions.length}! Мыкты жыйынтык! Кийинки тестке өтө бер! 🔥`:`${quizScore}/${currentQuizQuestions.length}! Отличный результат! Переходи к следующему тесту! 🔥`)
         : (lang==="ky"?"Жакшы аракет! Кийинки тестке өт же бул багытты кайра сына.":"Хорошая попытка! Перейди к следующему тесту или попробуй этот раздел ещё раз.");
-      openModal(`<span class="eyebrow">${heading} • ${escapeHtml(category)} • ${escapeHtml(quizDifficultyMeta[currentQuizDifficulty][lang].short)}</span><h2 id="modalTitle">${quizScore===5?(lang==="ky"?"АЗАМАТТАЙ! 🔥":"ОТЛИЧНО! 🔥"):(lang==="ky"?"СЕН ЖАКШЫ АРАКЕТ КЫЛДЫҢ!":"ХОРОШАЯ ПОПЫТКА!")}</h2><p>${lang==="ky"?"Сенин жыйынтыгың":"Твой результат"}</p><div class="result-box"><strong>${quizScore}/5</strong><p>${lang==="ky"?"Топтогон упайың":"Набрано очков"}: ${quizAward}</p></div><p>${praise}</p><div class="quiz-result-actions"><button class="btn btn-primary full" id="nextQuiz">${lang==="ky"?"КИЙИНКИ ТЕСТ →":"СЛЕДУЮЩИЙ ТЕСТ →"}</button><button class="btn btn-outline full" id="quizAgain">${lang==="ky"?"УШУЛ ТЕСТТИ КАЙРА ӨТҮҮ":"ПОВТОРИТЬ ЭТОТ ТЕСТ"}</button><button class="btn btn-outline full" id="openQuizCatalog">${lang==="ky"?"БАШКА ТЕСТТИ ТАНДОО":"ВЫБРАТЬ ДРУГОЙ ТЕСТ"}</button></div>`);return;
+      openModal(`<span class="eyebrow">${heading} • ${escapeHtml(category)} • ${escapeHtml(quizDifficultyMeta[currentQuizDifficulty][lang].short)}</span><h2 id="modalTitle">${completedAll?(lang==="ky"?"АЗАМАТТАЙ! 🔥":"ОТЛИЧНО! 🔥"):(lang==="ky"?"СЕН ЖАКШЫ АРАКЕТ КЫЛДЫҢ!":"ХОРОШАЯ ПОПЫТКА!")}</h2><p>${lang==="ky"?"Сенин жыйынтыгың":"Твой результат"}</p><div class="result-box"><strong>${quizScore}/${currentQuizQuestions.length}</strong><p>${lang==="ky"?"Бул раундда алган упайың":"Очки за этот раунд"}: ${quizAward}</p></div><p>${praise}</p><div class="quiz-result-actions"><button class="btn btn-primary full" id="nextQuiz">${lang==="ky"?"КИЙИНКИ ТЕСТ →":"СЛЕДУЮЩИЙ ТЕСТ →"}</button><button class="btn btn-outline full" id="quizAgain">${lang==="ky"?"КАЛГАН СУРООЛОРДУ ӨТҮҮ":"ПРОЙТИ ОСТАВШИЕСЯ ВОПРОСЫ"}</button><button class="btn btn-outline full" id="openQuizCatalog">${lang==="ky"?"БАШКА ТЕСТТИ ТАНДОО":"ВЫБРАТЬ ДРУГОЙ ТЕСТ"}</button></div>`);return;
     }
     const title=quizCategoryMeta[currentQuiz][lang].title.toUpperCase();
     const level=quizDifficultyMeta[currentQuizDifficulty][lang];
-    openModal(`<span class="eyebrow">${escapeHtml(title)} • ${escapeHtml(level.short)} • ${quizIndex+1}/5</span><h2 id="modalTitle">${escapeHtml(q.q)}</h2><p>${lang==="ky"?`Туура жооп үчүн ${difficultyPoints()} упай.`:`За правильный ответ — ${difficultyPoints()} очков.`}</p><div id="quizOptions">${q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${escapeHtml(a)}</button>`).join("")}</div><div id="quizFeedback"></div>`);
+    openModal(`<span class="eyebrow">${escapeHtml(title)} • ${escapeHtml(level.short)} • ${quizIndex+1}/${currentQuizQuestions.length}</span><h2 id="modalTitle">${escapeHtml(q.q)}</h2><p>${lang==="ky"?`Туура жооп үчүн ${difficultyPoints()} упай.`:`За правильный ответ — ${difficultyPoints()} очков.`}</p><div id="quizOptions">${q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${escapeHtml(a)}</button>`).join("")}</div><div id="quizFeedback"></div>`);
   }
   function answerQuestion(btn){
     if(quizAnswered)return;
     quizAnswered=true;
     const q=currentQuizQuestions[quizIndex],answer=Number(btn.dataset.answer),right=answer===q.correct;
-    if(right)quizScore++;
+    const awarded=right&&recordQuestionSolved(q.id);
+    if(awarded)quizScore++;
     $$('[data-answer]').forEach(b=>{b.disabled=true;if(Number(b.dataset.answer)===q.correct)b.classList.add("correct");});
     if(!right)btn.classList.add("wrong");
-    $("#quizFeedback").innerHTML=`<div class="result-box"><p>${right?(lang==="ky"?`Туура! +${difficultyPoints()} упай`:`Верно! +${difficultyPoints()} очков`):(lang==="ky"?"Бул жолу туура эмес.":"В этот раз неверно.")}</p><p>${escapeHtml(q.why)}</p><button id="nextQuestion" class="btn btn-primary full">${quizIndex===4?(lang==="ky"?"ЖЫЙЫНТЫК":"РЕЗУЛЬТАТ"):(lang==="ky"?"КИЙИНКИ СУРОО →":"СЛЕДУЮЩИЙ ВОПРОС →")}</button></div>`;
+    let feedbackText;
+    if(awarded)feedbackText=lang==="ky"?`Туура! +${difficultyPoints()} упай`:`Верно! +${difficultyPoints()} очков`;
+    else if(right)feedbackText=lang==="ky"?"Бул суроого мурда туура жооп берилген — упай кайра кошулган жок.":"На этот вопрос уже отвечали правильно — повторные очки не начислены.";
+    else feedbackText=lang==="ky"?"Бул жолу туура эмес.":"В этот раз неверно.";
+    $("#quizFeedback").innerHTML=`<div class="result-box"><p>${feedbackText}</p><p>${escapeHtml(q.why)}</p><button id="nextQuestion" class="btn btn-primary full">${quizIndex===currentQuizQuestions.length-1?(lang==="ky"?"ЖЫЙЫНТЫК":"РЕЗУЛЬТАТ"):(lang==="ky"?"КИЙИНКИ СУРОО →":"СЛЕДУЮЩИЙ ВОПРОС →")}</button></div>`;
   }
 
   function startGame(){
