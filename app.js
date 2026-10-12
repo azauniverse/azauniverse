@@ -30,17 +30,19 @@
   };
 
   const Q = (k,r,ka,ra,c,kw,rw) => ({ ky:{q:k,a:ka,why:kw}, ru:{q:r,a:ra,why:rw}, correct:c });
-  // Ар бир багытта 8 суроодон; ар бир раундга туш келди 5 суроо тандалат.
+  // Суроолор кыргызча/орусча берилет; ар бир раундга туш келди 5 суроо тандалат.
   const quizSets = {
     general: [
-      Q("Кыргызстандын борбору кайсы шаар?","Какой город является столицей Кыргызстана?",["Ош","Бишкек","Талас","Нарын"],["Ош","Бишкек","Талас","Нарын"],1,"Бишкек — Кыргызстандын борбору.","Бишкек — столица Кыргызстана."),
-      Q("Күн системасындагы эң чоң планета кайсы?","Какая планета самая большая в Солнечной системе?",["Марс","Жер","Сатурн","Юпитер"],["Марс","Земля","Сатурн","Юпитер"],3,"Юпитер — Күн системасындагы эң чоң планета.","Юпитер — самая большая планета Солнечной системы."),
-      Q("HTML негизинен эмне үчүн колдонулат?","Для чего в основном используется HTML?",["Веб-барактын түзүлүшү","Музыка жаздыруу","Компьютерди оңдоо","Интернетти ылдамдатуу"],["Структура веб-страницы","Запись музыки","Ремонт компьютера","Ускорение интернета"],0,"HTML веб-барактын түзүлүшүн жана мазмунун сүрөттөйт.","HTML описывает структуру и содержимое веб-страницы."),
-      Q("Кадимки атмосфералык басымда суу канча °Cде тоңот?","При обычном атмосферном давлении при какой температуре замерзает вода?",["0°C","10°C","50°C","100°C"],["0°C","10°C","50°C","100°C"],0,"Таза суу кадимки басымда 0°Cде тоңот.","Чистая вода при обычном давлении замерзает при 0°C."),
-      Q("9 × 7 канча болот?","Сколько будет 9 × 7?",["56","63","72","67"],["56","63","72","67"],1,"9 × 7 = 63.","9 × 7 = 63."),
-      Q("Кыргыз элинин белгилүү улуттук эпосу кайсы?","Как называется известный национальный эпос кыргызского народа?",["Манас","Эне-Сай","Курманбек хан","Кожожаш"],["Манас","Енисей","Курманбек хан","Кожожаш"],0,"«Манас» — кыргыз элинин улуттук эпосу.","«Манас» — национальный эпос кыргызского народа."),
-      Q("Жердин табигый жандоочусу кайсы?","Какой естественный спутник у Земли?",["Марс","Ай","Күн","Венера"],["Марс","Луна","Солнце","Венера"],1,"Жердин табигый жандоочусу — Ай.","Естественный спутник Земли — Луна."),
-      Q("Бир суткада канча саат бар?","Сколько часов в сутках?",["12","18","24","36"],["12","18","24","36"],2,"Бир сутка 24 сааттан турат.","В сутках 24 часа.")
+      Q("Күн системасындагы эң чоң планета кайсы?","Какая планета является самой большой в Солнечной системе?",["Жер","Юпитер","Марс","Венера"],["Земля","Юпитер","Марс","Венера"],1,"Юпитер — Күн системасындагы эң чоң планета; анын чоңдугу башка планеталардан кыйла ашат.","Юпитер — самая большая планета Солнечной системы; по размерам он значительно превосходит остальные планеты."),
+      Q("Жердеги аянты эң чоң океан кайсы?","Какой океан является самым большим на Земле?",["Атлантика океаны","Инд океаны","Тынч океан","Түндүк Муз океаны"],["Атлантический океан","Индийский океан","Тихий океан","Северный Ледовитый океан"],2,"Тынч океан — Жердеги эң чоң жана эң терең океан.","Тихий океан — самый большой и самый глубокий океан Земли."),
+      Q("«Бородино» ырын ким жазган?","Кто написал стихотворение «Бородино»?",["А. С. Пушкин","М. Ю. Лермонтов","Н. А. Некрасов","Ф. И. Тютчев"],["А. С. Пушкин","М. Ю. Лермонтов","Н. А. Некрасов","Ф. И. Тютчев"],1,"«Бородино» — Михаил Юрьевич Лермонтовдун 1812-жылдагы согуш тууралуу белгилүү ыры.","«Бородино» — известное стихотворение Михаила Юрьевича Лермонтова о войне 1812 года."),
+      Q("Деңиз деңгээлинен эң бийик тоо чокусу кайсы?","Какая горная вершина является самой высокой над уровнем моря?",["К2","Канченджанга","Эверест","Лхоцзе"],["К2","Канченджанга","Эверест","Лхоцзе"],2,"Эверест (Джомолунгма) деңиз деңгээлинен болжол менен 8 849 метр бийик.","Эверест (Джомолунгма) возвышается примерно на 8 849 метров над уровнем моря."),
+      Q("Эйфель мунарасы кайсы шаарда жайгашкан?","В каком городе находится Эйфелева башня?",["Рим","Берлин","Париж","Мадрид"],["Рим","Берлин","Париж","Мадрид"],2,"Эйфель мунарасы Франциянын борбору Парижде жайгашкан.","Эйфелева башня находится в Париже, столице Франции."),
+      Q("Химияда «O» белгиси кайсы элементти билдирет?","Какой химический элемент обозначается символом «O»?",["Алтын","Кычкылтек","Осмий","Темир"],["Золото","Кислород","Осмий","Железо"],1,"O — кычкылтектин химиялык белгиси; анын атомдук номери 8.","O — химический символ кислорода; его атомный номер — 8."),
+      Q("Кургактыктагы эң ылдам жаныбар кайсы?","Какое животное является самым быстрым на суше?",["Арстан","Гепард","Жолборс","Илбирс"],["Лев","Гепард","Тигр","Леопард"],1,"Гепард кыска аралыкта кургактыктагы эң жогорку ылдамдыкка жете алат.","Гепард способен развивать самую высокую скорость среди наземных животных на коротких дистанциях."),
+      Q("Жердин табигый жандоочусу кайсы?","Как называется естественный спутник Земли?",["Марс","Венера","Ай","Күн"],["Марс","Венера","Луна","Солнце"],2,"Ай — Жердин жалгыз табигый спутниги.","Луна — единственный естественный спутник Земли."),
+      Q("Экинчи дүйнөлүк согуш кайсы жылы башталган?","В каком году началась Вторая мировая война?",["1914","1939","1941","1945"],["1914","1939","1941","1945"],1,"Экинчи дүйнөлүк согуштун башталышы адатта 1939-жылдын 1-сентябры — Германиянын Польшага басып кириши менен белгиленет.","Началом Второй мировой войны обычно считают 1 сентября 1939 года — вторжение Германии в Польшу."),
+      Q("Адамдын денесинде канды айдап турган негизги орган кайсы?","Какой главный орган перекачивает кровь в организме человека?",["Өпкө","Боор","Жүрөк","Бөйрөк"],["Лёгкие","Печень","Сердце","Почки"],2,"Жүрөк жыйрылып, канды кан тамырлар аркылуу бүт денеге айдайт.","Сердце сокращается и перекачивает кровь по сосудам по всему организму.")
     ],
     iq: [
       Q("Кийинки сан кайсы: 2, 4, 8, 16, ...?","Какое число следующее: 2, 4, 8, 16, ...?",["18","24","30","32"],["18","24","30","32"],3,"Ар бир сан мурункусунан 2 эсе чоң.","Каждое число вдвое больше предыдущего."),
@@ -164,10 +166,26 @@
     ]
   };
 
-  // Ар бир суроого өзүнө тиешелүү иллюстрация бекитилет (13 категория × 8 суроо = 104 сүрөт).
+  // Ар бир суроого уникалдуу сүрөт IDси бекитилет; general категориясынын пилоттук 10 сүрөтү файл катары берилет.
   Object.entries(quizSets).forEach(([category, questions]) => {
     questions.forEach((question, index) => { question.imageKey = `${category}-${String(index + 1).padStart(2, "0")}`; });
   });
+  // Алгачкы AI-фото партиясы. Калган суроолор SVG fallback иллюстрациясын колдонот.
+  const questionPhotoMap = {
+    "general-01": "assets/question-images/general-01-jupiter.webp",
+    "general-02": "assets/question-images/general-02-pacific-ocean.webp",
+    "general-03": "assets/question-images/general-03-lermontov.webp",
+    "general-04": "assets/question-images/general-04-everest.webp",
+    "general-05": "assets/question-images/general-05-eiffel-tower.webp",
+    "general-06": "assets/question-images/general-06-oxygen.webp",
+    "general-07": "assets/question-images/general-07-cheetah.webp",
+    "general-08": "assets/question-images/general-08-earth-moon.webp",
+    "general-09": "assets/question-images/general-09-world-war-two.webp",
+    "general-10": "assets/question-images/general-10-heart.webp",
+    "cars-03": "assets/question-images/cars-bmw-origin.webp",
+    "anime-04": "assets/question-images/anime-demon-slayer-protagonist.webp",
+    "driving-04": "assets/question-images/driving-turn-pedestrians.webp"
+  };
   const quizCategoryOrder = Object.keys(quizSets);
   const quizCategoryMeta = {
     general:{icon:"🌟",art:"general-art",ky:{title:"Жалпы билим",description:"Күнүмдүк фактылар, кызыктуу маалыматтар"},ru:{title:"Общие знания",description:"Факты, эрудиция и интересные сведения"}},
@@ -193,7 +211,7 @@
     return shuffleList(quizSets[type]||quizSets.general).slice(0,5).map(item=>{
       const raw=item[lang];
       const options=shuffleList(raw.a.map((text,index)=>({text,correct:index===item.correct})));
-      return {q:raw.q,a:options.map(option=>option.text),correct:options.findIndex(option=>option.correct),why:raw.why,imageKey:item.imageKey};
+      return {q:raw.q,a:options.map(option=>option.text),correct:options.findIndex(option=>option.correct),why:raw.why,imageKey:item.imageKey,photoPath:questionPhotoMap[item.imageKey]||""};
     });
   }
   function renderQuizCatalog(){
@@ -267,7 +285,14 @@
       openModal(`<span class="eyebrow">${heading} • ${escapeHtml(category)}</span><h2 id="modalTitle">${quizScore===5?(lang==="ky"?"АЗАМАТТАЙ! 🔥":"ОТЛИЧНО! 🔥"):(lang==="ky"?"СЕН ЖАКШЫ АРАКЕТ КЫЛДЫҢ!":"ХОРОШАЯ ПОПЫТКА!")}</h2><p>${lang==="ky"?"Сенин жыйынтыгың":"Твой результат"}</p><div class="result-box"><strong>${quizScore}/5</strong><p>${lang==="ky"?"Топтогон упайың":"Набрано очков"}: ${quizAward}</p></div><p>${praise}</p><div class="quiz-result-actions"><button class="btn btn-primary full" id="nextQuiz">${lang==="ky"?"КИЙИНКИ ТЕСТ →":"СЛЕДУЮЩИЙ ТЕСТ →"}</button><button class="btn btn-outline full" id="quizAgain">${lang==="ky"?"УШУЛ ТЕСТТИ КАЙРА ӨТҮҮ":"ПОВТОРИТЬ ЭТОТ ТЕСТ"}</button><button class="btn btn-outline full" id="openQuizCatalog">${lang==="ky"?"БАШКА ТЕСТТИ ТАНДОО":"ВЫБРАТЬ ДРУГОЙ ТЕСТ"}</button></div>`);return;
     }
     const title=quizCategoryMeta[currentQuiz][lang].title.toUpperCase();
-    openModal(`<span class="eyebrow">${escapeHtml(title)} • ${quizIndex+1}/5</span><h2 id="modalTitle">${escapeHtml(q.q)}</h2><div class="quiz-question-visual"><svg viewBox="0 0 960 540" role="img" aria-label="${escapeHtml(q.q)}" focusable="false" xmlns:xlink="http://www.w3.org/1999/xlink"><use href="#${q.imageKey}" xlink:href="#${q.imageKey}" x="0" y="0" width="960" height="540"></use></svg></div><p>${lang==="ky"?"Туура жооп үчүн 10 упай.":"За каждый правильный ответ — 10 очков."}</p><div id="quizOptions">${q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${escapeHtml(a)}</button>`).join("")}</div><div id="quizFeedback"></div>`);
+    const fallbackSvg=`<svg class="quiz-question-fallback" viewBox="0 0 960 540" role="img" aria-label="${escapeHtml(q.q)}" focusable="false" xmlns:xlink="http://www.w3.org/1999/xlink"><use href="#${q.imageKey}" xlink:href="#${q.imageKey}" x="0" y="0" width="960" height="540"></use></svg>`;
+    const hiddenFallbackSvg=fallbackSvg.replace('<svg ', '<svg style="display:none" ');
+    const visualMarkup=q.photoPath
+      ? `<img class="quiz-question-photo" src="${q.photoPath}" alt="${escapeHtml(q.q)}" loading="eager" decoding="async" style="display:block;width:100%;height:auto;max-height:300px;aspect-ratio:3/2;object-fit:cover">${hiddenFallbackSvg}`
+      : fallbackSvg;
+    openModal(`<span class="eyebrow">${escapeHtml(title)} • ${quizIndex+1}/5</span><h2 id="modalTitle">${escapeHtml(q.q)}</h2><div class="quiz-question-visual">${visualMarkup}</div><p>${lang==="ky"?"Туура жооп үчүн 10 упай.":"За каждый правильный ответ — 10 очков."}</p><div id="quizOptions">${q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${escapeHtml(a)}</button>`).join("")}</div><div id="quizFeedback"></div>`);
+    const photo=$(".quiz-question-photo");
+    if(photo)photo.addEventListener("error",()=>{photo.style.display="none";const fallback=photo.nextElementSibling;if(fallback)fallback.style.display="block";},{once:true});
   }
   function answerQuestion(btn){
     if(quizAnswered)return;
