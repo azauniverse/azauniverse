@@ -3,7 +3,7 @@
   "project": "AZA UNIVERSE",
   "questionTargetPerCategory": 1000,
   "totalTarget": 13000,
-  "currentTotal": 106,
+  "currentTotal": 236,
   "categories": [
     {
       "id": "general",
@@ -12,7 +12,7 @@
         "ru": "Общие знания"
       },
       "file": "general.json",
-      "currentCount": 10,
+      "currentCount": 20,
       "targetCount": 1000
     },
     {
@@ -22,7 +22,7 @@
         "ru": "IQ и логика"
       },
       "file": "iq.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -32,7 +32,7 @@
         "ru": "Мир аниме"
       },
       "file": "anime.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -42,7 +42,7 @@
         "ru": "Мир авто"
       },
       "file": "cars.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -52,7 +52,7 @@
         "ru": "Правила дорожного движения"
       },
       "file": "driving.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -62,7 +62,7 @@
         "ru": "Фильмы и сериалы"
       },
       "file": "movies.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -72,7 +72,7 @@
         "ru": "Мультфильмы"
       },
       "file": "cartoons.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -82,7 +82,7 @@
         "ru": "Знания об исламе"
       },
       "file": "islam.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -92,7 +92,7 @@
         "ru": "Всемирная история"
       },
       "file": "history.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -102,7 +102,7 @@
         "ru": "География мира"
       },
       "file": "world.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -112,7 +112,7 @@
         "ru": "Наука и природа"
       },
       "file": "science.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -122,7 +122,7 @@
         "ru": "Загадки"
       },
       "file": "riddles.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     },
     {
@@ -132,7 +132,7 @@
         "ru": "Для детей"
       },
       "file": "kids.json",
-      "currentCount": 8,
+      "currentCount": 18,
       "targetCount": 1000
     }
   ]
