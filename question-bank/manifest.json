@@ -13,7 +13,12 @@
       },
       "file": "general.json",
       "currentCount": 70,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 28,
+        "medium": 24,
+        "hard": 18
+      }
     },
     {
       "id": "iq",
@@ -23,7 +28,12 @@
       },
       "file": "iq.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "anime",
@@ -33,7 +43,12 @@
       },
       "file": "anime.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "cars",
@@ -43,7 +58,12 @@
       },
       "file": "cars.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "driving",
@@ -53,7 +73,12 @@
       },
       "file": "driving.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "movies",
@@ -63,7 +88,12 @@
       },
       "file": "movies.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "cartoons",
@@ -73,7 +103,12 @@
       },
       "file": "cartoons.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "islam",
@@ -83,7 +118,12 @@
       },
       "file": "islam.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "history",
@@ -93,7 +133,12 @@
       },
       "file": "history.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "world",
@@ -103,7 +148,12 @@
       },
       "file": "world.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "science",
@@ -113,7 +163,12 @@
       },
       "file": "science.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "riddles",
@@ -123,7 +178,12 @@
       },
       "file": "riddles.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     },
     {
       "id": "kids",
@@ -133,7 +193,36 @@
       },
       "file": "kids.json",
       "currentCount": 68,
-      "targetCount": 1000
+      "targetCount": 1000,
+      "difficultyCounts": {
+        "easy": 27,
+        "medium": 24,
+        "hard": 17
+      }
     }
-  ]
+  ],
+  "difficultyLevels": [
+    {
+      "id": "easy",
+      "name": {
+        "ky": "Жеңил",
+        "ru": "Лёгкий"
+      }
+    },
+    {
+      "id": "medium",
+      "name": {
+        "ky": "Орточо",
+        "ru": "Средний"
+      }
+    },
+    {
+      "id": "hard",
+      "name": {
+        "ky": "Татаал",
+        "ru": "Сложный"
+      }
+    }
+  ],
+  "difficultyMethod": "relative-within-category-initial-review"
 }
