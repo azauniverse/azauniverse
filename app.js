@@ -125,8 +125,8 @@
       Q("Улуу Жибек жолу негизинен эмне үчүн маанилүү болгон?","Для чего в основном был важен Великий шёлковый путь?",["Азия менен Европанын соода жана маданий байланышы","Айга учуу","Деңиздин түбүнө түшүү","Бир гана спорттук мелдештер"],["Для торговых и культурных связей Азии и Европы","Для полётов на Луну","Для погружений на морское дно","Только для спортивных соревнований"],0,"Улуу Жибек жолу Азия менен Европанын ортосунда товар жана маданият алмашууга жардам берген.","Великий шёлковый путь способствовал обмену товарами и культурами между Азией и Европой.")
     ],
     world: [
-      Q("Дүйнөдөгү эң чоң океан кайсы?","Какой океан самый большой в мире?",["Атлантика","Тынч океан","Инд океаны","Түндүк Муз океаны"],["Атлантический","Тихий","Индийский","Северный Ледовитый"],1,"Аянты боюнча Тынч океан эң чоң океан.","По площади Тихий океан — самый большой."),
-      Q("Дүйнөдөгү эң бийик тоо чокусу кайсы?","Какая горная вершина самая высокая в мире над уровнем моря?",["Эльбрус","Эверест","Килиманджаро","Монблан"],["Эльбрус","Эверест","Килиманджаро","Монблан"],1,"Эверест деңиз деңгээлинен эң бийик тоо чокусу.","Эверест — самая высокая горная вершина над уровнем моря."),
+      Q("Гавай аралдары кайсы океанда жайгашкан?","В каком океане расположены Гавайские острова?",["Атлантика","Тынч океан","Инд океаны","Түндүк Муз океаны"],["Атлантический","Тихий","Индийский","Северный Ледовитый"],1,"Гавай аралдары Тынч океандын түндүк бөлүгүндө жайгашкан.","Гавайские острова расположены в северной части Тихого океана."),
+      Q("Африкадагы эң бийик тоо кайсы?","Какая гора является самой высокой в Африке?",["Эльбрус","Эверест","Килиманджаро","Монблан"],["Эльбрус","Эверест","Килиманджаро","Монблан"],2,"Килиманджаро Танзанияда жайгашкан жана Африкадагы эң бийик тоо болуп саналат.","Килиманджаро находится в Танзании и является самой высокой горой Африки."),
       Q("Япониянын борбору кайсы шаар?","Какой город является столицей Японии?",["Киото","Осака","Токио","Нагоя"],["Киото","Осака","Токио","Нагоя"],2,"Япониянын борбору — Токио.","Столица Японии — Токио."),
       Q("Сахара чөлү кайсы континентте жайгашкан?","На каком континенте расположена пустыня Сахара?",["Африка","Азия","Европа","Австралия"],["Африка","Азия","Европа","Австралия"],0,"Сахара Түндүк Африкада жайгашкан.","Сахара находится в Северной Африке."),
       Q("Экватор Жерди кайсы эки жарым шарга бөлөт?","На какие два полушария экватор делит Землю?",["Чыгыш жана батыш","Түндүк жана түштүк","Кургактык жана суу","Чоң жана кичине"],["Восточное и западное","Северное и южное","Сушу и воду","Большое и малое"],1,"Экватор Жерди Түндүк жана Түштүк жарым шарларга бөлөт.","Экватор делит Землю на Северное и Южное полушария."),
@@ -166,34 +166,7 @@
     ]
   };
 
-  // Ар бир суроого уникалдуу сүрөт IDси бекитилет; general категориясынын пилоттук 10 сүрөтү файл катары берилет.
-  Object.entries(quizSets).forEach(([category, questions]) => {
-    questions.forEach((question, index) => { question.imageKey = `${category}-${String(index + 1).padStart(2, "0")}`; });
-  });
-  // Алгачкы AI-фото партиясы. Калган суроолор SVG fallback иллюстрациясын колдонот.
-  const questionPhotoMap = {
-    "general-01": "assets/question-images/general-01-jupiter.webp",
-    "general-02": "assets/question-images/general-02-pacific-ocean.webp",
-    "general-03": "assets/question-images/general-03-lermontov.webp",
-    "general-04": "assets/question-images/general-04-everest.webp",
-    "general-05": "assets/question-images/general-05-eiffel-tower.webp",
-    "general-06": "assets/question-images/general-06-oxygen.webp",
-    "general-07": "assets/question-images/general-07-cheetah.webp",
-    "general-08": "assets/question-images/general-08-earth-moon.webp",
-    "general-09": "assets/question-images/general-09-world-war-two.webp",
-    "general-10": "assets/question-images/general-10-heart.webp",
-    "cars-03": "assets/question-images/cars-bmw-origin.webp",
-    "anime-04": "assets/question-images/anime-demon-slayer-protagonist.webp",
-    "driving-04": "assets/question-images/driving-turn-pedestrians.webp",
-    "iq-01": "assets/question-images/iq-01-number-sequence.webp",
-    "iq-02": "assets/question-images/iq-02-3d-sphere.webp",
-    "iq-03": "assets/question-images/iq-03-number-grid.webp",
-    "iq-04": "assets/question-images/iq-04-shape-pattern.webp",
-    "iq-05": "assets/question-images/iq-05-object-count.webp",
-    "iq-06": "assets/question-images/iq-06-clock-3pm.webp",
-    "iq-07": "assets/question-images/iq-07-triangular-numbers.webp",
-    "iq-08": "assets/question-images/iq-08-fruit-balance.webp"
-  };
+  // Суроо банкы файлдарда сакталат; сүрөттөр суроолордон толук алынды.
   const quizCategoryOrder = Object.keys(quizSets);
   const quizCategoryMeta = {
     general:{icon:"🌟",art:"general-art",ky:{title:"Жалпы билим",description:"Күнүмдүк фактылар, кызыктуу маалыматтар"},ru:{title:"Общие знания",description:"Факты, эрудиция и интересные сведения"}},
@@ -215,11 +188,37 @@
     for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]];}
     return result;
   }
-  function buildQuizRound(type){
-    return shuffleList(quizSets[type]||quizSets.general).slice(0,5).map(item=>{
+  const questionBankCache = Object.create(null);
+  async function loadQuestionBank(type){
+    if(questionBankCache[type]) return questionBankCache[type];
+    try{
+      const response=await fetch(`question-bank/${type}.json`,{cache:"no-cache"});
+      if(!response.ok) throw new Error(`Question bank ${type}: HTTP ${response.status}`);
+      const data=await response.json();
+      if(data.category!==type || !Array.isArray(data.questions)) throw new Error(`Invalid question bank: ${type}`);
+      const ids=new Set(),texts=new Set();
+      const valid=data.questions.filter(item=>{
+        if(!item || typeof item.id!=="string" || !item.ky || !item.ru || !Number.isInteger(item.correct) || item.correct<0 || item.correct>3) return false;
+        if(![item.ky,item.ru].every(l=>typeof l.q==="string" && Array.isArray(l.a) && l.a.length===4 && typeof l.why==="string")) return false;
+        const normalized=item.ky.q.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu," ").trim();
+        if(ids.has(item.id) || texts.has(normalized)) return false;
+        ids.add(item.id); texts.add(normalized); return true;
+      });
+      if(valid.length<5) throw new Error(`Question bank ${type} has fewer than 5 valid questions`);
+      questionBankCache[type]=valid;
+      renderQuizCatalog();
+      return valid;
+    }catch(error){
+      console.warn("AZA UNIVERSE question bank fallback:",error);
+      questionBankCache[type]=quizSets[type]||quizSets.general;
+      return questionBankCache[type];
+    }
+  }
+  function buildQuizRound(type,pool=quizSets[type]||quizSets.general){
+    return shuffleList(pool).slice(0,5).map(item=>{
       const raw=item[lang];
       const options=shuffleList(raw.a.map((text,index)=>({text,correct:index===item.correct})));
-      return {q:raw.q,a:options.map(option=>option.text),correct:options.findIndex(option=>option.correct),why:raw.why,imageKey:item.imageKey,photoPath:questionPhotoMap[item.imageKey]||""};
+      return {id:item.id||"",q:raw.q,a:options.map(option=>option.text),correct:options.findIndex(option=>option.correct),why:raw.why};
     });
   }
   function renderQuizCatalog(){
@@ -228,7 +227,7 @@
       const meta=quizCategoryMeta[key],content=meta[lang];
       return `<button type="button" class="quiz-catalog-card" data-open="quiz" data-quiz="${key}" aria-label="${escapeHtml(content.title)}">
         <span class="quiz-catalog-art ${meta.art}"><b>${meta.icon}</b><i>${String(index+1).padStart(2,"0")}</i></span>
-        <span class="quiz-catalog-copy"><strong>${escapeHtml(content.title)}</strong><small>${escapeHtml(content.description)}</small><em>${lang==="ky"?"8ден 5 суроо":"5 из 8 вопросов"}</em></span>
+        <span class="quiz-catalog-copy"><strong>${escapeHtml(content.title)}</strong><small>${escapeHtml(content.description)}</small><em>${lang==="ky"?"Банктан 5 суроо":"5 вопросов из банка"}</em></span>
         <span class="quiz-catalog-arrow" aria-hidden="true">↗</span>
       </button>`;
     }).join("");
@@ -266,10 +265,15 @@
   function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
   function localDateKey(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");}
 
-  function startQuiz(type="general"){
+  async function startQuiz(type="general"){
     currentQuiz=quizSets[type]?type:"general";
-    currentQuizQuestions=buildQuizRound(currentQuiz);
-    quizIndex=0;quizScore=0;quizAnswered=false;renderQuestion();
+    const selectedCategory=currentQuiz;
+    quizIndex=0;quizScore=0;quizAnswered=false;currentQuizQuestions=[];
+    openModal(`<span class="eyebrow">${lang==="ky"?"ТЕСТ БАНКЫ":"БАНК ВОПРОСОВ"}</span><h2 id="modalTitle">${lang==="ky"?"Суроолор жүктөлүүдө…":"Загружаем вопросы…"}</h2><p>${lang==="ky"?"Бир аз күтө тур, досум.":"Подожди немного."}</p>`);
+    const pool=await loadQuestionBank(selectedCategory);
+    if(currentQuiz!==selectedCategory) return;
+    currentQuizQuestions=buildQuizRound(selectedCategory,pool);
+    renderQuestion();
   }
   function startNextQuiz(){
     const index=quizCategoryOrder.indexOf(currentQuiz);
@@ -293,14 +297,7 @@
       openModal(`<span class="eyebrow">${heading} • ${escapeHtml(category)}</span><h2 id="modalTitle">${quizScore===5?(lang==="ky"?"АЗАМАТТАЙ! 🔥":"ОТЛИЧНО! 🔥"):(lang==="ky"?"СЕН ЖАКШЫ АРАКЕТ КЫЛДЫҢ!":"ХОРОШАЯ ПОПЫТКА!")}</h2><p>${lang==="ky"?"Сенин жыйынтыгың":"Твой результат"}</p><div class="result-box"><strong>${quizScore}/5</strong><p>${lang==="ky"?"Топтогон упайың":"Набрано очков"}: ${quizAward}</p></div><p>${praise}</p><div class="quiz-result-actions"><button class="btn btn-primary full" id="nextQuiz">${lang==="ky"?"КИЙИНКИ ТЕСТ →":"СЛЕДУЮЩИЙ ТЕСТ →"}</button><button class="btn btn-outline full" id="quizAgain">${lang==="ky"?"УШУЛ ТЕСТТИ КАЙРА ӨТҮҮ":"ПОВТОРИТЬ ЭТОТ ТЕСТ"}</button><button class="btn btn-outline full" id="openQuizCatalog">${lang==="ky"?"БАШКА ТЕСТТИ ТАНДОО":"ВЫБРАТЬ ДРУГОЙ ТЕСТ"}</button></div>`);return;
     }
     const title=quizCategoryMeta[currentQuiz][lang].title.toUpperCase();
-    const fallbackSvg=`<svg class="quiz-question-fallback" viewBox="0 0 960 540" role="img" aria-label="${escapeHtml(q.q)}" focusable="false" xmlns:xlink="http://www.w3.org/1999/xlink"><use href="#${q.imageKey}" xlink:href="#${q.imageKey}" x="0" y="0" width="960" height="540"></use></svg>`;
-    const hiddenFallbackSvg=fallbackSvg.replace('<svg ', '<svg style="display:none" ');
-    const visualMarkup=q.photoPath
-      ? `<img class="quiz-question-photo" src="${q.photoPath}" alt="${escapeHtml(q.q)}" loading="eager" decoding="async" style="display:block;width:100%;height:auto;max-height:300px;aspect-ratio:3/2;object-fit:cover">${hiddenFallbackSvg}`
-      : fallbackSvg;
-    openModal(`<span class="eyebrow">${escapeHtml(title)} • ${quizIndex+1}/5</span><h2 id="modalTitle">${escapeHtml(q.q)}</h2><div class="quiz-question-visual">${visualMarkup}</div><p>${lang==="ky"?"Туура жооп үчүн 10 упай.":"За каждый правильный ответ — 10 очков."}</p><div id="quizOptions">${q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${escapeHtml(a)}</button>`).join("")}</div><div id="quizFeedback"></div>`);
-    const photo=$(".quiz-question-photo");
-    if(photo)photo.addEventListener("error",()=>{photo.style.display="none";const fallback=photo.nextElementSibling;if(fallback)fallback.style.display="block";},{once:true});
+    openModal(`<span class="eyebrow">${escapeHtml(title)} • ${quizIndex+1}/5</span><h2 id="modalTitle">${escapeHtml(q.q)}</h2><p>${lang==="ky"?"Туура жооп үчүн 10 упай.":"За каждый правильный ответ — 10 очков."}</p><div id="quizOptions">${q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${escapeHtml(a)}</button>`).join("")}</div><div id="quizFeedback"></div>`);
   }
   function answerQuestion(btn){
     if(quizAnswered)return;
