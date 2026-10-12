@@ -61,3 +61,15 @@
 
 /* Keep inline question SVG definitions offscreen but available to local <use> references. */
 .quiz-illustration-sprite{position:absolute!important;left:-10000px!important;top:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important;pointer-events:none!important}
+
+
+/* AZA UNIVERSE — quiz difficulty selector */
+.difficulty-choice-grid{display:grid;gap:10px;margin:17px 0 10px}
+.difficulty-choice{display:grid;grid-template-columns:42px minmax(0,1fr) 20px;align-items:center;gap:12px;width:100%;padding:13px;text-align:left;border:1px solid #29465f;border-radius:13px;background:linear-gradient(135deg,#0c1b2a,#08121f);color:#f0f6ff;cursor:pointer;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.difficulty-choice:hover:not(:disabled),.difficulty-choice:focus-visible{transform:translateY(-1px);outline:none}
+.difficulty-choice.easy{border-color:#237d60}.difficulty-choice.easy:hover:not(:disabled){background:#0d2b25;border-color:#39d6a0}
+.difficulty-choice.medium{border-color:#896b27}.difficulty-choice.medium:hover:not(:disabled){background:#302613;border-color:#edc052}
+.difficulty-choice.hard{border-color:#8c3c47}.difficulty-choice.hard:hover:not(:disabled){background:#32171e;border-color:#ff777d}
+.difficulty-choice:disabled{opacity:.42;cursor:not-allowed}
+.difficulty-choice-icon{font-size:25px;text-align:center}.difficulty-choice-copy{display:grid;gap:4px;min-width:0}.difficulty-choice-copy strong{font-size:13px;font-weight:900}.difficulty-choice-copy small{font-size:11px;line-height:1.45;color:#a8bbce}.difficulty-choice-copy em{font-size:10px;font-style:normal;color:#76d7ff}.difficulty-choice-arrow{font-size:18px;color:#a9c0d6;text-align:right}.difficulty-note{margin-top:13px!important}
+@media(max-width:420px){.difficulty-choice{grid-template-columns:34px minmax(0,1fr) 16px;padding:11px;gap:9px}.difficulty-choice-copy strong{font-size:12px}.difficulty-choice-copy small{font-size:10px}}
