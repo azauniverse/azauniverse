@@ -64,3 +64,6 @@
 .quiz-question-visual svg{display:block;width:100%;height:auto;aspect-ratio:16/9;max-height:250px;min-height:130px}
 .quiz-question-visual svg use{pointer-events:none}
 @media(max-width:520px){.quiz-question-visual{margin:12px 0}.quiz-question-visual svg{min-height:112px;max-height:205px}.modal-card h2{font-size:22px}}
+
+/* Keep inline question SVG definitions offscreen but available to local <use> references. */
+.quiz-illustration-sprite{position:absolute!important;left:-10000px!important;top:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important;pointer-events:none!important}
