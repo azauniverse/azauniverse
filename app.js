@@ -397,7 +397,7 @@
   async function awardCloudPoints(source,amount,reactionMs=null){
     if(!supabaseClient||!cloudUser||!Number.isFinite(amount)||amount<1)return;
     try{
-      const {data,error}=await supabaseClient.rpc("record_points",{p_source:source,p_amount:Math.floor(amount)
+            const {data,error}=await supabaseClient.rpc("record_points",{p_source:source,p_amount:Math.floor(amount),p_reaction_ms:reactionMs});
       if(error){console.warn("Could not save online points",error.message);showToast(lang==="ky"?"Онлайн упай сакталган жок":"Онлайн-очки не сохранены");return;}
             // 24 сааттык упай чеги алынган
       await refreshOwnProfile();await refreshLeaderboard();
