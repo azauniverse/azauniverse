@@ -1,0 +1,67 @@
+/* AZA UNIVERSE — founder showcase styles. No framework or heavy animation library. */
+.aza-founder-home,
+.aza-founder-about{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(63,164,224,.48);border-radius:24px;background:radial-gradient(ellipse at 82% 10%,rgba(22,118,216,.21),transparent 42%),radial-gradient(ellipse at 7% 95%,rgba(255,174,52,.11),transparent 46%),linear-gradient(125deg,#071321 0%,#091b2c 52%,#07111f 100%);box-shadow:0 18px 44px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.05)}
+.aza-founder-home{display:grid;grid-template-columns:minmax(155px,.72fr) minmax(0,1.6fr);align-items:center;gap:clamp(16px,4vw,42px);min-height:250px;margin:20px 0 28px;padding:clamp(18px,3.5vw,36px)}
+.aza-founder-home:before,.aza-founder-about:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 22%,rgba(44,165,255,.05) 49%,transparent 70%);z-index:-1}
+.aza-founder-home-orb{position:relative;display:grid;place-items:center;width:clamp(128px,20vw,205px);aspect-ratio:1;border-radius:50%;margin:auto;border:1px solid rgba(255,196,91,.7);background:radial-gradient(circle,#132a43 0%,#081321 62%,#050b14 100%);box-shadow:0 0 0 7px rgba(255,193,74,.05),0 0 0 13px rgba(41,159,255,.06),0 0 36px rgba(32,169,255,.25),0 0 32px rgba(255,176,53,.13);animation:azaFounderFloat 5.2s ease-in-out infinite}
+.aza-founder-home-orb:before,.aza-founder-home-orb:after{content:"";position:absolute;inset:-12px;border:1px solid rgba(57,191,255,.62);border-radius:50%;transform:rotate(-26deg) scaleY(.72);pointer-events:none}
+.aza-founder-home-orb:after{inset:-22px;border-color:rgba(255,196,91,.5);transform:rotate(42deg) scaleY(.52);border-style:dashed}
+.aza-founder-home-orb img{width:65%;height:65%;object-fit:contain;filter:drop-shadow(0 0 16px rgba(38,181,255,.4))}
+.aza-founder-aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.aza-founder-aurora span{position:absolute;width:42%;height:180%;right:-6%;top:-38%;background:linear-gradient(180deg,transparent,rgba(33,152,255,.16),transparent);transform:rotate(24deg);filter:blur(14px)}
+.aza-founder-aurora i{position:absolute;width:210px;height:210px;right:4%;bottom:-170px;border:1px solid rgba(255,186,66,.2);border-radius:50%;box-shadow:0 0 0 18px rgba(255,186,66,.025),0 0 0 40px rgba(43,175,255,.03)}
+.aza-founder-aurora b{position:absolute;right:9%;top:17%;font-size:22px;color:#ffe39a;text-shadow:0 0 18px #ffb94d;animation:azaFounderSpark 3.4s ease-in-out infinite}
+.aza-founder-home-copy{position:relative;z-index:1;min-width:0;max-width:720px}
+.aza-founder-eyebrow{display:inline-flex;align-items:center;gap:9px;color:#ffd27c;font-size:10px;font-weight:900;letter-spacing:2.1px;text-transform:uppercase}
+.aza-founder-eyebrow i{width:7px;height:7px;border-radius:50%;background:#4edbff;box-shadow:0 0 12px #4edbff}
+.aza-founder-home h2{margin:12px 0 7px;color:#f3f8ff;font-size:clamp(25px,4.2vw,45px);letter-spacing:-1.4px;line-height:1.05;text-shadow:0 0 24px rgba(61,169,255,.22)}
+.aza-founder-chip{display:inline-flex;align-items:center;justify-content:center;gap:6px;max-width:100%;padding:5px 10px;border:1px solid rgba(255,196,85,.85);border-radius:999px;background:linear-gradient(110deg,rgba(255,177,46,.18),rgba(7,18,31,.92));color:#ffdb8a;font-size:10px;font-weight:950;letter-spacing:.7px;white-space:nowrap;box-shadow:0 0 16px rgba(255,177,46,.13),inset 0 0 9px rgba(255,177,46,.06)}
+.aza-founder-chip>span{font-size:14px;line-height:1;text-shadow:0 0 10px rgba(255,204,104,.8)}
+.aza-founder-chip small{font-size:9px;font-weight:800;letter-spacing:0;color:#f3c96d}
+.aza-founder-chip-large{padding:7px 14px;font-size:11px;box-shadow:0 0 22px rgba(255,179,48,.21)}
+.aza-founder-role{margin:10px 0 12px;color:#72d8ff;font-size:13px;font-weight:850;letter-spacing:.3px}
+.aza-founder-home blockquote{margin:0;padding-left:13px;border-left:2px solid #ffbe57;color:#f4f7fd;font-size:clamp(13px,1.8vw,17px);line-height:1.6}
+.aza-founder-description{max-width:590px;margin:12px 0 15px;color:#a8bdd2;font-size:12px;line-height:1.8}
+.aza-founder-link{display:inline-flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid rgba(49,183,255,.55);border-radius:11px;background:linear-gradient(110deg,rgba(13,102,170,.25),rgba(35,31,94,.28));color:#dff5ff;font-size:11px;font-weight:850;text-decoration:none;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.aza-founder-link span{color:#ffd078;font-size:16px}
+.aza-founder-link:hover{transform:translateY(-2px);border-color:#62dfff;box-shadow:0 0 18px rgba(49,183,255,.16)}
+.aza-founder-vertical-label{position:absolute;right:13px;bottom:12px;color:rgba(135,177,211,.5);font-size:7px;font-weight:800;letter-spacing:2px;writing-mode:vertical-rl;pointer-events:none}
+.aza-founder-about{margin:28px 0 8px;padding:clamp(20px,3.3vw,34px)}
+.aza-founder-about-head{position:relative;z-index:1;max-width:760px;margin-bottom:22px}
+.aza-founder-about h2{margin:10px 0 8px;color:#f2f7ff;font-size:clamp(22px,3.6vw,34px);letter-spacing:-.6px}
+.aza-founder-about-head p{margin:0;color:#a6bad0;font-size:13px;line-height:1.8}
+.aza-founder-pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;position:relative;z-index:1}
+.aza-founder-pillars article{min-width:0;padding:16px;border:1px solid #244966;border-radius:15px;background:linear-gradient(145deg,rgba(11,31,50,.94),rgba(5,15,27,.91));box-shadow:inset 0 1px rgba(255,255,255,.035);transition:transform .2s ease,border-color .2s ease}
+.aza-founder-pillars article:hover{transform:translateY(-3px);border-color:#49b9f3}
+.aza-founder-pillars article>span{display:grid;place-items:center;width:36px;height:36px;margin-bottom:12px;border:1px solid rgba(78,191,255,.45);border-radius:11px;background:radial-gradient(circle,rgba(42,142,221,.2),rgba(7,20,34,.8));color:#8ce5ff;font-size:21px}
+.aza-founder-pillars h3{margin:0 0 6px;color:#edf6ff;font-size:13px}
+.aza-founder-pillars p{margin:0;color:#91a9c2;font-size:11px;line-height:1.65}
+.aza-founder-summary .aza-profile-avatar{box-shadow:0 0 0 2px rgba(255,197,87,.4),0 0 22px rgba(39,178,255,.28)}
+.aza-founder-chip-profile{display:flex;width:max-content;max-width:100%;margin-top:8px}
+.aza-founder-chip-chat{margin-inline:7px;padding:3px 7px;font-size:8px;vertical-align:middle}
+.aza-founder-chip-chat small,.aza-founder-chip-person small{font-size:8px}
+.aza-founder-chip-person{display:flex;width:max-content;margin-top:5px;padding:3px 7px;font-size:8px}
+.aza-founder-ranking-empty{padding:14px;color:#91a9c2;font-size:12px;text-align:center}
+.aza-is-founder .your-score{display:none!important}
+.aza-is-founder .aza-rankup-overlay{display:none!important}
+@keyframes azaFounderFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes azaFounderSpark{0%,100%{opacity:.7;transform:scale(.92) rotate(0)}50%{opacity:1;transform:scale(1.12) rotate(14deg)}}
+@media(max-width:640px){
+ .aza-founder-home{grid-template-columns:1fr;gap:16px;margin:15px 0 22px;padding:22px 18px 24px;text-align:center;border-radius:19px}
+ .aza-founder-home-orb{width:125px;margin:5px auto 1px}
+ .aza-founder-home-copy{display:flex;flex-direction:column;align-items:center}
+ .aza-founder-eyebrow{font-size:8px;letter-spacing:1.45px}
+ .aza-founder-home h2{font-size:29px;letter-spacing:-.9px}
+ .aza-founder-role{font-size:12px}
+ .aza-founder-home blockquote{max-width:440px;padding:0;border:0;font-size:14px}
+ .aza-founder-description{font-size:11px;line-height:1.75}
+ .aza-founder-vertical-label{right:8px;bottom:7px;font-size:5px;letter-spacing:1.2px}
+ .aza-founder-pillars{grid-template-columns:1fr;gap:8px}
+ .aza-founder-pillars article{display:grid;grid-template-columns:37px minmax(0,1fr);column-gap:11px;align-items:center;padding:12px;text-align:left}
+ .aza-founder-pillars article>span{grid-row:1/3;width:34px;height:34px;margin:0}
+ .aza-founder-pillars h3{margin:0 0 3px}
+ .aza-founder-pillars p{font-size:10px}
+ .aza-founder-about{margin-top:22px;padding:20px 15px;border-radius:18px}
+ .aza-founder-chip-profile{white-space:normal;font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.aza-founder-home-orb,.aza-founder-aurora b,.aza-founder-link,.aza-founder-pillars article{animation:none!important;transition:none!important}}
