@@ -1,0 +1,13 @@
+/* AZA UNIVERSE — username editor, matching the cosmic profile design */
+.aza-username-editor{grid-column:1/-1;margin:0 0 16px;border-color:#2d5275;background:radial-gradient(ellipse at 0 0,#123d5e66,transparent 58%),linear-gradient(145deg,#0a1b2e,#07111f);}
+.aza-username-icon{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;border:1px solid #416d91;border-radius:12px;color:#ffd16b;background:linear-gradient(145deg,#102b46,#0b1627);font-size:22px;box-shadow:0 0 18px #35caff12;}
+.aza-username-form{display:grid;gap:7px;margin-top:13px;}
+.aza-username-form label{font-size:11px;font-weight:800;color:#b7cce4;}
+.aza-username-input-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;align-items:center;}
+.aza-username-input-row input{box-sizing:border-box;min-width:0;width:100%;min-height:46px;border:1px solid #2b4e70;border-radius:12px;padding:11px 13px;background:#050d19;color:#eff7ff;font:inherit;font-size:14px;outline:none;}
+.aza-username-input-row input:focus{border-color:#42c9ff;box-shadow:0 0 0 3px #29bfff18;}
+.aza-username-input-row .btn{min-height:44px;white-space:nowrap;padding-inline:16px;}
+.aza-username-input-row .btn:disabled{opacity:.5;filter:saturate(.6);cursor:not-allowed;}
+.aza-username-cooldown{margin:10px 0 0!important;color:#87d8f5!important;font-size:11px!important;line-height:1.65!important;}
+#azaUsernameChangeStatus{min-height:0;margin:6px 0 0!important;overflow-wrap:anywhere;}
+@media(max-width:420px){.aza-username-input-row{grid-template-columns:1fr}.aza-username-input-row .btn{width:100%;}}
