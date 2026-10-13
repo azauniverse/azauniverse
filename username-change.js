@@ -148,6 +148,10 @@
 
   function friendlyError(error) {
     const message = String(error?.message || "");
+     if (message.includes("USERNAME_RESERVED")) return t(
+  "Бул ник AZA UNIVERSE үчүн сакталган. Башка ник танда.",
+  "Этот ник зарезервирован для AZA UNIVERSE. Выбери другое имя."
+);
     if (message.includes("USERNAME_CHANGE_COOLDOWN")) return t(
       "Атыңды өзгөртүү үчүн акыркы өзгөртүүдөн кийин 30 күн өтүшү керек.",
       "Имя можно менять только через 30 дней после предыдущего изменения."
@@ -189,6 +193,18 @@
       return;
     }
     const oldName = section.dataset.currentUsername || "";
+     const reservedKey = username.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+if (reservedKey === "azauniverse") {
+  if (status) {
+    status.textContent = t(
+      "Бул ник AZA UNIVERSE үчүн сакталган. Башка ник танда.",
+      "Этот ник зарезервирован для AZA UNIVERSE. Выбери другое имя."
+    );
+  }
+  input?.focus();
+  return;
+}
     if (username.toLowerCase() === oldName.toLowerCase()) {
       if (status) status.textContent = t("Жаңы ат мурунку ат менен бирдей.", "Новое имя совпадает с текущим.");
       return;
