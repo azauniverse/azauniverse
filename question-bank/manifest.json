@@ -15,9 +15,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 374,
+        "medium": 310,
+        "hard": 316
       }
     },
     {
@@ -30,9 +30,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 347,
+        "medium": 336,
+        "hard": 317
       }
     },
     {
@@ -45,9 +45,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 372,
+        "medium": 311,
+        "hard": 317
       }
     },
     {
@@ -60,9 +60,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 370,
+        "medium": 313,
+        "hard": 317
       }
     },
     {
@@ -75,9 +75,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 369,
+        "medium": 314,
+        "hard": 317
       }
     },
     {
@@ -90,9 +90,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 374,
+        "medium": 309,
+        "hard": 317
       }
     },
     {
@@ -105,9 +105,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 373,
+        "medium": 310,
+        "hard": 317
       }
     },
     {
@@ -120,9 +120,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 374,
+        "medium": 309,
+        "hard": 317
       }
     },
     {
@@ -135,9 +135,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 370,
+        "medium": 313,
+        "hard": 317
       }
     },
     {
@@ -150,9 +150,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 374,
+        "medium": 309,
+        "hard": 317
       }
     },
     {
@@ -165,9 +165,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 373,
+        "medium": 310,
+        "hard": 317
       }
     },
     {
@@ -180,9 +180,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 369,
+        "medium": 314,
+        "hard": 317
       }
     },
     {
@@ -195,9 +195,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 333,
-        "medium": 333,
-        "hard": 334
+        "easy": 373,
+        "medium": 310,
+        "hard": 317
       }
     }
   ],
@@ -225,7 +225,8 @@
     }
   },
   "difficultyMethod": {
-    "ky": "Суроолор үч деңгээлге бөлүнгөн: жеңил — түз фактылар; орточо — эсептөө же байланышты тескери табуу; татаал — көп кадамдуу логика, себеп-натыйжа же жуп дал келтирүү. Бул категория ичиндеги салыштырмалуу деңгээл.",
-    "ru": "Вопросы разделены на три уровня: лёгкий — прямые факты; средний — вычисление или обратное установление связи; сложный — многошаговая логика, причинно-следственные связи или сопоставление. Уровень относительный внутри категории."
-  }
+    "ky": "Деңгээлдер суроонун түзүлүшүнө жараша бөлүнөт: жеңил — түз факт же бир кадам; орточо — тескери байланыш, түшүндүрмө же бир аз эсеп; татаал — жуптарды дал келтирүү же көп баскычтуу ой жүгүртүү. Бул категория ичиндеги салыштырмалуу деңгээл.",
+    "ru": "Уровни определяются по форме вопроса: лёгкий — прямой факт или один шаг; средний — обратная связь, объяснение или небольшой расчёт; сложный — сопоставление пар или многошаговое рассуждение. Это относительная сложность внутри категории."
+  },
+  "categoryCount": 13
 }

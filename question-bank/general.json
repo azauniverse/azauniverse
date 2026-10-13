@@ -31,7 +31,7 @@
         "why": "Юпитер — самая большая планета Солнечной системы; по размерам он значительно превосходит остальные планеты."
       },
       "correct": 1,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0002",
@@ -56,7 +56,7 @@
         "why": "Тихий океан — самый большой и самый глубокий океан Земли."
       },
       "correct": 2,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0003",
@@ -81,7 +81,7 @@
         "why": "«Бородино» — известное стихотворение Михаила Юрьевича Лермонтова о войне 1812 года."
       },
       "correct": 1,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0004",
@@ -131,7 +131,7 @@
         "why": "Эйфелева башня находится в Париже, столице Франции."
       },
       "correct": 2,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0006",
@@ -156,7 +156,7 @@
         "why": "O — химический символ кислорода; его атомный номер — 8."
       },
       "correct": 1,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0007",
@@ -181,7 +181,7 @@
         "why": "Гепард способен развивать самую высокую скорость среди наземных животных на коротких дистанциях."
       },
       "correct": 1,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0008",
@@ -231,7 +231,7 @@
         "why": "Началом Второй мировой войны обычно считают 1 сентября 1939 года — вторжение Германии в Польшу."
       },
       "correct": 1,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0010",
@@ -281,7 +281,7 @@
       },
       "correct": 0,
       "id": "general-0011",
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "ky": {
@@ -331,7 +331,7 @@
       },
       "correct": 1,
       "id": "general-0013",
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "ky": {
@@ -381,7 +381,7 @@
       },
       "correct": 2,
       "id": "general-0015",
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "ky": {
@@ -406,7 +406,7 @@
       },
       "correct": 1,
       "id": "general-0016",
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "ky": {
@@ -431,7 +431,7 @@
       },
       "correct": 2,
       "id": "general-0017",
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "ky": {
@@ -481,7 +481,7 @@
       },
       "correct": 1,
       "id": "general-0019",
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "ky": {
@@ -506,7 +506,7 @@
       },
       "correct": 1,
       "id": "general-0020",
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0021",
@@ -531,7 +531,7 @@
         "why": "Винсент ван Гог — автор картины «Звёздная ночь»."
       },
       "correct": 2,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0022",
@@ -556,7 +556,7 @@
         "why": "Правильный ответ: Леонардо да Винчи. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 1,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0023",
@@ -606,7 +606,7 @@
         "why": "Ампер — единица силы электрического тока в системе СИ."
       },
       "correct": 0,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0025",
@@ -631,7 +631,7 @@
         "why": "WWW означает World Wide Web — всемирную паутину."
       },
       "correct": 1,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0026",
@@ -656,7 +656,7 @@
         "why": "Сейсмограф регистрирует колебания, вызванные землетрясениями."
       },
       "correct": 0,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0027",
@@ -681,7 +681,7 @@
         "why": "Печень — самый большой внутренний орган человека."
       },
       "correct": 3,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0028",
@@ -706,7 +706,7 @@
         "why": "Правильный ответ: Уильям Шекспир. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 0,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0029",
@@ -756,7 +756,7 @@
         "why": "Правильный ответ: 5. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 3,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0031",
@@ -881,7 +881,7 @@
         "why": "Герц измеряет число колебаний в секунду."
       },
       "correct": 3,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0036",
@@ -931,7 +931,7 @@
         "why": "Правильный ответ: Уильям Шекспир. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 1,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0038",
@@ -981,7 +981,7 @@
         "why": "Конь ходит на две клетки в одном направлении и на одну в сторону."
       },
       "correct": 2,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0040",
@@ -1031,7 +1031,7 @@
         "why": "Правильный ответ: Бадминтон. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 1,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0042",
@@ -1081,7 +1081,7 @@
         "why": "Правильный ответ: Эритроциты. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 0,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0044",
@@ -1106,7 +1106,7 @@
         "why": "Национальная валюта Южной Кореи — вона."
       },
       "correct": 3,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0045",
@@ -1131,7 +1131,7 @@
         "why": "Правильный ответ: Сахара. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 2,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0046",
@@ -1181,7 +1181,7 @@
         "why": "Правильный ответ: Утконос. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 0,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0048",
@@ -1256,7 +1256,7 @@
         "why": "Правильный ответ: Сустав. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 1,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0051",
@@ -1331,7 +1331,7 @@
         "why": "Правильный ответ: Италия. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 1,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0054",
@@ -1381,7 +1381,7 @@
         "why": "Правильный ответ: Колибри. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 3,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0056",
@@ -1406,7 +1406,7 @@
         "why": "Правильный ответ: Земля. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 2,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0057",
@@ -1456,7 +1456,7 @@
         "why": "Правильный ответ: Лувр. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 1,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0059",
@@ -1481,7 +1481,7 @@
         "why": "Правильный ответ: Египет. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 1,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0060",
@@ -1531,7 +1531,7 @@
         "why": "Правильный ответ: Ртуть. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 0,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0062",
@@ -1581,7 +1581,7 @@
         "why": "Правильный ответ: Химия. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 0,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0064",
@@ -1606,7 +1606,7 @@
         "why": "Правильный ответ: Секундомер. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 1,
-      "difficulty": "hard"
+      "difficulty": "easy"
     },
     {
       "id": "general-0065",
@@ -1631,32 +1631,32 @@
         "why": "Правильный ответ: Япония. Этот вопрос проверяет базовое знание по данной теме."
       },
       "correct": 0,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0066",
       "ky": {
-        "q": "Кайсы өлкөдө Таж-Махал жайгашкан?",
+        "q": "Таж-Махал архитектуралык жактан эмне болуп саналат?",
         "a": [
-          "Бразилия",
-          "Германия",
-          "Индия",
-          "Мексика"
+          "Көпүрө",
+          "Обсерватория",
+          "Мавзолей",
+          "Театр"
         ],
-        "why": "Туура жооп: Индия. Бул маалымат ушул теманын негизги түшүнүгүн текшерет."
+        "why": "Таж-Махал — Индиянын Агра шаарындагы белгилүү мавзолей."
       },
       "ru": {
-        "q": "В какой стране находится Тадж-Махал?",
+        "q": "Что представляет собой Тадж-Махал с архитектурной точки зрения?",
         "a": [
-          "Бразилия",
-          "Германия",
-          "Индия",
-          "Мексика"
+          "Мост",
+          "Обсерватория",
+          "Мавзолей",
+          "Театр"
         ],
-        "why": "Правильный ответ: Индия. Этот вопрос проверяет базовое знание по данной теме."
+        "why": "Тадж-Махал — знаменитый мавзолей в городе Агра, Индия."
       },
       "correct": 2,
-      "difficulty": "medium"
+      "difficulty": "easy"
     },
     {
       "id": "general-0067",
@@ -1912,24 +1912,24 @@
       "id": "general-0077",
       "difficulty": "easy",
       "ky": {
-        "q": "The dynamo principle ким менен тарыхый жактан байланышкан?",
+        "q": "динамо принциби ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Michael Faraday",
           "Alexander Graham Bell",
           "Nikola Tesla"
         ],
-        "why": "The dynamo principle тарыхта Michael Faraday менен байланышкан."
+        "why": "динамо принциби тарыхта Michael Faraday менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the dynamo principle?",
+        "q": "С кем исторически связывают принцип динамо-машины?",
         "a": [
           "Thomas Edison",
           "Michael Faraday",
           "Alexander Graham Bell",
           "Nikola Tesla"
         ],
-        "why": "The dynamo principle исторически связывают с Michael Faraday."
+        "why": "принцип динамо-машины исторически связывают с Michael Faraday."
       },
       "correct": 1
     },
@@ -2137,24 +2137,24 @@
       "id": "general-0086",
       "difficulty": "easy",
       "ky": {
-        "q": "The phonograph ким менен тарыхый жактан байланышкан?",
+        "q": "фонограф ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Nikola Tesla",
           "Guglielmo Marconi",
           "Alexander Graham Bell"
         ],
-        "why": "The phonograph тарыхта Thomas Edison менен байланышкан."
+        "why": "фонограф тарыхта Thomas Edison менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the phonograph?",
+        "q": "С кем исторически связывают фонограф?",
         "a": [
           "Thomas Edison",
           "Nikola Tesla",
           "Guglielmo Marconi",
           "Alexander Graham Bell"
         ],
-        "why": "The phonograph исторически связывают с Thomas Edison."
+        "why": "фонограф исторически связывают с Thomas Edison."
       },
       "correct": 0
     },
@@ -2287,24 +2287,24 @@
       "id": "general-0092",
       "difficulty": "easy",
       "ky": {
-        "q": "The first successful polio vaccine ким менен тарыхый жактан байланышкан?",
+        "q": "полиомиелитке каршы алгачкы натыйжалуу вакцина ким менен тарыхый жактан байланышкан?",
         "a": [
           "Jonas Salk",
           "Thomas Edison",
           "Nikola Tesla",
           "Alexander Graham Bell"
         ],
-        "why": "The first successful polio vaccine тарыхта Jonas Salk менен байланышкан."
+        "why": "полиомиелитке каршы алгачкы натыйжалуу вакцина тарыхта Jonas Salk менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first successful polio vaccine?",
+        "q": "С кем исторически связывают первая эффективная вакцина против полиомиелита?",
         "a": [
           "Jonas Salk",
           "Thomas Edison",
           "Nikola Tesla",
           "Alexander Graham Bell"
         ],
-        "why": "The first successful polio vaccine исторически связывают с Jonas Salk."
+        "why": "первая эффективная вакцина против полиомиелита исторически связывают с Jonas Salk."
       },
       "correct": 0
     },
@@ -2312,24 +2312,24 @@
       "id": "general-0093",
       "difficulty": "easy",
       "ky": {
-        "q": "The laws of motion ким менен тарыхый жактан байланышкан?",
+        "q": "кыймыл мыйзамдары ким менен тарыхый жактан байланышкан?",
         "a": [
           "Isaac Newton",
           "Thomas Edison",
           "Nikola Tesla",
           "Alexander Graham Bell"
         ],
-        "why": "The laws of motion тарыхта Isaac Newton менен байланышкан."
+        "why": "кыймыл мыйзамдары тарыхта Isaac Newton менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the laws of motion?",
+        "q": "С кем исторически связывают законы движения?",
         "a": [
           "Isaac Newton",
           "Thomas Edison",
           "Nikola Tesla",
           "Alexander Graham Bell"
         ],
-        "why": "The laws of motion исторически связывают с Isaac Newton."
+        "why": "законы движения исторически связывают с Isaac Newton."
       },
       "correct": 0
     },
@@ -2337,24 +2337,24 @@
       "id": "general-0094",
       "difficulty": "easy",
       "ky": {
-        "q": "The mechanical reaper ким менен тарыхый жактан байланышкан?",
+        "q": "механикалык оруу машинасы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Cyrus McCormick"
         ],
-        "why": "The mechanical reaper тарыхта Cyrus McCormick менен байланышкан."
+        "why": "механикалык оруу машинасы тарыхта Cyrus McCormick менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the mechanical reaper?",
+        "q": "С кем исторически связывают механическая жатка?",
         "a": [
           "Thomas Edison",
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Cyrus McCormick"
         ],
-        "why": "The mechanical reaper исторически связывают с Cyrus McCormick."
+        "why": "механическая жатка исторически связывают с Cyrus McCormick."
       },
       "correct": 3
     },
@@ -2437,24 +2437,24 @@
       "id": "general-0098",
       "difficulty": "easy",
       "ky": {
-        "q": "The polio vaccine ким менен тарыхый жактан байланышкан?",
+        "q": "полиомиелитке каршы вакцина ким менен тарыхый жактан байланышкан?",
         "a": [
           "Jonas Salk",
           "Nikola Tesla",
           "Thomas Edison",
           "Alexander Graham Bell"
         ],
-        "why": "The polio vaccine тарыхта Jonas Salk менен байланышкан."
+        "why": "полиомиелитке каршы вакцина тарыхта Jonas Salk менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the polio vaccine?",
+        "q": "С кем исторически связывают вакцина против полиомиелита?",
         "a": [
           "Jonas Salk",
           "Nikola Tesla",
           "Thomas Edison",
           "Alexander Graham Bell"
         ],
-        "why": "The polio vaccine исторически связывают с Jonas Salk."
+        "why": "вакцина против полиомиелита исторически связывают с Jonas Salk."
       },
       "correct": 0
     },
@@ -2462,24 +2462,24 @@
       "id": "general-0099",
       "difficulty": "easy",
       "ky": {
-        "q": "The first practical telegraph system ким менен тарыхый жактан байланышкан?",
+        "q": "алгачкы практикалык телеграф системасы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Samuel Morse",
           "Thomas Edison",
           "Alexander Graham Bell"
         ],
-        "why": "The first practical telegraph system тарыхта Samuel Morse менен байланышкан."
+        "why": "алгачкы практикалык телеграф системасы тарыхта Samuel Morse менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first practical telegraph system?",
+        "q": "С кем исторически связывают первая практическая телеграфная система?",
         "a": [
           "Nikola Tesla",
           "Samuel Morse",
           "Thomas Edison",
           "Alexander Graham Bell"
         ],
-        "why": "The first practical telegraph system исторически связывают с Samuel Morse."
+        "why": "первая практическая телеграфная система исторически связывают с Samuel Morse."
       },
       "correct": 1
     },
@@ -2687,24 +2687,24 @@
       "id": "general-0108",
       "difficulty": "easy",
       "ky": {
-        "q": "The first widely used computer algorithm ким менен тарыхый жактан байланышкан?",
+        "q": "кеңири колдонулган алгачкы компьютердик алгоритм ким менен тарыхый жактан байланышкан?",
         "a": [
           "Ada Lovelace",
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Thomas Edison"
         ],
-        "why": "The first widely used computer algorithm тарыхта Ada Lovelace менен байланышкан."
+        "why": "кеңири колдонулган алгачкы компьютердик алгоритм тарыхта Ada Lovelace менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first widely used computer algorithm?",
+        "q": "С кем исторически связывают первый широко используемый компьютерный алгоритм?",
         "a": [
           "Ada Lovelace",
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Thomas Edison"
         ],
-        "why": "The first widely used computer algorithm исторически связывают с Ada Lovelace."
+        "why": "первый широко используемый компьютерный алгоритм исторически связывают с Ada Lovelace."
       },
       "correct": 0
     },
@@ -3062,24 +3062,24 @@
       "id": "general-0123",
       "difficulty": "easy",
       "ky": {
-        "q": "The ballpoint pen improvement ким менен тарыхый жактан байланышкан?",
+        "q": "шариктүү калемдин жакшыртылган үлгүсү ким менен тарыхый жактан байланышкан?",
         "a": [
           "László Bíró",
           "Nikola Tesla",
           "Thomas Edison",
           "Alexander Graham Bell"
         ],
-        "why": "The ballpoint pen improvement тарыхта László Bíró менен байланышкан."
+        "why": "шариктүү калемдин жакшыртылган үлгүсү тарыхта László Bíró менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the ballpoint pen improvement?",
+        "q": "С кем исторически связывают усовершенствование шариковой ручки?",
         "a": [
           "László Bíró",
           "Nikola Tesla",
           "Thomas Edison",
           "Alexander Graham Bell"
         ],
-        "why": "The ballpoint pen improvement исторически связывают с László Bíró."
+        "why": "усовершенствование шариковой ручки исторически связывают с László Bíró."
       },
       "correct": 0
     },
@@ -3287,24 +3287,24 @@
       "id": "general-0132",
       "difficulty": "easy",
       "ky": {
-        "q": "The movable-type printing press in china ким менен тарыхый жактан байланышкан?",
+        "q": "Кытайдагы кыймылдуу тамгалар менен басма станогу ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Bi Sheng",
           "Thomas Edison"
         ],
-        "why": "The movable-type printing press in china тарыхта Bi Sheng менен байланышкан."
+        "why": "Кытайдагы кыймылдуу тамгалар менен басма станогу тарыхта Bi Sheng менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the movable-type printing press in China?",
+        "q": "С кем исторически связывают книгопечатание подвижными литерами в Китае?",
         "a": [
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Bi Sheng",
           "Thomas Edison"
         ],
-        "why": "The movable-type printing press in china исторически связывают с Bi Sheng."
+        "why": "книгопечатание подвижными литерами в Китае исторически связывают с Bi Sheng."
       },
       "correct": 2
     },
@@ -3387,24 +3387,24 @@
       "id": "general-0136",
       "difficulty": "easy",
       "ky": {
-        "q": "The alternating-current system ким менен тарыхый жактан байланышкан?",
+        "q": "өзгөрмө ток системасы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Guglielmo Marconi",
           "Alexander Graham Bell",
           "Thomas Edison",
           "Nikola Tesla"
         ],
-        "why": "The alternating-current system тарыхта Nikola Tesla менен байланышкан."
+        "why": "өзгөрмө ток системасы тарыхта Nikola Tesla менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the alternating-current system?",
+        "q": "С кем исторически связывают система переменного тока?",
         "a": [
           "Guglielmo Marconi",
           "Alexander Graham Bell",
           "Thomas Edison",
           "Nikola Tesla"
         ],
-        "why": "The alternating-current system исторически связывают с Nikola Tesla."
+        "why": "система переменного тока исторически связывают с Nikola Tesla."
       },
       "correct": 3
     },
@@ -3437,24 +3437,24 @@
       "id": "general-0138",
       "difficulty": "easy",
       "ky": {
-        "q": "The diesel engine ким менен тарыхый жактан байланышкан?",
+        "q": "дизель кыймылдаткычы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Rudolf Diesel",
           "Thomas Edison"
         ],
-        "why": "The diesel engine тарыхта Rudolf Diesel менен байланышкан."
+        "why": "дизель кыймылдаткычы тарыхта Rudolf Diesel менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the diesel engine?",
+        "q": "С кем исторически связывают дизельный двигатель?",
         "a": [
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Rudolf Diesel",
           "Thomas Edison"
         ],
-        "why": "The diesel engine исторически связывают с Rudolf Diesel."
+        "why": "дизельный двигатель исторически связывают с Rudolf Diesel."
       },
       "correct": 2
     },
@@ -3512,24 +3512,24 @@
       "id": "general-0141",
       "difficulty": "easy",
       "ky": {
-        "q": "The early submarine designs ким менен тарыхый жактан байланышкан?",
+        "q": "алгачкы суу астындагы кеме долбоорлору ким менен тарыхый жактан байланышкан?",
         "a": [
           "Cornelis Drebbel",
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Thomas Edison"
         ],
-        "why": "The early submarine designs тарыхта Cornelis Drebbel менен байланышкан."
+        "why": "алгачкы суу астындагы кеме долбоорлору тарыхта Cornelis Drebbel менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the early submarine designs?",
+        "q": "С кем исторически связывают ранние проекты подводных лодок?",
         "a": [
           "Cornelis Drebbel",
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Thomas Edison"
         ],
-        "why": "The early submarine designs исторически связывают с Cornelis Drebbel."
+        "why": "ранние проекты подводных лодок исторически связывают с Cornelis Drebbel."
       },
       "correct": 0
     },
@@ -3562,24 +3562,24 @@
       "id": "general-0143",
       "difficulty": "easy",
       "ky": {
-        "q": "The geiger counter ким менен тарыхый жактан байланышкан?",
+        "q": "Гейгер эсептегичи ким менен тарыхый жактан байланышкан?",
         "a": [
           "Hans Geiger and Walther Müller",
           "Thomas Edison",
           "Alexander Graham Bell",
           "Nikola Tesla"
         ],
-        "why": "The geiger counter тарыхта Hans Geiger and Walther Müller менен байланышкан."
+        "why": "Гейгер эсептегичи тарыхта Hans Geiger and Walther Müller менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the geiger counter?",
+        "q": "С кем исторически связывают счётчик Гейгера?",
         "a": [
           "Hans Geiger and Walther Müller",
           "Thomas Edison",
           "Alexander Graham Bell",
           "Nikola Tesla"
         ],
-        "why": "The geiger counter исторически связывают с Hans Geiger and Walther Müller."
+        "why": "счётчик Гейгера исторически связывают с Hans Geiger and Walther Müller."
       },
       "correct": 0
     },
@@ -3612,24 +3612,24 @@
       "id": "general-0145",
       "difficulty": "easy",
       "ky": {
-        "q": "The voltaic pile ким менен тарыхый жактан байланышкан?",
+        "q": "вольт мамысы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Alessandro Volta"
         ],
-        "why": "The voltaic pile тарыхта Alessandro Volta менен байланышкан."
+        "why": "вольт мамысы тарыхта Alessandro Volta менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the voltaic pile?",
+        "q": "С кем исторически связывают вольтов столб?",
         "a": [
           "Thomas Edison",
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Alessandro Volta"
         ],
-        "why": "The voltaic pile исторически связывают с Alessandro Volta."
+        "why": "вольтов столб исторически связывают с Alessandro Volta."
       },
       "correct": 3
     },
@@ -3837,24 +3837,24 @@
       "id": "general-0154",
       "difficulty": "easy",
       "ky": {
-        "q": "The transistor ким менен тарыхый жактан байланышкан?",
+        "q": "транзистор ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Nikola Tesla",
           "John Bardeen, Walter Brattain and William Shockley",
           "Alexander Graham Bell"
         ],
-        "why": "The transistor тарыхта John Bardeen, Walter Brattain and William Shockley менен байланышкан."
+        "why": "транзистор тарыхта John Bardeen, Walter Brattain and William Shockley менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the transistor?",
+        "q": "С кем исторически связывают транзистор?",
         "a": [
           "Thomas Edison",
           "Nikola Tesla",
           "John Bardeen, Walter Brattain and William Shockley",
           "Alexander Graham Bell"
         ],
-        "why": "The transistor исторически связывают с John Bardeen, Walter Brattain and William Shockley."
+        "why": "транзистор исторически связывают с John Bardeen, Walter Brattain and William Shockley."
       },
       "correct": 2
     },
@@ -3962,24 +3962,24 @@
       "id": "general-0159",
       "difficulty": "easy",
       "ky": {
-        "q": "The first commercial microwave oven ким менен тарыхый жактан байланышкан?",
+        "q": "алгачкы коммерциялык микротолкундуу меш ким менен тарыхый жактан байланышкан?",
         "a": [
           "Percy Spencer",
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Thomas Edison"
         ],
-        "why": "The first commercial microwave oven тарыхта Percy Spencer менен байланышкан."
+        "why": "алгачкы коммерциялык микротолкундуу меш тарыхта Percy Spencer менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first commercial microwave oven?",
+        "q": "С кем исторически связывают первая коммерческая микроволновая печь?",
         "a": [
           "Percy Spencer",
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Thomas Edison"
         ],
-        "why": "The first commercial microwave oven исторически связывают с Percy Spencer."
+        "why": "первая коммерческая микроволновая печь исторически связывают с Percy Spencer."
       },
       "correct": 0
     },
@@ -3987,24 +3987,24 @@
       "id": "general-0160",
       "difficulty": "easy",
       "ky": {
-        "q": "The first successful blood transfusion techniques ким менен тарыхый жактан байланышкан?",
+        "q": "кан куюунун алгачкы ийгиликтүү ыкмалары ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Alexander Graham Bell",
           "James Blundell",
           "Nikola Tesla"
         ],
-        "why": "The first successful blood transfusion techniques тарыхта James Blundell менен байланышкан."
+        "why": "кан куюунун алгачкы ийгиликтүү ыкмалары тарыхта James Blundell менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first successful blood transfusion techniques?",
+        "q": "С кем исторически связывают первые успешные методы переливания крови?",
         "a": [
           "Thomas Edison",
           "Alexander Graham Bell",
           "James Blundell",
           "Nikola Tesla"
         ],
-        "why": "The first successful blood transfusion techniques исторически связывают с James Blundell."
+        "why": "первые успешные методы переливания крови исторически связывают с James Blundell."
       },
       "correct": 2
     },
@@ -4362,24 +4362,24 @@
       "id": "general-0175",
       "difficulty": "easy",
       "ky": {
-        "q": "The first successful heart transplant ким менен тарыхый жактан байланышкан?",
+        "q": "алгачкы ийгиликтүү жүрөк трансплантациясы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Christiaan Barnard",
           "Thomas Edison"
         ],
-        "why": "The first successful heart transplant тарыхта Christiaan Barnard менен байланышкан."
+        "why": "алгачкы ийгиликтүү жүрөк трансплантациясы тарыхта Christiaan Barnard менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first successful heart transplant?",
+        "q": "С кем исторически связывают первая успешная трансплантация сердца?",
         "a": [
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Christiaan Barnard",
           "Thomas Edison"
         ],
-        "why": "The first successful heart transplant исторически связывают с Christiaan Barnard."
+        "why": "первая успешная трансплантация сердца исторически связывают с Christiaan Barnard."
       },
       "correct": 2
     },
@@ -4587,24 +4587,24 @@
       "id": "general-0184",
       "difficulty": "easy",
       "ky": {
-        "q": "The steam locomotive ким менен тарыхый жактан байланышкан?",
+        "q": "буу локомотиви ким менен тарыхый жактан байланышкан?",
         "a": [
           "Alexander Graham Bell",
           "George Stephenson",
           "Nikola Tesla",
           "Thomas Edison"
         ],
-        "why": "The steam locomotive тарыхта George Stephenson менен байланышкан."
+        "why": "буу локомотиви тарыхта George Stephenson менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the steam locomotive?",
+        "q": "С кем исторически связывают паровоз?",
         "a": [
           "Alexander Graham Bell",
           "George Stephenson",
           "Nikola Tesla",
           "Thomas Edison"
         ],
-        "why": "The steam locomotive исторически связывают с George Stephenson."
+        "why": "паровоз исторически связывают с George Stephenson."
       },
       "correct": 1
     },
@@ -4837,24 +4837,24 @@
       "id": "general-0194",
       "difficulty": "easy",
       "ky": {
-        "q": "The first successful vaccine against rabies ким менен тарыхый жактан байланышкан?",
+        "q": "кутурмага каршы алгачкы ийгиликтүү вакцина ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Louis Pasteur",
           "Thomas Edison"
         ],
-        "why": "The first successful vaccine against rabies тарыхта Louis Pasteur менен байланышкан."
+        "why": "кутурмага каршы алгачкы ийгиликтүү вакцина тарыхта Louis Pasteur менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first successful vaccine against rabies?",
+        "q": "С кем исторически связывают первая успешная вакцина против бешенства?",
         "a": [
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Louis Pasteur",
           "Thomas Edison"
         ],
-        "why": "The first successful vaccine against rabies исторически связывают с Louis Pasteur."
+        "why": "первая успешная вакцина против бешенства исторически связывают с Louis Pasteur."
       },
       "correct": 2
     },
@@ -5362,24 +5362,24 @@
       "id": "general-0215",
       "difficulty": "easy",
       "ky": {
-        "q": "The four-stroke internal-combustion engine ким менен тарыхый жактан байланышкан?",
+        "q": "төрт тактылуу ичтен күйүүчү кыймылдаткыч ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikolaus Otto",
           "Alexander Graham Bell",
           "Thomas Edison",
           "Nikola Tesla"
         ],
-        "why": "The four-stroke internal-combustion engine тарыхта Nikolaus Otto менен байланышкан."
+        "why": "төрт тактылуу ичтен күйүүчү кыймылдаткыч тарыхта Nikolaus Otto менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the four-stroke internal-combustion engine?",
+        "q": "С кем исторически связывают четырёхтактный двигатель внутреннего сгорания?",
         "a": [
           "Nikolaus Otto",
           "Alexander Graham Bell",
           "Thomas Edison",
           "Nikola Tesla"
         ],
-        "why": "The four-stroke internal-combustion engine исторически связывают с Nikolaus Otto."
+        "why": "четырёхтактный двигатель внутреннего сгорания исторически связывают с Nikolaus Otto."
       },
       "correct": 0
     },
@@ -5412,24 +5412,24 @@
       "id": "general-0217",
       "difficulty": "easy",
       "ky": {
-        "q": "The dynamite ким менен тарыхый жактан байланышкан?",
+        "q": "динамит ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Thomas Edison",
           "Alexander Graham Bell",
           "Alfred Nobel"
         ],
-        "why": "The dynamite тарыхта Alfred Nobel менен байланышкан."
+        "why": "динамит тарыхта Alfred Nobel менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the dynamite?",
+        "q": "С кем исторически связывают динамит?",
         "a": [
           "Nikola Tesla",
           "Thomas Edison",
           "Alexander Graham Bell",
           "Alfred Nobel"
         ],
-        "why": "The dynamite исторически связывают с Alfred Nobel."
+        "why": "динамит исторически связывают с Alfred Nobel."
       },
       "correct": 3
     },
@@ -5512,24 +5512,24 @@
       "id": "general-0221",
       "difficulty": "easy",
       "ky": {
-        "q": "The first practical moving-picture camera system ким менен тарыхый жактан байланышкан?",
+        "q": "алгачкы практикалык кино тартуу системасы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Thomas Edison",
-          "the Lumière brothers"
+          "Люмьер бир туугандары"
         ],
-        "why": "The first practical moving-picture camera system тарыхта the Lumière brothers менен байланышкан."
+        "why": "алгачкы практикалык кино тартуу системасы тарыхта Люмьер бир туугандары менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first practical moving-picture camera system?",
+        "q": "С кем исторически связывают первая практическая система съёмки движущихся изображений?",
         "a": [
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Thomas Edison",
-          "the Lumière brothers"
+          "братья Люмьер"
         ],
-        "why": "The first practical moving-picture camera system исторически связывают с the Lumière brothers."
+        "why": "первая практическая система съёмки движущихся изображений исторически связывают с братья Люмьер."
       },
       "correct": 3
     },
@@ -5637,24 +5637,24 @@
       "id": "general-0226",
       "difficulty": "easy",
       "ky": {
-        "q": "The first practical arc lamp ким менен тарыхый жактан байланышкан?",
+        "q": "алгачкы практикалык дуга лампасы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Thomas Edison",
           "Humphry Davy"
         ],
-        "why": "The first practical arc lamp тарыхта Humphry Davy менен байланышкан."
+        "why": "алгачкы практикалык дуга лампасы тарыхта Humphry Davy менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first practical arc lamp?",
+        "q": "С кем исторически связывают первая практическая дуговая лампа?",
         "a": [
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Thomas Edison",
           "Humphry Davy"
         ],
-        "why": "The first practical arc lamp исторически связывают с Humphry Davy."
+        "why": "первая практическая дуговая лампа исторически связывают с Humphry Davy."
       },
       "correct": 3
     },
@@ -5762,24 +5762,24 @@
       "id": "general-0231",
       "difficulty": "easy",
       "ky": {
-        "q": "The theory of relativity ким менен тарыхый жактан байланышкан?",
+        "q": "салыштырмалуулук теориясы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Albert Einstein",
           "Alexander Graham Bell",
           "Thomas Edison"
         ],
-        "why": "The theory of relativity тарыхта Albert Einstein менен байланышкан."
+        "why": "салыштырмалуулук теориясы тарыхта Albert Einstein менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the theory of relativity?",
+        "q": "С кем исторически связывают теория относительности?",
         "a": [
           "Nikola Tesla",
           "Albert Einstein",
           "Alexander Graham Bell",
           "Thomas Edison"
         ],
-        "why": "The theory of relativity исторически связывают с Albert Einstein."
+        "why": "теория относительности исторически связывают с Albert Einstein."
       },
       "correct": 1
     },
@@ -6187,24 +6187,24 @@
       "id": "general-0248",
       "difficulty": "easy",
       "ky": {
-        "q": "The laws of planetary motion ким менен тарыхый жактан байланышкан?",
+        "q": "планеталардын кыймыл мыйзамдары ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Johannes Kepler",
           "Nikola Tesla",
           "Alexander Graham Bell"
         ],
-        "why": "The laws of planetary motion тарыхта Johannes Kepler менен байланышкан."
+        "why": "планеталардын кыймыл мыйзамдары тарыхта Johannes Kepler менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the laws of planetary motion?",
+        "q": "С кем исторически связывают законы движения планет?",
         "a": [
           "Thomas Edison",
           "Johannes Kepler",
           "Nikola Tesla",
           "Alexander Graham Bell"
         ],
-        "why": "The laws of planetary motion исторически связывают с Johannes Kepler."
+        "why": "законы движения планет исторически связывают с Johannes Kepler."
       },
       "correct": 1
     },
@@ -6362,24 +6362,24 @@
       "id": "general-0255",
       "difficulty": "easy",
       "ky": {
-        "q": "The practical incandescent light bulb ким менен тарыхый жактан байланышкан?",
+        "q": "практикалык ысытуу лампасы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Guglielmo Marconi",
           "Thomas Edison"
         ],
-        "why": "The practical incandescent light bulb тарыхта Thomas Edison менен байланышкан."
+        "why": "практикалык ысытуу лампасы тарыхта Thomas Edison менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the practical incandescent light bulb?",
+        "q": "С кем исторически связывают практическая лампа накаливания?",
         "a": [
           "Nikola Tesla",
           "Alexander Graham Bell",
           "Guglielmo Marconi",
           "Thomas Edison"
         ],
-        "why": "The practical incandescent light bulb исторически связывают с Thomas Edison."
+        "why": "практическая лампа накаливания исторически связывают с Thomas Edison."
       },
       "correct": 3
     },
@@ -6412,24 +6412,24 @@
       "id": "general-0257",
       "difficulty": "easy",
       "ky": {
-        "q": "The smallpox vaccine ким менен тарыхый жактан байланышкан?",
+        "q": "чечекке каршы вакцина ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Edward Jenner",
           "Thomas Edison",
           "Alexander Graham Bell"
         ],
-        "why": "The smallpox vaccine тарыхта Edward Jenner менен байланышкан."
+        "why": "чечекке каршы вакцина тарыхта Edward Jenner менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the smallpox vaccine?",
+        "q": "С кем исторически связывают вакцина против оспы?",
         "a": [
           "Nikola Tesla",
           "Edward Jenner",
           "Thomas Edison",
           "Alexander Graham Bell"
         ],
-        "why": "The smallpox vaccine исторически связывают с Edward Jenner."
+        "why": "вакцина против оспы исторически связывают с Edward Jenner."
       },
       "correct": 1
     },
@@ -6987,24 +6987,24 @@
       "id": "general-0280",
       "difficulty": "easy",
       "ky": {
-        "q": "The modern periodic table arrangement ким менен тарыхый жактан байланышкан?",
+        "q": "мезгилдик таблицанын азыркы түзүлүшү ким менен тарыхый жактан байланышкан?",
         "a": [
           "Alexander Graham Bell",
           "Dmitri Mendeleev",
           "Thomas Edison",
           "Nikola Tesla"
         ],
-        "why": "The modern periodic table arrangement тарыхта Dmitri Mendeleev менен байланышкан."
+        "why": "мезгилдик таблицанын азыркы түзүлүшү тарыхта Dmitri Mendeleev менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the modern periodic table arrangement?",
+        "q": "С кем исторически связывают современное расположение периодической таблицы?",
         "a": [
           "Alexander Graham Bell",
           "Dmitri Mendeleev",
           "Thomas Edison",
           "Nikola Tesla"
         ],
-        "why": "The modern periodic table arrangement исторически связывают с Dmitri Mendeleev."
+        "why": "современное расположение периодической таблицы исторически связывают с Dmitri Mendeleev."
       },
       "correct": 1
     },
@@ -7187,24 +7187,24 @@
       "id": "general-0288",
       "difficulty": "easy",
       "ky": {
-        "q": "The airplane ким менен тарыхый жактан байланышкан?",
+        "q": "учак ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Nikola Tesla",
           "Alexander Graham Bell",
-          "the Wright brothers"
+          "Райт бир туугандары"
         ],
-        "why": "The airplane тарыхта the Wright brothers менен байланышкан."
+        "why": "учак тарыхта Райт бир туугандары менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the airplane?",
+        "q": "С кем исторически связывают самолёт?",
         "a": [
           "Thomas Edison",
           "Nikola Tesla",
           "Alexander Graham Bell",
-          "the Wright brothers"
+          "братья Райт"
         ],
-        "why": "The airplane исторически связывают с the Wright brothers."
+        "why": "самолёт исторически связывают с братья Райт."
       },
       "correct": 3
     },
@@ -7587,24 +7587,24 @@
       "id": "general-0304",
       "difficulty": "easy",
       "ky": {
-        "q": "The integrated circuit ким менен тарыхый жактан байланышкан?",
+        "q": "интегралдык микросхема ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Jack Kilby and Robert Noyce",
           "Nikola Tesla",
           "Alexander Graham Bell"
         ],
-        "why": "The integrated circuit тарыхта Jack Kilby and Robert Noyce менен байланышкан."
+        "why": "интегралдык микросхема тарыхта Jack Kilby and Robert Noyce менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the integrated circuit?",
+        "q": "С кем исторически связывают интегральная микросхема?",
         "a": [
           "Thomas Edison",
           "Jack Kilby and Robert Noyce",
           "Nikola Tesla",
           "Alexander Graham Bell"
         ],
-        "why": "The integrated circuit исторически связывают с Jack Kilby and Robert Noyce."
+        "why": "интегральная микросхема исторически связывают с Jack Kilby and Robert Noyce."
       },
       "correct": 1
     },
@@ -7637,24 +7637,24 @@
       "id": "general-0306",
       "difficulty": "easy",
       "ky": {
-        "q": "The first successful powered flight ким менен тарыхый жактан байланышкан?",
+        "q": "кыймылдаткычы бар учак менен алгачкы ийгиликтүү учуу ким менен тарыхый жактан байланышкан?",
         "a": [
-          "the Wright brothers",
+          "Райт бир туугандары",
           "Thomas Edison",
           "Alexander Graham Bell",
           "Nikola Tesla"
         ],
-        "why": "The first successful powered flight тарыхта the Wright brothers менен байланышкан."
+        "why": "кыймылдаткычы бар учак менен алгачкы ийгиликтүү учуу тарыхта Райт бир туугандары менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first successful powered flight?",
+        "q": "С кем исторически связывают первый успешный полёт самолёта с двигателем?",
         "a": [
-          "the Wright brothers",
+          "братья Райт",
           "Thomas Edison",
           "Alexander Graham Bell",
           "Nikola Tesla"
         ],
-        "why": "The first successful powered flight исторически связывают с the Wright brothers."
+        "why": "первый успешный полёт самолёта с двигателем исторически связывают с братья Райт."
       },
       "correct": 0
     },
@@ -7862,24 +7862,24 @@
       "id": "general-0315",
       "difficulty": "easy",
       "ky": {
-        "q": "The discovery of insulin ким менен тарыхый жактан байланышкан?",
+        "q": "инсулиндин ачылышы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Frederick Banting and Charles Best",
           "Nikola Tesla",
           "Alexander Graham Bell"
         ],
-        "why": "The discovery of insulin тарыхта Frederick Banting and Charles Best менен байланышкан."
+        "why": "инсулиндин ачылышы тарыхта Frederick Banting and Charles Best менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the discovery of insulin?",
+        "q": "С кем исторически связывают открытие инсулина?",
         "a": [
           "Thomas Edison",
           "Frederick Banting and Charles Best",
           "Nikola Tesla",
           "Alexander Graham Bell"
         ],
-        "why": "The discovery of insulin исторически связывают с Frederick Banting and Charles Best."
+        "why": "открытие инсулина исторически связывают с Frederick Banting and Charles Best."
       },
       "correct": 1
     },
@@ -7912,24 +7912,24 @@
       "id": "general-0317",
       "difficulty": "easy",
       "ky": {
-        "q": "The first programmable electronic general-purpose computer eniac ким менен тарыхый жактан байланышкан?",
+        "q": "алгачкы программаланма электрондук жалпы багыттагы ENIAC компьютери ким менен тарыхый жактан байланышкан?",
         "a": [
           "J. Presper Eckert and John Mauchly",
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Thomas Edison"
         ],
-        "why": "The first programmable electronic general-purpose computer eniac тарыхта J. Presper Eckert and John Mauchly менен байланышкан."
+        "why": "алгачкы программаланма электрондук жалпы багыттагы ENIAC компьютери тарыхта J. Presper Eckert and John Mauchly менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first programmable electronic general-purpose computer ENIAC?",
+        "q": "С кем исторически связывают первый программируемый электронный компьютер общего назначения ENIAC?",
         "a": [
           "J. Presper Eckert and John Mauchly",
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Thomas Edison"
         ],
-        "why": "The first programmable electronic general-purpose computer eniac исторически связывают с J. Presper Eckert and John Mauchly."
+        "why": "первый программируемый электронный компьютер общего назначения ENIAC исторически связывают с J. Presper Eckert and John Mauchly."
       },
       "correct": 0
     },
@@ -8062,24 +8062,24 @@
       "id": "general-0323",
       "difficulty": "easy",
       "ky": {
-        "q": "The first successful practical steamship ким менен тарыхый жактан байланышкан?",
+        "q": "алгачкы ийгиликтүү практикалык буу кемеси ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Thomas Edison",
           "Robert Fulton",
           "Alexander Graham Bell"
         ],
-        "why": "The first successful practical steamship тарыхта Robert Fulton менен байланышкан."
+        "why": "алгачкы ийгиликтүү практикалык буу кемеси тарыхта Robert Fulton менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first successful practical steamship?",
+        "q": "С кем исторически связывают первый успешный практический пароход?",
         "a": [
           "Nikola Tesla",
           "Thomas Edison",
           "Robert Fulton",
           "Alexander Graham Bell"
         ],
-        "why": "The first successful practical steamship исторически связывают с Robert Fulton."
+        "why": "первый успешный практический пароход исторически связывают с Robert Fulton."
       },
       "correct": 2
     },
@@ -8487,24 +8487,24 @@
       "id": "general-0340",
       "difficulty": "easy",
       "ky": {
-        "q": "The discovery of radioactivity ким менен тарыхый жактан байланышкан?",
+        "q": "радиоактивдүүлүктүн ачылышы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Nikola Tesla",
           "Henri Becquerel",
           "Alexander Graham Bell"
         ],
-        "why": "The discovery of radioactivity тарыхта Henri Becquerel менен байланышкан."
+        "why": "радиоактивдүүлүктүн ачылышы тарыхта Henri Becquerel менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the discovery of radioactivity?",
+        "q": "С кем исторически связывают открытие радиоактивности?",
         "a": [
           "Thomas Edison",
           "Nikola Tesla",
           "Henri Becquerel",
           "Alexander Graham Bell"
         ],
-        "why": "The discovery of radioactivity исторически связывают с Henri Becquerel."
+        "why": "открытие радиоактивности исторически связывают с Henri Becquerel."
       },
       "correct": 2
     },
@@ -8812,24 +8812,24 @@
       "id": "general-0353",
       "difficulty": "easy",
       "ky": {
-        "q": "The first antibiotic penicillin observation ким менен тарыхый жактан байланышкан?",
+        "q": "пенициллиндин антибиотиктик касиетинин алгачкы байкалышы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Alexander Graham Bell",
           "Alexander Fleming",
           "Nikola Tesla",
           "Thomas Edison"
         ],
-        "why": "The first antibiotic penicillin observation тарыхта Alexander Fleming менен байланышкан."
+        "why": "пенициллиндин антибиотиктик касиетинин алгачкы байкалышы тарыхта Alexander Fleming менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first antibiotic penicillin observation?",
+        "q": "С кем исторически связывают первое наблюдение антибиотических свойств пенициллина?",
         "a": [
           "Alexander Graham Bell",
           "Alexander Fleming",
           "Nikola Tesla",
           "Thomas Edison"
         ],
-        "why": "The first antibiotic penicillin observation исторически связывают с Alexander Fleming."
+        "why": "первое наблюдение антибиотических свойств пенициллина исторически связывают с Alexander Fleming."
       },
       "correct": 1
     },
@@ -8887,24 +8887,24 @@
       "id": "general-0356",
       "difficulty": "easy",
       "ky": {
-        "q": "The first practical jet engine ким менен тарыхый жактан байланышкан?",
+        "q": "алгачкы практикалык реактивдүү кыймылдаткыч ким менен тарыхый жактан байланышкан?",
         "a": [
           "Thomas Edison",
           "Alexander Graham Bell",
           "Frank Whittle and Hans von Ohain",
           "Nikola Tesla"
         ],
-        "why": "The first practical jet engine тарыхта Frank Whittle and Hans von Ohain менен байланышкан."
+        "why": "алгачкы практикалык реактивдүү кыймылдаткыч тарыхта Frank Whittle and Hans von Ohain менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first practical jet engine?",
+        "q": "С кем исторически связывают первый практический реактивный двигатель?",
         "a": [
           "Thomas Edison",
           "Alexander Graham Bell",
           "Frank Whittle and Hans von Ohain",
           "Nikola Tesla"
         ],
-        "why": "The first practical jet engine исторически связывают с Frank Whittle and Hans von Ohain."
+        "why": "первый практический реактивный двигатель исторически связывают с Frank Whittle and Hans von Ohain."
       },
       "correct": 2
     },
@@ -8937,24 +8937,24 @@
       "id": "general-0358",
       "difficulty": "easy",
       "ky": {
-        "q": "The escalator patent ким менен тарыхый жактан байланышкан?",
+        "q": "эскалаторго берилген патент ким менен тарыхый жактан байланышкан?",
         "a": [
           "Jesse W. Reno",
           "Thomas Edison",
           "Alexander Graham Bell",
           "Nikola Tesla"
         ],
-        "why": "The escalator patent тарыхта Jesse W. Reno менен байланышкан."
+        "why": "эскалаторго берилген патент тарыхта Jesse W. Reno менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the escalator patent?",
+        "q": "С кем исторически связывают патент на эскалатор?",
         "a": [
           "Jesse W. Reno",
           "Thomas Edison",
           "Alexander Graham Bell",
           "Nikola Tesla"
         ],
-        "why": "The escalator patent исторически связывают с Jesse W. Reno."
+        "why": "патент на эскалатор исторически связывают с Jesse W. Reno."
       },
       "correct": 0
     },
@@ -8962,24 +8962,24 @@
       "id": "general-0359",
       "difficulty": "easy",
       "ky": {
-        "q": "The safety elevator ким менен тарыхый жактан байланышкан?",
+        "q": "коопсуз лифт ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Elisha Otis",
           "Alexander Graham Bell",
           "Thomas Edison"
         ],
-        "why": "The safety elevator тарыхта Elisha Otis менен байланышкан."
+        "why": "коопсуз лифт тарыхта Elisha Otis менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the safety elevator?",
+        "q": "С кем исторически связывают безопасный лифт?",
         "a": [
           "Nikola Tesla",
           "Elisha Otis",
           "Alexander Graham Bell",
           "Thomas Edison"
         ],
-        "why": "The safety elevator исторически связывают с Elisha Otis."
+        "why": "безопасный лифт исторически связывают с Elisha Otis."
       },
       "correct": 1
     },
@@ -9012,24 +9012,24 @@
       "id": "general-0361",
       "difficulty": "easy",
       "ky": {
-        "q": "The x-ray discovery ким менен тарыхый жактан байланышкан?",
+        "q": "рентген нурларынын ачылышы ким менен тарыхый жактан байланышкан?",
         "a": [
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Thomas Edison",
           "Wilhelm Conrad Röntgen"
         ],
-        "why": "The x-ray discovery тарыхта Wilhelm Conrad Röntgen менен байланышкан."
+        "why": "рентген нурларынын ачылышы тарыхта Wilhelm Conrad Röntgen менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the X-ray discovery?",
+        "q": "С кем исторически связывают открытие рентгеновских лучей?",
         "a": [
           "Alexander Graham Bell",
           "Nikola Tesla",
           "Thomas Edison",
           "Wilhelm Conrad Röntgen"
         ],
-        "why": "The x-ray discovery исторически связывают с Wilhelm Conrad Röntgen."
+        "why": "открытие рентгеновских лучей исторически связывают с Wilhelm Conrad Röntgen."
       },
       "correct": 3
     },
@@ -9062,24 +9062,24 @@
       "id": "general-0363",
       "difficulty": "easy",
       "ky": {
-        "q": "The periodic table ким менен тарыхый жактан байланышкан?",
+        "q": "мезгилдик таблица ким менен тарыхый жактан байланышкан?",
         "a": [
           "Nikola Tesla",
           "Dmitri Mendeleev",
           "Alexander Graham Bell",
           "Thomas Edison"
         ],
-        "why": "The periodic table тарыхта Dmitri Mendeleev менен байланышкан."
+        "why": "мезгилдик таблица тарыхта Dmitri Mendeleev менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the periodic table?",
+        "q": "С кем исторически связывают периодическая таблица?",
         "a": [
           "Nikola Tesla",
           "Dmitri Mendeleev",
           "Alexander Graham Bell",
           "Thomas Edison"
         ],
-        "why": "The periodic table исторически связывают с Dmitri Mendeleev."
+        "why": "периодическая таблица исторически связывают с Dmitri Mendeleev."
       },
       "correct": 1
     },
@@ -9312,24 +9312,24 @@
       "id": "general-0373",
       "difficulty": "easy",
       "ky": {
-        "q": "The first practical battery ким менен тарыхый жактан байланышкан?",
+        "q": "алгачкы практикалык батарея ким менен тарыхый жактан байланышкан?",
         "a": [
           "Alexander Graham Bell",
           "Thomas Edison",
           "Nikola Tesla",
           "Alessandro Volta"
         ],
-        "why": "The first practical battery тарыхта Alessandro Volta менен байланышкан."
+        "why": "алгачкы практикалык батарея тарыхта Alessandro Volta менен байланышкан."
       },
       "ru": {
-        "q": "С кем исторически связывают the first practical battery?",
+        "q": "С кем исторически связывают первая практическая батарея?",
         "a": [
           "Alexander Graham Bell",
           "Thomas Edison",
           "Nikola Tesla",
           "Alessandro Volta"
         ],
-        "why": "The first practical battery исторически связывают с Alessandro Volta."
+        "why": "первая практическая батарея исторически связывают с Alessandro Volta."
       },
       "correct": 3
     },
@@ -9464,22 +9464,22 @@
       "ky": {
         "q": "Guglielmo Marconi кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the radio experiments",
-          "the phonograph"
+          "телефон",
+          "практикалык ысытуу лампасы",
+          "радио боюнча алгачкы тажрыйбалар",
+          "фонограф"
         ],
-        "why": "Guglielmo Marconi the radio experiments менен байланышкан."
+        "why": "Guglielmo Marconi төмөнкү ойлоп табуу же технология менен байланышкан: радио боюнча алгачкы тажрыйбалар."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Guglielmo Marconi?",
+        "q": "С каким изобретением или технологией связывают Guglielmo Marconi?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the radio experiments",
-          "the phonograph"
+          "телефон",
+          "практическая лампа накаливания",
+          "первые радиотехнические эксперименты",
+          "фонограф"
         ],
-        "why": "Guglielmo Marconi связан(а) с изобретением: the radio experiments."
+        "why": "С именем Guglielmo Marconi связывают следующее изобретение или технологию: первые радиотехнические эксперименты."
       },
       "correct": 2
     },
@@ -9514,22 +9514,22 @@
       "ky": {
         "q": "Albert Einstein кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the theory of relativity"
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "телефон",
+          "салыштырмалуулук теориясы"
         ],
-        "why": "Albert Einstein the theory of relativity менен байланышкан."
+        "why": "Albert Einstein төмөнкү ойлоп табуу же технология менен байланышкан: салыштырмалуулук теориясы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Albert Einstein?",
+        "q": "С каким изобретением или технологией связывают Albert Einstein?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the theory of relativity"
+          "практическая лампа накаливания",
+          "фонограф",
+          "телефон",
+          "теория относительности"
         ],
-        "why": "Albert Einstein связан(а) с изобретением: the theory of relativity."
+        "why": "С именем Albert Einstein связывают следующее изобретение или технологию: теория относительности."
       },
       "correct": 3
     },
@@ -9714,22 +9714,22 @@
       "ky": {
         "q": "Rudolf Diesel кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the diesel engine",
-          "the phonograph",
-          "the telephone"
+          "практикалык ысытуу лампасы",
+          "дизель кыймылдаткычы",
+          "фонограф",
+          "телефон"
         ],
-        "why": "Rudolf Diesel the diesel engine менен байланышкан."
+        "why": "Rudolf Diesel төмөнкү ойлоп табуу же технология менен байланышкан: дизель кыймылдаткычы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Rudolf Diesel?",
+        "q": "С каким изобретением или технологией связывают Rudolf Diesel?",
         "a": [
-          "the practical incandescent light bulb",
-          "the diesel engine",
-          "the phonograph",
-          "the telephone"
+          "практическая лампа накаливания",
+          "дизельный двигатель",
+          "фонограф",
+          "телефон"
         ],
-        "why": "Rudolf Diesel связан(а) с изобретением: the diesel engine."
+        "why": "С именем Rudolf Diesel связывают следующее изобретение или технологию: дизельный двигатель."
       },
       "correct": 1
     },
@@ -9839,22 +9839,22 @@
       "ky": {
         "q": "Elias Howe кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the first practical sewing machine designs",
-          "the practical incandescent light bulb",
-          "the phonograph"
+          "телефон",
+          "алгачкы практикалык тигүү машинасынын долбоорлору",
+          "практикалык ысытуу лампасы",
+          "фонограф"
         ],
-        "why": "Elias Howe the first practical sewing machine designs менен байланышкан."
+        "why": "Elias Howe төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы практикалык тигүү машинасынын долбоорлору."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Elias Howe?",
+        "q": "С каким изобретением или технологией связывают Elias Howe?",
         "a": [
-          "the telephone",
-          "the first practical sewing machine designs",
-          "the practical incandescent light bulb",
-          "the phonograph"
+          "телефон",
+          "первые практические конструкции швейной машины",
+          "практическая лампа накаливания",
+          "фонограф"
         ],
-        "why": "Elias Howe связан(а) с изобретением: the first practical sewing machine designs."
+        "why": "С именем Elias Howe связывают следующее изобретение или технологию: первые практические конструкции швейной машины."
       },
       "correct": 1
     },
@@ -9922,14 +9922,14 @@
         "why": "Modest Mussorgsky «Pictures at an Exhibition» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Modest Mussorgsky?",
+        "q": "Какое музыкальное произведение связывают с именем Modest Mussorgsky?",
         "a": [
           "The Four Seasons",
           "Symphony No. 9",
           "Pictures at an Exhibition",
           "Moonlight Sonata"
         ],
-        "why": "Modest Mussorgsky создал(а) произведение «Pictures at an Exhibition»."
+        "why": "С именем Modest Mussorgsky связывают музыкальное произведение «Pictures at an Exhibition»."
       },
       "correct": 2
     },
@@ -9972,14 +9972,14 @@
         "why": "Ludwig van Beethoven «Moonlight Sonata» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Ludwig van Beethoven?",
+        "q": "Какое музыкальное произведение связывают с именем Ludwig van Beethoven?",
         "a": [
           "The Four Seasons",
           "Symphony No. 9",
           "Moonlight Sonata",
           "Für Elise"
         ],
-        "why": "Ludwig van Beethoven создал(а) произведение «Moonlight Sonata»."
+        "why": "С именем Ludwig van Beethoven связывают музыкальное произведение «Moonlight Sonata»."
       },
       "correct": 2
     },
@@ -10014,22 +10014,22 @@
       "ky": {
         "q": "Igor Sikorsky кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the first practical helicopter design",
-          "the telephone",
-          "the phonograph"
+          "практикалык ысытуу лампасы",
+          "алгачкы практикалык тик учактын долбоору",
+          "телефон",
+          "фонограф"
         ],
-        "why": "Igor Sikorsky the first practical helicopter design менен байланышкан."
+        "why": "Igor Sikorsky төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы практикалык тик учактын долбоору."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Igor Sikorsky?",
+        "q": "С каким изобретением или технологией связывают Igor Sikorsky?",
         "a": [
-          "the practical incandescent light bulb",
-          "the first practical helicopter design",
-          "the telephone",
-          "the phonograph"
+          "практическая лампа накаливания",
+          "первый практический проект вертолёта",
+          "телефон",
+          "фонограф"
         ],
-        "why": "Igor Sikorsky связан(а) с изобретением: the first practical helicopter design."
+        "why": "С именем Igor Sikorsky связывают следующее изобретение или технологию: первый практический проект вертолёта."
       },
       "correct": 1
     },
@@ -10214,22 +10214,22 @@
       "ky": {
         "q": "John Kemp Starley кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the modern safety bicycle design",
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "коопсуз велосипеддин заманбап түзүлүшү",
+          "фонограф",
+          "практикалык ысытуу лампасы",
+          "телефон"
         ],
-        "why": "John Kemp Starley the modern safety bicycle design менен байланышкан."
+        "why": "John Kemp Starley төмөнкү ойлоп табуу же технология менен байланышкан: коопсуз велосипеддин заманбап түзүлүшү."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) John Kemp Starley?",
+        "q": "С каким изобретением или технологией связывают John Kemp Starley?",
         "a": [
-          "the modern safety bicycle design",
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "современная конструкция безопасного велосипеда",
+          "фонограф",
+          "практическая лампа накаливания",
+          "телефон"
         ],
-        "why": "John Kemp Starley связан(а) с изобретением: the modern safety bicycle design."
+        "why": "С именем John Kemp Starley связывают следующее изобретение или технологию: современная конструкция безопасного велосипеда."
       },
       "correct": 0
     },
@@ -10239,22 +10239,22 @@
       "ky": {
         "q": "Albert Sabin кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the first oral polio vaccine"
+          "фонограф",
+          "практикалык ысытуу лампасы",
+          "телефон",
+          "полиомиелитке каршы ооз аркылуу берилүүчү алгачкы вакцина"
         ],
-        "why": "Albert Sabin the first oral polio vaccine менен байланышкан."
+        "why": "Albert Sabin төмөнкү ойлоп табуу же технология менен байланышкан: полиомиелитке каршы ооз аркылуу берилүүчү алгачкы вакцина."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Albert Sabin?",
+        "q": "С каким изобретением или технологией связывают Albert Sabin?",
         "a": [
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the first oral polio vaccine"
+          "фонограф",
+          "практическая лампа накаливания",
+          "телефон",
+          "первая пероральная вакцина против полиомиелита"
         ],
-        "why": "Albert Sabin связан(а) с изобретением: the first oral polio vaccine."
+        "why": "С именем Albert Sabin связывают следующее изобретение или технологию: первая пероральная вакцина против полиомиелита."
       },
       "correct": 3
     },
@@ -10297,14 +10297,14 @@
         "why": "Johann Strauss I «Radetzky March» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Johann Strauss I?",
+        "q": "Какое музыкальное произведение связывают с именем Johann Strauss I?",
         "a": [
           "Moonlight Sonata",
           "The Four Seasons",
           "Symphony No. 9",
           "Radetzky March"
         ],
-        "why": "Johann Strauss I создал(а) произведение «Radetzky March»."
+        "why": "С именем Johann Strauss I связывают музыкальное произведение «Radetzky March»."
       },
       "correct": 3
     },
@@ -10314,22 +10314,22 @@
       "ky": {
         "q": "Humphry Davy кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the first practical arc lamp"
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "телефон",
+          "алгачкы практикалык дуга лампасы"
         ],
-        "why": "Humphry Davy the first practical arc lamp менен байланышкан."
+        "why": "Humphry Davy төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы практикалык дуга лампасы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Humphry Davy?",
+        "q": "С каким изобретением или технологией связывают Humphry Davy?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the first practical arc lamp"
+          "практическая лампа накаливания",
+          "фонограф",
+          "телефон",
+          "первая практическая дуговая лампа"
         ],
-        "why": "Humphry Davy связан(а) с изобретением: the first practical arc lamp."
+        "why": "С именем Humphry Davy связывают следующее изобретение или технологию: первая практическая дуговая лампа."
       },
       "correct": 3
     },
@@ -10372,14 +10372,14 @@
         "why": "Edvard Grieg «Peer Gynt» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Edvard Grieg?",
+        "q": "Какое музыкальное произведение связывают с именем Edvard Grieg?",
         "a": [
           "Moonlight Sonata",
           "Peer Gynt",
           "Symphony No. 9",
           "The Four Seasons"
         ],
-        "why": "Edvard Grieg создал(а) произведение «Peer Gynt»."
+        "why": "С именем Edvard Grieg связывают музыкальное произведение «Peer Gynt»."
       },
       "correct": 1
     },
@@ -10397,14 +10397,14 @@
         "why": "Sergei Prokofiev «Romeo and Juliet ballet» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Sergei Prokofiev?",
+        "q": "Какое музыкальное произведение связывают с именем Sergei Prokofiev?",
         "a": [
           "Moonlight Sonata",
           "Romeo and Juliet ballet",
           "The Four Seasons",
           "Symphony No. 9"
         ],
-        "why": "Sergei Prokofiev создал(а) произведение «Romeo and Juliet ballet»."
+        "why": "С именем Sergei Prokofiev связывают музыкальное произведение «Romeo and Juliet ballet»."
       },
       "correct": 1
     },
@@ -10522,14 +10522,14 @@
         "why": "Joseph Haydn «The Seasons» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Joseph Haydn?",
+        "q": "Какое музыкальное произведение связывают с именем Joseph Haydn?",
         "a": [
           "Piano Concerto No. 21",
           "Don Giovanni",
           "Symphony No. 6 “Pastoral”",
           "The Seasons"
         ],
-        "why": "Joseph Haydn создал(а) произведение «The Seasons»."
+        "why": "С именем Joseph Haydn связывают музыкальное произведение «The Seasons»."
       },
       "correct": 3
     },
@@ -10697,14 +10697,14 @@
         "why": "Johann Strauss II «The Blue Danube» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Johann Strauss II?",
+        "q": "Какое музыкальное произведение связывают с именем Johann Strauss II?",
         "a": [
           "The Blue Danube",
           "The Four Seasons",
           "Symphony No. 9",
           "Moonlight Sonata"
         ],
-        "why": "Johann Strauss II создал(а) произведение «The Blue Danube»."
+        "why": "С именем Johann Strauss II связывают музыкальное произведение «The Blue Danube»."
       },
       "correct": 0
     },
@@ -10764,22 +10764,22 @@
       "ky": {
         "q": "Cornelis Drebbel кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the early submarine designs",
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone"
+          "алгачкы суу астындагы кеме долбоорлору",
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "телефон"
         ],
-        "why": "Cornelis Drebbel the early submarine designs менен байланышкан."
+        "why": "Cornelis Drebbel төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы суу астындагы кеме долбоорлору."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Cornelis Drebbel?",
+        "q": "С каким изобретением или технологией связывают Cornelis Drebbel?",
         "a": [
-          "the early submarine designs",
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone"
+          "ранние проекты подводных лодок",
+          "практическая лампа накаливания",
+          "фонограф",
+          "телефон"
         ],
-        "why": "Cornelis Drebbel связан(а) с изобретением: the early submarine designs."
+        "why": "С именем Cornelis Drebbel связывают следующее изобретение или технологию: ранние проекты подводных лодок."
       },
       "correct": 0
     },
@@ -10837,24 +10837,24 @@
       "id": "general-0434",
       "difficulty": "medium",
       "ky": {
-        "q": "the Lumière brothers кайсы ойлоп табуу же технология менен белгилүү?",
+        "q": "Люмьер бир туугандары кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the first practical moving-picture camera system",
-          "the practical incandescent light bulb",
-          "the phonograph"
+          "телефон",
+          "алгачкы практикалык кино тартуу системасы",
+          "практикалык ысытуу лампасы",
+          "фонограф"
         ],
-        "why": "the Lumière brothers the first practical moving-picture camera system менен байланышкан."
+        "why": "Люмьер бир туугандары төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы практикалык кино тартуу системасы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) the Lumière brothers?",
+        "q": "С каким изобретением или технологией связывают братья Люмьер?",
         "a": [
-          "the telephone",
-          "the first practical moving-picture camera system",
-          "the practical incandescent light bulb",
-          "the phonograph"
+          "телефон",
+          "первая практическая система съёмки движущихся изображений",
+          "практическая лампа накаливания",
+          "фонограф"
         ],
-        "why": "the Lumière brothers связан(а) с изобретением: the first practical moving-picture camera system."
+        "why": "С именем братья Люмьер связывают следующее изобретение или технологию: первая практическая система съёмки движущихся изображений."
       },
       "correct": 1
     },
@@ -10914,22 +10914,22 @@
       "ky": {
         "q": "Edward Jenner кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the smallpox vaccine",
-          "the telephone",
-          "the phonograph",
-          "the practical incandescent light bulb"
+          "чечекке каршы вакцина",
+          "телефон",
+          "фонограф",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Edward Jenner the smallpox vaccine менен байланышкан."
+        "why": "Edward Jenner төмөнкү ойлоп табуу же технология менен байланышкан: чечекке каршы вакцина."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Edward Jenner?",
+        "q": "С каким изобретением или технологией связывают Edward Jenner?",
         "a": [
-          "the smallpox vaccine",
-          "the telephone",
-          "the phonograph",
-          "the practical incandescent light bulb"
+          "вакцина против оспы",
+          "телефон",
+          "фонограф",
+          "практическая лампа накаливания"
         ],
-        "why": "Edward Jenner связан(а) с изобретением: the smallpox vaccine."
+        "why": "С именем Edward Jenner связывают следующее изобретение или технологию: вакцина против оспы."
       },
       "correct": 0
     },
@@ -10939,22 +10939,22 @@
       "ky": {
         "q": "Werner von Siemens кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the first electric railway experiments",
-          "the phonograph",
-          "the practical incandescent light bulb"
+          "телефон",
+          "электр темир жолунун алгачкы сыноолору",
+          "фонограф",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Werner von Siemens the first electric railway experiments менен байланышкан."
+        "why": "Werner von Siemens төмөнкү ойлоп табуу же технология менен байланышкан: электр темир жолунун алгачкы сыноолору."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Werner von Siemens?",
+        "q": "С каким изобретением или технологией связывают Werner von Siemens?",
         "a": [
-          "the telephone",
-          "the first electric railway experiments",
-          "the phonograph",
-          "the practical incandescent light bulb"
+          "телефон",
+          "первые эксперименты с электрической железной дорогой",
+          "фонограф",
+          "практическая лампа накаливания"
         ],
-        "why": "Werner von Siemens связан(а) с изобретением: the first electric railway experiments."
+        "why": "С именем Werner von Siemens связывают следующее изобретение или технологию: первые эксперименты с электрической железной дорогой."
       },
       "correct": 1
     },
@@ -11014,22 +11014,22 @@
       "ky": {
         "q": "Joseph Lister кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the phonograph",
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the antiseptic surgery approach"
+          "фонограф",
+          "телефон",
+          "практикалык ысытуу лампасы",
+          "хирургиядагы антисептикалык ыкма"
         ],
-        "why": "Joseph Lister the antiseptic surgery approach менен байланышкан."
+        "why": "Joseph Lister төмөнкү ойлоп табуу же технология менен байланышкан: хирургиядагы антисептикалык ыкма."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Joseph Lister?",
+        "q": "С каким изобретением или технологией связывают Joseph Lister?",
         "a": [
-          "the phonograph",
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the antiseptic surgery approach"
+          "фонограф",
+          "телефон",
+          "практическая лампа накаливания",
+          "антисептический подход в хирургии"
         ],
-        "why": "Joseph Lister связан(а) с изобретением: the antiseptic surgery approach."
+        "why": "С именем Joseph Lister связывают следующее изобретение или технологию: антисептический подход в хирургии."
       },
       "correct": 3
     },
@@ -11189,22 +11189,22 @@
       "ky": {
         "q": "Elisha Otis кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the safety elevator",
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "коопсуз лифт",
+          "фонограф",
+          "практикалык ысытуу лампасы",
+          "телефон"
         ],
-        "why": "Elisha Otis the safety elevator менен байланышкан."
+        "why": "Elisha Otis төмөнкү ойлоп табуу же технология менен байланышкан: коопсуз лифт."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Elisha Otis?",
+        "q": "С каким изобретением или технологией связывают Elisha Otis?",
         "a": [
-          "the safety elevator",
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "безопасный лифт",
+          "фонограф",
+          "практическая лампа накаливания",
+          "телефон"
         ],
-        "why": "Elisha Otis связан(а) с изобретением: the safety elevator."
+        "why": "С именем Elisha Otis связывают следующее изобретение или технологию: безопасный лифт."
       },
       "correct": 0
     },
@@ -11264,22 +11264,22 @@
       "ky": {
         "q": "Thomas Edison кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the alternating-current system",
-          "the phonograph",
-          "the practical incandescent light bulb"
+          "телефон",
+          "өзгөрмө ток системасы",
+          "фонограф",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Thomas Edison the practical incandescent light bulb менен байланышкан."
+        "why": "Thomas Edison төмөнкү ойлоп табуу же технология менен байланышкан: практикалык ысытуу лампасы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Thomas Edison?",
+        "q": "С каким изобретением или технологией связывают Thomas Edison?",
         "a": [
-          "the telephone",
-          "the alternating-current system",
-          "the phonograph",
-          "the practical incandescent light bulb"
+          "телефон",
+          "система переменного тока",
+          "фонограф",
+          "практическая лампа накаливания"
         ],
-        "why": "Thomas Edison связан(а) с изобретением: the practical incandescent light bulb."
+        "why": "С именем Thomas Edison связывают следующее изобретение или технологию: практическая лампа накаливания."
       },
       "correct": 3
     },
@@ -11372,14 +11372,14 @@
         "why": "Dmitri Shostakovich «Symphony No. 5» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Dmitri Shostakovich?",
+        "q": "Какое музыкальное произведение связывают с именем Dmitri Shostakovich?",
         "a": [
           "Symphony No. 9",
           "Moonlight Sonata",
           "The Four Seasons",
           "Symphony No. 5"
         ],
-        "why": "Dmitri Shostakovich создал(а) произведение «Symphony No. 5»."
+        "why": "С именем Dmitri Shostakovich связывают музыкальное произведение «Symphony No. 5»."
       },
       "correct": 3
     },
@@ -11462,24 +11462,24 @@
       "id": "general-0459",
       "difficulty": "medium",
       "ky": {
-        "q": "John Bardeen, Walter Brattain and William Shockley кайсы ойлоп табуу же технология менен белгилүү?",
+        "q": "John Bardeen, Walter Brattain жана William Shockley кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the phonograph",
-          "the transistor",
-          "the telephone",
-          "the practical incandescent light bulb"
+          "фонограф",
+          "транзистор",
+          "телефон",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "John Bardeen, Walter Brattain and William Shockley the transistor менен байланышкан."
+        "why": "John Bardeen, Walter Brattain жана William Shockley төмөнкү ойлоп табуу же технология менен байланышкан: транзистор."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) John Bardeen, Walter Brattain and William Shockley?",
+        "q": "С каким изобретением или технологией связывают John Bardeen, Walter Brattain и William Shockley?",
         "a": [
-          "the phonograph",
-          "the transistor",
-          "the telephone",
-          "the practical incandescent light bulb"
+          "фонограф",
+          "транзистор",
+          "телефон",
+          "практическая лампа накаливания"
         ],
-        "why": "John Bardeen, Walter Brattain and William Shockley связан(а) с изобретением: the transistor."
+        "why": "С именем John Bardeen, Walter Brattain и William Shockley связывают следующее изобретение или технологию: транзистор."
       },
       "correct": 1
     },
@@ -11489,22 +11489,22 @@
       "ky": {
         "q": "Tim Berners-Lee кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the World Wide Web",
-          "the telephone",
-          "the phonograph",
-          "the practical incandescent light bulb"
+          "Дүйнөлүк желе",
+          "телефон",
+          "фонограф",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Tim Berners-Lee the World Wide Web менен байланышкан."
+        "why": "Tim Berners-Lee төмөнкү ойлоп табуу же технология менен байланышкан: Дүйнөлүк желе."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Tim Berners-Lee?",
+        "q": "С каким изобретением или технологией связывают Tim Berners-Lee?",
         "a": [
-          "the World Wide Web",
-          "the telephone",
-          "the phonograph",
-          "the practical incandescent light bulb"
+          "Всемирная паутина",
+          "телефон",
+          "фонограф",
+          "практическая лампа накаливания"
         ],
-        "why": "Tim Berners-Lee связан(а) с изобретением: the World Wide Web."
+        "why": "С именем Tim Berners-Lee связывают следующее изобретение или технологию: Всемирная паутина."
       },
       "correct": 0
     },
@@ -11564,22 +11564,22 @@
       "ky": {
         "q": "James Blundell кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the first successful blood transfusion techniques",
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone"
+          "кан куюунун алгачкы ийгиликтүү ыкмалары",
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "телефон"
         ],
-        "why": "James Blundell the first successful blood transfusion techniques менен байланышкан."
+        "why": "James Blundell төмөнкү ойлоп табуу же технология менен байланышкан: кан куюунун алгачкы ийгиликтүү ыкмалары."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) James Blundell?",
+        "q": "С каким изобретением или технологией связывают James Blundell?",
         "a": [
-          "the first successful blood transfusion techniques",
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone"
+          "первые успешные методы переливания крови",
+          "практическая лампа накаливания",
+          "фонограф",
+          "телефон"
         ],
-        "why": "James Blundell связан(а) с изобретением: the first successful blood transfusion techniques."
+        "why": "С именем James Blundell связывают следующее изобретение или технологию: первые успешные методы переливания крови."
       },
       "correct": 0
     },
@@ -11589,22 +11589,22 @@
       "ky": {
         "q": "Johannes Kepler кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the laws of planetary motion",
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the phonograph"
+          "планеталардын кыймыл мыйзамдары",
+          "практикалык ысытуу лампасы",
+          "телефон",
+          "фонограф"
         ],
-        "why": "Johannes Kepler the laws of planetary motion менен байланышкан."
+        "why": "Johannes Kepler төмөнкү ойлоп табуу же технология менен байланышкан: планеталардын кыймыл мыйзамдары."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Johannes Kepler?",
+        "q": "С каким изобретением или технологией связывают Johannes Kepler?",
         "a": [
-          "the laws of planetary motion",
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the phonograph"
+          "законы движения планет",
+          "практическая лампа накаливания",
+          "телефон",
+          "фонограф"
         ],
-        "why": "Johannes Kepler связан(а) с изобретением: the laws of planetary motion."
+        "why": "С именем Johannes Kepler связывают следующее изобретение или технологию: законы движения планет."
       },
       "correct": 0
     },
@@ -11664,22 +11664,22 @@
       "ky": {
         "q": "Christiaan Barnard кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the phonograph",
-          "the first successful heart transplant",
-          "the practical incandescent light bulb"
+          "телефон",
+          "фонограф",
+          "алгачкы ийгиликтүү жүрөк трансплантациясы",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Christiaan Barnard the first successful heart transplant менен байланышкан."
+        "why": "Christiaan Barnard төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы ийгиликтүү жүрөк трансплантациясы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Christiaan Barnard?",
+        "q": "С каким изобретением или технологией связывают Christiaan Barnard?",
         "a": [
-          "the telephone",
-          "the phonograph",
-          "the first successful heart transplant",
-          "the practical incandescent light bulb"
+          "телефон",
+          "фонограф",
+          "первая успешная трансплантация сердца",
+          "практическая лампа накаливания"
         ],
-        "why": "Christiaan Barnard связан(а) с изобретением: the first successful heart transplant."
+        "why": "С именем Christiaan Barnard связывают следующее изобретение или технологию: первая успешная трансплантация сердца."
       },
       "correct": 2
     },
@@ -11689,22 +11689,22 @@
       "ky": {
         "q": "Nikolaus Otto кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the four-stroke internal-combustion engine",
-          "the telephone",
-          "the phonograph"
+          "практикалык ысытуу лампасы",
+          "төрт тактылуу ичтен күйүүчү кыймылдаткыч",
+          "телефон",
+          "фонограф"
         ],
-        "why": "Nikolaus Otto the four-stroke internal-combustion engine менен байланышкан."
+        "why": "Nikolaus Otto төмөнкү ойлоп табуу же технология менен байланышкан: төрт тактылуу ичтен күйүүчү кыймылдаткыч."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Nikolaus Otto?",
+        "q": "С каким изобретением или технологией связывают Nikolaus Otto?",
         "a": [
-          "the practical incandescent light bulb",
-          "the four-stroke internal-combustion engine",
-          "the telephone",
-          "the phonograph"
+          "практическая лампа накаливания",
+          "четырёхтактный двигатель внутреннего сгорания",
+          "телефон",
+          "фонограф"
         ],
-        "why": "Nikolaus Otto связан(а) с изобретением: the four-stroke internal-combustion engine."
+        "why": "С именем Nikolaus Otto связывают следующее изобретение или технологию: четырёхтактный двигатель внутреннего сгорания."
       },
       "correct": 1
     },
@@ -11722,14 +11722,14 @@
         "why": "Leonard Bernstein «West Side Story» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Leonard Bernstein?",
+        "q": "Какое музыкальное произведение связывают с именем Leonard Bernstein?",
         "a": [
           "Symphony No. 6 “Pastoral”",
           "Piano Concerto No. 21",
           "West Side Story",
           "Don Giovanni"
         ],
-        "why": "Leonard Bernstein создал(а) произведение «West Side Story»."
+        "why": "С именем Leonard Bernstein связывают музыкальное произведение «West Side Story»."
       },
       "correct": 2
     },
@@ -11747,14 +11747,14 @@
         "why": "Richard Wagner «Ride of the Valkyries» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Richard Wagner?",
+        "q": "Какое музыкальное произведение связывают с именем Richard Wagner?",
         "a": [
           "Moonlight Sonata",
           "Symphony No. 9",
           "The Four Seasons",
           "Ride of the Valkyries"
         ],
-        "why": "Richard Wagner создал(а) произведение «Ride of the Valkyries»."
+        "why": "С именем Richard Wagner связывают музыкальное произведение «Ride of the Valkyries»."
       },
       "correct": 3
     },
@@ -11762,24 +11762,24 @@
       "id": "general-0471",
       "difficulty": "medium",
       "ky": {
-        "q": "J. Presper Eckert and John Mauchly кайсы ойлоп табуу же технология менен белгилүү?",
+        "q": "J. Presper Eckert жана John Mauchly кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the first programmable electronic general-purpose computer ENIAC",
-          "the phonograph",
-          "the telephone"
+          "практикалык ысытуу лампасы",
+          "алгачкы программаланма электрондук жалпы багыттагы ENIAC компьютери",
+          "фонограф",
+          "телефон"
         ],
-        "why": "J. Presper Eckert and John Mauchly the first programmable electronic general-purpose computer ENIAC менен байланышкан."
+        "why": "J. Presper Eckert жана John Mauchly төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы программаланма электрондук жалпы багыттагы ENIAC компьютери."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) J. Presper Eckert and John Mauchly?",
+        "q": "С каким изобретением или технологией связывают J. Presper Eckert и John Mauchly?",
         "a": [
-          "the practical incandescent light bulb",
-          "the first programmable electronic general-purpose computer ENIAC",
-          "the phonograph",
-          "the telephone"
+          "практическая лампа накаливания",
+          "первый программируемый электронный компьютер общего назначения ENIAC",
+          "фонограф",
+          "телефон"
         ],
-        "why": "J. Presper Eckert and John Mauchly связан(а) с изобретением: the first programmable electronic general-purpose computer ENIAC."
+        "why": "С именем J. Presper Eckert и John Mauchly связывают следующее изобретение или технологию: первый программируемый электронный компьютер общего назначения ENIAC."
       },
       "correct": 1
     },
@@ -11847,14 +11847,14 @@
         "why": "Antonio Vivaldi «The Four Seasons» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Antonio Vivaldi?",
+        "q": "Какое музыкальное произведение связывают с именем Antonio Vivaldi?",
         "a": [
           "The Four Seasons",
           "Für Elise",
           "Symphony No. 9",
           "Moonlight Sonata"
         ],
-        "why": "Antonio Vivaldi создал(а) произведение «The Four Seasons»."
+        "why": "С именем Antonio Vivaldi связывают музыкальное произведение «The Four Seasons»."
       },
       "correct": 0
     },
@@ -11862,24 +11862,24 @@
       "id": "general-0475",
       "difficulty": "medium",
       "ky": {
-        "q": "Frank Whittle and Hans von Ohain кайсы ойлоп табуу же технология менен белгилүү?",
+        "q": "Frank Whittle жана Hans von Ohain кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the first practical jet engine",
-          "the phonograph"
+          "телефон",
+          "практикалык ысытуу лампасы",
+          "алгачкы практикалык реактивдүү кыймылдаткыч",
+          "фонограф"
         ],
-        "why": "Frank Whittle and Hans von Ohain the first practical jet engine менен байланышкан."
+        "why": "Frank Whittle жана Hans von Ohain төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы практикалык реактивдүү кыймылдаткыч."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Frank Whittle and Hans von Ohain?",
+        "q": "С каким изобретением или технологией связывают Frank Whittle и Hans von Ohain?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the first practical jet engine",
-          "the phonograph"
+          "телефон",
+          "практическая лампа накаливания",
+          "первый практический реактивный двигатель",
+          "фонограф"
         ],
-        "why": "Frank Whittle and Hans von Ohain связан(а) с изобретением: the first practical jet engine."
+        "why": "С именем Frank Whittle и Hans von Ohain связывают следующее изобретение или технологию: первый практический реактивный двигатель."
       },
       "correct": 2
     },
@@ -12014,22 +12014,22 @@
       "ky": {
         "q": "Willem Kolff кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the first successful kidney dialysis machine",
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "бөйрөк диализине арналган алгачкы ийгиликтүү аппарат",
+          "фонограф",
+          "практикалык ысытуу лампасы",
+          "телефон"
         ],
-        "why": "Willem Kolff the first successful kidney dialysis machine менен байланышкан."
+        "why": "Willem Kolff төмөнкү ойлоп табуу же технология менен байланышкан: бөйрөк диализине арналган алгачкы ийгиликтүү аппарат."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Willem Kolff?",
+        "q": "С каким изобретением или технологией связывают Willem Kolff?",
         "a": [
-          "the first successful kidney dialysis machine",
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "первый успешный аппарат для диализа почек",
+          "фонограф",
+          "практическая лампа накаливания",
+          "телефон"
         ],
-        "why": "Willem Kolff связан(а) с изобретением: the first successful kidney dialysis machine."
+        "why": "С именем Willem Kolff связывают следующее изобретение или технологию: первый успешный аппарат для диализа почек."
       },
       "correct": 0
     },
@@ -12189,22 +12189,22 @@
       "ky": {
         "q": "Samuel Morse кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the Morse code system"
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "телефон",
+          "Морзе коду"
         ],
-        "why": "Samuel Morse the Morse code system менен байланышкан."
+        "why": "Samuel Morse төмөнкү ойлоп табуу же технология менен байланышкан: Морзе коду."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Samuel Morse?",
+        "q": "С каким изобретением или технологией связывают Samuel Morse?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the Morse code system"
+          "практическая лампа накаливания",
+          "фонограф",
+          "телефон",
+          "азбука Морзе"
         ],
-        "why": "Samuel Morse связан(а) с изобретением: the Morse code system."
+        "why": "С именем Samuel Morse связывают следующее изобретение или технологию: азбука Морзе."
       },
       "correct": 3
     },
@@ -12364,22 +12364,22 @@
       "ky": {
         "q": "William Henry Fox Talbot кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the calotype photographic process",
-          "the phonograph"
+          "телефон",
+          "практикалык ысытуу лампасы",
+          "калотипиялык сүрөткө тартуу процесси",
+          "фонограф"
         ],
-        "why": "William Henry Fox Talbot the calotype photographic process менен байланышкан."
+        "why": "William Henry Fox Talbot төмөнкү ойлоп табуу же технология менен байланышкан: калотипиялык сүрөткө тартуу процесси."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) William Henry Fox Talbot?",
+        "q": "С каким изобретением или технологией связывают William Henry Fox Talbot?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the calotype photographic process",
-          "the phonograph"
+          "телефон",
+          "практическая лампа накаливания",
+          "калотипный фотографический процесс",
+          "фонограф"
         ],
-        "why": "William Henry Fox Talbot связан(а) с изобретением: the calotype photographic process."
+        "why": "С именем William Henry Fox Talbot связывают следующее изобретение или технологию: калотипный фотографический процесс."
       },
       "correct": 2
     },
@@ -12597,14 +12597,14 @@
         "why": "Bedřich Smetana «The Moldau» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Bedřich Smetana?",
+        "q": "Какое музыкальное произведение связывают с именем Bedřich Smetana?",
         "a": [
           "Moonlight Sonata",
           "The Four Seasons",
           "Symphony No. 9",
           "The Moldau"
         ],
-        "why": "Bedřich Smetana создал(а) произведение «The Moldau»."
+        "why": "С именем Bedřich Smetana связывают музыкальное произведение «The Moldau»."
       },
       "correct": 3
     },
@@ -12764,22 +12764,22 @@
       "ky": {
         "q": "William Potts кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the traffic signal with three colors"
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "телефон",
+          "үч түстүү жол чырагы"
         ],
-        "why": "William Potts the traffic signal with three colors менен байланышкан."
+        "why": "William Potts төмөнкү ойлоп табуу же технология менен байланышкан: үч түстүү жол чырагы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) William Potts?",
+        "q": "С каким изобретением или технологией связывают William Potts?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the traffic signal with three colors"
+          "практическая лампа накаливания",
+          "фонограф",
+          "телефон",
+          "трёхцветный дорожный светофор"
         ],
-        "why": "William Potts связан(а) с изобретением: the traffic signal with three colors."
+        "why": "С именем William Potts связывают следующее изобретение или технологию: трёхцветный дорожный светофор."
       },
       "correct": 3
     },
@@ -13072,14 +13072,14 @@
         "why": "George Frideric Handel «Messiah» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) George Frideric Handel?",
+        "q": "Какое музыкальное произведение связывают с именем George Frideric Handel?",
         "a": [
           "The Four Seasons",
           "Symphony No. 9",
           "Moonlight Sonata",
           "Messiah"
         ],
-        "why": "George Frideric Handel создал(а) произведение «Messiah»."
+        "why": "С именем George Frideric Handel связывают музыкальное произведение «Messiah»."
       },
       "correct": 3
     },
@@ -13314,22 +13314,22 @@
       "ky": {
         "q": "Wilhelm Conrad Röntgen кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the X-ray discovery",
-          "the phonograph"
+          "практикалык ысытуу лампасы",
+          "телефон",
+          "рентген нурларынын ачылышы",
+          "фонограф"
         ],
-        "why": "Wilhelm Conrad Röntgen the X-ray discovery менен байланышкан."
+        "why": "Wilhelm Conrad Röntgen төмөнкү ойлоп табуу же технология менен байланышкан: рентген нурларынын ачылышы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Wilhelm Conrad Röntgen?",
+        "q": "С каким изобретением или технологией связывают Wilhelm Conrad Röntgen?",
         "a": [
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the X-ray discovery",
-          "the phonograph"
+          "практическая лампа накаливания",
+          "телефон",
+          "открытие рентгеновских лучей",
+          "фонограф"
         ],
-        "why": "Wilhelm Conrad Röntgen связан(а) с изобретением: the X-ray discovery."
+        "why": "С именем Wilhelm Conrad Röntgen связывают следующее изобретение или технологию: открытие рентгеновских лучей."
       },
       "correct": 2
     },
@@ -13347,14 +13347,14 @@
         "why": "Edward Elgar «The Enigma Variations» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Edward Elgar?",
+        "q": "Какое музыкальное произведение связывают с именем Edward Elgar?",
         "a": [
           "The Enigma Variations",
           "Piano Concerto No. 21",
           "Don Giovanni",
           "Symphony No. 6 “Pastoral”"
         ],
-        "why": "Edward Elgar создал(а) произведение «The Enigma Variations»."
+        "why": "С именем Edward Elgar связывают музыкальное произведение «The Enigma Variations»."
       },
       "correct": 0
     },
@@ -13387,24 +13387,24 @@
       "id": "general-0536",
       "difficulty": "medium",
       "ky": {
-        "q": "Jack Kilby and Robert Noyce кайсы ойлоп табуу же технология менен белгилүү?",
+        "q": "Jack Kilby жана Robert Noyce кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the phonograph",
-          "the telephone",
-          "the integrated circuit",
-          "the practical incandescent light bulb"
+          "фонограф",
+          "телефон",
+          "интегралдык микросхема",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Jack Kilby and Robert Noyce the integrated circuit менен байланышкан."
+        "why": "Jack Kilby жана Robert Noyce төмөнкү ойлоп табуу же технология менен байланышкан: интегралдык микросхема."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Jack Kilby and Robert Noyce?",
+        "q": "С каким изобретением или технологией связывают Jack Kilby и Robert Noyce?",
         "a": [
-          "the phonograph",
-          "the telephone",
-          "the integrated circuit",
-          "the practical incandescent light bulb"
+          "фонограф",
+          "телефон",
+          "интегральная микросхема",
+          "практическая лампа накаливания"
         ],
-        "why": "Jack Kilby and Robert Noyce связан(а) с изобретением: the integrated circuit."
+        "why": "С именем Jack Kilby и Robert Noyce связывают следующее изобретение или технологию: интегральная микросхема."
       },
       "correct": 2
     },
@@ -13447,14 +13447,14 @@
         "why": "Johann Sebastian Bach «Brandenburg Concertos» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Johann Sebastian Bach?",
+        "q": "Какое музыкальное произведение связывают с именем Johann Sebastian Bach?",
         "a": [
           "Brandenburg Concertos",
           "The Four Seasons",
           "Moonlight Sonata",
           "Symphony No. 9"
         ],
-        "why": "Johann Sebastian Bach создал(а) произведение «Brandenburg Concertos»."
+        "why": "С именем Johann Sebastian Bach связывают музыкальное произведение «Brandenburg Concertos»."
       },
       "correct": 0
     },
@@ -13462,24 +13462,24 @@
       "id": "general-0539",
       "difficulty": "medium",
       "ky": {
-        "q": "the Wright brothers кайсы ойлоп табуу же технология менен белгилүү?",
+        "q": "Райт бир туугандары кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the phonograph",
-          "the airplane",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "фонограф",
+          "учак",
+          "практикалык ысытуу лампасы",
+          "телефон"
         ],
-        "why": "the Wright brothers the airplane менен байланышкан."
+        "why": "Райт бир туугандары төмөнкү ойлоп табуу же технология менен байланышкан: учак."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) the Wright brothers?",
+        "q": "С каким изобретением или технологией связывают братья Райт?",
         "a": [
-          "the phonograph",
-          "the airplane",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "фонограф",
+          "самолёт",
+          "практическая лампа накаливания",
+          "телефон"
         ],
-        "why": "the Wright brothers связан(а) с изобретением: the airplane."
+        "why": "С именем братья Райт связывают следующее изобретение или технологию: самолёт."
       },
       "correct": 1
     },
@@ -13489,22 +13489,22 @@
       "ky": {
         "q": "George Stephenson кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the steam locomotive"
+          "фонограф",
+          "практикалык ысытуу лампасы",
+          "телефон",
+          "буу локомотиви"
         ],
-        "why": "George Stephenson the steam locomotive менен байланышкан."
+        "why": "George Stephenson төмөнкү ойлоп табуу же технология менен байланышкан: буу локомотиви."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) George Stephenson?",
+        "q": "С каким изобретением или технологией связывают George Stephenson?",
         "a": [
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the steam locomotive"
+          "фонограф",
+          "практическая лампа накаливания",
+          "телефон",
+          "паровоз"
         ],
-        "why": "George Stephenson связан(а) с изобретением: the steam locomotive."
+        "why": "С именем George Stephenson связывают следующее изобретение или технологию: паровоз."
       },
       "correct": 3
     },
@@ -13539,22 +13539,22 @@
       "ky": {
         "q": "Louis Braille кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the Braille writing system",
-          "the phonograph"
+          "практикалык ысытуу лампасы",
+          "телефон",
+          "Брайль жазуу системасы",
+          "фонограф"
         ],
-        "why": "Louis Braille the Braille writing system менен байланышкан."
+        "why": "Louis Braille төмөнкү ойлоп табуу же технология менен байланышкан: Брайль жазуу системасы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Louis Braille?",
+        "q": "С каким изобретением или технологией связывают Louis Braille?",
         "a": [
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the Braille writing system",
-          "the phonograph"
+          "практическая лампа накаливания",
+          "телефон",
+          "система письма Брайля",
+          "фонограф"
         ],
-        "why": "Louis Braille связан(а) с изобретением: the Braille writing system."
+        "why": "С именем Louis Braille связывают следующее изобретение или технологию: система письма Брайля."
       },
       "correct": 2
     },
@@ -13762,24 +13762,24 @@
       "id": "general-0551",
       "difficulty": "medium",
       "ky": {
-        "q": "Hans Geiger and Walther Müller кайсы ойлоп табуу же технология менен белгилүү?",
+        "q": "Hans Geiger жана Walther Müller кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the geiger counter"
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "телефон",
+          "Гейгер эсептегичи"
         ],
-        "why": "Hans Geiger and Walther Müller the geiger counter менен байланышкан."
+        "why": "Hans Geiger жана Walther Müller төмөнкү ойлоп табуу же технология менен байланышкан: Гейгер эсептегичи."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Hans Geiger and Walther Müller?",
+        "q": "С каким изобретением или технологией связывают Hans Geiger и Walther Müller?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the geiger counter"
+          "практическая лампа накаливания",
+          "фонограф",
+          "телефон",
+          "счётчик Гейгера"
         ],
-        "why": "Hans Geiger and Walther Müller связан(а) с изобретением: the geiger counter."
+        "why": "С именем Hans Geiger и Walther Müller связывают следующее изобретение или технологию: счётчик Гейгера."
       },
       "correct": 3
     },
@@ -13837,24 +13837,24 @@
       "id": "general-0554",
       "difficulty": "medium",
       "ky": {
-        "q": "Frederick Banting and Charles Best кайсы ойлоп табуу же технология менен белгилүү?",
+        "q": "Frederick Banting жана Charles Best кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the discovery of insulin",
-          "the phonograph",
-          "the telephone"
+          "практикалык ысытуу лампасы",
+          "инсулиндин ачылышы",
+          "фонограф",
+          "телефон"
         ],
-        "why": "Frederick Banting and Charles Best the discovery of insulin менен байланышкан."
+        "why": "Frederick Banting жана Charles Best төмөнкү ойлоп табуу же технология менен байланышкан: инсулиндин ачылышы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Frederick Banting and Charles Best?",
+        "q": "С каким изобретением или технологией связывают Frederick Banting и Charles Best?",
         "a": [
-          "the practical incandescent light bulb",
-          "the discovery of insulin",
-          "the phonograph",
-          "the telephone"
+          "практическая лампа накаливания",
+          "открытие инсулина",
+          "фонограф",
+          "телефон"
         ],
-        "why": "Frederick Banting and Charles Best связан(а) с изобретением: the discovery of insulin."
+        "why": "С именем Frederick Banting и Charles Best связывают следующее изобретение или технологию: открытие инсулина."
       },
       "correct": 1
     },
@@ -14014,22 +14014,22 @@
       "ky": {
         "q": "Jonas Salk кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the polio vaccine"
+          "телефон",
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "полиомиелитке каршы вакцина"
         ],
-        "why": "Jonas Salk the polio vaccine менен байланышкан."
+        "why": "Jonas Salk төмөнкү ойлоп табуу же технология менен байланышкан: полиомиелитке каршы вакцина."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Jonas Salk?",
+        "q": "С каким изобретением или технологией связывают Jonas Salk?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the polio vaccine"
+          "телефон",
+          "практическая лампа накаливания",
+          "фонограф",
+          "вакцина против полиомиелита"
         ],
-        "why": "Jonas Salk связан(а) с изобретением: the polio vaccine."
+        "why": "С именем Jonas Salk связывают следующее изобретение или технологию: вакцина против полиомиелита."
       },
       "correct": 3
     },
@@ -14097,14 +14097,14 @@
         "why": "Ralph Vaughan Williams «The Lark Ascending» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Ralph Vaughan Williams?",
+        "q": "Какое музыкальное произведение связывают с именем Ralph Vaughan Williams?",
         "a": [
           "Symphony No. 6 “Pastoral”",
           "Don Giovanni",
           "The Lark Ascending",
           "Piano Concerto No. 21"
         ],
-        "why": "Ralph Vaughan Williams создал(а) произведение «The Lark Ascending»."
+        "why": "С именем Ralph Vaughan Williams связывают музыкальное произведение «The Lark Ascending»."
       },
       "correct": 2
     },
@@ -14239,22 +14239,22 @@
       "ky": {
         "q": "Dmitri Mendeleev кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the periodic table",
-          "the phonograph"
+          "практикалык ысытуу лампасы",
+          "телефон",
+          "мезгилдик таблица",
+          "фонограф"
         ],
-        "why": "Dmitri Mendeleev the periodic table менен байланышкан."
+        "why": "Dmitri Mendeleev төмөнкү ойлоп табуу же технология менен байланышкан: мезгилдик таблица."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Dmitri Mendeleev?",
+        "q": "С каким изобретением или технологией связывают Dmitri Mendeleev?",
         "a": [
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the periodic table",
-          "the phonograph"
+          "практическая лампа накаливания",
+          "телефон",
+          "периодическая таблица",
+          "фонограф"
         ],
-        "why": "Dmitri Mendeleev связан(а) с изобретением: the periodic table."
+        "why": "С именем Dmitri Mendeleev связывают следующее изобретение или технологию: периодическая таблица."
       },
       "correct": 2
     },
@@ -14372,14 +14372,14 @@
         "why": "Christoph Willibald Gluck «Orfeo ed Euridice» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Christoph Willibald Gluck?",
+        "q": "Какое музыкальное произведение связывают с именем Christoph Willibald Gluck?",
         "a": [
           "Orfeo ed Euridice",
           "Symphony No. 6 “Pastoral”",
           "Don Giovanni",
           "Piano Concerto No. 21"
         ],
-        "why": "Christoph Willibald Gluck создал(а) произведение «Orfeo ed Euridice»."
+        "why": "С именем Christoph Willibald Gluck связывают музыкальное произведение «Orfeo ed Euridice»."
       },
       "correct": 0
     },
@@ -14589,22 +14589,22 @@
       "ky": {
         "q": "Galileo Galilei кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telescope improvements",
-          "the phonograph",
-          "the telephone",
-          "the practical incandescent light bulb"
+          "телескоптун жакшыртылган үлгүлөрү",
+          "фонограф",
+          "телефон",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Galileo Galilei the telescope improvements менен байланышкан."
+        "why": "Galileo Galilei төмөнкү ойлоп табуу же технология менен байланышкан: телескоптун жакшыртылган үлгүлөрү."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Galileo Galilei?",
+        "q": "С каким изобретением или технологией связывают Galileo Galilei?",
         "a": [
-          "the telescope improvements",
-          "the phonograph",
-          "the telephone",
-          "the practical incandescent light bulb"
+          "усовершенствования телескопа",
+          "фонограф",
+          "телефон",
+          "практическая лампа накаливания"
         ],
-        "why": "Galileo Galilei связан(а) с изобретением: the telescope improvements."
+        "why": "С именем Galileo Galilei связывают следующее изобретение или технологию: усовершенствования телескопа."
       },
       "correct": 0
     },
@@ -14614,22 +14614,22 @@
       "ky": {
         "q": "Nicolaus Copernicus кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the heliocentric model in Renaissance Europe",
-          "the telephone"
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "Кайра жаралуу доорундагы Европадагы гелиоцентрдик модель",
+          "телефон"
         ],
-        "why": "Nicolaus Copernicus the heliocentric model in Renaissance Europe менен байланышкан."
+        "why": "Nicolaus Copernicus төмөнкү ойлоп табуу же технология менен байланышкан: Кайра жаралуу доорундагы Европадагы гелиоцентрдик модель."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Nicolaus Copernicus?",
+        "q": "С каким изобретением или технологией связывают Nicolaus Copernicus?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the heliocentric model in Renaissance Europe",
-          "the telephone"
+          "практическая лампа накаливания",
+          "фонограф",
+          "гелиоцентрическая модель в Европе эпохи Возрождения",
+          "телефон"
         ],
-        "why": "Nicolaus Copernicus связан(а) с изобретением: the heliocentric model in Renaissance Europe."
+        "why": "С именем Nicolaus Copernicus связывают следующее изобретение или технологию: гелиоцентрическая модель в Европе эпохи Возрождения."
       },
       "correct": 2
     },
@@ -14689,22 +14689,22 @@
       "ky": {
         "q": "Louis Daguerre кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the phonograph",
-          "the first successful photographic process, daguerreotype",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "фонограф",
+          "алгачкы ийгиликтүү фотографиялык процесс — дагеротипия",
+          "практикалык ысытуу лампасы",
+          "телефон"
         ],
-        "why": "Louis Daguerre the first successful photographic process, daguerreotype менен байланышкан."
+        "why": "Louis Daguerre төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы ийгиликтүү фотографиялык процесс — дагеротипия."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Louis Daguerre?",
+        "q": "С каким изобретением или технологией связывают Louis Daguerre?",
         "a": [
-          "the phonograph",
-          "the first successful photographic process, daguerreotype",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "фонограф",
+          "первый успешный фотографический процесс — дагеротипия",
+          "практическая лампа накаливания",
+          "телефон"
         ],
-        "why": "Louis Daguerre связан(а) с изобретением: the first successful photographic process, daguerreotype."
+        "why": "С именем Louis Daguerre связывают следующее изобретение или технологию: первый успешный фотографический процесс — дагеротипия."
       },
       "correct": 1
     },
@@ -14789,22 +14789,22 @@
       "ky": {
         "q": "Alessandro Volta кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the first practical battery",
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the phonograph"
+          "алгачкы практикалык батарея",
+          "телефон",
+          "практикалык ысытуу лампасы",
+          "фонограф"
         ],
-        "why": "Alessandro Volta the first practical battery менен байланышкан."
+        "why": "Alessandro Volta төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы практикалык батарея."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Alessandro Volta?",
+        "q": "С каким изобретением или технологией связывают Alessandro Volta?",
         "a": [
-          "the first practical battery",
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the phonograph"
+          "первая практическая батарея",
+          "телефон",
+          "практическая лампа накаливания",
+          "фонограф"
         ],
-        "why": "Alessandro Volta связан(а) с изобретением: the first practical battery."
+        "why": "С именем Alessandro Volta связывают следующее изобретение или технологию: первая практическая батарея."
       },
       "correct": 0
     },
@@ -14972,14 +14972,14 @@
         "why": "Frédéric Chopin «Nocturnes» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Frédéric Chopin?",
+        "q": "Какое музыкальное произведение связывают с именем Frédéric Chopin?",
         "a": [
           "Nocturnes",
           "The Four Seasons",
           "Moonlight Sonata",
           "Symphony No. 9"
         ],
-        "why": "Frédéric Chopin создал(а) произведение «Nocturnes»."
+        "why": "С именем Frédéric Chopin связывают музыкальное произведение «Nocturnes»."
       },
       "correct": 0
     },
@@ -15039,22 +15039,22 @@
       "ky": {
         "q": "Christopher Latham Sholes кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the first commercial typewriter",
-          "the phonograph",
-          "the practical incandescent light bulb"
+          "телефон",
+          "алгачкы коммерциялык машинка",
+          "фонограф",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Christopher Latham Sholes the first commercial typewriter менен байланышкан."
+        "why": "Christopher Latham Sholes төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы коммерциялык машинка."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Christopher Latham Sholes?",
+        "q": "С каким изобретением или технологией связывают Christopher Latham Sholes?",
         "a": [
-          "the telephone",
-          "the first commercial typewriter",
-          "the phonograph",
-          "the practical incandescent light bulb"
+          "телефон",
+          "первая коммерческая пишущая машинка",
+          "фонограф",
+          "практическая лампа накаливания"
         ],
-        "why": "Christopher Latham Sholes связан(а) с изобретением: the first commercial typewriter."
+        "why": "С именем Christopher Latham Sholes связывают следующее изобретение или технологию: первая коммерческая пишущая машинка."
       },
       "correct": 1
     },
@@ -15247,14 +15247,14 @@
         "why": "Nikolai Rimsky-Korsakov «Scheherazade» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Nikolai Rimsky-Korsakov?",
+        "q": "Какое музыкальное произведение связывают с именем Nikolai Rimsky-Korsakov?",
         "a": [
           "Scheherazade",
           "Symphony No. 6 “Pastoral”",
           "Piano Concerto No. 21",
           "Don Giovanni"
         ],
-        "why": "Nikolai Rimsky-Korsakov создал(а) произведение «Scheherazade»."
+        "why": "С именем Nikolai Rimsky-Korsakov связывают музыкальное произведение «Scheherazade»."
       },
       "correct": 0
     },
@@ -15297,14 +15297,14 @@
         "why": "Benjamin Britten «The Young Person’s Guide to the Orchestra» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Benjamin Britten?",
+        "q": "Какое музыкальное произведение связывают с именем Benjamin Britten?",
         "a": [
           "Don Giovanni",
           "The Young Person’s Guide to the Orchestra",
           "Piano Concerto No. 21",
           "Symphony No. 6 “Pastoral”"
         ],
-        "why": "Benjamin Britten создал(а) произведение «The Young Person’s Guide to the Orchestra»."
+        "why": "С именем Benjamin Britten связывают музыкальное произведение «The Young Person’s Guide to the Orchestra»."
       },
       "correct": 1
     },
@@ -15339,22 +15339,22 @@
       "ky": {
         "q": "Alfred Nobel кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the dynamite"
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "телефон",
+          "динамит"
         ],
-        "why": "Alfred Nobel the dynamite менен байланышкан."
+        "why": "Alfred Nobel төмөнкү ойлоп табуу же технология менен байланышкан: динамит."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Alfred Nobel?",
+        "q": "С каким изобретением или технологией связывают Alfred Nobel?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the dynamite"
+          "практическая лампа накаливания",
+          "фонограф",
+          "телефон",
+          "динамит"
         ],
-        "why": "Alfred Nobel связан(а) с изобретением: the dynamite."
+        "why": "С именем Alfred Nobel связывают следующее изобретение или технологию: динамит."
       },
       "correct": 3
     },
@@ -15389,22 +15389,22 @@
       "ky": {
         "q": "Michael Faraday кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the dynamo principle",
-          "the phonograph"
+          "практикалык ысытуу лампасы",
+          "телефон",
+          "динамо принциби",
+          "фонограф"
         ],
-        "why": "Michael Faraday the dynamo principle менен байланышкан."
+        "why": "Michael Faraday төмөнкү ойлоп табуу же технология менен байланышкан: динамо принциби."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Michael Faraday?",
+        "q": "С каким изобретением или технологией связывают Michael Faraday?",
         "a": [
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the dynamo principle",
-          "the phonograph"
+          "практическая лампа накаливания",
+          "телефон",
+          "принцип динамо-машины",
+          "фонограф"
         ],
-        "why": "Michael Faraday связан(а) с изобретением: the dynamo principle."
+        "why": "С именем Michael Faraday связывают следующее изобретение или технологию: принцип динамо-машины."
       },
       "correct": 2
     },
@@ -15489,22 +15489,22 @@
       "ky": {
         "q": "Bi Sheng кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the phonograph",
-          "the telephone",
-          "the movable-type printing press in China",
-          "the practical incandescent light bulb"
+          "фонограф",
+          "телефон",
+          "Кытайдагы кыймылдуу тамгалар менен басма станогу",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Bi Sheng the movable-type printing press in China менен байланышкан."
+        "why": "Bi Sheng төмөнкү ойлоп табуу же технология менен байланышкан: Кытайдагы кыймылдуу тамгалар менен басма станогу."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Bi Sheng?",
+        "q": "С каким изобретением или технологией связывают Bi Sheng?",
         "a": [
-          "the phonograph",
-          "the telephone",
-          "the movable-type printing press in China",
-          "the practical incandescent light bulb"
+          "фонограф",
+          "телефон",
+          "книгопечатание подвижными литерами в Китае",
+          "практическая лампа накаливания"
         ],
-        "why": "Bi Sheng связан(а) с изобретением: the movable-type printing press in China."
+        "why": "С именем Bi Sheng связывают следующее изобретение или технологию: книгопечатание подвижными литерами в Китае."
       },
       "correct": 2
     },
@@ -15514,22 +15514,22 @@
       "ky": {
         "q": "James Watt кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the steam engine improvements",
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the phonograph"
+          "буу кыймылдаткычынын жакшыртуулары",
+          "телефон",
+          "практикалык ысытуу лампасы",
+          "фонограф"
         ],
-        "why": "James Watt the steam engine improvements менен байланышкан."
+        "why": "James Watt төмөнкү ойлоп табуу же технология менен байланышкан: буу кыймылдаткычынын жакшыртуулары."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) James Watt?",
+        "q": "С каким изобретением или технологией связывают James Watt?",
         "a": [
-          "the steam engine improvements",
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the phonograph"
+          "усовершенствования парового двигателя",
+          "телефон",
+          "практическая лампа накаливания",
+          "фонограф"
         ],
-        "why": "James Watt связан(а) с изобретением: the steam engine improvements."
+        "why": "С именем James Watt связывают следующее изобретение или технологию: усовершенствования парового двигателя."
       },
       "correct": 0
     },
@@ -15622,14 +15622,14 @@
         "why": "Johannes Brahms «Ein deutsches Requiem» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Johannes Brahms?",
+        "q": "Какое музыкальное произведение связывают с именем Johannes Brahms?",
         "a": [
           "Ein deutsches Requiem",
           "Piano Concerto No. 21",
           "Symphony No. 6 “Pastoral”",
           "Don Giovanni"
         ],
-        "why": "Johannes Brahms создал(а) произведение «Ein deutsches Requiem»."
+        "why": "С именем Johannes Brahms связывают музыкальное произведение «Ein deutsches Requiem»."
       },
       "correct": 0
     },
@@ -15714,22 +15714,22 @@
       "ky": {
         "q": "Eli Whitney кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the cotton gin",
-          "the telephone"
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "пахта тазалоочу машина",
+          "телефон"
         ],
-        "why": "Eli Whitney the cotton gin менен байланышкан."
+        "why": "Eli Whitney төмөнкү ойлоп табуу же технология менен байланышкан: пахта тазалоочу машина."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Eli Whitney?",
+        "q": "С каким изобретением или технологией связывают Eli Whitney?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the cotton gin",
-          "the telephone"
+          "практическая лампа накаливания",
+          "фонограф",
+          "хлопкоочистительная машина",
+          "телефон"
         ],
-        "why": "Eli Whitney связан(а) с изобретением: the cotton gin."
+        "why": "С именем Eli Whitney связывают следующее изобретение или технологию: хлопкоочистительная машина."
       },
       "correct": 2
     },
@@ -15787,24 +15787,24 @@
       "id": "general-0632",
       "difficulty": "medium",
       "ky": {
-        "q": "James Watson and Francis Crick, with key data from Rosalind Franklin and Maurice Wilkins кайсы ойлоп табуу же технология менен белгилүү?",
+        "q": "ДНКнын кош спираль моделинин түзүлүшү кайсы окумуштуулар менен байланышкан?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the structure of DNA as a double helix model"
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "телефон",
+          "ДНКнын кош спираль түзүлүшүнүн модели"
         ],
-        "why": "James Watson and Francis Crick, with key data from Rosalind Franklin and Maurice Wilkins the structure of DNA as a double helix model менен байланышкан."
+        "why": "Модель двойной спирали ДНК связана с работами Джеймса Уотсона и Фрэнсиса Крика, учитывавшими важные данные Розалинд Франклин и Мориса Уилкинса."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) James Watson and Francis Crick, with key data from Rosalind Franklin and Maurice Wilkins?",
+        "q": "С именами каких учёных связывают модель двойной спирали ДНК?",
         "a": [
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone",
-          "the structure of DNA as a double helix model"
+          "практическая лампа накаливания",
+          "фонограф",
+          "телефон",
+          "модель двойной спирали ДНК"
         ],
-        "why": "James Watson and Francis Crick, with key data from Rosalind Franklin and Maurice Wilkins связан(а) с изобретением: the structure of DNA as a double helix model."
+        "why": "Модель двойной спирали ДНК связана с работами Джеймса Уотсона и Фрэнсиса Крика, учитывавшими важные данные Розалинд Франклин и Мориса Уилкинса."
       },
       "correct": 3
     },
@@ -15912,24 +15912,24 @@
       "id": "general-0637",
       "difficulty": "medium",
       "ky": {
-        "q": "Philo Farnsworth and John Logie Baird кайсы ойлоп табуу же технология менен белгилүү?",
+        "q": "Philo Farnsworth жана John Logie Baird кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the first electronic television systems",
-          "the phonograph"
+          "телефон",
+          "практикалык ысытуу лампасы",
+          "алгачкы электрондук телекөрсөтүү системалары",
+          "фонограф"
         ],
-        "why": "Philo Farnsworth and John Logie Baird the first electronic television systems менен байланышкан."
+        "why": "Philo Farnsworth жана John Logie Baird төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы электрондук телекөрсөтүү системалары."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Philo Farnsworth and John Logie Baird?",
+        "q": "С каким изобретением или технологией связывают Philo Farnsworth и John Logie Baird?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the first electronic television systems",
-          "the phonograph"
+          "телефон",
+          "практическая лампа накаливания",
+          "первые электронные телевизионные системы",
+          "фонограф"
         ],
-        "why": "Philo Farnsworth and John Logie Baird связан(а) с изобретением: the first electronic television systems."
+        "why": "С именем Philo Farnsworth и John Logie Baird связывают следующее изобретение или технологию: первые электронные телевизионные системы."
       },
       "correct": 2
     },
@@ -16039,22 +16039,22 @@
       "ky": {
         "q": "Willis Carrier кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the phonograph",
-          "the telephone",
-          "the first modern air-conditioning system",
-          "the practical incandescent light bulb"
+          "фонограф",
+          "телефон",
+          "алгачкы заманбап кондициялоо системасы",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Willis Carrier the first modern air-conditioning system менен байланышкан."
+        "why": "Willis Carrier төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы заманбап кондициялоо системасы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Willis Carrier?",
+        "q": "С каким изобретением или технологией связывают Willis Carrier?",
         "a": [
-          "the phonograph",
-          "the telephone",
-          "the first modern air-conditioning system",
-          "the practical incandescent light bulb"
+          "фонограф",
+          "телефон",
+          "первая современная система кондиционирования",
+          "практическая лампа накаливания"
         ],
-        "why": "Willis Carrier связан(а) с изобретением: the first modern air-conditioning system."
+        "why": "С именем Willis Carrier связывают следующее изобретение или технологию: первая современная система кондиционирования."
       },
       "correct": 2
     },
@@ -16164,22 +16164,22 @@
       "ky": {
         "q": "Louis Pasteur кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the pasteurization process",
-          "the phonograph",
-          "the telephone",
-          "the practical incandescent light bulb"
+          "пастерлөө процесси",
+          "фонограф",
+          "телефон",
+          "практикалык ысытуу лампасы"
         ],
-        "why": "Louis Pasteur the pasteurization process менен байланышкан."
+        "why": "Louis Pasteur төмөнкү ойлоп табуу же технология менен байланышкан: пастерлөө процесси."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Louis Pasteur?",
+        "q": "С каким изобретением или технологией связывают Louis Pasteur?",
         "a": [
-          "the pasteurization process",
-          "the phonograph",
-          "the telephone",
-          "the practical incandescent light bulb"
+          "процесс пастеризации",
+          "фонограф",
+          "телефон",
+          "практическая лампа накаливания"
         ],
-        "why": "Louis Pasteur связан(а) с изобретением: the pasteurization process."
+        "why": "С именем Louis Pasteur связывают следующее изобретение или технологию: процесс пастеризации."
       },
       "correct": 0
     },
@@ -16222,14 +16222,14 @@
         "why": "Carl Orff «Carmina Burana» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Carl Orff?",
+        "q": "Какое музыкальное произведение связывают с именем Carl Orff?",
         "a": [
           "Carmina Burana",
           "The Four Seasons",
           "Moonlight Sonata",
           "Symphony No. 9"
         ],
-        "why": "Carl Orff создал(а) произведение «Carmina Burana»."
+        "why": "С именем Carl Orff связывают музыкальное произведение «Carmina Burana»."
       },
       "correct": 0
     },
@@ -16264,22 +16264,22 @@
       "ky": {
         "q": "Isaac Newton кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the laws of motion",
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "кыймыл мыйзамдары",
+          "фонограф",
+          "практикалык ысытуу лампасы",
+          "телефон"
         ],
-        "why": "Isaac Newton the laws of motion менен байланышкан."
+        "why": "Isaac Newton төмөнкү ойлоп табуу же технология менен байланышкан: кыймыл мыйзамдары."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Isaac Newton?",
+        "q": "С каким изобретением или технологией связывают Isaac Newton?",
         "a": [
-          "the laws of motion",
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone"
+          "законы движения",
+          "фонограф",
+          "практическая лампа накаливания",
+          "телефон"
         ],
-        "why": "Isaac Newton связан(а) с изобретением: the laws of motion."
+        "why": "С именем Isaac Newton связывают следующее изобретение или технологию: законы движения."
       },
       "correct": 0
     },
@@ -16522,14 +16522,14 @@
         "why": "Aaron Copland «Appalachian Spring» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Aaron Copland?",
+        "q": "Какое музыкальное произведение связывают с именем Aaron Copland?",
         "a": [
           "Appalachian Spring",
           "Moonlight Sonata",
           "The Four Seasons",
           "Symphony No. 9"
         ],
-        "why": "Aaron Copland создал(а) произведение «Appalachian Spring»."
+        "why": "С именем Aaron Copland связывают музыкальное произведение «Appalachian Spring»."
       },
       "correct": 0
     },
@@ -16539,22 +16539,22 @@
       "ky": {
         "q": "Evangelista Torricelli кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the mercury barometer",
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone"
+          "сымап барометри",
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "телефон"
         ],
-        "why": "Evangelista Torricelli the mercury barometer менен байланышкан."
+        "why": "Evangelista Torricelli төмөнкү ойлоп табуу же технология менен байланышкан: сымап барометри."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Evangelista Torricelli?",
+        "q": "С каким изобретением или технологией связывают Evangelista Torricelli?",
         "a": [
-          "the mercury barometer",
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the telephone"
+          "ртутный барометр",
+          "практическая лампа накаливания",
+          "фонограф",
+          "телефон"
         ],
-        "why": "Evangelista Torricelli связан(а) с изобретением: the mercury barometer."
+        "why": "С именем Evangelista Torricelli связывают следующее изобретение или технологию: ртутный барометр."
       },
       "correct": 0
     },
@@ -16564,22 +16564,22 @@
       "ky": {
         "q": "Charles Darwin кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the theory of evolution by natural selection",
-          "the phonograph",
-          "the telephone"
+          "практикалык ысытуу лампасы",
+          "табигый тандалуу аркылуу эволюция теориясы",
+          "фонограф",
+          "телефон"
         ],
-        "why": "Charles Darwin the theory of evolution by natural selection менен байланышкан."
+        "why": "Charles Darwin төмөнкү ойлоп табуу же технология менен байланышкан: табигый тандалуу аркылуу эволюция теориясы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Charles Darwin?",
+        "q": "С каким изобретением или технологией связывают Charles Darwin?",
         "a": [
-          "the practical incandescent light bulb",
-          "the theory of evolution by natural selection",
-          "the phonograph",
-          "the telephone"
+          "практическая лампа накаливания",
+          "теория эволюции путём естественного отбора",
+          "фонограф",
+          "телефон"
         ],
-        "why": "Charles Darwin связан(а) с изобретением: the theory of evolution by natural selection."
+        "why": "С именем Charles Darwin связывают следующее изобретение или технологию: теория эволюции путём естественного отбора."
       },
       "correct": 1
     },
@@ -16614,22 +16614,22 @@
       "ky": {
         "q": "Percy Spencer кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the first commercial microwave oven"
+          "фонограф",
+          "практикалык ысытуу лампасы",
+          "телефон",
+          "алгачкы коммерциялык микротолкундуу меш"
         ],
-        "why": "Percy Spencer the first commercial microwave oven менен байланышкан."
+        "why": "Percy Spencer төмөнкү ойлоп табуу же технология менен байланышкан: алгачкы коммерциялык микротолкундуу меш."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Percy Spencer?",
+        "q": "С каким изобретением или технологией связывают Percy Spencer?",
         "a": [
-          "the phonograph",
-          "the practical incandescent light bulb",
-          "the telephone",
-          "the first commercial microwave oven"
+          "фонограф",
+          "практическая лампа накаливания",
+          "телефон",
+          "первая коммерческая микроволновая печь"
         ],
-        "why": "Percy Spencer связан(а) с изобретением: the first commercial microwave oven."
+        "why": "С именем Percy Spencer связывают следующее изобретение или технологию: первая коммерческая микроволновая печь."
       },
       "correct": 3
     },
@@ -16689,22 +16689,22 @@
       "ky": {
         "q": "Charles Babbage кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the practical incandescent light bulb",
-          "the mechanical computer concept",
-          "the telephone",
-          "the phonograph"
+          "практикалык ысытуу лампасы",
+          "механикалык эсептөө машинасынын концепциясы",
+          "телефон",
+          "фонограф"
         ],
-        "why": "Charles Babbage the mechanical computer concept менен байланышкан."
+        "why": "Charles Babbage төмөнкү ойлоп табуу же технология менен байланышкан: механикалык эсептөө машинасынын концепциясы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Charles Babbage?",
+        "q": "С каким изобретением или технологией связывают Charles Babbage?",
         "a": [
-          "the practical incandescent light bulb",
-          "the mechanical computer concept",
-          "the telephone",
-          "the phonograph"
+          "практическая лампа накаливания",
+          "концепция механического вычислителя",
+          "телефон",
+          "фонограф"
         ],
-        "why": "Charles Babbage связан(а) с изобретением: the mechanical computer concept."
+        "why": "С именем Charles Babbage связывают следующее изобретение или технологию: концепция механического вычислителя."
       },
       "correct": 1
     },
@@ -16847,14 +16847,14 @@
         "why": "Franz Liszt «Hungarian Rhapsody No. 2» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Franz Liszt?",
+        "q": "Какое музыкальное произведение связывают с именем Franz Liszt?",
         "a": [
           "The Four Seasons",
           "Hungarian Rhapsody No. 2",
           "Symphony No. 9",
           "Moonlight Sonata"
         ],
-        "why": "Franz Liszt создал(а) произведение «Hungarian Rhapsody No. 2»."
+        "why": "С именем Franz Liszt связывают музыкальное произведение «Hungarian Rhapsody No. 2»."
       },
       "correct": 1
     },
@@ -16897,14 +16897,14 @@
         "why": "Claude Debussy «Clair de Lune» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Claude Debussy?",
+        "q": "Какое музыкальное произведение связывают с именем Claude Debussy?",
         "a": [
           "The Four Seasons",
           "Symphony No. 9",
           "Clair de Lune",
           "Moonlight Sonata"
         ],
-        "why": "Claude Debussy создал(а) произведение «Clair de Lune»."
+        "why": "С именем Claude Debussy связывают музыкальное произведение «Clair de Lune»."
       },
       "correct": 2
     },
@@ -16914,22 +16914,22 @@
       "ky": {
         "q": "Nikola Tesla кайсы ойлоп табуу же технология менен белгилүү?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the alternating-current system"
+          "телефон",
+          "практикалык ысытуу лампасы",
+          "фонограф",
+          "өзгөрмө ток системасы"
         ],
-        "why": "Nikola Tesla the alternating-current system менен байланышкан."
+        "why": "Nikola Tesla төмөнкү ойлоп табуу же технология менен байланышкан: өзгөрмө ток системасы."
       },
       "ru": {
-        "q": "С каким изобретением или технологией связан(а) Nikola Tesla?",
+        "q": "С каким изобретением или технологией связывают Nikola Tesla?",
         "a": [
-          "the telephone",
-          "the practical incandescent light bulb",
-          "the phonograph",
-          "the alternating-current system"
+          "телефон",
+          "практическая лампа накаливания",
+          "фонограф",
+          "система переменного тока"
         ],
-        "why": "Nikola Tesla связан(а) с изобретением: the alternating-current system."
+        "why": "С именем Nikola Tesla связывают следующее изобретение или технологию: система переменного тока."
       },
       "correct": 3
     },
@@ -17097,14 +17097,14 @@
         "why": "Jean Sibelius «Finlandia» чыгармасын жараткан."
       },
       "ru": {
-        "q": "Какое музыкальное произведение создал(а) Jean Sibelius?",
+        "q": "Какое музыкальное произведение связывают с именем Jean Sibelius?",
         "a": [
           "The Four Seasons",
           "Moonlight Sonata",
           "Symphony No. 9",
           "Finlandia"
         ],
-        "why": "Jean Sibelius создал(а) произведение «Finlandia»."
+        "why": "С именем Jean Sibelius связывают музыкальное произведение «Finlandia»."
       },
       "correct": 3
     },
@@ -20639,22 +20639,22 @@
       "ky": {
         "q": "Кайсы жупта технология жана аны менен байланышкан адам туура дал келген?",
         "a": [
-          "the phonograph — Thomas Edison",
-          "the alternating-current system — Nikola Tesla",
-          "the practical incandescent light bulb — Thomas Edison",
-          "the telephone — Alexander Graham Bell"
+          "фонограф — Thomas Edison",
+          "өзгөрмө ток системасы — Nikola Tesla",
+          "практикалык ысытуу лампасы — Thomas Edison",
+          "телефон — Alexander Graham Bell"
         ],
-        "why": "Туура жуп: the telephone — Alexander Graham Bell."
+        "why": "Туура жуп: телефон — Alexander Graham Bell."
       },
       "ru": {
         "q": "В какой паре правильно сопоставлены технология и связанный с ней человек?",
         "a": [
-          "the phonograph — Thomas Edison",
-          "the alternating-current system — Nikola Tesla",
-          "the practical incandescent light bulb — Thomas Edison",
-          "the telephone — Alexander Graham Bell"
+          "фонограф — Thomas Edison",
+          "система переменного тока — Nikola Tesla",
+          "практическая лампа накаливания — Thomas Edison",
+          "телефон — Alexander Graham Bell"
         ],
-        "why": "Верная пара: the telephone — Alexander Graham Bell."
+        "why": "Верная пара: телефон — Alexander Graham Bell."
       },
       "correct": 3
     },
@@ -25008,5 +25008,10 @@
       },
       "correct": 2
     }
-  ]
+  ],
+  "difficultyCounts": {
+    "easy": 374,
+    "medium": 310,
+    "hard": 316
+  }
 }
