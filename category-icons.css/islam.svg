@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Ислам билими">
+  <defs>
+    <linearGradient id="b" x1="9" y1="10" x2="55" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#6DE5FF"/><stop offset="1" stop-color="#2385FF"/></linearGradient>
+    <linearGradient id="g" x1="16" y1="8" x2="50" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF1B0"/><stop offset=".48" stop-color="#FFD05D"/><stop offset="1" stop-color="#E59A2B"/></linearGradient>
+    <linearGradient id="v" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#F2A6FF"/><stop offset="1" stop-color="#795BFF"/></linearGradient>
+  </defs>
+  <path d="M39 9c-9 2-15 10-15 20 0 11 9 20 20 20 4 0 8-1 11-4-4 7-12 11-21 10-12-1-22-12-21-25C14 17 25 8 39 9Z" fill="url(#g)" stroke="#fff0b4" stroke-width="1.7"/><path d="M45 15l2.8 6.4 7 .6-5.3 4.5 1.7 6.8-6.2-3.7-6.1 3.7 1.6-6.8-5.2-4.5 6.9-.6Z" fill="#55d9ff" stroke="#b8f3ff" stroke-width="1"/>
+</svg>

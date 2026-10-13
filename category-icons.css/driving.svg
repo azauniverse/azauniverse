@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Жол эрежелери">
+  <defs>
+    <linearGradient id="b" x1="9" y1="10" x2="55" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#6DE5FF"/><stop offset="1" stop-color="#2385FF"/></linearGradient>
+    <linearGradient id="g" x1="16" y1="8" x2="50" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF1B0"/><stop offset=".48" stop-color="#FFD05D"/><stop offset="1" stop-color="#E59A2B"/></linearGradient>
+    <linearGradient id="v" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#F2A6FF"/><stop offset="1" stop-color="#795BFF"/></linearGradient>
+  </defs>
+  <rect x="15" y="8" width="22" height="47" rx="8" fill="#101c2e" stroke="url(#b)" stroke-width="2.4"/><circle cx="26" cy="19" r="5" fill="#ff6c7a"/><circle cx="26" cy="31" r="5" fill="#ffc95f"/><circle cx="26" cy="43" r="5" fill="#49e2b0"/><path d="M46 12v14m0 8v6m0 7v5" stroke="#55d9ff" stroke-width="2.5" stroke-linecap="round"/><path d="M42 18l4-6 4 6M42 36l4-4 4 4" fill="none" stroke="#55d9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Мультфильмдер">
+  <defs>
+    <linearGradient id="b" x1="9" y1="10" x2="55" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#6DE5FF"/><stop offset="1" stop-color="#2385FF"/></linearGradient>
+    <linearGradient id="g" x1="16" y1="8" x2="50" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF1B0"/><stop offset=".48" stop-color="#FFD05D"/><stop offset="1" stop-color="#E59A2B"/></linearGradient>
+    <linearGradient id="v" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#F2A6FF"/><stop offset="1" stop-color="#795BFF"/></linearGradient>
+  </defs>
+  <path d="M17 25L11 13l15 5q6-3 12 0l15-5-6 14q3 7-1 15-6 9-14 9t-14-9q-4-8-1-17Z" fill="#142a40" stroke="url(#g)" stroke-width="2.4" stroke-linejoin="round"/><path d="M19 31q5-5 10 0m6 0q5-5 10 0" fill="none" stroke="#55d9ff" stroke-width="2.8" stroke-linecap="round"/><circle cx="24" cy="33" r="2" fill="#fff"/><circle cx="40" cy="33" r="2" fill="#fff"/><path d="M27 41q5 5 10 0" fill="none" stroke="#ffc95f" stroke-width="2.5" stroke-linecap="round"/><circle cx="13" cy="39" r="2" fill="#c18aff"/><circle cx="51" cy="39" r="2" fill="#c18aff"/>
+</svg>

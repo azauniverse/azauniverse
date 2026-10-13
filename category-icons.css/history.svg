@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Дүйнө тарыхы">
+  <defs>
+    <linearGradient id="b" x1="9" y1="10" x2="55" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#6DE5FF"/><stop offset="1" stop-color="#2385FF"/></linearGradient>
+    <linearGradient id="g" x1="16" y1="8" x2="50" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF1B0"/><stop offset=".48" stop-color="#FFD05D"/><stop offset="1" stop-color="#E59A2B"/></linearGradient>
+    <linearGradient id="v" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#F2A6FF"/><stop offset="1" stop-color="#795BFF"/></linearGradient>
+  </defs>
+  <path d="M9 19L32 8l23 11Z" fill="url(#g)" stroke="#ffe8a4" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 22h38M12 51h40M8 56h48" stroke="#55d9ff" stroke-width="2.4" stroke-linecap="round"/><path d="M16 24v24m10-24v24m12-24v24m10-24v24" stroke="url(#b)" stroke-width="5" stroke-linecap="round"/><path d="M16 25v22m10-22v22m12-22v22m10-22v22" stroke="#eaf6ff" stroke-opacity=".3" stroke-width="1.2"/>
+</svg>

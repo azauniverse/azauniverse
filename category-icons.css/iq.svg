@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="IQ жана логика">
+  <defs>
+    <linearGradient id="b" x1="9" y1="10" x2="55" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#6DE5FF"/><stop offset="1" stop-color="#2385FF"/></linearGradient>
+    <linearGradient id="g" x1="16" y1="8" x2="50" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF1B0"/><stop offset=".48" stop-color="#FFD05D"/><stop offset="1" stop-color="#E59A2B"/></linearGradient>
+    <linearGradient id="v" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse"><stop stop-color="#F2A6FF"/><stop offset="1" stop-color="#795BFF"/></linearGradient>
+  </defs>
+  <path d="M32 12c-5-6-15-2-15 6-7 1-10 10-5 15-4 8 2 15 9 15 3 6 9 6 13 2 4 4 10 4 13-2 7 0 13-7 9-15 5-5 2-14-5-15 0-8-10-12-15-6Z" fill="#111a39" stroke="url(#v)" stroke-width="2.5"/><path d="M32 15v34M20 21l8 6-7 7 9 5M44 21l-8 6 7 7-9 5" fill="none" stroke="#70dcff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="21" r="3" fill="#ffc95f"/><circle cx="44" cy="21" r="3" fill="#ffc95f"/><circle cx="21" cy="34" r="2.6" fill="#c18aff"/><circle cx="43" cy="34" r="2.6" fill="#c18aff"/><circle cx="32" cy="50" r="3" fill="#55d9ff"/>
+</svg>
