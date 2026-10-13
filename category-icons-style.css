@@ -1,13 +1,14 @@
-/* AZA UNIVERSE — COSMIC PREMIUM category icons
-   Load this file after cosmic-premium.css in index.html.
-   SVG assets are stored in ./category-icons.css/ as uploaded in the repository. */
+/* AZA UNIVERSE — COSMIC PREMIUM icon polish
+   Replace the existing category-icons-style.css contents with this file.
+   Keeps all SVG assets, quiz data, and scoring logic unchanged. */
 
+/* Keep the category art clean and give the original vector icons more room. */
 .quiz-catalog-art > b {
   display: block !important;
   position: relative;
   z-index: 1;
-  width: 46px;
-  height: 46px;
+  width: 54px;
+  height: 54px;
   margin: 0 auto;
   overflow: visible;
   color: transparent !important;
@@ -17,6 +18,18 @@
   background-position: center;
   background-size: contain;
   filter: drop-shadow(0 3px 7px #0008);
+  transition: filter .2s ease, transform .2s ease;
+}
+
+/* Hide the tiny ordinal labels that clutter the lower corner of the icon tile. */
+.quiz-catalog-art > i {
+  display: none !important;
+}
+
+.quiz-catalog-card:hover .quiz-catalog-art > b,
+.quiz-catalog-card:focus-visible .quiz-catalog-art > b {
+  filter: drop-shadow(0 4px 10px #56caff50) drop-shadow(0 2px 7px #0008);
+  transform: translateY(-1px);
 }
 
 .quiz-catalog-art > b::selection { background: transparent; }
@@ -35,9 +48,25 @@
 .quiz-catalog-art.kids-art > b { background-image: url("./category-icons.css/kids.svg"); }
 
 @media (max-width: 560px) {
-  .quiz-catalog-art > b { width: 42px; height: 42px; }
+  .quiz-catalog-art > b {
+    width: 46px;
+    height: 46px;
+  }
+  .quiz-catalog-card {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .quiz-catalog-art > b {
+    width: 42px;
+    height: 42px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .quiz-catalog-art > b { transition: none !important; }
+  .quiz-catalog-art > b {
+    transition: none !important;
+    transform: none !important;
+  }
 }
