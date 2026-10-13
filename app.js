@@ -180,7 +180,7 @@
     history:{icon:"🏛️",art:"history-art",ky:{title:"Дүйнө тарыхы",description:"Байыркы доордон заманбап тарыхка чейин"},ru:{title:"Всемирная история",description:"От древних цивилизаций до современной истории"}},
     world:{icon:"🌍",art:"world-art",ky:{title:"Дүйнө тааным",description:"Континенттер, океандар жана география"},ru:{title:"География мира",description:"Материки, океаны и географические факты"}},
     science:{icon:"🔬",art:"science-art",ky:{title:"Илим жана табият",description:"Физика, химия, биология жана космос"},ru:{title:"Наука и природа",description:"Физика, химия, биология и космос"}},
-    riddles:{icon:"🧩",art:"riddles-art",ky:{title:"Табышмактар",description:"Көңүл коюп, жашырын жоопту тап"},ru:{title:"Загадки",description:"Внимательно подумай и найди ответ"}},
+    riddles:{icon:"🧩",art:"riddles-art",ky:{title:"Табышмактар",description:"Көңүл коюп, табышмактын жообун тап!"},ru:{title:"Загадки",description:"Подумай внимательно и разгадай загадку!"}},
     kids:{icon:"🧸",art:"kids-art",ky:{title:"Балдар үчүн",description:"Жөнөкөй, кызыктуу жана үйрөтүүчү суроолор"},ru:{title:"Для детей",description:"Простые, интересные и познавательные вопросы"}}
   };
   function shuffleList(list){
