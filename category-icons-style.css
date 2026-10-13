@@ -1,0 +1,43 @@
+/* AZA UNIVERSE — COSMIC PREMIUM category icons
+   Load this file after cosmic-premium.css in index.html.
+   SVG assets are stored in ./category-icons.css/ as uploaded in the repository. */
+
+.quiz-catalog-art > b {
+  display: block !important;
+  position: relative;
+  z-index: 1;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto;
+  overflow: visible;
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: drop-shadow(0 3px 7px #0008);
+}
+
+.quiz-catalog-art > b::selection { background: transparent; }
+.quiz-catalog-art.general-art > b { background-image: url("./category-icons.css/general.svg"); }
+.quiz-catalog-art.iq-art > b { background-image: url("./category-icons.css/iq.svg"); }
+.quiz-catalog-art.anime-art > b { background-image: url("./category-icons.css/anime.svg"); }
+.quiz-catalog-art.cars-art > b { background-image: url("./category-icons.css/cars.svg"); }
+.quiz-catalog-art.driving-art > b { background-image: url("./category-icons.css/driving.svg"); }
+.quiz-catalog-art.movies-art > b { background-image: url("./category-icons.css/movies.svg"); }
+.quiz-catalog-art.cartoons-art > b { background-image: url("./category-icons.css/cartoons.svg"); }
+.quiz-catalog-art.islam-art > b { background-image: url("./category-icons.css/islam.svg"); }
+.quiz-catalog-art.history-art > b { background-image: url("./category-icons.css/history.svg"); }
+.quiz-catalog-art.world-art > b { background-image: url("./category-icons.css/world.svg"); }
+.quiz-catalog-art.science-art > b { background-image: url("./category-icons.css/science.svg"); }
+.quiz-catalog-art.riddles-art > b { background-image: url("./category-icons.css/riddles.svg"); }
+.quiz-catalog-art.kids-art > b { background-image: url("./category-icons.css/kids.svg"); }
+
+@media (max-width: 560px) {
+  .quiz-catalog-art > b { width: 42px; height: 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-catalog-art > b { transition: none !important; }
+}
