@@ -419,7 +419,6 @@
   async function refreshOwnProfile(){
     if(!supabaseClient||!cloudUser)return;
     const {data,error}=await supabaseClient.from("profiles").select("id,username,total_points,best_reaction_ms,created_at").eq("id",cloudUser.id).maybeSingle();
-    if(error){console.warn("Could not load AZA profile",error.message);return;}
     cloudProfile=data||null;renderStats();
   }
   async function refreshLeaderboard(){
@@ -427,7 +426,7 @@
     const list=$("#ranking .ranking-list"),note=$("#rankingNote"),kicker=$("#rankingKicker");
     if(!list)return;
     if(kicker)kicker.textContent=t("onlineRankingLabel");
-    const {data,error}=await supabaseClient.from("profiles").select("username,total_points,created_at").order("total_points",{ascending:false}).order("created_at",{ascending:true}).limit(5);
+    const {data,error}=await supabaseClient.from("aza_leaderboard_public").select("username,total_points,created_at").order("total_points",{ascending:false}).order("created_at",{ascending:true}).limit(5);
     if(error){if(note)note.textContent=t("rankingLoadError");console.warn("Leaderboard error",error.message);return;}
     if(!data||data.length===0){list.innerHTML="";if(note)note.textContent=t("noOnlinePlayers");return;}
     const avatarClasses=["avatar-one","avatar-two","avatar-three","avatar-four","avatar-five"];
