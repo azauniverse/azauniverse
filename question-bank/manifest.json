@@ -3,7 +3,7 @@
   "project": "AZA UNIVERSE",
   "questionTargetPerCategory": 1000,
   "totalTarget": 13000,
-  "currentTotal": 886,
+  "currentTotal": 13000,
   "categories": [
     {
       "id": "general",
@@ -12,12 +12,12 @@
         "ru": "Общие знания"
       },
       "file": "general.json",
-      "currentCount": 70,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 28,
-        "medium": 24,
-        "hard": 18
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -27,12 +27,12 @@
         "ru": "IQ и логика"
       },
       "file": "iq.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -42,12 +42,12 @@
         "ru": "Мир аниме"
       },
       "file": "anime.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -57,12 +57,12 @@
         "ru": "Мир авто"
       },
       "file": "cars.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -72,12 +72,12 @@
         "ru": "Правила дорожного движения"
       },
       "file": "driving.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -87,12 +87,12 @@
         "ru": "Фильмы и сериалы"
       },
       "file": "movies.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -102,12 +102,12 @@
         "ru": "Мультфильмы"
       },
       "file": "cartoons.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -117,12 +117,12 @@
         "ru": "Знания об исламе"
       },
       "file": "islam.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -132,12 +132,12 @@
         "ru": "Всемирная история"
       },
       "file": "history.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -147,12 +147,12 @@
         "ru": "География мира"
       },
       "file": "world.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -162,12 +162,12 @@
         "ru": "Наука и природа"
       },
       "file": "science.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -177,12 +177,12 @@
         "ru": "Загадки"
       },
       "file": "riddles.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     },
     {
@@ -192,37 +192,40 @@
         "ru": "Для детей"
       },
       "file": "kids.json",
-      "currentCount": 68,
+      "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 27,
-        "medium": 24,
-        "hard": 17
+        "easy": 333,
+        "medium": 333,
+        "hard": 334
       }
     }
   ],
-  "difficultyLevels": [
-    {
-      "id": "easy",
+  "difficultyLevels": {
+    "easy": {
       "name": {
         "ky": "Жеңил",
         "ru": "Лёгкий"
-      }
+      },
+      "points": 10
     },
-    {
-      "id": "medium",
+    "medium": {
       "name": {
         "ky": "Орточо",
         "ru": "Средний"
-      }
+      },
+      "points": 15
     },
-    {
-      "id": "hard",
+    "hard": {
       "name": {
         "ky": "Татаал",
         "ru": "Сложный"
-      }
+      },
+      "points": 20
     }
-  ],
-  "difficultyMethod": "relative-within-category-initial-review"
+  },
+  "difficultyMethod": {
+    "ky": "Суроолор үч деңгээлге бөлүнгөн: жеңил — түз фактылар; орточо — эсептөө же байланышты тескери табуу; татаал — көп кадамдуу логика, себеп-натыйжа же жуп дал келтирүү. Бул категория ичиндеги салыштырмалуу деңгээл.",
+    "ru": "Вопросы разделены на три уровня: лёгкий — прямые факты; средний — вычисление или обратное установление связи; сложный — многошаговая логика, причинно-следственные связи или сопоставление. Уровень относительный внутри категории."
+  }
 }
