@@ -1,0 +1,100 @@
+/* AZA UNIVERSE — original premium illustrations for the popular test cards and ranking.
+   Add this stylesheet LAST in index.html, after the other CSS links.
+   All assets are local WebP files; this file uses no external image URLs.
+   Quiz content, scoring, navigation actions and question-bank data are untouched. */
+
+.popular-card {
+  overflow: hidden;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.popular-art.anime-girl,
+.popular-art.anime-boy,
+.popular-art.car-art,
+.popular-art.brain-art {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  font-size: 0 !important;
+  color: transparent !important;
+  border: 1px solid rgba(112, 201, 255, .28);
+  box-shadow: inset 0 1px rgba(255,255,255,.09), 0 8px 22px rgba(0,0,0,.20);
+  transition: filter .24s ease, border-color .24s ease;
+}
+
+.popular-art.anime-girl {
+  background-image: url("./aza-personality-premium.webp") !important;
+  border-color: rgba(211, 104, 255, .5);
+}
+.popular-art.anime-boy {
+  background-image: url("./aza-anime-premium.webp") !important;
+  border-color: rgba(58, 193, 255, .5);
+}
+.popular-art.car-art {
+  background-image: url("./aza-car-premium.webp") !important;
+  border-color: rgba(255, 153, 53, .5);
+}
+.popular-art.brain-art {
+  background-image: url("./aza-iq-premium.webp") !important;
+  border-color: rgba(91, 205, 255, .5);
+}
+
+/* Hide the older emoji/spark layers; the original artwork already includes its own details. */
+.popular-art.anime-girl > *,
+.popular-art.anime-boy > *,
+.popular-art.car-art > *,
+.popular-art.brain-art > * {
+  display: none !important;
+}
+
+.popular-card:hover .popular-art,
+.popular-card:focus-visible .popular-art {
+  filter: brightness(1.07) saturate(1.08);
+  border-color: rgba(162, 233, 255, .72);
+}
+.popular-card:active {
+  transform: scale(.99);
+}
+
+/* The ranking heading gets the matching original gold trophy artwork. */
+.trophy-symbol {
+  display: block !important;
+  flex: 0 0 46px;
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: transparent !important;
+  background-image: url("./aza-ranking-trophy-premium.webp") !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  filter: drop-shadow(0 0 10px rgba(255, 193, 64, .34));
+}
+
+@media (max-width: 560px) {
+  .popular-art.anime-girl,
+  .popular-art.anime-boy,
+  .popular-art.car-art,
+  .popular-art.brain-art {
+    background-position: center center !important;
+  }
+  .trophy-symbol {
+    flex-basis: 40px;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popular-art.anime-girl,
+  .popular-art.anime-boy,
+  .popular-art.car-art,
+  .popular-art.brain-art,
+  .popular-card { transition: none !important; }
+}
