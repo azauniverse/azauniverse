@@ -8,6 +8,8 @@
   window.__AZA_FOUNDER_SHOWCASE_V1__ = true;
 
   const FOUNDER_ID = "362b8778-de25-4846-9bf7-c514842d159e";
+  const FOUNDER_NAME = "AZAMAT AKMATOV";
+  const FOUNDER_HANDLE = "AZAUNIVERSE";
   const cfg = window.AZA_SUPABASE_CONFIG || {};
   const API = String(cfg.projectUrl || "").replace(/\/$/, "");
   const KEY = String(cfg.publishableKey || "");
@@ -43,6 +45,10 @@
     return readSession()?.user?.id?.toLowerCase() === FOUNDER_ID;
   }
 
+  function verifiedMark(extraClass = "") {
+    return `<span class="aza-verified-check ${extraClass}" role="img" aria-label="${esc(t("Текшерилген расмий аккаунт", "Официальный подтверждённый аккаунт"))}" title="${esc(t("Расмий тастыкталган аккаунт", "Официальный подтверждённый аккаунт"))}">✓</span>`;
+  }
+
   function founderBadge(extraClass = "") {
     return `<span class="aza-founder-chip ${extraClass}" title="AZA UNIVERSE official founder"><span aria-hidden="true">♛</span> FOUNDER <small>${esc(t("Негиздөөчү", "Основатель"))}</small></span>`;
   }
@@ -54,7 +60,8 @@
         <div class="aza-founder-home-orb" aria-hidden="true"><img src="assets/aza-emblem.svg" alt="" loading="lazy" decoding="async"></div>
         <div class="aza-founder-home-copy">
           <span class="aza-founder-eyebrow"><i></i> AZA UNIVERSE · OFFICIAL</span>
-          <h2 id="azaFounderHomeTitle">AZA UNIVERSE</h2>
+          <h2 id="azaFounderHomeTitle" class="aza-founder-full-name">AZAMAT AKMATOV ${verifiedMark("aza-verified-check-large")}</h2>
+          <div class="aza-founder-handle">@AZAUNIVERSE ${verifiedMark("aza-verified-check-handle")}</div>
           ${founderBadge("aza-founder-chip-large")}
           <p class="aza-founder-role">${esc(t("Негиздөөчү · Долбоордун автору", "Основатель · Автор проекта"))}</p>
           <blockquote>${esc(t("«Билим, логика жана жаңы мүмкүнчүлүктөр дүйнөсү.»", "«Знания, логика и новые возможности — в одном пространстве.»"))}</blockquote>
@@ -74,6 +81,7 @@
         <div class="aza-founder-about-head">
           <span class="aza-founder-eyebrow"><i></i> AZA UNIVERSE · OUR MISSION</span>
           <h2 id="azaFounderAboutTitle">${esc(t("Долбоордун идеясы", "Идея проекта"))}</h2>
+          <p class="aza-founder-about-identity"><strong>AZAMAT AKMATOV</strong> ${verifiedMark()} <span>@AZAUNIVERSE</span> ${verifiedMark("aza-verified-check-handle")}</p>
           <p>${esc(t(
             "Билимди кызыктуу кылып, оюндарды жана адамдарды бир коомчулукка бириктирүү.",
             "Сделать обучение интереснее и объединить игры, знания и людей в одном сообществе."
@@ -109,47 +117,103 @@
   }
 
   function decorateFounderProfile() {
-    if (!isFounderSession()) return;
-    document.body.classList.add("aza-is-founder");
+    const isFounder = isFounderSession();
+    document.body.classList.toggle("aza-is-founder", isFounder);
+    if (!isFounder) return;
     const editor = $("#modalContent .aza-profile-editor");
     if (!editor) return;
     const summary = $(".aza-profile-summary", editor);
     const text = $(".aza-profile-summary-text", editor);
     if (!summary || !text) return;
 
-    // Founder is outside the competitive ranks: hide only the founder's visible rank/score UI.
+    // Founder is excluded from competitive ranks; keep the reserved handle and display the real name.
     $$(".aza-rank-label, .aza-rank-progress", text).forEach(el => el.remove());
-    $$('small', text).forEach(el => el.remove());
+    $$("small", text).forEach(el => el.remove());
+
+    const avatar = $(".aza-profile-avatar", summary);
+    if (avatar) {
+      ["bronze","silver","gold","platinum","diamond","master","ace","conqueror"].forEach(id => avatar.classList.remove(`aza-frame-${id}`));
+      avatar.classList.add("aza-frame-founder");
+    }
+
     const name = $("strong", text);
-    if (name && !$(".aza-founder-chip-profile", text)) {
-      name.insertAdjacentHTML("afterend", founderBadge("aza-founder-chip-profile"));
+    if (name) {
+      if (name.dataset.azaFounderDecorated !== "true") {
+        name.textContent = FOUNDER_NAME;
+        name.classList.add("aza-founder-display-name");
+        name.insertAdjacentHTML("beforeend", verifiedMark());
+        name.dataset.azaFounderDecorated = "true";
+      }
+      let handle = $(".aza-founder-handle-profile", text);
+      if (!handle) {
+        name.insertAdjacentHTML("afterend", `<span class="aza-founder-handle-profile">@${FOUNDER_HANDLE} ${verifiedMark("aza-verified-check-handle")}</span>`);
+        handle = $(".aza-founder-handle-profile", text);
+      }
+      if (handle && !$(".aza-founder-chip-profile", text)) {
+        handle.insertAdjacentHTML("afterend", founderBadge("aza-founder-chip-profile"));
+      }
     }
     summary.classList.add("aza-founder-summary");
+  }
+
+  function isFounderRow(row) {
+    const id = String(row?.dataset?.userId || "").toLowerCase();
+    if (id) return id === FOUNDER_ID;
+    const name = $("strong, h3", row);
+    return name?.textContent.trim().toUpperCase() === FOUNDER_HANDLE;
+  }
+
+  function decorateFounderSocialIdentity(name, container, kind) {
+    if (!name || !container) return;
+    if (name.dataset.azaFounderDecorated !== "true") {
+      name.textContent = FOUNDER_NAME;
+      name.classList.add("aza-founder-display-name");
+      name.insertAdjacentHTML("beforeend", verifiedMark());
+      name.dataset.azaFounderDecorated = "true";
+    }
+    const handleClass = `aza-founder-handle-${kind}`;
+    let handle = $(`.${handleClass}`, container);
+    if (!handle) {
+      name.insertAdjacentHTML("afterend", `<span class="${handleClass}">@${FOUNDER_HANDLE} ${verifiedMark("aza-verified-check-handle")}</span>`);
+      handle = $(`.${handleClass}`, container);
+    }
+    if (handle && !container.querySelector(`.aza-founder-chip-${kind}`)) {
+      handle.insertAdjacentHTML("afterend", founderBadge(`aza-founder-chip-${kind}`));
+    }
   }
 
   function decorateSocialHub() {
     const overlay = $("#aza-social-overlay");
     if (!overlay) return;
 
-    // Global/private chat messages: show founder identity rather than a normal game rank.
+    // The owner UUID is authoritative; a player-entered display name cannot earn the badge.
     $$(".aza-social-message", overlay).forEach(row => {
+      if (!isFounderRow(row)) return;
       const meta = $(".aza-social-message-meta", row);
       const name = $("strong", meta);
-      if (!name || name.textContent.trim().toUpperCase() !== "AZAUNIVERSE") return;
       $(".aza-social-rank", meta)?.remove();
-      if (!$(".aza-founder-chip-chat", meta)) name.insertAdjacentHTML("afterend", founderBadge("aza-founder-chip-chat"));
+      decorateFounderSocialIdentity(name, meta, "chat");
+      $(".aza-profile-avatar", row)?.classList.add("aza-frame-founder");
     });
 
-    // Friend/search cards: avoid presenting the founder as a competitive-ranked participant.
     $$(".aza-social-person", overlay).forEach(row => {
+      if (!isFounderRow(row)) return;
       const info = $(".aza-social-person-info", row);
       const name = $("strong", info);
-      if (!name || name.textContent.trim().toUpperCase() !== "AZAUNIVERSE") return;
       $(".aza-social-person-rank", info)?.remove();
-      if (!$(".aza-founder-chip-person", info)) name.insertAdjacentHTML("afterend", founderBadge("aza-founder-chip-person"));
+      decorateFounderSocialIdentity(name, info, "person");
+      $(".aza-profile-avatar", row)?.classList.add("aza-frame-founder");
+    });
+
+    $$(".aza-social-dm-person", overlay).forEach(row => {
+      if (!isFounderRow(row)) return;
+      const wrap = $("div", row);
+      const name = $("h3", wrap);
+      $(".aza-social-dm-rank", wrap)?.remove();
+      decorateFounderSocialIdentity(name, wrap, "dm");
+      $(".aza-profile-avatar", row)?.classList.add("aza-frame-founder");
     });
   }
-
   let lastRenderedLeaderboard = "";
   let leaderboardBusy = false;
   async function refreshPublicLeaderboard() {

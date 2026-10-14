@@ -19,6 +19,7 @@
   const lang = () => localStorage.getItem("aza-lang") || document.documentElement.lang || "ky";
   const t = (ky, ru) => lang() === "ru" ? ru : ky;
   const validId = v => /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(v || ""));
+  const FOUNDER_ID = "362b8778-de25-4846-9bf7-c514842d159e";
   const frameIds = ["bronze","silver","gold","platinum","diamond","master","ace","conqueror"];
   const ranks = [
     {id:"bronze",min:0,ky:"Коло",ru:"Бронза"},{id:"silver",min:500,ky:"Күмүш",ru:"Серебро"},
@@ -101,8 +102,9 @@
   }
   function initials(name){return esc(String(name||"A").trim().slice(0,1).toUpperCase()||"A");}
   function avatar(p,size="") {
-    const frame=frameIds.includes(p?.avatar_frame)?p.avatar_frame:"bronze";
-    const url=safeAvatar(p?.avatar_url); const label=esc(p?.username||"AZA Player");
+    const isFounder=String(p?.id||"").toLowerCase()===FOUNDER_ID;
+    const frame=isFounder?"founder":(frameIds.includes(p?.avatar_frame)?p.avatar_frame:"bronze");
+    const url=safeAvatar(p?.avatar_url); const label=isFounder?"AZAMAT AKMATOV · @AZAUNIVERSE":esc(p?.username||"AZA Player");
     return `<span class="aza-social-avatar aza-profile-avatar aza-frame-${frame} ${size}" title="${label}">${url?`<img src="${esc(url)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">`:`<span class="aza-avatar-initial">${initials(p?.username)}</span>`}</span>`;
   }
   function formatLastSeen(value, isOnline=false) {
@@ -259,7 +261,7 @@
     list.innerHTML=activeMessages.map(m=>{
       const p=profileCache.get(m.sender_id)||{username:"AZA Player",total_points:0,avatar_frame:"bronze"};
       const mine=m.sender_id===me;const r=rankFor(p.total_points);
-      return `<article class="aza-social-message ${mine?"is-mine":""}"><div class="aza-social-message-avatar">${avatar(p,"small")}</div><div class="aza-social-message-main"><div class="aza-social-message-meta"><strong>${esc(p.username||"AZA Player")}</strong><span class="aza-social-rank aza-rank-${r.id}">${esc(t(r.ky,r.ru))}</span><time datetime="${esc(m.created_at)}">${esc(formatTime(m.created_at))}</time>${!mine?`<button type="button" class="aza-social-report" data-social-report="${Number(m.id)}" aria-label="${esc(txt("report"))}">⚑</button>`:""}</div><p>${esc(m.body).replace(/\n/g,"<br>")}</p></div></article>`;
+      return `<article class="aza-social-message ${mine?"is-mine":""}" data-user-id="${esc(m.sender_id)}"><div class="aza-social-message-avatar">${avatar(p,"small")}</div><div class="aza-social-message-main"><div class="aza-social-message-meta"><strong>${esc(p.username||"AZA Player")}</strong><span class="aza-social-rank aza-rank-${r.id}">${esc(t(r.ky,r.ru))}</span><time datetime="${esc(m.created_at)}">${esc(formatTime(m.created_at))}</time>${!mine?`<button type="button" class="aza-social-report" data-social-report="${Number(m.id)}" aria-label="${esc(txt("report"))}">⚑</button>`:""}</div><p>${esc(m.body).replace(/\n/g,"<br>")}</p></div></article>`;
     }).join("");
     list.scrollTop=list.scrollHeight;
   }
@@ -293,7 +295,7 @@
   const otherId=(row,uid)=>row.requester_id===uid?row.addressee_id:row.requester_id;
   function personCard(p, presence, actions, extra="") {
     const r=rankFor(p?.total_points||0);const online=presence?.is_online&&presence?.last_seen_at&&Date.now()-new Date(presence.last_seen_at).getTime()<4*60*1000;
-    return `<article class="aza-social-person ${extra}">${avatar(p)}<div class="aza-social-person-info"><strong>${esc(p?.username||"AZA Player")}</strong><span class="aza-social-person-rank aza-rank-${r.id}">${esc(t(r.ky,r.ru))} · ${Number(p?.total_points||0).toLocaleString(lang()==="ru"?"ru-RU":"ky-KG")} ${esc(txt("points"))}</span><small>${formatLastSeen(presence?.last_seen_at,online)}</small></div><div class="aza-social-person-actions">${actions}</div></article>`;
+    return `<article class="aza-social-person ${extra}" data-user-id="${esc(p?.id||"")}">${avatar(p)}<div class="aza-social-person-info"><strong>${esc(p?.username||"AZA Player")}</strong><span class="aza-social-person-rank aza-rank-${r.id}">${esc(t(r.ky,r.ru))} · ${Number(p?.total_points||0).toLocaleString(lang()==="ru"?"ru-RU":"ky-KG")} ${esc(txt("points"))}</span><small>${formatLastSeen(presence?.last_seen_at,online)}</small></div><div class="aza-social-person-actions">${actions}</div></article>`;
   }
   async function loadFriends(isRefresh=false,session=readSession()) {
     currentSession=session;await loadRelationships(session);
@@ -312,7 +314,7 @@
     if(currentFriend){
       const p=profileCache.get(currentFriend)||{id:currentFriend,username:"AZA Player",total_points:0};currentFriendData=p;
       const r=rankFor(p.total_points||0);
-      content.innerHTML=`<section class="aza-social-chat-panel"><div class="aza-social-chat-title aza-social-dm-title"><button type="button" class="aza-social-back" data-social-back>‹ ${esc(txt("dms"))}</button><div class="aza-social-dm-person">${avatar(p,"small")}<div><h3>${esc(p.username||"AZA Player")}</h3><p>${esc(t(r.ky,r.ru))} · ${esc(txt("chatWith").replace(/^ /,""))}</p></div></div><button type="button" class="aza-social-more" data-social-block="${esc(p.id)}" aria-label="${esc(txt("block"))}">⋯</button></div><div class="aza-social-message-list" id="azaSocialMessages" aria-live="polite"><div class="aza-social-loading">${esc(t("Билдирүүлөр жүктөлүүдө…","Загружаем сообщения…"))}</div></div><form class="aza-social-composer" id="azaSocialComposer"><textarea id="azaSocialMessageInput" name="body" maxlength="1000" rows="2" placeholder="${esc(txt("placeholder"))}" required></textarea><div class="aza-social-composer-foot"><small><span id="azaSocialCharCount">0</span>/1000</small><button class="btn btn-primary" type="submit">${esc(txt("send"))} ↗</button></div></form></section>`;
+      content.innerHTML=`<section class="aza-social-chat-panel"><div class="aza-social-chat-title aza-social-dm-title"><button type="button" class="aza-social-back" data-social-back>‹ ${esc(txt("dms"))}</button><div class="aza-social-dm-person" data-user-id="${esc(p.id||"")}">${avatar(p,"small")}<div><h3>${esc(p.username||"AZA Player")}</h3><p class="aza-social-dm-rank">${esc(t(r.ky,r.ru))} · ${esc(txt("chatWith").replace(/^ /,""))}</p></div></div><button type="button" class="aza-social-more" data-social-block="${esc(p.id)}" aria-label="${esc(txt("block"))}">⋯</button></div><div class="aza-social-message-list" id="azaSocialMessages" aria-live="polite"><div class="aza-social-loading">${esc(t("Билдирүүлөр жүктөлүүдө…","Загружаем сообщения…"))}</div></div><form class="aza-social-composer" id="azaSocialComposer"><textarea id="azaSocialMessageInput" name="body" maxlength="1000" rows="2" placeholder="${esc(txt("placeholder"))}" required></textarea><div class="aza-social-composer-foot"><small><span id="azaSocialCharCount">0</span>/1000</small><button class="btn btn-primary" type="submit">${esc(txt("send"))} ↗</button></div></form></section>`;
       lastMessageFetchKey=`direct:${uid}:${currentFriend}`;
       const expr=`(and(sender_id.eq.${uid},recipient_id.eq.${currentFriend}),and(sender_id.eq.${currentFriend},recipient_id.eq.${uid}))`;
       const rows=await api(`/rest/v1/aza_chat_messages?select=id,room_type,sender_id,recipient_id,body,created_at&room_type=eq.direct&or=${encodeURIComponent(expr)}&order=created_at.desc&limit=40`,{},session);
