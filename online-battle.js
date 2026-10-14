@@ -185,7 +185,7 @@
     content.innerHTML = `
       <span class="aza-battle-eyebrow">AZA UNIVERSE · ONLINE</span>
       <h2 id="azaBattleTitle">${esc(tx("Онлайн беттеш", "Онлайн-баттл"))}</h2>
-      <p class="aza-battle-muted">${esc(tx("Режимди танда. Ар бир суроого 20 секунд берилет.", "Выбери режим. На каждый вопрос даётся 20 секунд."))}</p>
+      <p class="aza-battle-muted">${esc(tx("Режимди танда. Ар бир суроого 60 секунд берилет.", "Выбери режим. На каждый вопрос даётся 60 секунд."))}</p>
       ${message ? `<div class="aza-battle-message">${esc(message)}</div>` : ""}
       ${modeButtons()}
       <div class="aza-battle-action-list">
@@ -355,7 +355,7 @@
     const team1 = players.filter(p => Number(p.team_no) === 1).reduce((sum,p)=>sum+Number(p.score||0),0);
     const team2 = players.filter(p => Number(p.team_no) === 2).reduce((sum,p)=>sum+Number(p.score||0),0);
     const currentStart = Date.parse(q.started_at || snap.room.question_started_at || snap.room.starts_at || "") || Date.now();
-    const left = Math.max(0, Number(q.seconds_left ?? Math.ceil((currentStart + 20000 - Date.now()) / 1000)));
+    const left = Math.max(0, Number(q.seconds_left ?? Math.ceil((currentStart + 60000 - Date.now()) / 1000)));
     return `<div class="aza-battle-livebar"><span>${esc(tx("СУРОО", "ВОПРОС"))} <b>${q.number}/10</b></span><span class="aza-battle-timer ${left <= 5 ? "urgent" : ""}">⏱️ ${left}${esc(tx(" с", " с"))}</span></div>
       <div class="aza-battle-team-scores"><span>🔵 ${esc(tx("Команда 1", "Команда 1"))}: <b>${team1}</b></span><span>🔴 ${esc(tx("Команда 2", "Команда 2"))}: <b>${team2}</b></span></div>
       <div class="aza-battle-question"><span class="aza-battle-category">${esc(q.category || tx("Жалпы билим", "Общие знания"))}</span><h3>${esc(q.text)}</h3></div>
@@ -412,7 +412,7 @@
         p_room_id: state.roomId,
         p_question_no: Number(q.number),
         p_choice_index: choice,
-        p_response_ms: Math.max(0, Math.min(20000, Date.now() - started))
+        p_response_ms: Math.max(0, Math.min(60000, Date.now() - started))
       });
       state.busy = false;
       await pollRoom();
