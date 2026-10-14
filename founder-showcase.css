@@ -89,3 +89,96 @@
 .aza-founder-person .aza-social-person-info,.aza-founder-person .aza-social-message-main{min-width:0}
 @keyframes azaFounderRingPulse{0%,100%{filter:drop-shadow(0 0 2px #22baff);opacity:.9}50%{filter:drop-shadow(0 0 9px #ffc75b);opacity:1}}
 @media(prefers-reduced-motion:reduce){.aza-profile-avatar.aza-frame-founder:before{animation:none!important}}
+
+/* AZA UNIVERSE — PREMIUM INTERACTIVE ARROWS */
+
+.feature-tests {
+  --aza-arrow: #d69aff;
+  --aza-arrow-glow: rgba(185, 93, 255, .35);
+}
+
+.feature-games {
+  --aza-arrow: #ffad55;
+  --aza-arrow-glow: rgba(255, 140, 45, .35);
+}
+
+.feature-ai {
+  --aza-arrow: #65ddff;
+  --aza-arrow-glow: rgba(56, 199, 255, .35);
+}
+
+.feature-ranking {
+  --aza-arrow: #ffdc78;
+  --aza-arrow-glow: rgba(255, 197, 55, .4);
+}
+
+.feature-challenges {
+  --aza-arrow: #ff91c4;
+  --aza-arrow-glow: rgba(255, 93, 168, .35);
+}
+
+.feature-community {
+  --aza-arrow: #65f0d8;
+  --aza-arrow-glow: rgba(55, 235, 205, .35);
+}
+
+.feature-card .card-arrow {
+  min-height: 38px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.feature-card .card-arrow b {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: 1px solid var(--aza-arrow);
+  border-radius: 50%;
+  color: var(--aza-arrow);
+  background: radial-gradient(
+    circle at 30% 25%,
+    var(--aza-arrow-glow),
+    rgba(5, 15, 28, .96) 75%
+  );
+  box-shadow:
+    inset 0 0 8px var(--aza-arrow-glow),
+    0 0 10px rgba(30, 150, 255, .08);
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease,
+    background .2s ease;
+}
+
+.feature-card .card-arrow:hover b,
+.feature-card .card-arrow:focus-visible b {
+  transform: translateX(3px) scale(1.05);
+  box-shadow:
+    0 0 18px var(--aza-arrow-glow),
+    inset 0 0 12px var(--aza-arrow-glow);
+}
+
+.feature-card .card-arrow:active b {
+  transform: translateX(1px) scale(.96);
+}
+
+.feature-card .card-arrow:focus-visible {
+  outline: 2px solid var(--aza-arrow);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .feature-card .card-arrow b {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card .card-arrow b {
+    transition: none;
+  }
+}
