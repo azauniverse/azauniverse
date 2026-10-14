@@ -68,8 +68,52 @@
 
 
 /* Founder identity: rendered only for the official owner UUID. */
-.aza-verified-check{display:inline-grid;place-items:center;vertical-align:middle;flex:0 0 auto;width:16px;height:16px;margin-inline:4px;border-radius:50%;background:linear-gradient(145deg,#48c6ff,#0875e8);color:#fff;font-size:11px;font-weight:1000;line-height:1;box-shadow:0 0 10px rgba(17,139,255,.45);border:1px solid rgba(231,248,255,.8)}
-.aza-verified-check-large{width:20px;height:20px;font-size:13px}
+/* AZA UNIVERSE — Instagram-inspired verified badge */
+.aza-verified-check {
+  display: inline-grid;
+  place-items: center;
+  vertical-align: middle;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-inline: 4px;
+
+  clip-path: polygon(
+    50% 0%, 59% 7%, 68% 2%, 73% 12%,
+    84% 11%, 88% 22%, 98% 29%, 93% 40%,
+    100% 50%, 93% 60%, 98% 71%, 88% 78%,
+    84% 89%, 73% 88%, 68% 98%, 59% 93%,
+    50% 100%, 41% 93%, 32% 98%, 27% 88%,
+    16% 89%, 12% 78%, 2% 71%, 7% 60%,
+    0% 50%, 7% 40%, 2% 29%, 12% 22%,
+    16% 11%, 27% 12%, 32% 2%, 41% 7%
+  );
+
+  background: linear-gradient(
+    145deg,
+    #5cc7ff 0%,
+    #2595f5 45%,
+    #0866e9 100%
+  );
+
+  color: #fff;
+  font: 900 12px/1 Arial, sans-serif;
+  text-align: center;
+  filter: drop-shadow(0 1px 2px rgba(0, 115, 255, .5));
+}
+
+.aza-verified-check-large {
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+}
+
+.aza-verified-check-handle {
+  width: 17px;
+  height: 17px;
+  font-size: 11px;
+}
+
 .aza-founder-full-name{display:flex;align-items:center;justify-content:flex-start;gap:4px;flex-wrap:wrap}
 .aza-founder-handle,.aza-founder-about-identity,.aza-founder-handle-profile,.aza-founder-handle-chat,.aza-founder-handle-person,.aza-founder-handle-dm{display:inline-flex;align-items:center;gap:3px;color:#69d8ff;font-weight:800;letter-spacing:.35px}
 .aza-founder-handle{margin:2px 0 8px;font-size:12px}
