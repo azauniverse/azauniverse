@@ -334,7 +334,7 @@
       <button type="button" class="aza-battle-action quiet" data-battle-action="leave">${esc(tx("Бөлмөдөн чыгуу", "Выйти из комнаты"))}</button>`;
     } else if (room.status === "starting") {
       const seconds = Math.max(0, Math.ceil((Date.parse(room.starts_at) - Date.now()) / 1000));
-      body = `<div class="aza-battle-countdown"><span>⚡</span><strong>${seconds || "GO!"}</strong><small>${esc(tx("БЕТТЕШ БАШТАЛАТ", "БАТТЛ НАЧИНАЕТСЯ"))}</small></div>${renderPlayers(snap)}<p class="aza-battle-muted center">${esc(tx("Даяр бол! Ар бир суроого 20 секунд берилет.", "Приготовься! На каждый вопрос 20 секунд."))}</p>`;
+      body = `<div class="aza-battle-countdown"><span>⚡</span><strong>${seconds || "GO!"}</strong><small>${esc(tx("БЕТТЕШ БАШТАЛАТ", "БАТТЛ НАЧИНАЕТСЯ"))}</small></div>${renderPlayers(snap)}<p class="aza-battle-muted center">${esc(tx("Даяр бол! Ар бир суроого 60 секунд берилет.", "Приготовься! На каждый вопрос 60 секунд."))}</p>`;
     } else if (room.status === "playing") {
       body = renderQuestion(snap);
     } else if (room.status === "finished") {
