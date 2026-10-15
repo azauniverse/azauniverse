@@ -1,0 +1,53 @@
+/* AZA UNIVERSE — wide community entry + low-motion mobile styles. */
+.aza-social-entry{display:none!important}
+.aza-community-wide-banner{
+  box-sizing:border-box;position:relative;isolation:isolate;grid-column:1/-1;display:flex;align-items:center;gap:clamp(14px,3vw,25px);width:100%;min-width:0;min-height:170px;margin:18px 0 0;padding:clamp(16px,3vw,28px);
+  overflow:hidden;border:1px solid #347da0;border-radius:23px;text-align:left;color:#effaff;cursor:pointer;
+  background:radial-gradient(ellipse at 4% 10%,#1f9bd733,transparent 42%),radial-gradient(ellipse at 96% 95%,#7949ec36,transparent 44%),linear-gradient(115deg,#091c30 0%,#0c1c34 58%,#171936 100%);
+  box-shadow:inset 0 1px #ffffff12,0 13px 34px #0002;transition:border-color .18s,transform .18s,box-shadow .18s;
+}
+.aza-community-wide-banner:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#66e5ff0d,transparent 45%,#a78aff10);pointer-events:none}
+.aza-community-wide-banner:after{content:"";position:absolute;top:-85px;right:18%;width:240px;height:240px;border:1px solid #73dfff24;border-radius:50%;box-shadow:0 0 0 22px #8a7cff08,0 0 0 48px #64ddff05;pointer-events:none}
+.aza-community-wide-banner:hover{border-color:#64dcff;box-shadow:inset 0 1px #ffffff18,0 15px 38px #0003,0 0 24px #42d8ff0c;transform:translateY(-1px)}
+.aza-community-wide-banner:focus-visible{outline:3px solid #ffd977;outline-offset:3px}
+.aza-community-banner-art{position:relative;z-index:1;display:grid;place-items:center;flex:0 0 clamp(70px,12vw,100px);width:clamp(70px,12vw,100px);height:clamp(70px,12vw,100px);border:1px solid #388fb0;border-radius:23px;background:radial-gradient(circle,#123d5a,#0a192b 76%);box-shadow:inset 0 0 24px #3bcfff0b,0 0 22px #2ccfff0d}
+.aza-community-banner-art svg{width:88%;height:88%;filter:drop-shadow(0 0 7px #36cfff22)}
+.aza-community-banner-copy{position:relative;z-index:1;display:flex;flex:1;flex-direction:column;align-items:flex-start;min-width:0;gap:7px}
+.aza-community-banner-eyebrow{color:#ffd27b;font-size:clamp(9px,1.7vw,12px);font-weight:950;letter-spacing:.16em;line-height:1.4;overflow-wrap:anywhere}
+.aza-community-banner-copy>strong{font-size:clamp(22px,4vw,34px);line-height:1.1;font-weight:950;letter-spacing:-.03em;overflow-wrap:anywhere;color:#f5fbff}
+.aza-community-banner-description{max-width:680px;color:#aac0d6;font-size:clamp(13px,2.1vw,16px);line-height:1.55;overflow-wrap:anywhere}
+.aza-community-banner-chips{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:3px}
+.aza-community-banner-chips i{padding:5px 8px;border:1px solid #2c5775;border-radius:999px;background:#08182a;color:#aeeaff;font-size:clamp(9px,1.55vw,11px);font-style:normal;font-weight:850;letter-spacing:.05em}
+.aza-community-banner-cta{position:relative;z-index:1;display:flex;flex:0 0 auto;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:88px;max-width:136px;min-height:78px;padding:12px;border:1px solid #498fb4;border-radius:16px;background:linear-gradient(130deg,#103c58,#24204d);color:#d4f8ff;box-shadow:inset 0 0 20px #48dfff0c;text-align:center}
+.aza-community-banner-cta>span{display:grid;place-items:center;width:36px;height:36px;border:1px solid #57dfff;border-radius:50%;font-size:22px;line-height:1;color:#a4f0ff}
+.aza-community-banner-cta small{font-size:clamp(9px,1.6vw,11px);line-height:1.3;font-weight:950;letter-spacing:.035em;overflow-wrap:anywhere}
+
+/* Lower GPU/compositor work on phones; keep controls and text readable. */
+@media(max-width:768px){
+  .aza-community-wide-banner{gap:12px;min-height:142px;margin-top:14px;padding:14px;border-radius:18px;box-shadow:inset 0 1px #ffffff0a}
+  .aza-community-banner-art{flex-basis:62px;width:62px;height:62px;border-radius:17px}
+  .aza-community-banner-copy{gap:5px}
+  .aza-community-banner-copy>strong{font-size:clamp(19px,5vw,27px)}
+  .aza-community-banner-description{font-size:13px;line-height:1.45}
+  .aza-community-banner-chips{gap:4px}
+  .aza-community-banner-chips i{font-size:9px;padding:4px 6px}
+  .aza-community-banner-cta{min-width:55px;max-width:68px;min-height:58px;padding:7px;border-radius:12px}
+  .aza-community-banner-cta>span{width:32px;height:32px;font-size:20px}
+  .aza-community-banner-cta small{font-size:9px}
+  .aza-social-backdrop{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:#020610f1!important}
+  .aza-social-avatar:before,.aza-social-avatar:after,.aza-social-live-pill i,.aza-social-online-total i{animation:none!important}
+  .aza-social-avatar:after{display:none!important}
+  .aza-social-message-main,.aza-social-chat-panel,.aza-social-window,.feature-card,.popular-card,.challenge-banner{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+}
+@media(max-width:390px){
+  .aza-community-wide-banner{gap:9px;padding:11px}
+  .aza-community-banner-art{flex-basis:52px;width:52px;height:52px;border-radius:14px}
+  .aza-community-banner-eyebrow{font-size:8px;letter-spacing:.1em}
+  .aza-community-banner-copy>strong{font-size:18px}
+  .aza-community-banner-description{font-size:12px}
+  .aza-community-banner-chips i{font-size:8px;padding:4px 5px}
+  .aza-community-banner-cta{min-width:45px;max-width:51px;padding:5px}
+  .aza-community-banner-cta>span{width:28px;height:28px;font-size:18px}
+  .aza-community-banner-cta small{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){.aza-community-wide-banner{transition:none!important}}
