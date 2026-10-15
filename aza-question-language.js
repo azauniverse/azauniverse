@@ -1,11 +1,11 @@
-/* AZA UNIVERSE — KG/RU quiz controls v3.
+/* AZA UNIVERSE — KG/RU quiz controls + founder crown v4.
  * Lightweight on question open: question-bank JSON is downloaded only when KG/RU is tapped.
  * Keeps the app's original answer buttons/indexes and uses a single observer on #modalContent.
  */
 (() => {
   'use strict';
-  if (window.__AZA_QUESTION_LANGUAGE_V3__) return;
-  window.__AZA_QUESTION_LANGUAGE_V3__ = true;
+  if (window.__AZA_QUESTION_LANGUAGE_V4__) return;
+  window.__AZA_QUESTION_LANGUAGE_V4__ = true;
 
   const scriptUrl = document.currentScript?.src || new URL('aza-question-language.js', location.href).href;
   const baseUrl = new URL('.', scriptUrl);
@@ -36,6 +36,10 @@
     {id:'diamond',min:5000,ky:'Алмаз',ru:'Алмаз'}, {id:'master',min:8000,ky:'Мастер',ru:'Мастер'},
     {id:'ace',min:12000,ky:'Эйс',ru:'Эйс'}, {id:'conqueror',min:20000,ky:'Космостук жеңүүчү',ru:'Завоеватель'}
   ];
+  // Crown is cosmetic and reserved to the owner's authenticated Supabase UUID.
+  // Never grant it from a username, handle, or client-editable profile field.
+  const FOUNDER_ID = '362b8778-de25-4846-9bf7-c514842d159e';
+  const FOUNDER_NAME = 'AZAMAT AKMATOV';
 
   const bankPromises = new Map();
   const bankRows = new Map();
@@ -46,10 +50,10 @@
   let enhancing = false;
 
   function ensureCss() {
-    if ($('link[data-aza-question-language-v3]')) return;
+    if ($('link[data-aza-question-language-v4]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = new URL('aza-question-language.css?v=3', baseUrl).href;
+    link.href = new URL('aza-question-language.css?v=4', baseUrl).href;
     link.dataset.azaQuestionLanguageV3 = '1';
     document.head.appendChild(link);
   }
@@ -190,7 +194,7 @@
     const session = readSession();
     if (!session) {
       strip.dataset.loaded = '1';
-      strip.classList.remove('is-loading');
+      strip.classList.remove('is-loading','is-founder');
       strip.classList.add('is-guest');
       $('.aza-quiz-profile-avatar',strip).textContent = 'A';
       $('.aza-quiz-profile-details',strip).innerHTML = `<strong>${tr('Конок оюнчу','Гость')}</strong><small>${tr('Рейтинг сактоо үчүн аккаунтка кир','Войди, чтобы сохранять рейтинг')}</small>`;
@@ -205,16 +209,37 @@
     strip.dataset.loaded = '1';
     strip.classList.remove('is-loading');
 
-    const username = String(profile?.username || session.user?.user_metadata?.username || (session.user?.email || 'AZA Player').split('@')[0] || 'AZA Player');
+    const isFounder = String(userId).toLowerCase() === FOUNDER_ID;
+    strip.classList.toggle('is-founder', isFounder);
+    const username = isFounder
+      ? FOUNDER_NAME
+      : String(profile?.username || session.user?.user_metadata?.username || (session.user?.email || 'AZA Player').split('@')[0] || 'AZA Player');
     const points = Number(profile?.total_points || 0);
     const rank = rankFor(points);
     const avatar = $('.aza-quiz-profile-avatar',strip);
     const details = $('.aza-quiz-profile-details',strip);
     const badge = $('.aza-quiz-profile-rank',strip);
-    if (details) details.innerHTML = `<strong>${esc(username)}</strong><small>${points.toLocaleString(lang()==='ru'?'ru-RU':'ky-KG')} ${tr('упай','очков')} · ${tr('профиль рейтинги','рейтинг профиля')}</small>`;
-    if (badge) { badge.textContent = `${rank.id==='bronze'?'✦ ':rank.id==='silver'?'◆ ':rank.id==='gold'?'✪ ':rank.id==='platinum'?'✧ ':'★ '}${rank[lang()]}`; badge.dataset.rank = rank.id; }
+    const pointsText = `${points.toLocaleString(lang()==='ru'?'ru-RU':'ky-KG')} ${tr('упай','очков')}`;
+    if (details) {
+      const founderHandle = isFounder ? '@AZAUNIVERSE · ' : '';
+      details.innerHTML = `<strong>${esc(username)}</strong><small>${founderHandle}${pointsText} · ${tr('профиль рейтинги','рейтинг профиля')}</small>`;
+    }
+    if (badge) {
+      if (isFounder) {
+        badge.textContent = '♛ FOUNDER';
+        badge.dataset.rank = 'founder';
+        badge.title = tr('Долбоордун негиздөөчүсү','Основатель проекта');
+        badge.setAttribute('aria-label', badge.title);
+      } else {
+        badge.textContent = `${rank.id==='bronze'?'✦ ':rank.id==='silver'?'◆ ':rank.id==='gold'?'✪ ':rank.id==='platinum'?'✧ ':'★ '}${rank[lang()]}`;
+        badge.dataset.rank = rank.id;
+        badge.removeAttribute('title');
+        badge.removeAttribute('aria-label');
+      }
+    }
     if (avatar) {
-      const frame = ranks.some(item => item.id === profile?.avatar_frame) ? profile.avatar_frame : rank.id;
+      const profileFrame = ranks.some(item => item.id === profile?.avatar_frame) ? profile.avatar_frame : rank.id;
+      const frame = isFounder ? 'founder' : profileFrame;
       avatar.classList.add('has-frame',`aza-quiz-frame-${frame}`);
       const url = safeAvatar(profile?.avatar_url);
       avatar.innerHTML = url ? `<img src="${esc(url)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">` : esc(username.slice(0,1).toUpperCase() || 'A');
@@ -415,8 +440,8 @@
   function init() {
     ensureCss();
     const content = $('#modalContent');
-    if (!content || content.dataset.azaQuestionLanguageObserverV3 === '1') return;
-    content.dataset.azaQuestionLanguageObserverV3 = '1';
+    if (!content || content.dataset.azaQuestionLanguageObserverV4 === '1') return;
+    content.dataset.azaQuestionLanguageObserverV4 = '1';
     const observer = new MutationObserver(() => scheduleEnhance());
     observer.observe(content,{childList:true,subtree:true});
     void enhanceQuestion();
