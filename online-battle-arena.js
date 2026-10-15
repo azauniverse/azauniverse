@@ -34,7 +34,7 @@
     if (document.querySelector('link[data-aza-arena-css]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'online-battle-arena.css?v=3';
+    link.href = 'online-battle-arena.css?v=4';
     link.dataset.azaArenaCss = 'true';
     document.head.appendChild(link);
   }
@@ -265,6 +265,62 @@
     timer.setAttribute('aria-label', `${number} ${tx('секунд калды', 'секунд осталось')}`);
   }
 
+
+  function ensureWideLauncher() {
+    const legacy = document.querySelector('#azaBattleLaunch');
+    const grid = document.querySelector('.feature-grid');
+    const games = document.querySelector('.feature-games');
+    if (!legacy || !grid || !games) return;
+
+    legacy.classList.add('aza-arena-legacy-launch');
+    let button = grid.querySelector(':scope > #azaBattleLaunchWide');
+    if (!button) {
+      button = document.createElement('button');
+      button.type = 'button';
+      button.id = 'azaBattleLaunchWide';
+      button.className = 'aza-arena-wide-banner';
+      button.setAttribute('aria-label', tx('AZA UNIVERSE Онлайн беттешке кирүү', 'Войти в онлайн-баттл AZA UNIVERSE'));
+      button.addEventListener('click', () => {
+        const launcher = document.querySelector('#azaBattleLaunch');
+        if (launcher) launcher.click();
+      });
+      // Place a full-width arena banner directly after the games card,
+      // spanning both columns on mobile and desktop.
+      games.insertAdjacentElement('afterend', button);
+    }
+
+    const currentLang = lang();
+    if (button.dataset.azaWideLang === currentLang) return;
+    button.dataset.azaWideLang = currentLang;
+
+    const ru = currentLang === 'ru';
+    const title = ru ? 'ОНЛАЙН-БАТТЛ' : 'ОНЛАЙН БЕТТЕШ';
+    const desc = ru
+      ? 'Найди соперника, собери команду и докажи своё мастерство.'
+      : 'Атаандаш тап, команда түз жана билимиңди аренада көрсөт.';
+    const join = ru ? 'ВОЙТИ В АРЕНУ' : 'АРЕНАГА КИРҮҮ';
+    const timer = ru ? '60 СЕК НА ВОПРОС' : 'СУРООГО 60 СЕК';
+    button.setAttribute('aria-label', join);
+    button.innerHTML = `
+      <span class="aza-arena-wide-art" aria-hidden="true">
+        <svg viewBox="0 0 88 88" fill="none" focusable="false">
+          <circle cx="44" cy="44" r="35" stroke="#5CE5FF" stroke-opacity=".48" stroke-width="1.4"/>
+          <circle cx="44" cy="44" r="26" stroke="#A58AFF" stroke-opacity=".55" stroke-dasharray="3 5" stroke-width="1.4"/>
+          <path d="M21 25 57 61M27 19 63 55M21 25l-2 12 12-2M57 61l12-2-2 12" stroke="#9AF1FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M67 22 31 58M61 16 25 52M67 22l2 12-12-2M31 58l-12 2 2-12" stroke="#FFC76E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="44" cy="44" r="5" fill="#F4FDFF"/>
+          <path d="M44 2v9M44 77v9M2 44h9M77 44h9" stroke="#75E8FF" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="aza-arena-wide-copy">
+        <span class="aza-arena-wide-eyebrow">AZA UNIVERSE <i></i> ONLINE ARENA</span>
+        <strong class="aza-arena-wide-title">${title}</strong>
+        <span class="aza-arena-wide-description">${desc}</span>
+        <span class="aza-arena-wide-chips"><i>1v1</i><i>2v2</i><i>4v4</i><b>${timer}</b></span>
+      </span>
+      <span class="aza-arena-wide-cta"><span aria-hidden="true">↗</span><small>${join}</small></span>`;
+  }
+
   function decorate() {
     scheduled = false;
     ensureCss();
@@ -279,6 +335,7 @@
 
     // Add the consistent arena identity above every screen state.
     ensureArenaHeader(content);
+    ensureWideLauncher();
     decorateModeButtons(content);
     decorateReadyButton(content);
     if (playing) {

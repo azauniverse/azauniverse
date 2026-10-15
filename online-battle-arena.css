@@ -284,3 +284,65 @@
   .aza-arena-ready-button small{font-size:12px!important;line-height:1.45!important}
 }
 @media(prefers-reduced-motion:reduce){.aza-arena-ready-on .aza-arena-ready-icon{animation:none!important}}
+
+
+/* Wide full-span ONLINE BATTLE banner: uses the empty width beside the game cards. */
+#azaBattleLaunch.aza-arena-legacy-launch{display:none!important}
+.feature-grid>#azaBattleLaunchWide.aza-arena-wide-banner{
+  grid-column:1/-1;position:relative;isolation:isolate;display:grid;grid-template-columns:94px minmax(0,1fr) 112px;align-items:center;gap:20px;
+  width:100%;min-width:0;min-height:164px;margin:0;padding:23px 25px;overflow:hidden;text-align:left;cursor:pointer;
+  color:#eef9ff;font-family:inherit;border:1px solid #3983a8;border-radius:24px;
+  background:radial-gradient(ellipse at 7% 40%,#1caedc35,transparent 33%),radial-gradient(ellipse at 100% 0%,#8f61ff32,transparent 45%),linear-gradient(112deg,#0c263a 0%,#0a172a 55%,#151633 100%);
+  box-shadow:0 15px 35px #0005,inset 0 0 0 1px #68eaff0b,inset 0 0 34px #49dfff0a;
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.feature-grid>#azaBattleLaunchWide.aza-arena-wide-banner:before{
+  content:"";position:absolute;z-index:-1;right:92px;top:-90px;width:270px;height:270px;border:1px solid #6ddfff25;border-radius:50%;box-shadow:0 0 0 18px #9b7bff08,0 0 0 44px #57dfff07;pointer-events:none;
+}
+.feature-grid>#azaBattleLaunchWide.aza-arena-wide-banner:after{
+  content:"";position:absolute;z-index:-1;left:15%;right:15%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,#69e6ff8c,#ad8aff80,transparent);pointer-events:none;
+}
+.feature-grid>#azaBattleLaunchWide.aza-arena-wide-banner:hover{transform:translateY(-2px);border-color:#6adfff;box-shadow:0 18px 42px #0006,0 0 26px #31caff1b,inset 0 0 32px #49dfff12}
+.feature-grid>#azaBattleLaunchWide.aza-arena-wide-banner:focus-visible{outline:3px solid #79eaff;outline-offset:3px}
+.aza-arena-wide-art{position:relative;display:grid;place-items:center;width:88px;height:88px;border:1px solid #3c91b3;border-radius:23px;background:linear-gradient(145deg,#102f46,#10172d);box-shadow:0 0 28px #3adfff1a,inset 0 0 20px #56e8ff0c}
+.aza-arena-wide-art:before{content:"";position:absolute;inset:7px;border:1px solid #60dbff24;border-radius:17px;pointer-events:none}
+.aza-arena-wide-art svg{display:block;width:74px;height:74px;filter:drop-shadow(0 0 9px #46d7ff38)}
+.aza-arena-wide-copy{display:grid;gap:8px;min-width:0}
+.aza-arena-wide-eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:900;letter-spacing:2.2px;line-height:1.4;color:#78e6ff}
+.aza-arena-wide-eyebrow i{display:inline-block;width:5px;height:5px;flex:0 0 5px;border-radius:50%;background:#ffc96e;box-shadow:0 0 10px #ffc96e88}
+.aza-arena-wide-title{display:block;font-size:clamp(22px,3.1vw,32px);font-weight:1000;line-height:1.08;letter-spacing:.025em;color:#f4fbff;text-shadow:0 0 22px #58dfff20}
+.aza-arena-wide-description{font-size:15px;font-weight:550;line-height:1.5;color:#b8cadc;max-width:620px}
+.aza-arena-wide-chips{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:2px}
+.aza-arena-wide-chips i,.aza-arena-wide-chips b{display:inline-flex;align-items:center;justify-content:center;min-height:27px;padding:5px 10px;border:1px solid #315570;border-radius:8px;background:#091a2a;color:#c4e9f5;font-size:11px;font-style:normal;font-weight:900;line-height:1.25}
+.aza-arena-wide-chips b{border-color:#7f6cb0;background:#211d40;color:#e5d6ff;letter-spacing:.045em}
+.aza-arena-wide-cta{display:grid;justify-items:center;align-content:center;gap:8px;min-height:96px;padding:12px;border:1px solid #4a79a9;border-radius:18px;background:linear-gradient(145deg,#123e55,#1c2350);box-shadow:inset 0 0 24px #54e4ff0c,0 0 22px #50bfff0d}
+.aza-arena-wide-cta>span{display:grid;place-items:center;width:43px;height:43px;border:1px solid #62e3ff;border-radius:50%;background:linear-gradient(145deg,#144563,#1e2852);color:#a8f5ff;font-size:27px;line-height:1;box-shadow:0 0 20px #39cfff20}
+.aza-arena-wide-cta small{font-size:10px;font-weight:1000;line-height:1.35;letter-spacing:.8px;color:#c4f6ff;text-align:center}
+@media(max-width:620px){
+ .feature-grid>#azaBattleLaunchWide.aza-arena-wide-banner{grid-template-columns:68px minmax(0,1fr) 60px;gap:13px;min-height:142px;padding:17px 14px;border-radius:19px}
+ .aza-arena-wide-art{width:64px;height:64px;border-radius:17px}
+ .aza-arena-wide-art:before{inset:5px;border-radius:12px}
+ .aza-arena-wide-art svg{width:57px;height:57px}
+ .aza-arena-wide-copy{gap:6px}
+ .aza-arena-wide-eyebrow{gap:5px;font-size:9px;letter-spacing:1.1px}
+ .aza-arena-wide-title{font-size:clamp(18px,5vw,23px);letter-spacing:0}
+ .aza-arena-wide-description{font-size:12px;line-height:1.45}
+ .aza-arena-wide-chips{gap:5px}
+ .aza-arena-wide-chips i,.aza-arena-wide-chips b{min-height:24px;padding:4px 7px;font-size:10px}
+ .aza-arena-wide-cta{min-height:76px;padding:7px;border-radius:14px;gap:6px}
+ .aza-arena-wide-cta>span{width:34px;height:34px;font-size:23px}
+ .aza-arena-wide-cta small{font-size:8px;letter-spacing:.25px}
+}
+@media(max-width:390px){
+ .feature-grid>#azaBattleLaunchWide.aza-arena-wide-banner{grid-template-columns:56px minmax(0,1fr) 49px;gap:9px;padding:14px 10px;min-height:132px}
+ .aza-arena-wide-art{width:54px;height:54px;border-radius:14px}
+ .aza-arena-wide-art svg{width:49px;height:49px}
+ .aza-arena-wide-eyebrow{font-size:8px;letter-spacing:.65px}
+ .aza-arena-wide-title{font-size:17px}
+ .aza-arena-wide-description{font-size:11px}
+ .aza-arena-wide-chips i,.aza-arena-wide-chips b{font-size:9px;padding:4px 5px}
+ .aza-arena-wide-cta{padding:5px;min-height:68px}
+ .aza-arena-wide-cta>span{width:30px;height:30px}
+ .aza-arena-wide-cta small{font-size:7px}
+}
+@media(prefers-reduced-motion:reduce){.feature-grid>#azaBattleLaunchWide.aza-arena-wide-banner{transition:none}}
