@@ -1,0 +1,34 @@
+/* AZA UNIVERSE arena branding and mobile-safe registration note. */
+.aza-arena-brand-mark {
+  overflow: hidden;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.aza-arena-brand-mark > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 3px;
+  box-sizing: border-box;
+  object-fit: contain;
+  filter: drop-shadow(0 0 7px #21caff38);
+}
+
+.aza-battle-footnote[data-aza-registration-notice="1"] {
+  max-width: 100%;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  color: #aabfd5;
+  font-size: 12px;
+}
+
+@media (max-width: 430px) {
+  .aza-arena-brand-mark > img {
+    padding: 2px;
+  }
+  .aza-battle-footnote[data-aza-registration-notice="1"] {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+}
