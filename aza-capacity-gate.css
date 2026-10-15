@@ -1,0 +1,61 @@
+.aza-capacity-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: grid;
+  place-items: center;
+  padding: max(18px, env(safe-area-inset-top)) 18px max(18px, env(safe-area-inset-bottom));
+  background: radial-gradient(ellipse at 50% 12%, rgba(31, 80, 148, .36), transparent 42%),
+              radial-gradient(ellipse at 82% 92%, rgba(255, 106, 31, .16), transparent 35%),
+              rgba(3, 8, 19, .97);
+  color: #f4f7ff;
+  opacity: 1;
+  transition: opacity .18s ease, visibility .18s ease;
+  overscroll-behavior: contain;
+  -webkit-tap-highlight-color: transparent;
+}
+.aza-capacity-overlay.is-leaving { opacity: 0; pointer-events: none; }
+.aza-capacity-locked { overflow: hidden !important; }
+.aza-capacity-locked body { overflow: hidden !important; }
+.aza-capacity-card {
+  box-sizing: border-box;
+  width: min(100%, 440px);
+  max-height: calc(100dvh - 36px);
+  overflow-y: auto;
+  padding: clamp(24px, 6vw, 38px);
+  border: 1px solid rgba(124, 159, 214, .28);
+  border-radius: 27px;
+  background: linear-gradient(148deg, rgba(15, 29, 54, .98), rgba(6, 13, 27, .99) 64%);
+  box-shadow: 0 24px 100px rgba(0, 0, 0, .55), 0 0 44px rgba(55, 121, 233, .1), inset 0 1px 0 rgba(255,255,255,.06);
+  text-align: center;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.aza-capacity-emblem {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 25px;
+  background: radial-gradient(circle at 50% 25%, rgba(102, 150, 226, .23), rgba(13, 25, 47, .5));
+  border: 1px solid rgba(139, 176, 236, .3);
+  box-shadow: 0 0 38px rgba(63, 121, 221, .16);
+}
+.aza-capacity-emblem img { display: block; object-fit: contain; max-width: 60px; max-height: 60px; }
+.aza-capacity-eyebrow { color: #8daee9; font-size: 11px; letter-spacing: .2em; font-weight: 800; }
+.aza-capacity-heading { margin: 12px 0 10px; color: #fff; font-size: clamp(23px, 6vw, 30px); line-height: 1.15; letter-spacing: -.035em; font-weight: 850; }
+.aza-capacity-body { margin: 0 auto; max-width: 350px; color: #c3cee0; font-size: 15px; line-height: 1.65; }
+.aza-capacity-progress { position: relative; height: 5px; margin: 26px auto 2px; max-width: 250px; overflow: hidden; border-radius: 99px; background: rgba(124, 158, 211, .15); }
+.aza-capacity-progress span { display: block; width: 38%; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #5ca9ff, #f99b3c); animation: aza-capacity-flow 1.4s ease-in-out infinite alternate; }
+@keyframes aza-capacity-flow { from { transform: translateX(-35%); } to { transform: translateX(200%); } }
+.aza-capacity-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 23px 0 0; }
+.aza-capacity-stats > div { min-width: 0; padding: 14px 8px; border: 1px solid rgba(124, 159, 214, .18); border-radius: 15px; background: rgba(255,255,255,.035); }
+.aza-capacity-stats small { display: block; margin-bottom: 7px; color: #94a9c9; font-size: 10px; line-height: 1.4; }
+.aza-capacity-stats strong { display: block; color: #fff; font-size: 23px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.aza-capacity-note { margin: 18px 0 0; color: #8395b1; font-size: 12px; line-height: 1.6; }
+.aza-capacity-retry { margin-top: 18px; color: #9eb4d7; font-size: 12px; line-height: 1.5; }
+.aza-capacity-card.is-queued .aza-capacity-emblem { border-color: rgba(255, 149, 63, .38); box-shadow: 0 0 38px rgba(255, 119, 41, .12); }
+.aza-capacity-card.is-queued .aza-capacity-eyebrow { color: #ffb16b; }
+@media (prefers-reduced-motion: reduce) {
+  .aza-capacity-overlay, .aza-capacity-progress span { animation: none; transition: none; }
+}
