@@ -1,0 +1,59 @@
+/* AZA UNIVERSE platform fixes — mobile-first. */
+.aza-registration-ribbon{position:relative;isolation:isolate;display:flex;align-items:center;gap:11px;width:min(1200px,calc(100% - 32px));margin:10px auto 18px;padding:9px 12px;border:1px solid #2e7395;border-radius:15px;background:linear-gradient(105deg,#0a2738f7 0%,#101d3cf5 62%,#211641f5 100%);box-shadow:inset 0 0 22px #29ccff0b,0 8px 25px #0002;min-height:62px}
+.aza-registration-ribbon:before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,#4ae4ff0b,transparent 45%,#b38bff0b);pointer-events:none;z-index:-1}
+.aza-registration-mark{flex:0 0 40px;width:40px;height:40px;display:grid;place-items:center;border:1px solid #4acbec;border-radius:12px;background:#092437;color:#94f1ff;box-shadow:0 0 16px #25c8ff17}
+.aza-registration-mark svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.aza-registration-copy{display:grid;gap:3px;min-width:0;flex:1}
+.aza-registration-copy strong{font-size:clamp(12px,2.4vw,15px);line-height:1.3;letter-spacing:.01em;color:#eef9ff;font-weight:850;overflow-wrap:anywhere}
+.aza-registration-copy small{font-size:clamp(10px,2vw,12px);line-height:1.35;color:#9db8d2}
+.aza-registration-cta{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 13px;border:1px solid #43bbdf;border-radius:11px;background:linear-gradient(110deg,#133c55,#20214d);color:#c9f6ff;font-size:clamp(11px,2.3vw,13px);font-weight:850;cursor:pointer;white-space:nowrap;box-shadow:inset 0 0 18px #34d6ff0c;transition:transform .18s,border-color .18s,box-shadow .18s}
+.aza-registration-cta:hover{transform:translateY(-1px);border-color:#80f0ff;box-shadow:0 0 18px #31d8ff20}
+.aza-registration-cta span{font-size:17px;color:#8eeeff}
+
+/* KG/RU selector sits inside every current online-battle question frame. */
+.aza-battle-question.aza-question-language-ready{position:relative;padding-top:47px!important}
+.aza-q-language-switch{position:absolute;top:10px;right:10px;display:inline-flex;align-items:center;gap:4px;padding:3px;border:1px solid #2a506b;border-radius:11px;background:#061321eF;box-shadow:0 4px 14px #0003;z-index:3}
+.aza-q-language-switch button{display:grid;place-items:center;min-width:42px;min-height:32px;padding:0 9px;border:1px solid transparent;border-radius:8px;background:transparent;color:#99b2ca;font:900 12px/1 system-ui,sans-serif;letter-spacing:.05em;cursor:pointer;transition:color .15s,background .15s,border-color .15s,box-shadow .15s}
+.aza-q-language-switch button.is-active{border-color:#48cceb;background:linear-gradient(120deg,#103a4f,#20214b);color:#c3f7ff;box-shadow:0 0 13px #36cfff26,inset 0 0 12px #2acbff0a}
+.aza-q-language-switch button:focus-visible,.aza-registration-cta:focus-visible{outline:2px solid #fff09d;outline-offset:2px}
+
+/* Profile-aware battle roster. Uses the existing avatar/frame classes where available. */
+.aza-battle-player-avatar.aza-arena-avatar{position:relative;overflow:visible;isolation:isolate;border:2px solid var(--aza-frame,#57d9ff);box-shadow:0 0 0 2px #061321,0 0 13px var(--aza-frame-glow,#22caff44);background:radial-gradient(circle at 30% 25%,#27658a,#0a1628 75%);font-size:15px}
+.aza-battle-player-avatar.aza-arena-avatar:after{content:"";position:absolute;inset:-5px;border:1px solid var(--aza-frame,#57d9ff);border-radius:50%;opacity:.62;pointer-events:none}
+.aza-battle-player-avatar.aza-arena-avatar img{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;border:0}
+.aza-battle-player-avatar.aza-frame-bronze{--aza-frame:#e9a365;--aza-frame-glow:#d982424d}
+.aza-battle-player-avatar.aza-frame-silver{--aza-frame:#d9f2ff;--aza-frame-glow:#71cfff60}
+.aza-battle-player-avatar.aza-frame-gold{--aza-frame:#ffd66a;--aza-frame-glow:#ffb51e80}
+.aza-battle-player-avatar.aza-frame-platinum{--aza-frame:#60f0ff;--aza-frame-glow:#39dfff80}
+.aza-battle-player-avatar.aza-frame-diamond{--aza-frame:#83a9ff;--aza-frame-glow:#4680ff80}
+.aza-battle-player-avatar.aza-frame-master{--aza-frame:#c38bff;--aza-frame-glow:#a35cff80}
+.aza-battle-player-avatar.aza-frame-ace{--aza-frame:#ff8179;--aza-frame-glow:#ff403580}
+.aza-battle-player-avatar.aza-frame-conqueror{--aza-frame:#ffe28a;--aza-frame-glow:#ff9b24b8}
+.aza-battle-profile-meta{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:3px;font-size:clamp(10px,2.2vw,12px);line-height:1.35;color:#aac3dc}
+.aza-battle-rank-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border:1px solid #42617d;border-radius:7px;background:#0a1b2d;color:#d9eaff;font-size:10px;font-weight:900;letter-spacing:.035em}
+.aza-battle-rank-badge.aza-rank-bronze{border-color:#a96f42;color:#ffc58d}
+.aza-battle-rank-badge.aza-rank-silver{border-color:#789caf;color:#d8f1ff}
+.aza-battle-rank-badge.aza-rank-gold{border-color:#a98330;color:#ffe38b}
+.aza-battle-rank-badge.aza-rank-platinum{border-color:#3b9fac;color:#80f3ff}
+.aza-battle-rank-badge.aza-rank-diamond{border-color:#627fd5;color:#b5c8ff}
+.aza-battle-rank-badge.aza-rank-master{border-color:#9d68d3;color:#e2c2ff}
+.aza-battle-rank-badge.aza-rank-ace{border-color:#c05e64;color:#ffb5bb}
+.aza-battle-rank-badge.aza-rank-conqueror{border-color:#b89040;color:#ffe6a1;box-shadow:0 0 10px #ffbe3933}
+.aza-battle-profile-points{font-weight:750;color:#b9d0e6}
+
+/* Chat panel typography and close control remain tappable on small phones. */
+#aza-social-overlay .aza-social-close{min-width:44px;min-height:44px;display:grid;place-items:center;font-size:26px}
+#aza-social-overlay .aza-social-window{max-height:calc(100dvh - 24px);overflow:auto;overscroll-behavior:contain}
+#aza-social-overlay .aza-social-message-list,#aza-social-overlay .aza-social-content{min-width:0}
+@media(max-width:460px){
+ .aza-registration-ribbon{width:calc(100% - 24px);gap:8px;margin:8px 12px 14px;padding:8px;min-height:58px;border-radius:13px}
+ .aza-registration-mark{width:34px;height:34px;flex-basis:34px;border-radius:10px}
+ .aza-registration-mark svg{width:20px;height:20px}
+ .aza-registration-cta{padding:0 9px;min-height:38px;gap:5px;border-radius:9px}
+ .aza-registration-copy small{max-width:180px}
+ .aza-q-language-switch{top:8px;right:8px}
+ .aza-q-language-switch button{min-width:39px;min-height:30px;font-size:12px}
+ .aza-battle-question.aza-question-language-ready{padding-top:44px!important}
+ .aza-battle-profile-meta{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.aza-registration-cta,.aza-q-language-switch button{transition:none!important}}
