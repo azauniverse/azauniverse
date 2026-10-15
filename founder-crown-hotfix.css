@@ -1,0 +1,69 @@
+/* AZA UNIVERSE — founder crown, UUID-gated by founder-crown-hotfix.js. */
+.aza-social-avatar.aza-frame-founder,
+.aza-profile-avatar.aza-frame-founder {
+  --aza-frame: #ffd46e !important;
+  --aza-frame-glow: #ffc65cb8 !important;
+  border-color: #ffd46e !important;
+  box-shadow: 0 0 0 2px #081426, 0 0 0 4px #ffd46eaa, 0 0 18px #ffbd4f88 !important;
+  overflow: visible !important;
+  isolation: isolate !important;
+  position: relative !important;
+}
+
+.aza-social-avatar.aza-frame-founder::before,
+.aza-profile-avatar.aza-frame-founder::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: -4px !important;
+  border: 2px solid #ffd36a !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 13px #ffc65cbb, inset 0 0 8px #ffc65c55 !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  animation: none !important;
+  z-index: -1 !important;
+}
+
+/* A clearly visible crown sits ABOVE the founder's avatar, not over the photo. */
+.aza-social-avatar.aza-frame-founder::after,
+.aza-profile-avatar.aza-frame-founder::after {
+  content: "♛" !important;
+  position: absolute !important;
+  inset: auto !important;
+  left: 50% !important;
+  top: -13px !important;
+  transform: translateX(-50%) !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 21px !important;
+  height: 17px !important;
+  padding: 0 !important;
+  border: 1px solid #fff0ad !important;
+  border-radius: 7px 7px 4px 4px !important;
+  background: linear-gradient(145deg, #fff1a9 0%, #ffcd4f 43%, #bd7414 100%) !important;
+  color: #081426 !important;
+  font: 1000 14px/1 Arial, sans-serif !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  z-index: 20 !important;
+  box-shadow: 0 0 12px #ffbc49cc, 0 2px 5px #0008 !important;
+  animation: none !important;
+}
+
+.aza-social-avatar.small.aza-frame-founder::after {
+  top: -10px !important;
+  width: 17px !important;
+  height: 14px !important;
+  border-radius: 5px 5px 3px 3px !important;
+  font-size: 11px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aza-social-avatar.aza-frame-founder::before,
+  .aza-social-avatar.aza-frame-founder::after,
+  .aza-profile-avatar.aza-frame-founder::before,
+  .aza-profile-avatar.aza-frame-founder::after {
+    animation: none !important;
+  }
+}
