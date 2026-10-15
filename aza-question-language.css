@@ -1,0 +1,12 @@
+/* AZA UNIVERSE — visible per-question language switch */
+.aza-quiz-language-toolbar{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap;margin:0 0 13px;padding:8px 9px;border:1px solid #284e6d;border-radius:12px;background:linear-gradient(100deg,#091827,#101d38);box-shadow:inset 0 0 16px #33cfff08}
+.aza-quiz-language-toolbar>span{margin-right:auto;color:#9fc0d8;font-size:clamp(10px,2.8vw,12px);font-weight:850;letter-spacing:.08em}
+.aza-quiz-language-toolbar button{min-width:47px;min-height:36px;padding:5px 11px;border:1px solid #365a77;border-radius:9px;background:#081726;color:#a9c3d9;font-size:13px;line-height:1;font-weight:950;letter-spacing:.06em;cursor:pointer;transition:background .16s,border-color .16s,color .16s,box-shadow .16s}
+.aza-quiz-language-toolbar button.is-active{border-color:#56dfff;background:linear-gradient(120deg,#10445b,#252150);color:#e1fbff;box-shadow:0 0 14px #24c9ff26,inset 0 0 12px #2acbff0c}
+.aza-quiz-language-toolbar button:focus-visible{outline:2px solid #ffe28e;outline-offset:2px}
+#modalContent .eyebrow{display:block;line-height:1.65;overflow-wrap:anywhere}
+#modalContent #modalTitle{line-height:1.42;overflow-wrap:anywhere}
+#modalContent #quizOptions{display:grid;gap:10px}
+#modalContent .quiz-option{min-height:56px;line-height:1.45;font-size:clamp(15px,3.8vw,18px);text-align:left;padding:14px 16px;overflow-wrap:anywhere}
+@media(max-width:420px){.aza-quiz-language-toolbar{gap:6px;padding:7px}.aza-quiz-language-toolbar>span{font-size:10px}.aza-quiz-language-toolbar button{min-width:44px;min-height:35px}#modalContent .quiz-option{min-height:56px;padding:13px 14px}}
+@media(prefers-reduced-motion:reduce){.aza-quiz-language-toolbar button{transition:none!important}}
