@@ -225,3 +225,62 @@
  .aza-arena-rank{max-width:100%;white-space:normal;}
  .aza-arena-profile-points{font-size:9px;}
 }
+
+
+/* Ready / Not-ready feedback polish v3: gold when unconfirmed, green pulse when confirmed. */
+.aza-battle-action.aza-arena-ready-button{
+  grid-template-columns:44px minmax(0,1fr) 24px;
+  min-height:76px;
+  gap:12px;
+  padding:13px 14px;
+  border-width:1.5px;
+  transition:background .22s ease,border-color .22s ease,box-shadow .22s ease,transform .16s ease;
+}
+.aza-battle-action.aza-arena-ready-button:active{transform:scale(.992)}
+.aza-battle-action.aza-arena-ready-button .aza-arena-ready-icon{
+  display:grid;
+  place-items:center;
+  width:42px!important;
+  height:42px!important;
+  border-radius:13px;
+  border:1px solid #ba913d;
+  background:radial-gradient(circle at 40% 25%,#624b1b,#241b0d 76%);
+  color:#ffd46e;
+  box-shadow:0 0 15px #ffcb591c,inset 0 0 12px #ffd35b10;
+  transition:color .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease;
+}
+.aza-arena-ready-button .aza-arena-ready-icon svg{display:block;width:30px;height:30px;overflow:visible}
+.aza-arena-ready-off{
+  border-color:#a98235!important;
+  background:linear-gradient(110deg,#392b12 0%,#17243a 58%,#161833 100%)!important;
+  box-shadow:inset 0 0 20px #ffd35b09,0 0 15px #ffca4110!important;
+}
+.aza-arena-ready-off strong{color:#ffe3a0!important}
+.aza-arena-ready-off>b{color:#ffd46e!important}
+.aza-arena-ready-on{
+  border-color:#35d99d!important;
+  background:linear-gradient(110deg,#0c493c 0%,#0c342f 54%,#102a37 100%)!important;
+  box-shadow:inset 0 0 22px #35ffad13,0 0 0 1px #35d99d22,0 0 24px #24df9a24!important;
+}
+.aza-arena-ready-on strong{color:#b9ffe4!important}
+.aza-arena-ready-on small{color:#a0e5ca!important}
+.aza-arena-ready-on>b{color:#80ffd0!important}
+.aza-arena-ready-on .aza-arena-ready-icon{
+  color:#8bffd1;
+  border-color:#45e8ac;
+  background:radial-gradient(circle at 40% 25%,#16785b,#073628 76%);
+  box-shadow:0 0 0 1px #2cda9b26,0 0 18px #27e6a03c,inset 0 0 14px #7dffd514;
+  animation:azaReadyGreenPulse 1.65s ease-in-out infinite;
+}
+.aza-arena-ready-on .aza-ready-check-path{filter:drop-shadow(0 0 4px #84ffd2aa)}
+@keyframes azaReadyGreenPulse{
+  0%,100%{box-shadow:0 0 0 1px #2cda9b26,0 0 13px #27e6a025,inset 0 0 10px #7dffd50b;transform:scale(1)}
+  50%{box-shadow:0 0 0 2px #2cda9b38,0 0 24px #27e6a05c,inset 0 0 18px #7dffd51d;transform:scale(1.035)}
+}
+@media(max-width:520px){
+  .aza-battle-action.aza-arena-ready-button{grid-template-columns:42px minmax(0,1fr) 18px;min-height:74px;gap:10px;padding:11px}
+  .aza-battle-action.aza-arena-ready-button .aza-arena-ready-icon{width:40px!important;height:40px!important}
+  .aza-arena-ready-button strong{font-size:14px!important}
+  .aza-arena-ready-button small{font-size:12px!important;line-height:1.45!important}
+}
+@media(prefers-reduced-motion:reduce){.aza-arena-ready-on .aza-arena-ready-icon{animation:none!important}}

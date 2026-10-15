@@ -34,7 +34,7 @@
     if (document.querySelector('link[data-aza-arena-css]')) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'online-battle-arena.css?v=2';
+    link.href = 'online-battle-arena.css?v=3';
     link.dataset.azaArenaCss = 'true';
     document.head.appendChild(link);
   }
@@ -162,9 +162,9 @@
       }
       close.setAttribute('aria-label', tx('Жабуу', 'Закрыть'));
       const pill = header.querySelector('.aza-arena-live-pill');
-      if (pill) pill.textContent = tx('АРЕНА', 'АРЕНА');
+      if (pill && pill.textContent !== tx('АРЕНА', 'АРЕНА')) pill.textContent = tx('АРЕНА', 'АРЕНА');
       const sub = header.querySelector('.aza-arena-brand-copy small');
-      if (sub) sub.textContent = tx('ОНЛАЙН-БАТТЛ АРЕНА', 'ОНЛАЙН-БАТТЛ АРЕНА');
+      if (sub && sub.textContent !== tx('ОНЛАЙН-БАТТЛ АРЕНА', 'ОНЛАЙН-БАТТЛ АРЕНА')) sub.textContent = tx('ОНЛАЙН-БАТТЛ АРЕНА', 'ОНЛАЙН-БАТТЛ АРЕНА');
     }
   }
 
@@ -225,6 +225,35 @@
     }
   }
 
+  function decorateReadyButton(content) {
+    const button = content.querySelector('[data-battle-action="ready"]');
+    if (!button) return;
+
+    const label = button.querySelector('strong');
+    const normalized = String(label?.textContent || '').trim().toLocaleUpperCase();
+    const isReady = normalized.includes('ДАЯРСЫЗ') || normalized.includes('ВЫ ГОТОВЫ');
+
+    button.classList.add('aza-arena-ready-button');
+    button.classList.toggle('aza-arena-ready-on', isReady);
+    button.classList.toggle('aza-arena-ready-off', !isReady);
+    button.setAttribute('aria-pressed', String(isReady));
+
+    const icon = button.querySelector(':scope > span:first-child');
+    if (icon && icon.dataset.azaReadyIcon !== '1') {
+      icon.classList.add('aza-arena-ready-icon');
+      icon.innerHTML = `<svg viewBox="0 0 40 40" width="30" height="30" fill="none" aria-hidden="true" focusable="false"><circle class="aza-ready-check-ring" cx="20" cy="20" r="15.5" stroke="currentColor" stroke-width="2.5"/><path class="aza-ready-check-path" d="m11.5 20.5 5.7 5.6L28.8 14" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+      icon.dataset.azaReadyIcon = '1';
+    }
+
+    const hint = button.querySelector('small');
+    if (hint) {
+      const hintText = isReady
+        ? tx('Даяр экениң ырасталды · беттештин башталышын күтө тур', 'Готовность подтверждена · ожидай начала матча')
+        : tx('Баштоо үчүн даяр экениңди белгиле', 'Подтверди готовность, чтобы начать матч');
+      if (hint.textContent !== hintText) hint.textContent = hintText;
+    }
+  }
+
   function decorateTimer(content) {
     const timer = content.querySelector('.aza-battle-timer');
     if (!timer || timer.dataset.azaArenaTimer === '1') return;
@@ -251,6 +280,7 @@
     // Add the consistent arena identity above every screen state.
     ensureArenaHeader(content);
     decorateModeButtons(content);
+    decorateReadyButton(content);
     if (playing) {
       decorateTimer(content);
       const footnote = content.querySelector('.aza-battle-live-foot');
