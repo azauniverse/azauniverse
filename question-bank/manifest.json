@@ -229,5 +229,5 @@
     "ru": "Уровни определяются по форме вопроса: лёгкий — прямой факт или один шаг; средний — обратная связь, объяснение или небольшой расчёт; сложный — сопоставление пар или многошаговое рассуждение. Это относительная сложность внутри категории."
   },
   "categoryCount": 13,
-  "buildNote": "Generated from the staged 13,000-row CSV in the exact question-bank JSON format consumed by app.js. This structural release QA does not certify every factual association."
+  "buildNote": "Generated from aza_battle_questions_13000_FINAL_SITE_IMPORT.csv; schema matches app.js question-bank loader. Structural checks do not independently verify every factual relationship."
 }
