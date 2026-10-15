@@ -1,0 +1,20 @@
+name = "aza-universe-capacity"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+MAX_ACTIVE = "10000"
+# A deliberately long heartbeat keeps the Free-tier prototype from generating
+# excessive incoming WebSocket messages. For production, tune limits and budget.
+HEARTBEAT_MS = "600000"
+STALE_MS = "1320000"
+ALARM_EVERY_MS = "300000"
+ALLOWED_ORIGINS = "https://azauniverse.github.io"
+
+[[durable_objects.bindings]]
+name = "SITE_CAPACITY"
+class_name = "SiteCapacity"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["SiteCapacity"]
