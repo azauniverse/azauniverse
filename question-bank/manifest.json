@@ -16,8 +16,8 @@
       "targetCount": 1000,
       "difficultyCounts": {
         "easy": 374,
-        "medium": 310,
-        "hard": 316
+        "medium": 311,
+        "hard": 315
       }
     },
     {
@@ -60,8 +60,8 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 370,
         "medium": 313,
+        "easy": 370,
         "hard": 317
       }
     },
@@ -75,8 +75,8 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 369,
         "medium": 314,
+        "easy": 369,
         "hard": 317
       }
     },
@@ -90,9 +90,9 @@
       "currentCount": 1000,
       "targetCount": 1000,
       "difficultyCounts": {
-        "easy": 374,
-        "medium": 309,
-        "hard": 317
+        "easy": 375,
+        "medium": 312,
+        "hard": 313
       }
     },
     {
@@ -228,5 +228,6 @@
     "ky": "Деңгээлдер суроонун түзүлүшүнө жараша бөлүнөт: жеңил — түз факт же бир кадам; орточо — тескери байланыш, түшүндүрмө же бир аз эсеп; татаал — жуптарды дал келтирүү же көп баскычтуу ой жүгүртүү. Бул категория ичиндеги салыштырмалуу деңгээл.",
     "ru": "Уровни определяются по форме вопроса: лёгкий — прямой факт или один шаг; средний — обратная связь, объяснение или небольшой расчёт; сложный — сопоставление пар или многошаговое рассуждение. Это относительная сложность внутри категории."
   },
-  "categoryCount": 13
+  "categoryCount": 13,
+  "buildNote": "Generated from the staged 13,000-row CSV in the exact question-bank JSON format consumed by app.js. This structural release QA does not certify every factual association."
 }
