@@ -1,0 +1,29 @@
+/* AZA UNIVERSE — consistent outline SVG iconography for Social Hub and battle actions. */
+.aza-social-tabs button{display:inline-flex!important;align-items:center;justify-content:center;gap:6px;min-width:0}
+.aza-premium-tab-icon{display:inline-grid;place-items:center;flex:0 0 19px;width:19px;height:19px;color:#72e7ff;line-height:0}
+.aza-premium-tab-icon svg{display:block;width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px #48d9ff20)}
+[data-social-tab="friends"] .aza-premium-tab-icon{color:#c1a6ff}
+[data-social-tab="dms"] .aza-premium-tab-icon{color:#8beaff}
+.aza-premium-tab-label{display:inline-block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2}
+.aza-social-tabs button.active .aza-premium-tab-icon{filter:drop-shadow(0 0 6px #50dfff50)}
+.aza-social-chat-title h3{display:flex;align-items:center;gap:9px;min-width:0}
+.aza-premium-heading-icon{display:inline-grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border:1px solid #2879a3;border-radius:9px;background:linear-gradient(145deg,#0b2a40,#111e39);color:#57dfff;box-shadow:inset 0 0 12px #40ddff0b}
+.aza-premium-heading-icon svg{display:block;width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.aza-premium-heading-label{min-width:0;overflow-wrap:anywhere}
+
+/* Match launcher icons keep their existing button targets, labels and click actions. */
+.aza-battle-action>span:first-child.aza-premium-battle-icon{box-sizing:border-box;display:grid;place-items:center;width:42px;height:42px;border:1px solid #267da0;border-radius:12px;background:radial-gradient(circle at 30% 20%,#123d56,#091b2c 76%);color:#88eeff;font-size:0;line-height:0;box-shadow:inset 0 0 16px #43dfff0c,0 0 12px #2bd5ff0a}
+.aza-battle-action>span:first-child.aza-premium-battle-icon svg{display:block;width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px #4fdcff22)}
+.aza-battle-action.aza-premium-action-random>span:first-child{border-color:#368db3;color:#85f0ff;background:radial-gradient(circle at 30% 20%,#13445d,#091b2c 76%)}
+.aza-battle-action.aza-premium-action-create>span:first-child{border-color:#8a6636;color:#ffd17a;background:radial-gradient(circle at 30% 20%,#46331d,#13192a 76%)}
+.aza-battle-action.aza-premium-action-random:hover>span:first-child{box-shadow:0 0 16px #39d9ff20,inset 0 0 16px #43dfff12}
+.aza-battle-action.aza-premium-action-create:hover>span:first-child{box-shadow:0 0 16px #ffbd5920,inset 0 0 16px #ffbd590c}
+@media(max-width:620px){
+ .aza-social-tabs button{gap:5px}
+ .aza-premium-tab-icon,.aza-premium-tab-icon svg{width:17px;height:17px;flex-basis:17px}
+ .aza-social-tabs button{font-size:10px}
+ .aza-battle-action>span:first-child.aza-premium-battle-icon{width:40px;height:40px}
+ .aza-battle-action>span:first-child.aza-premium-battle-icon svg{width:28px;height:28px}
+}
+@media(max-width:380px){.aza-social-tabs button{gap:4px;font-size:9px}.aza-premium-tab-icon,.aza-premium-tab-icon svg{width:16px;height:16px;flex-basis:16px}}
+@media(prefers-reduced-motion:reduce){.aza-premium-tab-icon,.aza-battle-action>span:first-child.aza-premium-battle-icon{filter:none!important;transition:none!important}}
