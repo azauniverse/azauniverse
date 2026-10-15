@@ -1,0 +1,32 @@
+/* Lightweight rendering on phones; no changes to battle logic or timers. */
+@media (max-width: 768px) {
+  #azaBattleOverlay .aza-battle-backdrop {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: #020610f2 !important;
+  }
+
+  #azaBattleOverlay .aza-battle-player-avatar::before,
+  #azaBattleOverlay .aza-battle-player-avatar::after,
+  #azaBattleOverlay .aza-battle-search-orbit > i,
+  #azaBattleOverlay .aza-battle-search-orbit > b,
+  #azaBattleOverlay .aza-battle-progress > i {
+    animation-duration: 6s !important;
+  }
+
+  #azaBattleOverlay .aza-battle-option,
+  #azaBattleOverlay .aza-battle-action,
+  #azaBattleOverlay .aza-battle-mode {
+    transition-duration: 0.1s !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #azaBattleOverlay *,
+  #azaBattleOverlay *::before,
+  #azaBattleOverlay *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
