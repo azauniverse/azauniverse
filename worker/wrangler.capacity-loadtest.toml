@@ -1,5 +1,5 @@
 name = "aza-universe-capacity-loadtest"
-main = "src/index.js"
+main = "src/index.capacity-loadtest.js"
 compatibility_date = "2026-10-01"
 
 [vars]
