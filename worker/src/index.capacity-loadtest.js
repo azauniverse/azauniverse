@@ -325,14 +325,55 @@ export class SiteCapacity extends DurableObject {
     });
   }
 
-  webSocketClose(socket) {
+  webSocketClose(socket, code, reason, wasClean) {
     this.ensureIndex();
+    const state = this.attachment(socket);
+    const tracked = this.trackedStatus.get(socket);
+    const now = Date.now();
+    const joinedAt = Number(state.joinedAt || 0);
+    const lastSeen = Number(state.lastSeen || 0);
+
+    // Log abnormal closes and stale-session closes, but skip normal planned close
+    // and same-client reconnects to avoid flooding logs during load tests.
+    if (!wasClean || ![1000, 4001].includes(Number(code))) {
+      console.warn("WS_CLOSE_DIAGNOSTIC", JSON.stringify({
+        clientId: String(state.clientId || "").slice(0, 80),
+        code: Number(code),
+        reason: String(reason || "").slice(0, 160),
+        wasClean: Boolean(wasClean),
+        status: String(tracked || state.status || "unknown"),
+        ageMs: joinedAt > 0 ? Math.max(0, now - joinedAt) : null,
+        lastSeenAgeMs: lastSeen > 0 ? Math.max(0, now - lastSeen) : null,
+        activeCount: this.activeCount,
+        queuedCount: this.queuedCount,
+      }));
+    }
+
     const released = this.removeTrackedSocket(socket);
     if (released.wasActive || this.activeCount < this.maxActive) this.promoteWaiting();
   }
 
-  webSocketError(socket) {
+  webSocketError(socket, error) {
     this.ensureIndex();
+    const state = this.attachment(socket);
+    const tracked = this.trackedStatus.get(socket);
+    const now = Date.now();
+    const joinedAt = Number(state.joinedAt || 0);
+    const lastSeen = Number(state.lastSeen || 0);
+    const detail = error && typeof error.message === "string"
+      ? error.message
+      : String(error ?? "unknown websocket error");
+
+    console.error("WS_ERROR_DIAGNOSTIC", JSON.stringify({
+      clientId: String(state.clientId || "").slice(0, 80),
+      detail: detail.slice(0, 200),
+      status: String(tracked || state.status || "unknown"),
+      ageMs: joinedAt > 0 ? Math.max(0, now - joinedAt) : null,
+      lastSeenAgeMs: lastSeen > 0 ? Math.max(0, now - lastSeen) : null,
+      activeCount: this.activeCount,
+      queuedCount: this.queuedCount,
+    }));
+
     const released = this.removeTrackedSocket(socket);
     try { socket.close(1011, "Capacity connection error"); } catch { /* no-op */ }
     if (released.wasActive || this.activeCount < this.maxActive) this.promoteWaiting();
