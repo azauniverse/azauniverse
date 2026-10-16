@@ -10,17 +10,24 @@ const reports = [];
 
 function requireMetric(summary, name, shard) {
   const metric = summary?.metrics?.[name];
-  if (!metric || !metric.values) {
+  if (!metric || typeof metric !== 'object') {
     problems.push(`Shard ${shard}: missing metric ${name}`);
     return null;
   }
   return metric;
 }
 
+// k6's --summary-export writes metric values directly on metrics[name];
+// support values-wrapped summaries too for compatibility with other exporters.
+function metricValues(metric) {
+  if (!metric || typeof metric !== 'object') return null;
+  return metric.values && typeof metric.values === 'object' ? metric.values : metric;
+}
+
 function readRate(summary, name, shard) {
   const metric = requireMetric(summary, name, shard);
   if (!metric) return null;
-  const values = metric.values;
+  const values = metricValues(metric);
   const truthy = Number(values.passes);
   const falsy = Number(values.fails);
   if (!Number.isFinite(truthy) || !Number.isFinite(falsy) || truthy < 0 || falsy < 0) {
@@ -33,7 +40,8 @@ function readRate(summary, name, shard) {
 function readCount(summary, name, shard) {
   const metric = requireMetric(summary, name, shard);
   if (!metric) return null;
-  const count = Number(metric.values.count);
+  const values = metricValues(metric);
+  const count = Number(values?.count);
   if (!Number.isFinite(count) || count < 0) {
     problems.push(`Shard ${shard}: malformed counter value for ${name}`);
     return null;
@@ -76,7 +84,7 @@ for (let shard = 1; shard <= expectedShards; shard += 1) {
   const admitted = readCount(summary, 'ws_admitted', shard);
   const queued = readCount(summary, 'ws_queued', shard);
   const p95Metric = requireMetric(summary, 'ws_initial_state_ms', shard);
-  const rawP95 = p95Metric?.values?.['p(95)'];
+  const rawP95 = metricValues(p95Metric)?.['p(95)'];
   const p95 = typeof rawP95 === 'number' ? rawP95 : NaN;
   const pongs = readCount(summary, 'ws_pongs', shard);
 
