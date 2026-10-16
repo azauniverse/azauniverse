@@ -1,6 +1,6 @@
-/* AZA UNIVERSE capacity gate loader — safe test mode.
- * Gate is intentionally enabled only with ?capacity-test=1 until the WebSocket
- * queue is verified on the live site. Then remove the query guard for rollout.
+/* AZA UNIVERSE capacity gate loader — safe one-slot test switch.
+ * Normal site traffic is unaffected. Only ?capacity-test=1 activates the gate.
+ * Add &capacity-test-worker=1 to use the isolated one-slot test Worker.
  */
 (() => {
   "use strict";
@@ -9,7 +9,10 @@
   if (window.__AZA_CAPACITY_GATE_LOADER_STARTED__) return;
   window.__AZA_CAPACITY_GATE_LOADER_STARTED__ = true;
 
-  window.AZA_CAPACITY_GATE_URL = "wss://aza-universe-capacity.azataycan2002.workers.dev/ws";
+  const useOneSlotTest = params.get("capacity-test-worker") === "1";
+  window.AZA_CAPACITY_GATE_URL = useOneSlotTest
+    ? "wss://aza-universe-capacity-test.azataycan2002.workers.dev/ws"
+    : "wss://aza-universe-capacity.azataycan2002.workers.dev/ws";
 
   const cssHref = "aza-capacity-gate.css?v=1";
   if (![...document.querySelectorAll('link[rel="stylesheet"]')].some((link) => link.href.includes("aza-capacity-gate.css"))) {
