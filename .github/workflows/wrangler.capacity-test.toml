@@ -1,0 +1,19 @@
+name = "aza-universe-capacity-test"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Isolated test service: one active browser session, all others wait.
+MAX_ACTIVE = "1"
+HEARTBEAT_MS = "60000"
+STALE_MS = "180000"
+ALARM_EVERY_MS = "30000"
+ALLOWED_ORIGINS = "https://azauniverse.github.io"
+
+[[durable_objects.bindings]]
+name = "SITE_CAPACITY"
+class_name = "SiteCapacity"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["SiteCapacity"]
