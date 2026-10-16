@@ -25,3 +25,5 @@ head_sampling_rate = 1
 
 [observability.logs]
 invocation_logs = true
+[observability.issues]
+enabled = true
