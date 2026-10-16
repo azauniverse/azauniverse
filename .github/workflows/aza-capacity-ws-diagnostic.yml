@@ -1,0 +1,53 @@
+name: AZA WebSocket 1000-session diagnostic
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Concurrent WebSocket sessions (start with 1000)"
+        required: true
+        type: choice
+        default: "1000"
+        options:
+          - "100"
+          - "500"
+          - "1000"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aza-capacity-ws-diagnostic
+  cancel-in-progress: false
+
+jobs:
+  websocket-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Verify isolated load-test Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --silent --show-error --fail \
+            https://aza-universe-capacity-loadtest.azataycan2002.workers.dev/health \
+            | grep -q '"ok":true'
+          echo "Isolated load-test Worker is healthy."
+
+      - name: Run WebSocket diagnostic and print close/error reasons
+        shell: bash
+        env:
+          WS_URL: wss://aza-universe-capacity-loadtest.azataycan2002.workers.dev/ws
+          ORIGIN: https://azauniverse.github.io
+          TARGET_CONNECTIONS: ${{ inputs.target }}
+          RAMP_SECONDS: "120"
+          HOLD_SECONDS: "60"
+        run: |
+          set -euo pipefail
+          k6 run tests/aza-capacity-ws-diagnostic.js
