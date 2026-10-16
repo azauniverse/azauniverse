@@ -1,0 +1,81 @@
+name: AZA WebSocket staged capacity diagnostic v2
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Select ONE load stage. Start again at 1000; increase only after it passes."
+        required: true
+        type: choice
+        default: "1000"
+        options:
+          - "100"
+          - "500"
+          - "1000"
+          - "1500"
+          - "2500"
+          - "5000"
+          - "7500"
+          - "10000"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aza-capacity-ws-staged-diagnostic
+  cancel-in-progress: false
+
+jobs:
+  websocket-diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Verify isolated load-test Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --silent --show-error --fail \
+            https://aza-universe-capacity-loadtest.azataycan2002.workers.dev/health \
+            | grep -q '"ok":true'
+          echo "Isolated load-test Worker is healthy."
+
+      - name: Choose conservative ramp duration for selected stage
+        id: stage
+        shell: bash
+        env:
+          TARGET: ${{ inputs.target }}
+        run: |
+          set -euo pipefail
+          case "$TARGET" in
+            100)   RAMP=30;  HOLD=30 ;;
+            500)   RAMP=60;  HOLD=30 ;;
+            1000)  RAMP=120; HOLD=60 ;;
+            1500)  RAMP=180; HOLD=60 ;;
+            2500)  RAMP=240; HOLD=60 ;;
+            5000)  RAMP=360; HOLD=90 ;;
+            7500)  RAMP=480; HOLD=90 ;;
+            10000) RAMP=600; HOLD=120 ;;
+            *) echo "::error::Unsupported target: $TARGET"; exit 1 ;;
+          esac
+          echo "ramp=$RAMP" >> "$GITHUB_OUTPUT"
+          echo "hold=$HOLD" >> "$GITHUB_OUTPUT"
+          echo "Selected target: $TARGET; ramp: ${RAMP}s; hold: ${HOLD}s"
+
+      - name: Run one WebSocket stage and print error reasons
+        shell: bash
+        env:
+          WS_URL: wss://aza-universe-capacity-loadtest.azataycan2002.workers.dev/ws
+          ORIGIN: https://azauniverse.github.io
+          TARGET_CONNECTIONS: ${{ inputs.target }}
+          RAMP_SECONDS: ${{ steps.stage.outputs.ramp }}
+          HOLD_SECONDS: ${{ steps.stage.outputs.hold }}
+        run: |
+          set -euo pipefail
+          echo "Testing ONLY the isolated load-test Worker; production Worker is not targeted."
+          k6 run tests/aza-capacity-ws-staged-diagnostic.js
