@@ -64,7 +64,17 @@ export class SiteCapacity extends DurableObject {
     this.ctx = ctx;
     this.env = env;
 
-    // SQLite-backed, synchronous sequence counter: one ordered ticket per connection.
+    // Volatile indexes are reconstructed once after an object wakes from hibernation.
+    // Counts are maintained incrementally afterward, so ordinary joins and pings do not
+    // rescan every WebSocket.
+    this.indexReady = false;
+    this.socketByClientId = new Map();
+    this.trackedStatus = new Map();
+    this.queueByOrder = new Map();
+    this.activeCount = 0;
+    this.queuedCount = 0;
+    this.alarmEnsurePromise = null;
+
     this.ctx.storage.sql.exec(
       "CREATE TABLE IF NOT EXISTS capacity_queue_sequence (id INTEGER PRIMARY KEY CHECK (id = 1), value INTEGER NOT NULL)"
     );
@@ -89,28 +99,38 @@ export class SiteCapacity extends DurableObject {
     return parsePositiveInt(this.env.ALARM_EVERY_MS, DEFAULT_ALARM_MS, 60 * 60 * 1000);
   }
 
-  sessions() {
-    return this.ctx.getWebSockets()
-      .filter((socket) => socket.readyState === WS_OPEN && socket.deserializeAttachment());
-  }
-
   attachment(socket) {
     try { return socket.deserializeAttachment() || {}; }
     catch { return {}; }
   }
 
-  activeSessions() {
-    return this.sessions().filter((socket) => this.attachment(socket).status === "active");
-  }
+  ensureIndex() {
+    if (this.indexReady) return;
+    this.indexReady = true;
+    this.socketByClientId.clear();
+    this.trackedStatus.clear();
+    this.queueByOrder.clear();
+    this.activeCount = 0;
+    this.queuedCount = 0;
 
-  queuedSessions() {
-    return this.sessions()
-      .filter((socket) => this.attachment(socket).status === "queued")
-      .sort((a, b) => {
-        const aa = this.attachment(a);
-        const bb = this.attachment(b);
-        return Number(aa.queueOrder || 0) - Number(bb.queueOrder || 0);
-      });
+    const queued = [];
+    for (const socket of this.ctx.getWebSockets()) {
+      if (!socket || socket.readyState !== WS_OPEN) continue;
+      const state = this.attachment(socket);
+      if (!state.clientId || !["active", "queued"].includes(state.status)) continue;
+
+      this.socketByClientId.set(state.clientId, socket);
+      this.trackedStatus.set(socket, state.status);
+      if (state.status === "active") {
+        this.activeCount += 1;
+      } else {
+        this.queuedCount += 1;
+        queued.push({ order: Number(state.queueOrder || 0), socket });
+      }
+    }
+
+    queued.sort((a, b) => a.order - b.order);
+    for (const item of queued) this.queueByOrder.set(item.order, item.socket);
   }
 
   nextQueueOrder() {
@@ -121,13 +141,57 @@ export class SiteCapacity extends DurableObject {
   }
 
   async ensureAlarm() {
-    const current = await this.ctx.storage.getAlarm();
-    if (current === null) {
-      await this.ctx.storage.setAlarm(Date.now() + this.alarmMs);
+    if (this.alarmEnsurePromise) return this.alarmEnsurePromise;
+
+    this.alarmEnsurePromise = (async () => {
+      const current = await this.ctx.storage.getAlarm();
+      if (current === null) {
+        await this.ctx.storage.setAlarm(Date.now() + this.alarmMs);
+      }
+    })();
+
+    try {
+      await this.alarmEnsurePromise;
+    } finally {
+      this.alarmEnsurePromise = null;
     }
   }
 
+  removeTrackedSocket(socket) {
+    const tracked = this.trackedStatus.get(socket);
+    const state = this.attachment(socket);
+
+    if (tracked === "active") this.activeCount = Math.max(0, this.activeCount - 1);
+    if (tracked === "queued") this.queuedCount = Math.max(0, this.queuedCount - 1);
+    this.trackedStatus.delete(socket);
+
+    if (tracked === "queued") {
+      const order = Number(state.queueOrder || 0);
+      if (this.queueByOrder.get(order) === socket) this.queueByOrder.delete(order);
+    }
+    if (state.clientId && this.socketByClientId.get(state.clientId) === socket) {
+      this.socketByClientId.delete(state.clientId);
+    }
+
+    if (tracked) {
+      state.status = "expired";
+      try { socket.serializeAttachment(state); } catch { /* socket may already be gone */ }
+    }
+    return { wasActive: tracked === "active", wasQueued: tracked === "queued" };
+  }
+
+  queuePositionFor(socket) {
+    let position = 0;
+    for (const queuedSocket of this.queueByOrder.values()) {
+      position += 1;
+      if (queuedSocket === socket) return position;
+    }
+    return Math.max(1, this.queuedCount);
+  }
+
   async fetch(request) {
+    this.ensureIndex();
+
     if (request.headers.get("Upgrade")?.toLowerCase() !== "websocket") {
       return new Response("WebSocket upgrade required", { status: 426 });
     }
@@ -143,27 +207,36 @@ export class SiteCapacity extends DurableObject {
       clientId = crypto.randomUUID();
     }
 
-    // Keep a reconnecting browser in its previous place instead of taking a second slot.
-    const existing = this.sessions().find((socket) => this.attachment(socket).clientId === clientId);
-    const previous = existing ? this.attachment(existing) : null;
-    if (existing && previous) {
-      existing.serializeAttachment({ ...previous, status: "replaced" });
-      try { existing.close(4001, "Reconnected from same browser tab"); } catch { /* already closed */ }
+    let previous = null;
+    const existing = this.socketByClientId.get(clientId);
+    if (existing && existing.readyState === WS_OPEN) {
+      const oldState = this.attachment(existing);
+      if (["active", "queued"].includes(oldState.status)) {
+        previous = { ...oldState };
+        // Transfer the existing slot/ticket to the reconnecting socket. Do not
+        // decrement/re-increment the counts; the replacement is one session.
+        existing.serializeAttachment({ ...oldState, status: "replaced" });
+        this.trackedStatus.delete(existing);
+        try { existing.close(4001, "Reconnected from same browser tab"); } catch { /* already closing */ }
+      } else {
+        this.socketByClientId.delete(clientId);
+      }
+    } else if (existing) {
+      this.removeTrackedSocket(existing);
     }
 
-    if (!previous || !["active", "queued"].includes(previous.status)) {
-      // Serve waiting people first before offering a newly opened slot to a newcomer.
+    // If there is an unused slot, promote the oldest queued session before admitting
+    // a brand-new visitor. The common full-capacity join path remains O(1).
+    if (!previous && this.activeCount < this.maxActive && this.queuedCount > 0) {
       this.promoteWaiting();
     }
 
-    const activeNow = this.activeSessions().length;
     const canKeepPreviousSeat = previous?.status === "active";
-    const hasQueue = this.queuedSessions().length > 0;
     const status = canKeepPreviousSeat
       ? "active"
       : previous?.status === "queued"
         ? "queued"
-        : (activeNow < this.maxActive && !hasQueue ? "active" : "queued");
+        : (this.activeCount < this.maxActive && this.queuedCount === 0 ? "active" : "queued");
 
     const queueOrder = previous?.status === "queued"
       ? Number(previous.queueOrder || this.nextQueueOrder())
@@ -183,32 +256,40 @@ export class SiteCapacity extends DurableObject {
       lastSeen: now,
     });
 
-    // If a slot became free during reconnect, respect FIFO and promote the earliest
-    // queued session. A promoted socket receives its `admitted` message here.
-    if (status === "queued" && this.activeSessions().length < this.maxActive) {
-      this.promoteWaiting();
+    this.socketByClientId.set(clientId, server);
+    this.trackedStatus.set(server, status);
+    if (!previous) {
+      if (status === "active") this.activeCount += 1;
+      else this.queuedCount += 1;
     }
+    if (status === "queued") this.queueByOrder.set(queueOrder, server);
 
-    const finalStatus = this.attachment(server).status;
-    if (finalStatus === "active") {
-      // If the socket was originally queued, promoteWaiting() already sent the notice.
+    // Rare reconnect case: the queue may have a free active slot while preserving
+    // the client's old ticket. The queue index chooses the earliest ticket.
+    if (status === "queued" && this.activeCount < this.maxActive) this.promoteWaiting();
+
+    const finalState = this.attachment(server);
+    // A brand-new queued visitor joins at the tail, so its position is the
+    // current queue count. Only a reconnect needs an ordered lookup.
+    const queuedPosition = previous?.status === "queued"
+      ? this.queuePositionFor(server)
+      : this.queuedCount;
+    if (finalState.status === "active") {
       if (status !== "queued") {
         sendJSON(server, {
           type: "admitted",
-          activeCount: this.activeSessions().length,
+          activeCount: this.activeCount,
           maxActive: this.maxActive,
           heartbeatMs: this.heartbeatMs,
         });
       }
+      // If it began queued and was promoted, promoteWaiting() already sent `admitted`.
     } else {
-      const waiting = this.queuedSessions();
-      const foundPosition = waiting.findIndex((socket) => socket === server) + 1;
-      const queuePosition = foundPosition > 0 ? foundPosition : waiting.length;
       sendJSON(server, {
         type: "queued",
-        queuePosition: Math.max(1, queuePosition),
-        queueSize: waiting.length,
-        activeCount: this.activeSessions().length,
+        queuePosition: queuedPosition,
+        queueSize: this.queuedCount,
+        activeCount: this.activeCount,
         maxActive: this.maxActive,
         heartbeatMs: this.heartbeatMs,
       });
@@ -219,13 +300,14 @@ export class SiteCapacity extends DurableObject {
   }
 
   webSocketMessage(socket, message) {
+    this.ensureIndex();
     const state = this.attachment(socket);
-    if (!state.clientId || !["active", "queued"].includes(state.status)) {
+    const tracked = this.trackedStatus.get(socket);
+    if (!state.clientId || !["active", "queued"].includes(state.status) || !tracked) {
       try { socket.close(4001, "Session replaced or expired"); } catch { /* no-op */ }
       return;
     }
 
-    // Messages are deliberately small. Only client heartbeats are accepted.
     if (typeof message !== "string" || message.length > 256) return;
     let incoming;
     try { incoming = JSON.parse(message); } catch { return; }
@@ -236,66 +318,133 @@ export class SiteCapacity extends DurableObject {
     sendJSON(socket, {
       type: "pong",
       status: state.status,
-      activeCount: this.activeSessions().length,
+      activeCount: this.activeCount,
       maxActive: this.maxActive,
-      queueSize: this.queuedSessions().length,
+      queueSize: this.queuedCount,
       heartbeatMs: this.heartbeatMs,
     });
   }
 
-  webSocketClose(socket) {
+  webSocketClose(socket, code, reason, wasClean) {
+    this.ensureIndex();
     const state = this.attachment(socket);
-    if (state.status === "active") this.promoteWaiting();
+    const tracked = this.trackedStatus.get(socket);
+    const now = Date.now();
+    const joinedAt = Number(state.joinedAt || 0);
+    const lastSeen = Number(state.lastSeen || 0);
+
+    // Log abnormal closes and stale-session closes, but skip normal planned close
+    // and same-client reconnects to avoid flooding logs during load tests.
+    if (!wasClean || ![1000, 4001].includes(Number(code))) {
+      console.warn("WS_CLOSE_DIAGNOSTIC", JSON.stringify({
+        clientId: String(state.clientId || "").slice(0, 80),
+        code: Number(code),
+        reason: String(reason || "").slice(0, 160),
+        wasClean: Boolean(wasClean),
+        status: String(tracked || state.status || "unknown"),
+        ageMs: joinedAt > 0 ? Math.max(0, now - joinedAt) : null,
+        lastSeenAgeMs: lastSeen > 0 ? Math.max(0, now - lastSeen) : null,
+        activeCount: this.activeCount,
+        queuedCount: this.queuedCount,
+      }));
+    }
+
+    const released = this.removeTrackedSocket(socket);
+    if (released.wasActive || this.activeCount < this.maxActive) this.promoteWaiting();
   }
 
-  webSocketError(socket) {
+  webSocketError(socket, error) {
+    this.ensureIndex();
     const state = this.attachment(socket);
+    const tracked = this.trackedStatus.get(socket);
+    const now = Date.now();
+    const joinedAt = Number(state.joinedAt || 0);
+    const lastSeen = Number(state.lastSeen || 0);
+    const detail = error && typeof error.message === "string"
+      ? error.message
+      : String(error ?? "unknown websocket error");
+
+    console.error("WS_ERROR_DIAGNOSTIC", JSON.stringify({
+      clientId: String(state.clientId || "").slice(0, 80),
+      detail: detail.slice(0, 200),
+      status: String(tracked || state.status || "unknown"),
+      ageMs: joinedAt > 0 ? Math.max(0, now - joinedAt) : null,
+      lastSeenAgeMs: lastSeen > 0 ? Math.max(0, now - lastSeen) : null,
+      activeCount: this.activeCount,
+      queuedCount: this.queuedCount,
+    }));
+
+    const released = this.removeTrackedSocket(socket);
     try { socket.close(1011, "Capacity connection error"); } catch { /* no-op */ }
-    if (state.status === "active") this.promoteWaiting();
+    if (released.wasActive || this.activeCount < this.maxActive) this.promoteWaiting();
   }
 
   promoteWaiting() {
-    const queue = this.queuedSessions();
-    let activeCount = this.activeSessions().length;
-    while (activeCount < this.maxActive && queue.length) {
-      const socket = queue.shift();
-      if (!socket || socket.readyState !== WS_OPEN) continue;
+    this.ensureIndex();
+    while (this.activeCount < this.maxActive && this.queueByOrder.size > 0) {
+      const first = this.queueByOrder.entries().next().value;
+      if (!first) break;
+      const [order, socket] = first;
+      this.queueByOrder.delete(order);
+
+      if (!socket || socket.readyState !== WS_OPEN) {
+        const tracked = socket ? this.trackedStatus.get(socket) : null;
+        if (tracked === "queued") {
+          this.queuedCount = Math.max(0, this.queuedCount - 1);
+          this.trackedStatus.delete(socket);
+          const deadState = this.attachment(socket);
+          if (deadState.clientId && this.socketByClientId.get(deadState.clientId) === socket) {
+            this.socketByClientId.delete(deadState.clientId);
+          }
+        }
+        continue;
+      }
+
       const state = this.attachment(socket);
-      if (state.status !== "queued") continue;
+      if (state.status !== "queued" || this.trackedStatus.get(socket) !== "queued") continue;
+
       state.status = "active";
       state.lastSeen = Date.now();
       socket.serializeAttachment(state);
+      this.queuedCount = Math.max(0, this.queuedCount - 1);
+      this.activeCount += 1;
+      this.trackedStatus.set(socket, "active");
+
       if (!sendJSON(socket, {
         type: "admitted",
-        activeCount: activeCount + 1,
+        activeCount: this.activeCount,
         maxActive: this.maxActive,
         heartbeatMs: this.heartbeatMs,
         promoted: true,
       })) {
+        this.activeCount = Math.max(0, this.activeCount - 1);
+        this.trackedStatus.delete(socket);
         state.status = "expired";
         socket.serializeAttachment(state);
+        if (state.clientId && this.socketByClientId.get(state.clientId) === socket) {
+          this.socketByClientId.delete(state.clientId);
+        }
         try { socket.close(1011, "Could not deliver admission"); } catch { /* no-op */ }
-        continue;
       }
-      activeCount += 1;
     }
   }
 
   async alarm() {
+    this.ensureIndex();
     const now = Date.now();
-    for (const socket of this.sessions()) {
+    for (const socket of this.ctx.getWebSockets()) {
+      if (!socket || socket.readyState !== WS_OPEN) continue;
       const state = this.attachment(socket);
       if (!state.lastSeen || now - Number(state.lastSeen) > this.staleMs) {
-        const wasActive = state.status === "active";
+        this.removeTrackedSocket(socket);
         state.status = "expired";
-        socket.serializeAttachment(state);
+        try { socket.serializeAttachment(state); } catch { /* no-op */ }
         try { socket.close(4008, "Session heartbeat expired"); } catch { /* no-op */ }
-        if (wasActive) this.promoteWaiting();
       }
     }
 
     this.promoteWaiting();
-    if (this.sessions().length > 0) {
+    if (this.activeCount + this.queuedCount > 0) {
       await this.ctx.storage.setAlarm(Date.now() + this.alarmMs);
     }
   }
