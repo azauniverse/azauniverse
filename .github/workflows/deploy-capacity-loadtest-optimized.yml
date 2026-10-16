@@ -1,0 +1,44 @@
+name: Deploy Optimized Capacity Load-Test Worker
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aza-capacity-loadtest-optimized-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy optimized isolated load-test Worker
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: worker
+          command: deploy --config wrangler.capacity-loadtest.toml
+          wranglerVersion: '4'
+
+      - name: Verify isolated Worker health
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 10); do
+            if curl --silent --show-error --fail \
+              https://aza-universe-capacity-loadtest.azataycan2002.workers.dev/health \
+              | grep -q '"ok":true'; then
+              echo "Optimized test Worker is healthy."
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::error::Optimized test Worker health check did not pass."
+          exit 1
