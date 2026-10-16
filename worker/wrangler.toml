@@ -5,7 +5,7 @@ compatibility_date = "2026-10-01"
 [vars]
 # Set production admission cap to the highest stage that previously passed: 3000.
 # This is a concurrency cap, not a Durable Objects daily quota bypass.
-MAX_ACTIVE = "3000"
+MAX_ACTIVE = "1000"
 HEARTBEAT_MS = "600000"
 STALE_MS = "1320000"
 ALARM_EVERY_MS = "300000"
