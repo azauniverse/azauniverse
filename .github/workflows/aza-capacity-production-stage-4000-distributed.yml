@@ -1,0 +1,97 @@
+name: AZA Production Capacity Stage - 4000 Sessions (Distributed Diagnostic)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Serialize this production load test with all other capacity tests and deployments.
+concurrency:
+  group: aza-websocket-loadtest-exclusive
+  cancel-in-progress: false
+
+jobs:
+  production-health:
+    name: Verify production Worker health
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check production Worker health
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --silent --show-error --fail \
+            https://aza-universe-capacity.azataycan2002.workers.dev/health \
+            | grep -q '"ok":true'
+          echo "Production Worker health check passed."
+
+  production-shards:
+    name: "Production shard ${{ matrix.shard }} / 8 — 500 sessions"
+    needs: production-health
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6, 7, 8]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Run one 500-session production shard and export summary
+        shell: bash
+        env:
+          SHARD_ID: ${{ matrix.shard }}
+          WS_URL: wss://aza-universe-capacity.azataycan2002.workers.dev/ws
+          ORIGIN: https://azauniverse.github.io
+          TARGET_CONNECTIONS: "500"
+          RAMP_SECONDS: "300"
+          HOLD_SECONDS: "120"
+          AGGREGATE_ERRORS: "true"
+        run: |
+          set +e
+          echo "WARNING: this workflow opens up to 4000 temporary WebSocket sessions against the PRODUCTION capacity Worker."
+          echo "Shard ${SHARD_ID}: 500 sessions; eight shards total 4000 sessions."
+          echo "Each shard ramps over 300 seconds and holds for 120 seconds. Static question-bank traffic is not generated."
+          k6 run --summary-export="summary-${SHARD_ID}.json" tests/aza-capacity-ws-staged-diagnostic-detailed.js
+          k6_status=$?
+          printf '%s\n' "$k6_status" > "k6-exit-${SHARD_ID}.txt"
+          echo "Shard ${SHARD_ID} k6 exit code: ${k6_status}; global thresholds are evaluated by the aggregate job."
+          # Keep summaries even when a local k6 threshold fails; do not mask failures in the aggregate step.
+          exit 0
+
+      - name: Upload shard summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-ws-summary-${{ matrix.shard }}
+          path: |
+            summary-${{ matrix.shard }}.json
+            k6-exit-${{ matrix.shard }}.txt
+          if-no-files-found: error
+          retention-days: 7
+
+  aggregate-results:
+    name: Aggregate all 4000 production sessions
+    needs: production-shards
+    if: ${{ always() && needs.production-shards.result != 'skipped' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download production shard summaries
+        uses: actions/download-artifact@v4
+        with:
+          pattern: production-ws-summary-*
+          path: summaries
+          merge-multiple: true
+
+      - name: Evaluate aggregate 4000-session thresholds
+        shell: bash
+        run: node tests/aggregate-ws-summaries-4000.mjs summaries 8 500
