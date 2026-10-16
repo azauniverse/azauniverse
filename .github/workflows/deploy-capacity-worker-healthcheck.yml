@@ -1,0 +1,51 @@
+name: Deploy AZA Capacity Worker
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'worker/**'
+      - '.github/workflows/deploy-capacity-worker.yml'
+
+permissions:
+  contents: read
+
+# Coordinate production deploys with the fixed distributed capacity tests.
+concurrency:
+  group: aza-websocket-loadtest-exclusive
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy optimized AZA Capacity Worker
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: worker
+          command: deploy
+          wranglerVersion: '4'
+
+      - name: Verify production Worker health
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 10); do
+            if curl --silent --show-error --fail \
+              https://aza-universe-capacity.azataycan2002.workers.dev/health \
+              | grep -q '"ok":true'; then
+              echo "Production AZA Capacity Worker health check passed."
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::error::Production AZA Capacity Worker health check did not pass."
+          exit 1
