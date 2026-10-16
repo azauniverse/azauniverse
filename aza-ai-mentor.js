@@ -1,12 +1,12 @@
-/* AZA UNIVERSE — AZA AI Mentor frontend v1.1 — voice mode
+/* AZA UNIVERSE — AZA AI Mentor frontend v1.2 — animated tutor + voice
  * Add to the Pages root and include with:
- * <script src="aza-ai-mentor.js?v=2"></script>
+ * <script src="aza-ai-mentor.js?v=3"></script>
  * Requires the separate Cloudflare Worker in ai-worker/ to be deployed.
  */
 (() => {
   'use strict';
-  if (window.__AZA_AI_MENTOR_V2__) return;
-  window.__AZA_AI_MENTOR_V2__ = true;
+  if (window.__AZA_AI_MENTOR_V3__) return;
+  window.__AZA_AI_MENTOR_V3__ = true;
 
   const API_URL = String(window.AZA_AI_ENDPOINT || 'https://aza-universe-ai.azataycan2002.workers.dev/api/chat');
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -21,6 +21,28 @@
   let activeUtterance = null;
   let recognition = null;
   let recognitionActive = false;
+  let teacherState = 'idle';
+
+  function setTeacherState(nextState) {
+    const stage = $('#azaAiTeacher');
+    const status = $('#azaAiTeacherStatus');
+    const allowed = ['idle', 'speaking', 'listening', 'thinking'];
+    teacherState = allowed.includes(nextState) ? nextState : 'idle';
+    if (stage) {
+      stage.dataset.state = teacherState;
+      stage.classList.remove(...allowed.map(state => `is-${state}`));
+      stage.classList.add(`is-${teacherState}`);
+    }
+    if (status) {
+      const labels = {
+        idle: tx('Даярмын, досум! 👋', 'На связи, дружище! 👋'),
+        speaking: tx('Сүйлөп жатам…', 'Говорю…'),
+        listening: tx('Угуп жатам…', 'Слушаю…'),
+        thinking: tx('Ойлонуп жатам…', 'Думаю…')
+      };
+      status.textContent = labels[teacherState];
+    }
+  }
 
   function cleanSpeechText(value) {
     return String(value || '')
@@ -49,6 +71,7 @@
   function stopSpeaking() {
     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     activeUtterance = null;
+    setTeacherState(recognitionActive ? 'listening' : (busy ? 'thinking' : 'idle'));
   }
 
   function speakText(value, force = false) {
@@ -70,13 +93,20 @@
       utterance.voice = voice;
       utterance.lang = voice.lang || utterance.lang;
     }
+    utterance.onstart = () => {
+      if (activeUtterance === utterance) setTeacherState('speaking');
+    };
     utterance.onerror = event => {
       activeUtterance = null;
+      setTeacherState(recognitionActive ? 'listening' : (busy ? 'thinking' : 'idle'));
       if (event.error !== 'canceled' && event.error !== 'interrupted') {
         appendMessage('assistant', tx('Үн чыкпай калды. Телефондун текстти үн менен окуу жөндөөлөрүн текшер.', 'Не удалось воспроизвести голос. Проверь настройки синтеза речи на телефоне.'), 'notice');
       }
     };
-    utterance.onend = () => { if (activeUtterance === utterance) activeUtterance = null; };
+    utterance.onend = () => {
+      if (activeUtterance === utterance) activeUtterance = null;
+      setTeacherState(recognitionActive ? 'listening' : (busy ? 'thinking' : 'idle'));
+    };
     activeUtterance = utterance;
     window.speechSynthesis.speak(utterance);
   }
@@ -112,6 +142,7 @@
       const originalPlaceholder = input.placeholder;
       recognition.onstart = () => {
         recognitionActive = true;
+        setTeacherState('listening');
         if (mic) { mic.classList.add('is-listening'); mic.textContent = '■'; mic.setAttribute('aria-label', tx('Угууну токтотуу', 'Остановить запись')); }
         input.placeholder = tx('Сүйлө, досум…', 'Говори, дружище…');
       };
@@ -135,6 +166,7 @@
       };
       recognition.onend = () => {
         recognitionActive = false;
+        setTeacherState(busy ? 'thinking' : 'idle');
         if (mic) { mic.classList.remove('is-listening'); mic.textContent = '🎙'; mic.setAttribute('aria-label', tx('Үн менен суроо берүү', 'Задать вопрос голосом')); }
         input.placeholder = originalPlaceholder;
         input.focus();
@@ -201,6 +233,100 @@
     return item;
   }
 
+  function ensureTutorStyles() {
+    if ($('#azaAiTutorStyles')) return;
+    const style = document.createElement('style');
+    style.id = 'azaAiTutorStyles';
+    style.textContent = `
+      #azaAiTeacher{position:relative;flex:0 0 auto;height:164px;overflow:hidden;display:flex;align-items:stretch;justify-content:center;border-bottom:1px solid #1c3c55;background:radial-gradient(ellipse at 50% 100%,#0e3d59 0%,#0a2034 44%,#081625 78%);isolation:isolate}
+      #azaAiTeacher:before{content:"";position:absolute;width:210px;height:160px;left:50%;top:5px;transform:translateX(-50%);border:1px solid #4acbff28;border-radius:50%;box-shadow:0 0 0 14px #49bbff08,0 0 0 30px #49bbff05;pointer-events:none}
+      #azaAiTeacher:after{content:"✦";position:absolute;right:calc(50% - 111px);top:26px;color:#ffcf72;text-shadow:0 0 15px #ffb74788;font-size:15px;animation:azaTutorSpark 3.2s ease-in-out infinite;pointer-events:none}
+      #azaAiTeacher .aza-ai-tutor-figure{position:absolute;width:min(290px,94%);height:172px;left:50%;top:-1px;transform:translateX(-50%);overflow:visible}
+      #azaAiTeacher .teacher-head{transform-box:fill-box;transform-origin:50% 92%;animation:azaTutorHeadIdle 6.2s ease-in-out infinite}
+      #azaAiTeacher .teacher-arm-left{transform-box:fill-box;transform-origin:86% 30%;animation:azaTutorArmIdle 5.4s ease-in-out infinite}
+      #azaAiTeacher .teacher-arm-right{transform-box:fill-box;transform-origin:15% 30%;animation:azaTutorArmIdleRight 6s ease-in-out infinite}
+      #azaAiTeacher .teacher-blink{opacity:0;animation:azaTutorBlink 5.6s linear infinite}
+      #azaAiTeacher .teacher-mouth-open{opacity:0;transform-box:fill-box;transform-origin:center;transform:scaleY(.12)}
+      #azaAiTeacher.is-speaking .teacher-mouth-closed{opacity:0}
+      #azaAiTeacher.is-speaking .teacher-mouth-open{opacity:1;animation:azaTutorMouth .42s ease-in-out infinite alternate}
+      #azaAiTeacher.is-speaking .teacher-head{animation:azaTutorHeadSpeak 1.9s ease-in-out infinite}
+      #azaAiTeacher.is-speaking .teacher-arm-left{animation:azaTutorGestureLeft 1.7s ease-in-out infinite}
+      #azaAiTeacher.is-speaking .teacher-arm-right{animation:azaTutorGestureRight 2.1s ease-in-out infinite}
+      #azaAiTeacher.is-listening .teacher-head{animation:azaTutorListen 2s ease-in-out infinite}
+      #azaAiTeacher.is-listening:before{border-color:#ff777770;box-shadow:0 0 0 14px #ff777715,0 0 30px #ff777725}
+      #azaAiTeacher.is-thinking .teacher-orbit{animation:azaTutorOrbit 2.3s linear infinite;transform-origin:160px 90px}
+      #azaAiTeacher.is-thinking .teacher-mouth-closed{opacity:.45}
+      .aza-ai-teacher-status{position:absolute;z-index:2;bottom:8px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;max-width:90%;padding:5px 10px;border:1px solid #2f5b77;border-radius:999px;background:#071522db;color:#bbd7e9;font-size:10px;font-weight:800;white-space:nowrap;box-shadow:0 3px 12px #0003}
+      .aza-ai-teacher-status:before{content:"";width:6px;height:6px;flex:0 0 6px;border-radius:50%;background:#48dcb0;box-shadow:0 0 8px #48dcb0}
+      #azaAiTeacher.is-speaking .aza-ai-teacher-status:before{background:#ffbf56;box-shadow:0 0 8px #ffbf56;animation:azaTutorStatusPulse .6s ease-in-out infinite alternate}
+      #azaAiTeacher.is-listening .aza-ai-teacher-status:before{background:#ff7f7f;box-shadow:0 0 8px #ff7f7f;animation:azaTutorStatusPulse .75s ease-in-out infinite alternate}
+      #azaAiTeacher.is-thinking .aza-ai-teacher-status:before{background:#61cbff;box-shadow:0 0 8px #61cbff;animation:azaTutorStatusPulse .5s ease-in-out infinite alternate}
+      @keyframes azaTutorHeadIdle{0%,100%{transform:translateY(0) rotate(0)}38%{transform:translateY(-1.5px) rotate(-1.3deg)}70%{transform:translateY(0) rotate(.8deg)}}
+      @keyframes azaTutorHeadSpeak{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-1px) rotate(-1deg)}67%{transform:translateY(1px) rotate(1deg)}}
+      @keyframes azaTutorListen{0%,100%{transform:rotate(0)}45%{transform:rotate(2.3deg)}75%{transform:rotate(1deg)}}
+      @keyframes azaTutorArmIdle{0%,100%{transform:rotate(0)}50%{transform:rotate(-2deg)}}
+      @keyframes azaTutorArmIdleRight{0%,100%{transform:rotate(0)}45%{transform:rotate(2deg)}}
+      @keyframes azaTutorGestureLeft{0%,100%{transform:rotate(-1deg)}45%{transform:rotate(-8deg)}70%{transform:rotate(2deg)}}
+      @keyframes azaTutorGestureRight{0%,100%{transform:rotate(0)}35%{transform:rotate(7deg)}68%{transform:rotate(-3deg)}}
+      @keyframes azaTutorBlink{0%,93%,96%,100%{opacity:0}94%,95%{opacity:1}}
+      @keyframes azaTutorMouth{0%{transform:scaleY(.12)}35%{transform:scaleY(.9)}70%{transform:scaleY(.3)}100%{transform:scaleY(1)}}
+      @keyframes azaTutorSpark{0%,100%{opacity:.65;transform:translateY(0) scale(.94)}50%{opacity:1;transform:translateY(-4px) scale(1.12)}}
+      @keyframes azaTutorOrbit{to{transform:rotate(360deg)}}
+      @keyframes azaTutorStatusPulse{to{opacity:.5;transform:scale(.82)}}
+      @media(max-width:480px){#azaAiTeacher{height:145px}#azaAiTeacher .aza-ai-tutor-figure{height:155px;width:min(270px,96%);top:-3px}.aza-ai-teacher-status{bottom:6px;font-size:9px}}
+      @media(prefers-reduced-motion:reduce){#azaAiTeacher:after,#azaAiTeacher .teacher-head,#azaAiTeacher .teacher-arm-left,#azaAiTeacher .teacher-arm-right,#azaAiTeacher .teacher-blink,#azaAiTeacher.is-speaking .teacher-mouth-open,#azaAiTeacher .aza-ai-teacher-status:before{animation:none!important}#azaAiTeacher.is-speaking .teacher-mouth-open{transform:scaleY(.48)}}
+    `;
+    document.head.appendChild(style);
+  }
+
+  function createTutorStage(panel) {
+    if ($('#azaAiTeacher', panel)) return;
+    ensureTutorStyles();
+    const stage = document.createElement('section');
+    stage.id = 'azaAiTeacher';
+    stage.className = 'aza-ai-teacher is-idle';
+    stage.dataset.state = 'idle';
+    stage.setAttribute('role', 'img');
+    stage.setAttribute('aria-label', tx('AZA AI сүйлөгөн мугалим', 'Говорящий AI-наставник AZA'));
+    stage.innerHTML = `
+      <svg class="aza-ai-tutor-figure" viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="azaTutorHoodie" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1c5674"/><stop offset=".55" stop-color="#133047"/><stop offset="1" stop-color="#091827"/></linearGradient>
+          <linearGradient id="azaTutorSkin" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#f5c6a0"/><stop offset="1" stop-color="#cd8d69"/></linearGradient>
+          <linearGradient id="azaTutorHair" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#34465b"/><stop offset=".55" stop-color="#172333"/><stop offset="1" stop-color="#0c1725"/></linearGradient>
+          <linearGradient id="azaTutorShirt" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#18334c"/><stop offset="1" stop-color="#081624"/></linearGradient>
+        </defs>
+        <ellipse cx="160" cy="181" rx="78" ry="7" fill="#01060d" opacity=".45"/>
+        <g class="teacher-orbit" fill="none" stroke="#58d7ff" stroke-opacity=".26"><ellipse cx="160" cy="91" rx="102" ry="53" transform="rotate(-12 160 91)"/><ellipse cx="160" cy="91" rx="112" ry="60" stroke-dasharray="2 8"/></g>
+        <g class="teacher-arm-left"><path d="M111 115C91 112 80 101 72 84L61 68 48 78 62 111C68 128 82 141 102 143Z" fill="url(#azaTutorHoodie)" stroke="#32708d" stroke-width="1.4"/><path d="M57 76C50 70 46 61 49 54L54 48 57 59 59 45Q63 42 65 49L67 59 71 49Q75 48 76 54L73 68 67 81Z" fill="url(#azaTutorSkin)" stroke="#ac7059" stroke-width="1.2" stroke-linejoin="round"/><path d="M95 119 103 131" stroke="#4a91ad" stroke-width="2" stroke-linecap="round" opacity=".75"/></g>
+        <g class="teacher-arm-right"><path d="M209 116C230 115 242 129 248 147L254 163 238 169 225 151 204 140Z" fill="url(#azaTutorHoodie)" stroke="#32708d" stroke-width="1.4"/><path d="M239 163C245 158 251 155 257 160L261 168 254 174 243 173 235 170Z" fill="url(#azaTutorSkin)" stroke="#ac7059" stroke-width="1.2" stroke-linejoin="round"/><path d="M232 143 241 155" stroke="#4a91ad" stroke-width="2" stroke-linecap="round" opacity=".75"/></g>
+        <path d="M111 108C95 111 86 121 82 142L74 180H246L238 142C234 121 225 111 209 108L191 100H129Z" fill="url(#azaTutorHoodie)" stroke="#34728e" stroke-width="1.5"/>
+        <path d="M129 101 129 126Q160 151 191 126L191 101Z" fill="url(#azaTutorSkin)"/>
+        <path d="M122 111 143 128 160 143 177 128 198 111 207 180H113Z" fill="url(#azaTutorShirt)" stroke="#24475f" stroke-width="1.2"/>
+        <path d="M149 145 160 156 171 145" fill="none" stroke="#58bfe0" stroke-width="2" stroke-linecap="round" opacity=".72"/>
+        <g class="teacher-head">
+          <path d="M116 67C112 34 130 15 159 15 192 15 208 38 204 70L196 99C187 116 174 124 160 124 143 124 130 113 122 97Z" fill="url(#azaTutorHair)"/>
+          <ellipse cx="116" cy="72" rx="7" ry="11" fill="#d99b75"/><ellipse cx="204" cy="72" rx="7" ry="11" fill="#d99b75"/>
+          <path d="M119 58C118 33 135 20 160 20 184 20 201 35 201 60L198 84C193 104 179 116 160 117 140 116 126 103 121 84Z" fill="url(#azaTutorSkin)"/>
+          <path d="M117 61C115 36 127 15 153 14 166 7 182 16 190 24 203 28 208 44 202 66L194 52 183 47 173 35 160 43 147 38 135 48 123 69Z" fill="url(#azaTutorHair)"/>
+          <path d="M132 70Q142 64 150 69M170 69Q180 64 188 70" fill="none" stroke="#70442f" stroke-width="3" stroke-linecap="round"/>
+          <g class="teacher-eyes" fill="#172434"><ellipse cx="142" cy="79" rx="4.4" ry="5.6"/><ellipse cx="178" cy="79" rx="4.4" ry="5.6"/><circle cx="143" cy="77" r="1.4" fill="#fff"/><circle cx="179" cy="77" r="1.4" fill="#fff"/></g>
+          <path class="teacher-blink" d="M135 80Q142 85 149 80M171 80Q178 85 185 80" fill="none" stroke="#754831" stroke-width="2.3" stroke-linecap="round"/>
+          <path d="M160 79 156 91Q160 95 164 91" fill="none" stroke="#b7795c" stroke-width="1.7" stroke-linecap="round"/>
+          <path class="teacher-mouth-closed" d="M150 101Q160 106 170 101" fill="none" stroke="#8e443f" stroke-width="2.3" stroke-linecap="round"/>
+          <ellipse class="teacher-mouth-open" cx="160" cy="102" rx="7" ry="5.5" fill="#71333a" stroke="#a3544c" stroke-width="1.2"/>
+          <path class="teacher-mouth-open" d="M155 102Q160 105 165 102" fill="none" stroke="#f2b6a2" stroke-width="1.2"/>
+          <path d="M145 108Q160 115 175 108" fill="none" stroke="#b86f5a" stroke-width="1.2" opacity=".75"/>
+          <path d="M127 90Q130 96 134 97M193 90Q190 96 186 97" fill="none" stroke="#e3a586" stroke-width="1.4" stroke-linecap="round" opacity=".8"/>
+        </g>
+        <circle cx="92" cy="49" r="2.4" fill="#fbd17c"><animate attributeName="opacity" values=".35;1;.35" dur="3.2s" repeatCount="indefinite"/></circle><circle cx="225" cy="63" r="1.8" fill="#61dcff"><animate attributeName="opacity" values=".3;.9;.3" dur="2.5s" repeatCount="indefinite"/></circle>
+      </svg>
+      <div class="aza-ai-teacher-status" id="azaAiTeacherStatus" aria-live="polite">${tx('Даярмын, досум! 👋', 'На связи, дружище! 👋')}</div>`;
+    const messages = $('#azaAiMessages', panel);
+    if (messages) panel.insertBefore(stage, messages);
+    setTeacherState(teacherState);
+  }
+
   function render() {
     if ($('#azaAiLaunch')) return;
     ensureStyles();
@@ -220,9 +346,11 @@
       <div id="azaAiMessages" aria-live="polite"></div>
       <form id="azaAiForm"><textarea id="azaAiInput" rows="1" maxlength="1200" placeholder="${tx('Досум, эмне сурайсың?', 'Дружище, что спросим?')}" aria-label="${tx('Билдирүү', 'Сообщение')}"></textarea><button id="azaAiMic" type="button" aria-label="${tx('Үн менен суроо берүү', 'Задать вопрос голосом')}" title="${tx('Үн менен суроо берүү', 'Задать вопрос голосом')}">🎙</button><button id="azaAiSend" type="submit" aria-label="${tx('Жөнөтүү', 'Отправить')}">➤</button></form>`;
     document.body.append(launch, panel);
+    createTutorStage(panel);
     voiceEnabled = (() => { try { return localStorage.getItem('aza-ai-voice-enabled') === '1'; } catch { return false; } })();
     launch.addEventListener('click', () => {
       panel.classList.add('is-open');
+      setTeacherState(busy ? 'thinking' : (activeUtterance ? 'speaking' : 'idle'));
       launch.setAttribute('aria-expanded', 'true');
       $('#azaAiInput')?.focus();
       if (!$('#azaAiMessages').children.length) {
@@ -234,6 +362,7 @@
       launch.setAttribute('aria-expanded', 'false');
       stopSpeaking();
       if (recognitionActive && recognition) recognition.stop();
+      setTeacherState('idle');
     });
     $('#azaAiVoiceToggle').addEventListener('click', () => {
       voiceEnabled = !voiceEnabled;
@@ -270,6 +399,7 @@
     while (history.length > 10) history.shift();
     input.value = '';
     busy = true;
+    setTeacherState('thinking');
     if (send) send.disabled = true;
     const typing = appendMessage('assistant', tx('AZA AI ойлонуп жатат…', 'AZA AI думает…'), 'notice');
 
@@ -297,6 +427,7 @@
     } finally {
       busy = false;
       if (send) send.disabled = false;
+      if (!activeUtterance && !recognitionActive) setTeacherState('idle');
       input?.focus();
     }
   }
