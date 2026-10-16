@@ -1,0 +1,51 @@
+name: AZA Distributed 2500-session diagnostic
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aza-capacity-distributed-2500
+  cancel-in-progress: false
+
+jobs:
+  websocket-shards:
+    name: "Shard ${{ matrix.shard }} / 5 — 500 sessions"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Verify isolated optimized test Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --silent --show-error --fail \
+            https://aza-universe-capacity-loadtest.azataycan2002.workers.dev/health \
+            | grep -q '"ok":true'
+          echo "Isolated optimized test Worker is healthy."
+
+      - name: Run this shard (500 concurrent WebSocket sessions)
+        shell: bash
+        env:
+          WS_URL: wss://aza-universe-capacity-loadtest.azataycan2002.workers.dev/ws
+          ORIGIN: https://azauniverse.github.io
+          TARGET_CONNECTIONS: "500"
+          RAMP_SECONDS: "60"
+          HOLD_SECONDS: "120"
+        run: |
+          set -euo pipefail
+          echo "Shard ${{ matrix.shard }}: 500 sessions. Combined target across five runners: 2500."
+          echo "WebSocket load is sent only to the isolated load-test Worker, never to production."
+          k6 run tests/aza-capacity-ws-staged-diagnostic.js
