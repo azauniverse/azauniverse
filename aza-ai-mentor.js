@@ -1,12 +1,12 @@
-/* AZA UNIVERSE — AZA AI Mentor frontend v1.3 — animated Preppy-style bot + voice
+/* AZA UNIVERSE — AZA AI Mentor frontend v1.4 — emotion-reactive original bot + voice
  * Add to the Pages root and include with:
- * <script src="aza-ai-mentor.js?v=3"></script>
- * Requires the separate Cloudflare Worker in ai-worker/ to be deployed.
+ * <script src="aza-ai-mentor.js?v=4"></script>
+ * Includes state-driven robot emotions (neutral/blue, listening/purple, laughing/star-eyes, angry/fire). Requires the separate Cloudflare Worker in ai-worker/ to be deployed.
  */
 (() => {
   'use strict';
-  if (window.__AZA_AI_MENTOR_V4__) return;
-  window.__AZA_AI_MENTOR_V4__ = true;
+  if (window.__AZA_AI_MENTOR_V5__) return;
+  window.__AZA_AI_MENTOR_V5__ = true;
 
   const API_URL = String(window.AZA_AI_ENDPOINT || 'https://aza-universe-ai.azataycan2002.workers.dev/api/chat');
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -22,21 +22,38 @@
   let recognition = null;
   let recognitionActive = false;
   let teacherState = 'idle';
+  let teacherMood = 'neutral';
+  let responseMoodTimer = 0;
 
-  function setTeacherState(nextState) {
+  function normalizeMood(value) {
+    const mood = String(value || '').toLowerCase().trim();
+    return ['neutral', 'laughing', 'angry'].includes(mood) ? mood : null;
+  }
+
+  function detectMood(value) {
+    const text = String(value || '').toLowerCase();
+    if (/(?:🤬|😡|😠|🔥|\b(?:злюсь|разозлил|разозлилась|разозлился|сейчас поругаю|ругаться|нахуй|на хуй|чёрт побери|черт побери|жёсткий разнос|жесткий разнос)\b)/u.test(text)) return 'angry';
+    if (/(?:😂|🤣|😹|🤩|⭐|🌟|\b(?:хаха+|ахаха+|лол|lmao|rofl|смешно|смешная шутка|умора|кукольно)\b)/u.test(text)) return 'laughing';
+    return 'neutral';
+  }
+
+  function setTeacherState(nextState, mood = null) {
     const stage = $('#azaAiTeacher');
     const status = $('#azaAiTeacherStatus');
     const allowed = ['idle', 'speaking', 'listening', 'thinking'];
     teacherState = allowed.includes(nextState) ? nextState : 'idle';
+    if (mood !== null) teacherMood = normalizeMood(mood) || 'neutral';
+    if (teacherState !== 'speaking' && teacherState !== 'idle') teacherMood = 'neutral';
     if (stage) {
       stage.dataset.state = teacherState;
+      stage.dataset.mood = teacherMood;
       stage.classList.remove(...allowed.map(state => `is-${state}`));
       stage.classList.add(`is-${teacherState}`);
     }
     if (status) {
       const labels = {
         idle: tx('Даярмын, досум! 👋', 'На связи, дружище! 👋'),
-        speaking: tx('Сүйлөп жатам…', 'Говорю…'),
+        speaking: teacherMood === 'laughing' ? tx('Ха-ха, досум! 😂', 'Ха-ха! 😂') : teacherMood === 'angry' ? tx('Ох, азыр айтып берем! 🔥', 'Ого, сейчас скажу! 🔥') : tx('Сүйлөп жатам…', 'Говорю…'),
         listening: tx('Угуп жатам…', 'Слушаю…'),
         thinking: tx('Ойлонуп жатам…', 'Думаю…')
       };
@@ -71,10 +88,10 @@
   function stopSpeaking() {
     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     activeUtterance = null;
-    setTeacherState(recognitionActive ? 'listening' : (busy ? 'thinking' : 'idle'));
+    setTeacherState(recognitionActive ? 'listening' : (busy ? 'thinking' : 'idle'), 'neutral');
   }
 
-  function speakText(value, force = false) {
+  function speakText(value, force = false, mood = null) {
     if (!('speechSynthesis' in window)) {
       appendMessage('assistant', tx('Бул браузер үн чыгарып окууну колдобойт.', 'Этот браузер не поддерживает озвучивание.'), 'notice');
       return;
@@ -83,6 +100,7 @@
     if (!text) return;
     if (!force && !voiceEnabled) return;
     stopSpeaking();
+    teacherMood = normalizeMood(mood) || detectMood(value);
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = language() === 'ru' ? 'ru-RU' : 'ky-KG';
     utterance.rate = 0.94;
@@ -94,18 +112,18 @@
       utterance.lang = voice.lang || utterance.lang;
     }
     utterance.onstart = () => {
-      if (activeUtterance === utterance) setTeacherState('speaking');
+      if (activeUtterance === utterance) setTeacherState('speaking', teacherMood);
     };
     utterance.onerror = event => {
       activeUtterance = null;
-      setTeacherState(recognitionActive ? 'listening' : (busy ? 'thinking' : 'idle'));
+      setTeacherState(recognitionActive ? 'listening' : (busy ? 'thinking' : 'idle'), 'neutral');
       if (event.error !== 'canceled' && event.error !== 'interrupted') {
         appendMessage('assistant', tx('Үн чыкпай калды. Телефондун текстти үн менен окуу жөндөөлөрүн текшер.', 'Не удалось воспроизвести голос. Проверь настройки синтеза речи на телефоне.'), 'notice');
       }
     };
     utterance.onend = () => {
       if (activeUtterance === utterance) activeUtterance = null;
-      setTeacherState(recognitionActive ? 'listening' : (busy ? 'thinking' : 'idle'));
+      setTeacherState(recognitionActive ? 'listening' : (busy ? 'thinking' : 'idle'), 'neutral');
     };
     activeUtterance = utterance;
     window.speechSynthesis.speak(utterance);
@@ -142,7 +160,7 @@
       const originalPlaceholder = input.placeholder;
       recognition.onstart = () => {
         recognitionActive = true;
-        setTeacherState('listening');
+        setTeacherState('listening', 'neutral');
         if (mic) { mic.classList.add('is-listening'); mic.textContent = '■'; mic.setAttribute('aria-label', tx('Угууну токтотуу', 'Остановить запись')); }
         input.placeholder = tx('Сүйлө, досум…', 'Говори, дружище…');
       };
@@ -210,22 +228,23 @@
     document.head.appendChild(style);
   }
 
-  function appendMessage(role, text, className = '') {
+  function appendMessage(role, text, className = '', mood = null) {
     const item = document.createElement('div');
     item.className = `aza-ai-msg ${role} ${className}`.trim();
     const body = document.createElement('div');
     body.className = 'aza-ai-msg-text';
     body.textContent = text;
     item.appendChild(body);
+    const messageMood = normalizeMood(mood) || detectMood(text);
     if (role === 'assistant' && className !== 'notice') {
       const audio = document.createElement('button');
       audio.type = 'button';
       audio.className = 'aza-ai-speak';
       audio.textContent = tx('🔊 Угуу', '🔊 Слушать');
       audio.setAttribute('aria-label', tx('Жоопту үн менен угуу', 'Прослушать ответ'));
-      audio.addEventListener('click', () => speakText(text, true));
+      audio.addEventListener('click', () => speakText(text, true, messageMood));
       item.appendChild(audio);
-      if (voiceEnabled) queueMicrotask(() => speakText(text));
+      if (voiceEnabled) queueMicrotask(() => speakText(text, false, messageMood));
     }
     $('#azaAiMessages')?.appendChild(item);
     const box = $('#azaAiMessages');
@@ -274,7 +293,7 @@
       @keyframes azaTutorOrbit{to{transform:rotate(360deg)}}
       @keyframes azaTutorStatusPulse{to{opacity:.5;transform:scale(.82)}}
       @media(max-width:480px){#azaAiTeacher{height:145px}#azaAiTeacher .aza-ai-tutor-figure{height:155px;width:min(270px,96%);top:-3px}#azaAiTeacher .aza-ai-bot-face{width:min(196px,70vw);height:106px;border-width:8px}#azaAiTeacher .aza-ai-bot-eye{top:34px}#azaAiTeacher .aza-ai-bot-eye-left{left:41px}#azaAiTeacher .aza-ai-bot-eye-right{right:41px}#azaAiTeacher .aza-ai-bot-mouth-closed{top:47px}#azaAiTeacher .aza-ai-bot-mouth-open{top:41px}#azaAiTeacher .aza-ai-bot-flames{top:-31px}.aza-ai-teacher-status{bottom:6px;font-size:9px}}
-      @media(prefers-reduced-motion:reduce){#azaAiTeacher:after,#azaAiTeacher .teacher-head,#azaAiTeacher .teacher-arm-left,#azaAiTeacher .teacher-arm-right,#azaAiTeacher .teacher-blink,#azaAiTeacher.is-speaking .teacher-mouth-open,#azaAiTeacher .aza-ai-teacher-status:before,#azaAiTeacher .aza-ai-bot-face,#azaAiTeacher .aza-ai-bot-flames i,#azaAiTeacher .aza-ai-bot-orbit-a,#azaAiTeacher .aza-ai-bot-orbit-b,#azaAiTeacher .aza-ai-bot-eye,#azaAiTeacher.is-speaking .aza-ai-bot-mouth-open{animation:none!important}#azaAiTeacher.is-speaking .teacher-mouth-open{transform:scaleY(.48)}#azaAiTeacher.is-speaking .aza-ai-bot-mouth-open{transform:translateX(-50%) scaleY(.7)}}
+      @media(prefers-reduced-motion:reduce){#azaAiTeacher:after,#azaAiTeacher .teacher-head,#azaAiTeacher .teacher-arm-left,#azaAiTeacher .teacher-arm-right,#azaAiTeacher .teacher-blink,#azaAiTeacher.is-speaking .teacher-mouth-open,#azaAiTeacher .aza-ai-teacher-status:before,#azaAiTeacher .aza-ai-bot-face,#azaAiTeacher .aza-ai-bot-flames i,#azaAiTeacher .aza-ai-bot-orbit-a,#azaAiTeacher .aza-ai-bot-orbit-b,#azaAiTeacher .aza-ai-bot-eye,#azaAiTeacher.is-speaking .aza-ai-bot-mouth-open{animation:none!important}#azaAiTeacher.is-speaking .teacher-mouth-open{transform:scaleY(.48)}#azaAiTeacher.is-speaking .aza-ai-bot-mouth-open{transform:translateX(-50%) scaleY(.7)}#azaAiTeacher.is-speaking[data-mood="laughing"] .aza-ai-bot-star-eye{animation:none!important;opacity:1}}
 
       /* AZA's own minimal oval robot mascot; no human portrait or external image. */
       #azaAiTeacher .aza-ai-tutor-figure{display:grid;place-items:center;width:min(280px,95%);height:160px;top:-1px;overflow:visible}
@@ -297,17 +316,34 @@
       #azaAiTeacher.is-thinking .aza-ai-bot-face{box-shadow:0 0 0 5px #2c84ff20,0 0 32px #2d83ff6b,inset 0 -6px 12px #d9e6ff6e;animation:azaAiBotThink 1.25s ease-in-out infinite}
       #azaAiTeacher.is-thinking .aza-ai-bot-orbit-a{animation:azaAiBotOrbit 3s linear infinite}
       #azaAiTeacher.is-thinking .aza-ai-bot-orbit-b{animation:azaAiBotOrbit 5s linear infinite reverse}
-      #azaAiTeacher.is-listening .aza-ai-bot-face{border-color:#ff7b85;box-shadow:0 0 0 5px #ff777720,0 0 30px #ff777755,inset 0 -6px 12px #d9e6ff6e}
+      #azaAiTeacher.is-listening .aza-ai-bot-face{border-color:#7c72d9;box-shadow:0 0 0 5px #8b7dff20,0 0 30px #8b7dff55,inset 0 -6px 12px #d9e6ff6e}
       #azaAiTeacher.is-listening .aza-ai-bot-eye{animation:azaAiBotListen 1.1s ease-in-out infinite alternate}
-      #azaAiTeacher.is-speaking .aza-ai-bot-face{border-color:#ff414f;box-shadow:0 0 0 5px #ff374a20,0 0 36px #ff394f8c,inset 0 -6px 12px #d9e6ff6e;animation:azaAiBotSpeak .5s ease-in-out infinite alternate}
-      #azaAiTeacher.is-speaking .aza-ai-bot-flames{opacity:1;transform:translateX(-50%) translateY(0)}
-      #azaAiTeacher.is-speaking .aza-ai-bot-flames i{animation:azaAiBotFlame .42s ease-in-out infinite alternate}
-      #azaAiTeacher.is-speaking .aza-ai-bot-eye:before{display:block}
-      #azaAiTeacher.is-speaking .aza-ai-bot-eye-left{transform:rotate(12deg) scaleY(.78)}
-      #azaAiTeacher.is-speaking .aza-ai-bot-eye-right{transform:rotate(-12deg) scaleY(.78)}
+      #azaAiTeacher.is-speaking .aza-ai-bot-face{border-color:#267bff;box-shadow:0 0 0 5px #2c84ff20,0 0 34px #2d83ff72,inset 0 -6px 12px #d9e6ff6e;animation:azaAiBotSpeak .5s ease-in-out infinite alternate}
+      #azaAiTeacher.is-speaking[data-mood="angry"] .aza-ai-bot-flames{opacity:1;transform:translateX(-50%) translateY(0)}
+      #azaAiTeacher.is-speaking[data-mood="angry"] .aza-ai-bot-flames i{animation:azaAiBotFlame .42s ease-in-out infinite alternate}
+      #azaAiTeacher.is-speaking[data-mood="angry"] .aza-ai-bot-eye:before{display:block}
+      #azaAiTeacher.is-speaking[data-mood="angry"] .aza-ai-bot-eye-left{transform:rotate(12deg) scaleY(.78)}
+      #azaAiTeacher.is-speaking[data-mood="angry"] .aza-ai-bot-eye-right{transform:rotate(-12deg) scaleY(.78)}
       #azaAiTeacher.is-speaking .aza-ai-bot-mouth-closed{opacity:0}
       #azaAiTeacher.is-speaking .aza-ai-bot-mouth-open{opacity:1;animation:azaAiBotMouth .25s ease-in-out infinite alternate}
-      #azaAiTeacher.is-speaking .aza-ai-bot-orbit-a{border-color:#ff626c55;animation:azaAiBotOrbit 4s linear infinite}
+      #azaAiTeacher.is-speaking .aza-ai-bot-orbit-a{border-color:#5fa5ff77;animation:azaAiBotOrbit 4s linear infinite}
+      #azaAiTeacher.is-speaking[data-mood="angry"] .aza-ai-bot-face{border-color:#ff414f;box-shadow:0 0 0 5px #ff374a20,0 0 38px #ff394f99,inset 0 -6px 12px #d9e6ff6e}
+      #azaAiTeacher.is-speaking[data-mood="angry"] .aza-ai-bot-orbit-a{border-color:#ff626c77}
+      #azaAiTeacher .aza-ai-bot-star-eye{position:absolute;top:31px;font-size:24px;line-height:1;color:#ffad24;text-shadow:0 0 7px #ffc15b88;opacity:0;transform:scale(.4) rotate(-20deg);transition:opacity .15s,transform .18s;pointer-events:none}
+      #azaAiTeacher .aza-ai-bot-star-eye-left{left:39px}
+      #azaAiTeacher .aza-ai-bot-star-eye-right{right:39px}
+      #azaAiTeacher .aza-ai-bot-mouth-smile{position:absolute;left:50%;top:48px;width:24px;height:12px;border-bottom:5px solid #202334;border-radius:0 0 100% 100%;transform:translateX(-50%);opacity:0}
+      #azaAiTeacher.is-speaking[data-mood="laughing"] .aza-ai-bot-face{border-color:#f39a26;box-shadow:0 0 0 5px #ffbd3d26,0 0 36px #ffad2c99,inset 0 -6px 12px #d9e6ff6e}
+      #azaAiTeacher.is-speaking[data-mood="laughing"] .aza-ai-bot-eye{opacity:0}
+      #azaAiTeacher.is-speaking[data-mood="laughing"] .aza-ai-bot-star-eye{opacity:1;transform:scale(1) rotate(0);animation:azaAiBotStar 1s ease-in-out infinite alternate}
+      #azaAiTeacher.is-speaking[data-mood="laughing"] .aza-ai-bot-mouth-open{opacity:0}
+      #azaAiTeacher.is-speaking[data-mood="laughing"] .aza-ai-bot-mouth-smile{opacity:1}
+      #azaAiTeacher.is-speaking[data-mood="laughing"] .aza-ai-bot-orbit-a{border-color:#ffbe4b77}
+      #azaAiTeacher.is-speaking[data-mood="angry"] .aza-ai-bot-star-eye,#azaAiTeacher.is-speaking[data-mood="angry"] .aza-ai-bot-mouth-smile{opacity:0}
+      #azaAiTeacher.is-speaking[data-mood="neutral"] .aza-ai-bot-mouth-smile{opacity:0}
+      #azaAiTeacher.is-listening .aza-ai-bot-eye{transform:scaleY(.45);border-radius:30%}
+      #azaAiTeacher.is-listening .aza-ai-bot-mouth-closed{opacity:0}
+      #azaAiTeacher.is-listening .aza-ai-bot-mouth-open{opacity:1;transform:translateX(-50%) scaleY(.65)}
       @keyframes azaAiBotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
       @keyframes azaAiBotThink{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.015)}}
       @keyframes azaAiBotSpeak{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-1.5px) scale(1.012)}}
@@ -315,6 +351,7 @@
       @keyframes azaAiBotFlame{from{transform:scaleY(.82) rotate(-3deg)}to{transform:scaleY(1.08) rotate(3deg)}}
       @keyframes azaAiBotListen{from{transform:scale(1)}to{transform:scale(1.12)}}
       @keyframes azaAiBotOrbit{to{transform:translate(-50%,-50%) rotate(345deg)}}
+      @keyframes azaAiBotStar{from{transform:scale(.86) rotate(-8deg)}to{transform:scale(1.08) rotate(8deg)}}
     `;
     document.head.appendChild(style);
   }
@@ -337,8 +374,11 @@
               <span class="aza-ai-bot-flames"><i></i><i></i><i></i><i></i><i></i></span>
               <span class="aza-ai-bot-eye aza-ai-bot-eye-left"></span>
               <span class="aza-ai-bot-eye aza-ai-bot-eye-right"></span>
+              <span class="aza-ai-bot-star-eye aza-ai-bot-star-eye-left" aria-hidden="true">★</span>
+              <span class="aza-ai-bot-star-eye aza-ai-bot-star-eye-right" aria-hidden="true">★</span>
               <span class="aza-ai-bot-mouth-closed"></span>
               <span class="aza-ai-bot-mouth-open"></span>
+              <span class="aza-ai-bot-mouth-smile"></span>
             </div>
             <span class="aza-ai-bot-shadow"></span>
           </div>
@@ -421,7 +461,7 @@
     while (history.length > 10) history.shift();
     input.value = '';
     busy = true;
-    setTeacherState('thinking');
+    setTeacherState('thinking', 'neutral');
     if (send) send.disabled = true;
     const typing = appendMessage('assistant', tx('AZA AI ойлонуп жатат…', 'AZA AI думает…'), 'notice');
 
@@ -437,11 +477,20 @@
         if (response.status === 503) throw new Error(payload.message || tx('AI азыр убактылуу жеткиликсиз. Кийин кайра аракет кыл, досум.', 'AI временно недоступен. Попробуй позже.'));
         throw new Error(payload.message || tx('AI серверине туташуу азырынча даяр эмес. Орнотуу бүтө элек болушу мүмкүн.', 'Подключение к AI-серверу ещё не готово. Возможно, настройка не завершена.'));
       }
-      if (!payload.answer) throw new Error(tx('Жооп бош келди. Кайра сурап көр.', 'Пришёл пустой ответ. Попробуй ещё раз.'));
-      history.push({ role: 'assistant', content: payload.answer });
+      const answer = String(payload.answer || '').trim();
+      if (!answer) throw new Error(tx('Жооп бош келди. Кайра сурап көр.', 'Пришёл пустой ответ. Попробуй ещё раз.'));
+      const mood = normalizeMood(payload.mood) || detectMood(answer);
+      history.push({ role: 'assistant', content: answer });
       while (history.length > 10) history.shift();
       typing.remove();
-      appendMessage('assistant', payload.answer);
+      appendMessage('assistant', answer, '', mood);
+      if (!voiceEnabled) {
+        window.clearTimeout(responseMoodTimer);
+        setTeacherState('speaking', mood);
+        responseMoodTimer = window.setTimeout(() => {
+          if (!busy && !recognitionActive && !activeUtterance) setTeacherState('idle', 'neutral');
+        }, 2600);
+      }
     } catch (error) {
       typing.remove();
       appendMessage('assistant', `${tx('Азыр туташуу болбой калды, досум 😅 ', 'Сейчас не удалось подключиться 😅 ')}${String(error?.message || '').slice(0, 240)}`);
