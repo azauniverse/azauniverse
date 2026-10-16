@@ -1,0 +1,115 @@
+name: AZA Distributed 5000-session diagnostic (fixed)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Share a single concurrency lock with every other capacity-test/deploy workflow.
+concurrency:
+  group: aza-websocket-loadtest-exclusive
+  cancel-in-progress: false
+
+jobs:
+  deploy-test-worker:
+    name: Deploy and health-check isolated test Worker
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy diagnostic load-test Worker only
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: worker
+          command: deploy --config wrangler.capacity-loadtest.toml
+          wranglerVersion: '4'
+
+      - name: Verify isolated Worker health
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 10); do
+            if curl --silent --show-error --fail \
+              https://aza-universe-capacity-loadtest.azataycan2002.workers.dev/health \
+              | grep -q '"ok":true'; then
+              echo "Isolated diagnostic Worker is healthy."
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::error::Isolated test Worker health check failed."
+          exit 1
+
+  websocket-shards:
+    name: "Shard ${{ matrix.shard }} / 10 — 500 sessions"
+    needs: deploy-test-worker
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Run one 500-session shard and export its summary
+        shell: bash
+        env:
+          SHARD_ID: ${{ matrix.shard }}
+          WS_URL: wss://aza-universe-capacity-loadtest.azataycan2002.workers.dev/ws
+          ORIGIN: https://azauniverse.github.io
+          TARGET_CONNECTIONS: "500"
+          RAMP_SECONDS: "60"
+          HOLD_SECONDS: "120"
+          AGGREGATE_ERRORS: "true"
+        run: |
+          set +e
+          echo "Shard ${SHARD_ID}: 500 sessions; combined target across ten shards: 5000."
+          echo "Only the isolated load-test Worker is targeted; production is not targeted."
+          k6 run --summary-export="summary-${SHARD_ID}.json" tests/aza-capacity-ws-staged-diagnostic.js
+          k6_status=$?
+          printf '%s\n' "$k6_status" > "k6-exit-${SHARD_ID}.txt"
+          echo "k6 exit code: ${k6_status}; final pass/fail is decided by aggregate checks."
+          # Preserve the summary artifact even when a per-shard technical threshold fails.
+          exit 0
+
+      - name: Upload this shard summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ws-summary-${{ matrix.shard }}
+          path: |
+            summary-${{ matrix.shard }}.json
+            k6-exit-${{ matrix.shard }}.txt
+          if-no-files-found: error
+          retention-days: 7
+
+  aggregate-results:
+    name: Aggregate all 5000 sessions
+    needs: websocket-shards
+    if: ${{ always() && needs.websocket-shards.result != 'skipped' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download shard summaries
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ws-summary-*
+          path: summaries
+          merge-multiple: true
+
+      - name: Aggregate error rates across all 5000 sessions
+        shell: bash
+        run: node tests/aggregate-ws-summaries.mjs summaries 10 500
