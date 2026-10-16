@@ -18,3 +18,9 @@ class_name = "SiteCapacity"
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["SiteCapacity"]
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[observability.logs]
+invocation_logs = true
