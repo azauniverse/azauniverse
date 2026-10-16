@@ -1,12 +1,12 @@
-/* AZA UNIVERSE — AZA AI Mentor frontend v1.2 — animated tutor + voice
+/* AZA UNIVERSE — AZA AI Mentor frontend v1.3 — animated Preppy-style bot + voice
  * Add to the Pages root and include with:
  * <script src="aza-ai-mentor.js?v=3"></script>
  * Requires the separate Cloudflare Worker in ai-worker/ to be deployed.
  */
 (() => {
   'use strict';
-  if (window.__AZA_AI_MENTOR_V3__) return;
-  window.__AZA_AI_MENTOR_V3__ = true;
+  if (window.__AZA_AI_MENTOR_V4__) return;
+  window.__AZA_AI_MENTOR_V4__ = true;
 
   const API_URL = String(window.AZA_AI_ENDPOINT || 'https://aza-universe-ai.azataycan2002.workers.dev/api/chat');
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -273,8 +273,48 @@
       @keyframes azaTutorSpark{0%,100%{opacity:.65;transform:translateY(0) scale(.94)}50%{opacity:1;transform:translateY(-4px) scale(1.12)}}
       @keyframes azaTutorOrbit{to{transform:rotate(360deg)}}
       @keyframes azaTutorStatusPulse{to{opacity:.5;transform:scale(.82)}}
-      @media(max-width:480px){#azaAiTeacher{height:145px}#azaAiTeacher .aza-ai-tutor-figure{height:155px;width:min(270px,96%);top:-3px}.aza-ai-teacher-status{bottom:6px;font-size:9px}}
-      @media(prefers-reduced-motion:reduce){#azaAiTeacher:after,#azaAiTeacher .teacher-head,#azaAiTeacher .teacher-arm-left,#azaAiTeacher .teacher-arm-right,#azaAiTeacher .teacher-blink,#azaAiTeacher.is-speaking .teacher-mouth-open,#azaAiTeacher .aza-ai-teacher-status:before{animation:none!important}#azaAiTeacher.is-speaking .teacher-mouth-open{transform:scaleY(.48)}}
+      @media(max-width:480px){#azaAiTeacher{height:145px}#azaAiTeacher .aza-ai-tutor-figure{height:155px;width:min(270px,96%);top:-3px}#azaAiTeacher .aza-ai-bot-face{width:min(196px,70vw);height:106px;border-width:8px}#azaAiTeacher .aza-ai-bot-eye{top:34px}#azaAiTeacher .aza-ai-bot-eye-left{left:41px}#azaAiTeacher .aza-ai-bot-eye-right{right:41px}#azaAiTeacher .aza-ai-bot-mouth-closed{top:47px}#azaAiTeacher .aza-ai-bot-mouth-open{top:41px}#azaAiTeacher .aza-ai-bot-flames{top:-31px}.aza-ai-teacher-status{bottom:6px;font-size:9px}}
+      @media(prefers-reduced-motion:reduce){#azaAiTeacher:after,#azaAiTeacher .teacher-head,#azaAiTeacher .teacher-arm-left,#azaAiTeacher .teacher-arm-right,#azaAiTeacher .teacher-blink,#azaAiTeacher.is-speaking .teacher-mouth-open,#azaAiTeacher .aza-ai-teacher-status:before,#azaAiTeacher .aza-ai-bot-face,#azaAiTeacher .aza-ai-bot-flames i,#azaAiTeacher .aza-ai-bot-orbit-a,#azaAiTeacher .aza-ai-bot-orbit-b,#azaAiTeacher .aza-ai-bot-eye,#azaAiTeacher.is-speaking .aza-ai-bot-mouth-open{animation:none!important}#azaAiTeacher.is-speaking .teacher-mouth-open{transform:scaleY(.48)}#azaAiTeacher.is-speaking .aza-ai-bot-mouth-open{transform:translateX(-50%) scaleY(.7)}}
+
+      /* AZA's own minimal oval robot mascot; no human portrait or external image. */
+      #azaAiTeacher .aza-ai-tutor-figure{display:grid;place-items:center;width:min(280px,95%);height:160px;top:-1px;overflow:visible}
+      #azaAiTeacher .aza-ai-bot-shell{position:relative;display:grid;place-items:center;width:100%;height:100%;isolation:isolate}
+      #azaAiTeacher .aza-ai-bot-orbit{position:absolute;left:50%;top:50%;width:210px;height:120px;max-width:90%;border:1px solid #47bfff31;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%) rotate(-15deg)}
+      #azaAiTeacher .aza-ai-bot-orbit-b{width:232px;height:136px;border-style:dashed;opacity:.45;transform:translate(-50%,-50%) rotate(21deg)}
+      #azaAiTeacher .aza-ai-bot-face{position:relative;z-index:1;display:block;box-sizing:border-box;width:min(204px,72vw);height:112px;border:9px solid #267bff;border-radius:999px;background:linear-gradient(180deg,#fff 0%,#f3f7ff 100%);box-shadow:0 0 0 5px #2c84ff13,0 0 27px #2d83ff35,inset 0 -6px 12px #d9e6ff6e;transition:border-color .2s,box-shadow .2s,background .2s;animation:azaAiBotFloat 4.2s ease-in-out infinite}
+      #azaAiTeacher .aza-ai-bot-eye{position:absolute;top:37px;width:13px;height:13px;border-radius:50%;background:#202334;transition:transform .18s,border-radius .18s}
+      #azaAiTeacher .aza-ai-bot-eye:before{content:"";display:none;position:absolute;left:-2px;top:-5px;width:17px;height:4px;border-radius:4px;background:#202334;transform:rotate(-12deg)}
+      #azaAiTeacher .aza-ai-bot-eye-left{left:43px}
+      #azaAiTeacher .aza-ai-bot-eye-right{right:43px}
+      #azaAiTeacher .aza-ai-bot-eye-right:before{transform:rotate(12deg)}
+      #azaAiTeacher .aza-ai-bot-mouth-closed{position:absolute;left:50%;top:51px;width:24px;height:4px;border-radius:999px;background:#202334;transform:translateX(-50%);transition:opacity .15s}
+      #azaAiTeacher .aza-ai-bot-mouth-open{position:absolute;left:50%;top:45px;width:17px;height:14px;border-radius:45% 45% 50% 50%;background:#252839;transform:translateX(-50%) scaleY(.25);opacity:0}
+      #azaAiTeacher .aza-ai-bot-flames{position:absolute;left:50%;top:-33px;display:flex;align-items:flex-end;gap:3px;opacity:0;transform:translateX(-50%) translateY(7px);transition:opacity .16s,transform .16s;pointer-events:none}
+      #azaAiTeacher .aza-ai-bot-flames i{display:block;width:19px;height:29px;background:linear-gradient(180deg,#ffe65b 0%,#ff8c22 42%,#ff414d 100%);clip-path:polygon(50% 0,64% 35%,100% 61%,70% 100%,25% 92%,0 57%,35% 37%);filter:drop-shadow(0 0 5px #ff3b50)}
+      #azaAiTeacher .aza-ai-bot-flames i:nth-child(2),#azaAiTeacher .aza-ai-bot-flames i:nth-child(4){height:37px;width:22px}
+      #azaAiTeacher .aza-ai-bot-flames i:nth-child(3){height:44px;width:25px}
+      #azaAiTeacher .aza-ai-bot-shadow{position:absolute;bottom:7px;left:50%;width:142px;height:9px;border-radius:50%;background:#01060d66;filter:blur(3px);transform:translateX(-50%)}
+      #azaAiTeacher.is-thinking .aza-ai-bot-face{box-shadow:0 0 0 5px #2c84ff20,0 0 32px #2d83ff6b,inset 0 -6px 12px #d9e6ff6e;animation:azaAiBotThink 1.25s ease-in-out infinite}
+      #azaAiTeacher.is-thinking .aza-ai-bot-orbit-a{animation:azaAiBotOrbit 3s linear infinite}
+      #azaAiTeacher.is-thinking .aza-ai-bot-orbit-b{animation:azaAiBotOrbit 5s linear infinite reverse}
+      #azaAiTeacher.is-listening .aza-ai-bot-face{border-color:#ff7b85;box-shadow:0 0 0 5px #ff777720,0 0 30px #ff777755,inset 0 -6px 12px #d9e6ff6e}
+      #azaAiTeacher.is-listening .aza-ai-bot-eye{animation:azaAiBotListen 1.1s ease-in-out infinite alternate}
+      #azaAiTeacher.is-speaking .aza-ai-bot-face{border-color:#ff414f;box-shadow:0 0 0 5px #ff374a20,0 0 36px #ff394f8c,inset 0 -6px 12px #d9e6ff6e;animation:azaAiBotSpeak .5s ease-in-out infinite alternate}
+      #azaAiTeacher.is-speaking .aza-ai-bot-flames{opacity:1;transform:translateX(-50%) translateY(0)}
+      #azaAiTeacher.is-speaking .aza-ai-bot-flames i{animation:azaAiBotFlame .42s ease-in-out infinite alternate}
+      #azaAiTeacher.is-speaking .aza-ai-bot-eye:before{display:block}
+      #azaAiTeacher.is-speaking .aza-ai-bot-eye-left{transform:rotate(12deg) scaleY(.78)}
+      #azaAiTeacher.is-speaking .aza-ai-bot-eye-right{transform:rotate(-12deg) scaleY(.78)}
+      #azaAiTeacher.is-speaking .aza-ai-bot-mouth-closed{opacity:0}
+      #azaAiTeacher.is-speaking .aza-ai-bot-mouth-open{opacity:1;animation:azaAiBotMouth .25s ease-in-out infinite alternate}
+      #azaAiTeacher.is-speaking .aza-ai-bot-orbit-a{border-color:#ff626c55;animation:azaAiBotOrbit 4s linear infinite}
+      @keyframes azaAiBotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+      @keyframes azaAiBotThink{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.015)}}
+      @keyframes azaAiBotSpeak{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-1.5px) scale(1.012)}}
+      @keyframes azaAiBotMouth{from{transform:translateX(-50%) scaleY(.45)}to{transform:translateX(-50%) scaleY(1)}}
+      @keyframes azaAiBotFlame{from{transform:scaleY(.82) rotate(-3deg)}to{transform:scaleY(1.08) rotate(3deg)}}
+      @keyframes azaAiBotListen{from{transform:scale(1)}to{transform:scale(1.12)}}
+      @keyframes azaAiBotOrbit{to{transform:translate(-50%,-50%) rotate(345deg)}}
     `;
     document.head.appendChild(style);
   }
@@ -289,38 +329,20 @@
     stage.setAttribute('role', 'img');
     stage.setAttribute('aria-label', tx('AZA AI сүйлөгөн мугалим', 'Говорящий AI-наставник AZA'));
     stage.innerHTML = `
-      <svg class="aza-ai-tutor-figure" viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="azaTutorHoodie" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1c5674"/><stop offset=".55" stop-color="#133047"/><stop offset="1" stop-color="#091827"/></linearGradient>
-          <linearGradient id="azaTutorSkin" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#f5c6a0"/><stop offset="1" stop-color="#cd8d69"/></linearGradient>
-          <linearGradient id="azaTutorHair" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#34465b"/><stop offset=".55" stop-color="#172333"/><stop offset="1" stop-color="#0c1725"/></linearGradient>
-          <linearGradient id="azaTutorShirt" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#18334c"/><stop offset="1" stop-color="#081624"/></linearGradient>
-        </defs>
-        <ellipse cx="160" cy="181" rx="78" ry="7" fill="#01060d" opacity=".45"/>
-        <g class="teacher-orbit" fill="none" stroke="#58d7ff" stroke-opacity=".26"><ellipse cx="160" cy="91" rx="102" ry="53" transform="rotate(-12 160 91)"/><ellipse cx="160" cy="91" rx="112" ry="60" stroke-dasharray="2 8"/></g>
-        <g class="teacher-arm-left"><path d="M111 115C91 112 80 101 72 84L61 68 48 78 62 111C68 128 82 141 102 143Z" fill="url(#azaTutorHoodie)" stroke="#32708d" stroke-width="1.4"/><path d="M57 76C50 70 46 61 49 54L54 48 57 59 59 45Q63 42 65 49L67 59 71 49Q75 48 76 54L73 68 67 81Z" fill="url(#azaTutorSkin)" stroke="#ac7059" stroke-width="1.2" stroke-linejoin="round"/><path d="M95 119 103 131" stroke="#4a91ad" stroke-width="2" stroke-linecap="round" opacity=".75"/></g>
-        <g class="teacher-arm-right"><path d="M209 116C230 115 242 129 248 147L254 163 238 169 225 151 204 140Z" fill="url(#azaTutorHoodie)" stroke="#32708d" stroke-width="1.4"/><path d="M239 163C245 158 251 155 257 160L261 168 254 174 243 173 235 170Z" fill="url(#azaTutorSkin)" stroke="#ac7059" stroke-width="1.2" stroke-linejoin="round"/><path d="M232 143 241 155" stroke="#4a91ad" stroke-width="2" stroke-linecap="round" opacity=".75"/></g>
-        <path d="M111 108C95 111 86 121 82 142L74 180H246L238 142C234 121 225 111 209 108L191 100H129Z" fill="url(#azaTutorHoodie)" stroke="#34728e" stroke-width="1.5"/>
-        <path d="M129 101 129 126Q160 151 191 126L191 101Z" fill="url(#azaTutorSkin)"/>
-        <path d="M122 111 143 128 160 143 177 128 198 111 207 180H113Z" fill="url(#azaTutorShirt)" stroke="#24475f" stroke-width="1.2"/>
-        <path d="M149 145 160 156 171 145" fill="none" stroke="#58bfe0" stroke-width="2" stroke-linecap="round" opacity=".72"/>
-        <g class="teacher-head">
-          <path d="M116 67C112 34 130 15 159 15 192 15 208 38 204 70L196 99C187 116 174 124 160 124 143 124 130 113 122 97Z" fill="url(#azaTutorHair)"/>
-          <ellipse cx="116" cy="72" rx="7" ry="11" fill="#d99b75"/><ellipse cx="204" cy="72" rx="7" ry="11" fill="#d99b75"/>
-          <path d="M119 58C118 33 135 20 160 20 184 20 201 35 201 60L198 84C193 104 179 116 160 117 140 116 126 103 121 84Z" fill="url(#azaTutorSkin)"/>
-          <path d="M117 61C115 36 127 15 153 14 166 7 182 16 190 24 203 28 208 44 202 66L194 52 183 47 173 35 160 43 147 38 135 48 123 69Z" fill="url(#azaTutorHair)"/>
-          <path d="M132 70Q142 64 150 69M170 69Q180 64 188 70" fill="none" stroke="#70442f" stroke-width="3" stroke-linecap="round"/>
-          <g class="teacher-eyes" fill="#172434"><ellipse cx="142" cy="79" rx="4.4" ry="5.6"/><ellipse cx="178" cy="79" rx="4.4" ry="5.6"/><circle cx="143" cy="77" r="1.4" fill="#fff"/><circle cx="179" cy="77" r="1.4" fill="#fff"/></g>
-          <path class="teacher-blink" d="M135 80Q142 85 149 80M171 80Q178 85 185 80" fill="none" stroke="#754831" stroke-width="2.3" stroke-linecap="round"/>
-          <path d="M160 79 156 91Q160 95 164 91" fill="none" stroke="#b7795c" stroke-width="1.7" stroke-linecap="round"/>
-          <path class="teacher-mouth-closed" d="M150 101Q160 106 170 101" fill="none" stroke="#8e443f" stroke-width="2.3" stroke-linecap="round"/>
-          <ellipse class="teacher-mouth-open" cx="160" cy="102" rx="7" ry="5.5" fill="#71333a" stroke="#a3544c" stroke-width="1.2"/>
-          <path class="teacher-mouth-open" d="M155 102Q160 105 165 102" fill="none" stroke="#f2b6a2" stroke-width="1.2"/>
-          <path d="M145 108Q160 115 175 108" fill="none" stroke="#b86f5a" stroke-width="1.2" opacity=".75"/>
-          <path d="M127 90Q130 96 134 97M193 90Q190 96 186 97" fill="none" stroke="#e3a586" stroke-width="1.4" stroke-linecap="round" opacity=".8"/>
-        </g>
-        <circle cx="92" cy="49" r="2.4" fill="#fbd17c"><animate attributeName="opacity" values=".35;1;.35" dur="3.2s" repeatCount="indefinite"/></circle><circle cx="225" cy="63" r="1.8" fill="#61dcff"><animate attributeName="opacity" values=".3;.9;.3" dur="2.5s" repeatCount="indefinite"/></circle>
-      </svg>
+      <div class="aza-ai-tutor-figure" aria-hidden="true">
+          <div class="aza-ai-bot-shell">
+            <div class="aza-ai-bot-orbit aza-ai-bot-orbit-a"></div>
+            <div class="aza-ai-bot-orbit aza-ai-bot-orbit-b"></div>
+            <div class="aza-ai-bot-face">
+              <span class="aza-ai-bot-flames"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="aza-ai-bot-eye aza-ai-bot-eye-left"></span>
+              <span class="aza-ai-bot-eye aza-ai-bot-eye-right"></span>
+              <span class="aza-ai-bot-mouth-closed"></span>
+              <span class="aza-ai-bot-mouth-open"></span>
+            </div>
+            <span class="aza-ai-bot-shadow"></span>
+          </div>
+        </div>
       <div class="aza-ai-teacher-status" id="azaAiTeacherStatus" aria-live="polite">${tx('Даярмын, досум! 👋', 'На связи, дружище! 👋')}</div>`;
     const messages = $('#azaAiMessages', panel);
     if (messages) panel.insertBefore(stage, messages);
