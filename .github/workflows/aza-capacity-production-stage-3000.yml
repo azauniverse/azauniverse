@@ -1,0 +1,47 @@
+name: AZA Production Capacity Stage - 3000 Sessions (Diagnostic)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Serialize tests with all other capacity-test/deploy workflows.
+concurrency:
+  group: aza-websocket-loadtest-exclusive
+  cancel-in-progress: false
+
+jobs:
+  production-stage-3000:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Verify production Worker health
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --silent --show-error --fail \
+            https://aza-universe-capacity.azataycan2002.workers.dev/health \
+            | grep -q '"ok":true'
+          echo "Production Worker health check passed."
+
+      - name: Run staged production WebSocket diagnostic (3000 sessions)
+        shell: bash
+        env:
+          WS_URL: wss://aza-universe-capacity.azataycan2002.workers.dev/ws
+          ORIGIN: https://azauniverse.github.io
+          TARGET_CONNECTIONS: "3000"
+          RAMP_SECONDS: "240"
+          HOLD_SECONDS: "120"
+          AGGREGATE_ERRORS: "false"
+        run: |
+          set -euo pipefail
+          echo "WARNING: opens up to 3000 temporary WebSocket sessions against the PRODUCTION capacity Worker."
+          echo "Ramp-up: 240 seconds. Hold: 120 seconds. Static question bank is not loaded."
+          k6 run tests/aza-capacity-ws-staged-diagnostic-detailed.js
