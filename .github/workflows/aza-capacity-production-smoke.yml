@@ -1,0 +1,47 @@
+name: AZA Production Capacity Smoke Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Do not run production smoke tests concurrently with deployments or capacity tests.
+concurrency:
+  group: aza-websocket-loadtest-exclusive
+  cancel-in-progress: false
+
+jobs:
+  production-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Verify production Worker health
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --silent --show-error --fail \
+            https://aza-universe-capacity.azataycan2002.workers.dev/health \
+            | grep -q '"ok":true'
+          echo "Production Worker health check passed."
+
+      - name: Run low-load production WebSocket smoke test (100 sessions)
+        shell: bash
+        env:
+          WS_URL: wss://aza-universe-capacity.azataycan2002.workers.dev/ws
+          ORIGIN: https://azauniverse.github.io
+          TARGET_CONNECTIONS: "100"
+          RAMP_SECONDS: "30"
+          HOLD_SECONDS: "30"
+          AGGREGATE_ERRORS: "false"
+        run: |
+          set -euo pipefail
+          echo "WARNING: this test opens 100 temporary WebSocket sessions against the production capacity Worker."
+          echo "It does not target the test Worker or load the static question bank."
+          k6 run tests/aza-capacity-ws-staged-diagnostic.js
