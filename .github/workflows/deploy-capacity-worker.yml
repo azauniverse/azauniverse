@@ -1,19 +1,14 @@
-name: Deploy AZA Capacity Worker
+name: Deploy AZA Capacity Worker (Manual)
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'worker/**'
-      - '.github/workflows/deploy-capacity-worker.yml'
 
 permissions:
   contents: read
 
+# Use the same exclusive lock as capacity tests and the automatic health-checked deploy.
 concurrency:
-  group: aza-capacity-worker-deploy
+  group: aza-websocket-loadtest-exclusive
   cancel-in-progress: false
 
 jobs:
