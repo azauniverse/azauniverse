@@ -3,9 +3,9 @@ main = "src/index.js"
 compatibility_date = "2026-10-01"
 
 [vars]
-MAX_ACTIVE = "10000"
-# A deliberately long heartbeat keeps the Free-tier prototype from generating
-# excessive incoming WebSocket messages. For production, tune limits and budget.
+# Set production admission cap to the highest stage that previously passed: 3000.
+# This is a concurrency cap, not a Durable Objects daily quota bypass.
+MAX_ACTIVE = "3000"
 HEARTBEAT_MS = "600000"
 STALE_MS = "1320000"
 ALARM_EVERY_MS = "300000"
@@ -18,6 +18,7 @@ class_name = "SiteCapacity"
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["SiteCapacity"]
+
 [observability]
 enabled = true
 head_sampling_rate = 1
