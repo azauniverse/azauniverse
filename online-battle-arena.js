@@ -299,7 +299,7 @@
       ? 'Найди соперника, собери команду и докажи своё мастерство.'
       : 'Атаандаш тап, команда түз жана билимиңди аренада көрсөт.';
     const join = ru ? 'ВОЙТИ В АРЕНУ' : 'АРЕНАГА КИРҮҮ';
-    const timer = ru ? '60 СЕК НА ВОПРОС' : 'СУРООГО 60 СЕК';
+    const timer = ru ? '20 СЕК НА ВОПРОС' : 'СУРООГО 20 СЕК';
     button.setAttribute('aria-label', join);
     button.innerHTML = `
       <span class="aza-arena-wide-art" aria-hidden="true">
@@ -344,7 +344,7 @@
       if (footnote && !footnote.querySelector('.aza-arena-answer-footnote')) {
         const note = document.createElement('p');
         note.className = 'aza-arena-answer-footnote';
-        note.textContent = tx('10 СУРОО • АР БИР ЖООПКА 60 СЕКУНД', '10 ВОПРОСОВ • 60 СЕКУНД НА ОТВЕТ');
+        note.textContent = tx('10 СУРОО • АР БИР ЖООПКА 20 СЕКУНД', '10 ВОПРОСОВ • 20 СЕКУНД НА ОТВЕТ');
         footnote.appendChild(note);
       }
     }
